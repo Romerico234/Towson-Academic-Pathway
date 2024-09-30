@@ -1,15 +1,15 @@
-# COSC412-SWE-ToBeNamed
+# COSC412-SWE-TAP
 
-Project Name: TBD
+## **Project Name:** 
+### **TAP (Towson University Academic Pathway)**
 
-Members
+---
 
--Zachary Hall
+## **Team Members**
+- **Nyle Clements**
+- **Romerico David**
+- **Tim DeLloyd**
+- **Mitchell Griff**
+- **Zachary Hall**
 
--Nyle Clements
-
--Mico David
-
--Tim DeLloyd
-
--Mitchell Griff
+---
