@@ -1,0 +1,47 @@
+version: 2.1
+
+workflows:
+  project-checks:
+    jobs:
+      - frontend-check
+      - backend-check
+
+jobs:
+  frontend-check:
+    docker:
+      - image: cimg/node:23.1.0
+    steps:
+      - checkout
+      - run:
+          name: Check Node Version
+          command: node --version
+      - run:
+          name: Install Frontend Dependencies
+          command: |
+            cd tap-client
+            npm install
+      - run:
+          name: Build Frontend Project
+          command: |
+            cd tap-client
+            npm run build
+
+  backend-check:
+    docker:
+      - image: cimg/node:23.1.0
+    steps:
+      - checkout
+      - run:
+          name: Check Node Version
+          command: node --version
+      - run:
+          name: Install Backend Dependencies
+          command: |
+            cd tap-service
+            npm install
+      # - run:
+      #     name: Start Backend Server for Checks
+      #     command: |
+      #       cd tap-service
+      #       npx nodemon -x "echo 'Server started and stopped successfully'" --exitcrash
+      # TODO: Add backend tests
