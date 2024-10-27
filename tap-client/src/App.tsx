@@ -1,7 +1,12 @@
 import "./App.css";
+import HomeComponent from "./components/home/HomeComponent";
 
 function App() {
-  return <div>Program's running!</div>;
+  return (
+    <HomeComponent />
+  );
+
+  
 }
 
 export default App;
