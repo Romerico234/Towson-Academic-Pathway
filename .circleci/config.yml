@@ -1,0 +1,16 @@
+version: 2.1
+
+workflows:
+  frontend-tests:
+    jobs:
+      - frontend-check
+
+jobs:
+  frontend-check:
+    docker:
+      - image: cimg/node:23.1.0
+    steps:
+      - checkout
+      - run:
+          name: Check Node Version
+          command: node --version
