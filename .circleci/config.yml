@@ -12,5 +12,12 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Check Node Version
-          command: node --version
+          name: Install Dependencies
+          command: |
+            cd tap-client
+            npm install
+      - run:
+          name: Build Frontend Project
+          command: |
+            cd tap-client
+            npm run build
