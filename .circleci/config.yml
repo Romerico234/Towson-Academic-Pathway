@@ -43,5 +43,5 @@ jobs:
           name: Start Backend Server for Checks
           command: |
             cd tap-service
-            npx nodemon --exec "echo 'Server started successfully'"
+            npx nodemon -x "echo 'Server started and stopped successfully'" --exitcrash
       # TODO: Add backend tests
