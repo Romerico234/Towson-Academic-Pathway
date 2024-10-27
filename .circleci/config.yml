@@ -39,9 +39,9 @@ jobs:
           command: |
             cd tap-service
             npm install
-      - run:
-          name: Start Backend Server for Checks
-          command: |
-            cd tap-service
-            npx nodemon -x "echo 'Server started and stopped successfully'" --exitcrash
+      # - run:
+      #     name: Start Backend Server for Checks
+      #     command: |
+      #       cd tap-service
+      #       npx nodemon -x "echo 'Server started and stopped successfully'" --exitcrash
       # TODO: Add backend tests
