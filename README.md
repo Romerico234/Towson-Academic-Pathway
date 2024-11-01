@@ -1,6 +1,6 @@
 # COSC412-SWE-TAP-Dev
 
-## **Project Name: TAP (Towson Academic Pathway)**
+## **Project Name: TAP (Towson Academic Planner)**
 
 ---
 
