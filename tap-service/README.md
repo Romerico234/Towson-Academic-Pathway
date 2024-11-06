@@ -15,7 +15,7 @@
    - Use `npm i` to install packages
    - Use `nodemon` to start the server:
      ```
-     npm i
      cd tap-service
+     npm i
      nodemon server.js
      ```
