@@ -6,8 +6,8 @@
    - Use npm i to install packages
    - Use npm run dev to start the server:
   ```
-     npm i
      cd tap-client
+     npm i
      npm run dev
   ```
 
