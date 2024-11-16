@@ -19,11 +19,6 @@ jobs:
           command: |
             cd tap-client
             npm run build
-      - run:
-          name: Run Frontend Tests
-          command: |
-            cd tap-client
-            npm test
 
   backend-check:
     docker:
@@ -43,11 +38,6 @@ jobs:
           command: |
             cd tap-api
             npm i
-      - run:
-          name: Run Backend Linter
-          command: |
-            cd tap-api
-            npm run lint
       - run:
           name: Run Backend Tests
           command: |

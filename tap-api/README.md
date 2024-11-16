@@ -12,12 +12,8 @@ This document provides instructions on how to set up the development environment
 
 ## Getting Started
 
-### 1. Clone the Repository
-
-Clone the repository to your local machine:
-
+### 1. Go into backend
 ```bash
-git clone https://github.com/yourusername/your-repo.git
 cd tap-api
 ```
 
