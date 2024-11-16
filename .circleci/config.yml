@@ -38,11 +38,12 @@ jobs:
           command: |
             cd tap-api
             npm i
-      - run:
-          name: Run Backend Tests
-          command: |
-            cd tap-api
-            npm test
+      # No tests yet
+      # - run:
+      #     name: Run Backend Tests
+      #     command: |
+      #       cd tap-api
+      #       npm test
       - run:
           name: Build Backend Project
           command: |
