@@ -1,5 +1,17 @@
-# React + TypeScript + Vite
+# TAP Client (React + TypeScript + Vite)
 
+## Development Environment
+**Install Dependencies and Run the Frontend**:
+   - Navigate to the tap-client directory.
+   - Use npm i to install packages
+   - Use npm run dev to start the server:
+  ```
+     cd tap-client
+     npm i
+     npm run dev
+  ```
+
+## Template
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

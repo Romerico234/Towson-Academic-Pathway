@@ -1,11 +1,5 @@
 version: 2.1
 
-workflows:
-  project-checks:
-    jobs:
-      - frontend-check
-      - backend-check
-
 jobs:
   frontend-check:
     docker:
@@ -19,7 +13,7 @@ jobs:
           name: Install Frontend Dependencies
           command: |
             cd tap-client
-            npm install
+            npm i
       - run:
           name: Build Frontend Project
           command: |
@@ -29,6 +23,11 @@ jobs:
   backend-check:
     docker:
       - image: cimg/node:23.1.0
+      - image: circleci/mongo:5.0   
+    environment:
+      MONGODB_URI: mongodb://localhost:27017/test-db
+      JWT_SECRET: test_jwt_secret
+      PORT: 3000
     steps:
       - checkout
       - run:
@@ -37,11 +36,23 @@ jobs:
       - run:
           name: Install Backend Dependencies
           command: |
-            cd tap-service
-            npm install
+            cd tap-api
+            npm i
+      # No tests yet
       # - run:
-      #     name: Start Backend Server for Checks
+      #     name: Run Backend Tests
       #     command: |
-      #       cd tap-service
-      #       npx nodemon -x "echo 'Server started and stopped successfully'" --exitcrash
-      # TODO: Add backend tests
+      #       cd tap-api
+      #       npm test
+      - run:
+          name: Build Backend Project
+          command: |
+            cd tap-api
+            npm run build
+
+workflows:
+  version: 2
+  project-checks:
+    jobs:
+      - frontend-check
+      - backend-check
