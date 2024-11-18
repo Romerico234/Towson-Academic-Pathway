@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
-import axios from "axios";
 import { AuthContext } from "./AuthComponent";
 import { useNavigate } from "react-router-dom";
+import { AuthService } from "../../shared/services/auth-service";
 
 export default function LoginComponent() {
     const { login } = useContext(AuthContext);
@@ -13,17 +13,11 @@ export default function LoginComponent() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const response = await axios.post(
-                "http://localhost:3000/api/auth/login",
-                {
-                    email,
-                    password,
-                }
-            );
-            login(response.data.token);
-            navigate("/dashboard");
+            const { token } = await AuthService.login(email, password);
+            login(token);
+            navigate("/preferences-form");
         } catch (error: any) {
-            alert(error.response.data.message || "Login failed");
+            alert(error.response?.data?.message || "Login failed");
         }
     };
 
