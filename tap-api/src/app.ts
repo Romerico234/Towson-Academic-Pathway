@@ -1,7 +1,7 @@
 import express, { Application } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { MongoClient, Db } from "mongodb";
+import { connectToDb } from "./utils/db"; // Import connectToDb
 
 // Import routes
 import authRoutes from "./routes/auth-routes";
@@ -22,41 +22,31 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Database client
-let dbClient: MongoClient;
-let db: Db;
+// Connect to MongoDB using connectToDb
+connectToDb(MONGODB_URI, DB_NAME)
+    .then(() => {
+        // Routes should be set up after the database is connected
+        app.use("/api/auth", authRoutes);
 
-// Connect to MongoDB
-MongoClient.connect(MONGODB_URI)
-  .then((client) => {
-    dbClient = client;
-    db = client.db(DB_NAME); // Use the database specified in the environment variable
+        // Default route for testing
+        app.get("/", (req, res) => {
+            res.send("Welcome to the TAP API!");
+        });
 
-    // Make the db accessible to the routers
-    app.locals.db = db;
+        // Handle 404 errors
+        app.use((req, res) => {
+            res.status(404).send("Route not found");
+        });
 
-    // Routes
-    app.use("/api/auth", authRoutes);
-
-    // Default route for testing
-    app.get("/", (req, res) => {
-      res.send("Welcome to the TAP API!");
+        // Start the server after successful database connection
+        app.listen(PORT, () => {
+            console.log(`Server is running on port http://localhost:${PORT}/`);
+        });
+    })
+    .catch((error) => {
+        console.error("Failed to connect to the database:", error);
+        process.exit(1); // Exit the process with an error code
     });
-
-    // Handle 404 errors
-    app.use((req, res) => {
-      res.status(404).send("Route not found");
-    });
-
-    // Start the server after successful database connection
-    app.listen(PORT, () => {
-      console.log(`Server is running on port http://localhost:${PORT}/`);
-    });
-  })
-  .catch((error) => {
-    console.error("Failed to connect to the database:", error);
-    process.exit(1); // Exit the process with an error code
-  });
 
 // Export app for testing or other purposes
 export default app;
