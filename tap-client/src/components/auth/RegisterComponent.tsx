@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { AuthContext } from "./AuthComponent";
 import { useNavigate } from "react-router-dom";
 import { AuthService } from "../../shared/services/auth-service";
+
 export default function RegisterComponent() {
     const { login } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -10,9 +11,19 @@ export default function RegisterComponent() {
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [verifyPassword, setVerifyPassword] = useState("");
+    const [error, setError] = useState("");
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        if (password !== verifyPassword) {
+            setError("Passwords do not match");
+            return;
+        }
+
+        setError("");
+
         try {
             const { token } = await AuthService.register(
                 firstName,
@@ -34,6 +45,7 @@ export default function RegisterComponent() {
                 className="bg-white p-8 rounded shadow-md w-96"
             >
                 <h2 className="text-2xl font-bold mb-6">Register</h2>
+
                 <div className="mb-4">
                     <label className="block text-gray-700">First Name</label>
                     <input
@@ -44,6 +56,7 @@ export default function RegisterComponent() {
                         required
                     />
                 </div>
+
                 <div className="mb-4">
                     <label className="block text-gray-700">Last Name</label>
                     <input
@@ -54,6 +67,7 @@ export default function RegisterComponent() {
                         required
                     />
                 </div>
+
                 <div className="mb-4">
                     <label className="block text-gray-700">Email</label>
                     <input
@@ -64,7 +78,8 @@ export default function RegisterComponent() {
                         required
                     />
                 </div>
-                <div className="mb-6">
+
+                <div className="mb-4">
                     <label className="block text-gray-700">Password</label>
                     <input
                         type="password"
@@ -74,9 +89,26 @@ export default function RegisterComponent() {
                         required
                     />
                 </div>
+
+                <div className="mb-6">
+                    <label className="block text-gray-700">
+                        Confirm Password
+                    </label>
+                    <input
+                        type="password"
+                        className="w-full border border-gray-300 p-2 rounded"
+                        value={verifyPassword}
+                        onChange={(e) => setVerifyPassword(e.target.value)}
+                        required
+                    />
+                </div>
+
+                {error && <p className="text-red-500 mb-4">{error}</p>}
+
                 <button className="w-full bg-towsonGold text-white py-2 px-4 rounded hover:bg-yellow-600">
                     Register
                 </button>
+
                 <p className="mt-4">
                     Already have an account?{" "}
                     <a href="/login" className="text-towsonGold">
