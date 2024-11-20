@@ -1,10 +1,11 @@
 import express, { Application } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { connectToDb } from "./utils/db"; 
+import { connectToDb } from "./utils/db";
 
 // Import routes
 import authRoutes from "./routes/auth-routes";
+import openAIRoutes from "./routes/openai.routes";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -24,6 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 connectToDb(MONGODB_URI, DB_NAME)
     .then(() => {
         app.use("/api/auth", authRoutes);
+        app.use("/api/openai", openAIRoutes);
 
         // Default route for testing
         app.get("/", (req, res) => {
