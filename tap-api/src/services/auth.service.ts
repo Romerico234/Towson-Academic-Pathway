@@ -1,8 +1,8 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { AuthError } from "../errors/errors";
-import User, { IUser } from "../models/user.schema";
-import StudentData from "../models/student.schema";
+import { AuthError } from "../types/errors/errors";
+import User, { IUser } from "../types/models/user.schema";
+import StudentData from "../types/models/student.schema";
 
 export class AuthService {
     private JWT_SECRET: string;
