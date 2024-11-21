@@ -10,7 +10,6 @@ export default function OpenAITestComponent() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-
         if (!prompt.trim()) {
             alert("Please enter a prompt.");
             return;
@@ -19,7 +18,7 @@ export default function OpenAITestComponent() {
         setLoading(true);
 
         try {
-            const res = await api.post("/openai/generate", { prompt });
+            const res = await api.post("/openai/generate-plan", { prompt });
             setResponse(JSON.stringify(res.data, null, 2));
         } catch (error: any) {
             console.error("Error calling OpenAI API:", error);

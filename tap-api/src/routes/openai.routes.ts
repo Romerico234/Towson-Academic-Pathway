@@ -6,7 +6,7 @@ const router: Router = Router();
 const openAIController = new OpenAIController();
 
 router.post(
-    "/generate",
+    "/generate-plan",
     authenticateJWT, // Protects the route
     openAIController.generatePlans
 );
