@@ -1,11 +1,12 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "./AuthComponent";
 import { useNavigate } from "react-router-dom";
-import { AuthService } from "../../shared/services/auth-service";
+import AuthService from "../../shared/services/auth-service";
 
 export default function RegisterComponent() {
     const { login } = useContext(AuthContext);
     const navigate = useNavigate();
+    const authService = new AuthService();
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -25,7 +26,7 @@ export default function RegisterComponent() {
         setError("");
 
         try {
-            const { token } = await AuthService.register(
+            const { token } = await authService.register(
                 firstName,
                 lastName,
                 email,
