@@ -1,0 +1,886 @@
+{
+    "courses": [
+        {
+            "_id": "001327",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "109",
+            "courseTitle": "COMPUTERS AND CREATIVITY",
+            "termsOffered": "Fall, Winter, Spring & Summer",
+            "description": "Explores creativity and problem-solving using computers.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": true,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "001328",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "111",
+            "courseTitle": "INFORMATION AND TECHNOLOGY FOR BUSINESS",
+            "termsOffered": "Fall, Winter, Spring & Summer",
+            "description": "Introduction to the role of information technology in business.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": true,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "001335",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "175",
+            "courseTitle": "GEN COMPUTER SCI",
+            "termsOffered": "Fall, Spring & Summer",
+            "description": "General introduction to computer science principles.",
+            "units": "4 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": true,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "001344",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "236",
+            "courseTitle": "INTRODUCTION TO COMPUTER SCIENCE I",
+            "termsOffered": "Fall, Spring & Summer",
+            "description": "An introduction to fundamental programming concepts.",
+            "units": "4 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": true,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "001345",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "237",
+            "courseTitle": "INTRODUCTION TO COMPUTER SCIENCE II",
+            "termsOffered": "Fall, Spring & Summer",
+            "description": "Continuation of Computer Science I with data structures.",
+            "units": "4 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": true,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "012440",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "290",
+            "courseTitle": "PRINCIPLES OF COMPUTER ORGANIZATION",
+            "termsOffered": "Fall, Spring & Summer",
+            "description": "Explores the principles and structure of computer systems.",
+            "units": "4 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": true,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "012768",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "310",
+            "courseTitle": "SPECIAL TOPICS: ADVANCED PROGRAMMING",
+            "termsOffered": "Not Currently Offered",
+            "description": "Covers advanced topics in programming, subject to change.",
+            "units": "6 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": false
+                }
+            ],
+            "isActive": false,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "001356",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "311",
+            "courseTitle": "DIGITAL TECH SOCI",
+            "termsOffered": "Not Currently Offered",
+            "description": "Examines the societal impact of digital technologies.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": false
+                }
+            ],
+            "isActive": false,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "001357",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "314",
+            "courseTitle": "INTRODUCTION TO CRYPTOGRAPHY",
+            "termsOffered": "Fall & Spring",
+            "description": "Introduction to the fundamental principles of cryptography.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": false,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "001360",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "321",
+            "courseTitle": "COMPUTERIZATION AND ITS IMPACTS",
+            "termsOffered": "Not Currently Offered",
+            "description": "Discusses the broad impacts of computerization on society.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": false
+                }
+            ],
+            "isActive": false,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "001364",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "336",
+            "courseTitle": "DATA STRUCTURES AND ALGORITHM ANALYSIS",
+            "termsOffered": "Fall, Spring & Summer",
+            "description": "Covers advanced data structures and algorithm design.",
+            "units": "4 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": true,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "014035",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "340",
+            "courseTitle": "SYSTEMS PROGRAMMING",
+            "termsOffered": "Fall & Spring",
+            "description": "Focuses on low-level programming and operating systems.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": false,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "001370",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "350",
+            "courseTitle": "DATA COMMUNICATIONS AND NETWORKING",
+            "termsOffered": "Fall & Spring",
+            "description": "Covers principles of networking and data transmission.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": true,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "001376",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "397",
+            "courseTitle": "INTERNSHIP IN COSC",
+            "termsOffered": "Fall, Spring & Summer",
+            "description": "Provides students with real-world internship experiences.",
+            "units": "6 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Practicum",
+                    "required": true
+                }
+            ],
+            "isActive": true,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "001381",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "412",
+            "courseTitle": "SOFTWARE ENGINEERING",
+            "termsOffered": "Fall & Spring",
+            "description": "Introduction to software development lifecycle and practices.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": true,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "001383",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "417",
+            "courseTitle": "INTRODUCTION TO THE THEORY OF COMPUTING",
+            "termsOffered": "Spring",
+            "description": "Covers theoretical foundations of computing systems.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": true,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "001384",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "418",
+            "courseTitle": "ETHICAL AND SOCIETAL CONCERNS OF COMPUTER SCIENTISTS",
+            "termsOffered": "Fall, Spring & Summer",
+            "description": "Examines ethical considerations and societal implications in computer science.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": true,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "001387",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "431",
+            "courseTitle": "SELECTED TOPICS COMPUTER SCIENCE",
+            "termsOffered": "Occasionally",
+            "description": "Covers specialized topics in computer science.",
+            "units": "4 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": false
+                }
+            ],
+            "isActive": false,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "013262",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "432",
+            "courseTitle": "REQUIREMENTS ANALYSIS & MODELING",
+            "termsOffered": "Fall",
+            "description": "Introduction to analyzing and modeling software requirements.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": false,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "013899",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "435",
+            "courseTitle": "MOBILE APPLICATION DEVELOPMENT",
+            "termsOffered": "Fall & Spring",
+            "description": "Introduction to the design and development of mobile applications.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": true,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "001390",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "436",
+            "courseTitle": "OBJECT-ORIENTED DESIGN & PROGRAMMING",
+            "termsOffered": "Fall & Spring",
+            "description": "Focuses on the principles of object-oriented programming and design patterns.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": true,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "001393",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "439",
+            "courseTitle": "OPERATING SYSTEMS",
+            "termsOffered": "Fall & Spring",
+            "description": "Introduction to the design and implementation of operating systems.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": true,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "011006",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "440",
+            "courseTitle": "OPERATING SYSTEMS SECURITY",
+            "termsOffered": "Fall",
+            "description": "Explores security principles and practices in operating systems.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": false,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "013294",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "442",
+            "courseTitle": "SOFTWARE QUALITY ASSURANCE AND TESTING",
+            "termsOffered": "Spring",
+            "description": "Introduction to the principles and practices of software testing.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": true,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "001395",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "450",
+            "courseTitle": "NETWORK SECURITY",
+            "termsOffered": "Fall",
+            "description": "Covers the fundamentals of securing computer networks.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": false,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "001396",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "455",
+            "courseTitle": "PROGRAMMING LANGUAGES: DESIGN & IMPLEMENTATION",
+            "termsOffered": "Fall & Spring",
+            "description": "Introduction to the design and implementation of programming languages.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": true,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "001397",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "457",
+            "courseTitle": "DATABASE MANAGEMENT SYSTEMS",
+            "termsOffered": "Fall & Spring",
+            "description": "Covers the principles and practices of database design and implementation.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": true,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "011007",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "458",
+            "courseTitle": "APPLICATION SOFTWARE SECURITY",
+            "termsOffered": "Fall",
+            "description": "Explores security concepts for application software.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": false,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "001398",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "459",
+            "courseTitle": "COMPUTER SIMULATION & MODELING",
+            "termsOffered": "Occasionally",
+            "description": "Introduction to computer simulation techniques and modeling concepts.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": true,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "001399",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "461",
+            "courseTitle": "ARTIFICIAL INTELLIGENCE",
+            "termsOffered": "Spring",
+            "description": "Covers the foundations of artificial intelligence, including algorithms and applications.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": false,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "011823",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "465",
+            "courseTitle": "ROBOTICS",
+            "termsOffered": "Occasionally",
+            "description": "Introduction to robotics, including design and programming.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": false
+                }
+            ],
+            "isActive": false,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "014082",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "467",
+            "courseTitle": "FOUNDATIONS OF DATA MINING",
+            "termsOffered": "Spring",
+            "description": "Covers the concepts and techniques of data mining.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": true,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "001400",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "471",
+            "courseTitle": "COMPUTER GRAPHICS",
+            "termsOffered": "Occasionally",
+            "description": "Introduction to computer graphics principles and programming.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": true,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "011047",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "481",
+            "courseTitle": "CASE STUDIES IN COMPUTER SECURITY",
+            "termsOffered": "Spring",
+            "description": "Examines case studies in computer security.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": true,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "014138",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "482",
+            "courseTitle": "TEACHING COMPUTER SCIENCE IN THE SECONDARY SCHOOLS",
+            "termsOffered": "Spring",
+            "description": "Prepares students to teach computer science in secondary schools.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": false,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "001403",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "483",
+            "courseTitle": "DESIGN & ANALYSIS ALGORITHMS",
+            "termsOffered": "Fall",
+            "description": "Covers design and analysis of algorithms with real-world applications.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": false,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "001404",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "484",
+            "courseTitle": "WEB-BASED PROGRAM",
+            "termsOffered": "Fall & Spring",
+            "description": "Focuses on web programming technologies and frameworks.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": true,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "013241",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "485",
+            "courseTitle": "REVERSE ENGINEERING AND MALWARE ANALYSIS",
+            "termsOffered": "Spring",
+            "description": "Explores reverse engineering techniques and malware analysis.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": true
+                }
+            ],
+            "isActive": true,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "013136",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "490",
+            "courseTitle": "SOFTWARE PROJECT PRACTICUM",
+            "termsOffered": "Spring",
+            "description": "Capstone course focusing on practical software development projects.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Practicum",
+                    "required": true
+                }
+            ],
+            "isActive": true,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "014162",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "492",
+            "courseTitle": "INTERNSHIP IN SECONDARY EDUCATION - COMPUTER SCIENCE",
+            "termsOffered": "Spring",
+            "description": "Internship for secondary education majors in computer science.",
+            "units": "6 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Practicum",
+                    "required": true
+                }
+            ],
+            "isActive": false,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "001405",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "493",
+            "courseTitle": "DIRECTED READINGS IN COMPUTER SCIENCE",
+            "termsOffered": "Occasionally",
+            "description": "Allows in-depth exploration of topics under faculty supervision.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Lecture",
+                    "required": false
+                }
+            ],
+            "isActive": false,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        },
+        {
+            "_id": "001406",
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "495",
+            "courseTitle": "INDEPENDENT STUDY",
+            "termsOffered": "Occasionally",
+            "description": "Allows students to pursue independent study projects.",
+            "units": "3 units",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "components": [
+                {
+                    "component": "Independent Study",
+                    "required": false
+                }
+            ],
+            "isActive": true,
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN"
+        }
+    ]
+}
