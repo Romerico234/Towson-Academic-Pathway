@@ -1,4 +1,5 @@
 import mongoose, { Schema, Document, Types } from "mongoose";
+import { COLLECTION_NAMES } from "../mongodb/collection-names";
 
 export interface IMeeting {
     days: string;
@@ -61,24 +62,27 @@ const EnrollmentInfoSchema = new Schema<IEnrollmentInfo>({
     waitListTotal: { type: Number },
 });
 
-const CourseSectionSchema = new Schema<ICourseSection>({
-    courseBridgeId: {
-        type: Schema.Types.ObjectId,
-        ref: "CourseBridge",
-        required: true,
+const CourseSectionSchema = new Schema<ICourseSection>(
+    {
+        courseBridgeId: {
+            type: Schema.Types.ObjectId,
+            ref: "CourseBridge",
+            required: true,
+        },
+        termActive: { type: String, required: true },
+        classNumber: { type: Number, required: true },
+        classSection: { type: String, required: true },
+        component: { type: String },
+        session: { type: String },
+        startDate: { type: Date },
+        endDate: { type: Date },
+        meetings: { type: [MeetingSchema], default: [] },
+        instructors: { type: [InstructorSchema], default: [] },
+        enrollmentInfo: { type: EnrollmentInfoSchema },
+        location: { type: String },
     },
-    termActive: { type: String, required: true },
-    classNumber: { type: Number, required: true },
-    classSection: { type: String, required: true },
-    component: { type: String },
-    session: { type: String },
-    startDate: { type: Date },
-    endDate: { type: Date },
-    meetings: { type: [MeetingSchema], default: [] },
-    instructors: { type: [InstructorSchema], default: [] },
-    enrollmentInfo: { type: EnrollmentInfoSchema },
-    location: { type: String },
-});
+    { collection: COLLECTION_NAMES.COURSE_SECTION }
+);
 
 export default mongoose.model<ICourseSection>(
     "CourseSection",

@@ -1,4 +1,5 @@
 import mongoose, { Schema, Document, Types } from "mongoose";
+import { COLLECTION_NAMES } from "../mongodb/collection-names";
 
 export interface AcademicInfo {
     [key: string]: any;
@@ -77,7 +78,7 @@ const StudentDataSchema: Schema = new Schema(
         degreePlan: { type: [SemesterPlanSchema], default: [] },
         activeSemesterPlan: { type: ActiveSemesterPlanSchema, default: null },
     },
-    { timestamps: true }
+    { timestamps: true, collection: COLLECTION_NAMES.STUDENT_DATA}
 );
 
 export default mongoose.model<IStudentData>("StudentData", StudentDataSchema);
