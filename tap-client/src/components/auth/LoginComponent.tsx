@@ -1,11 +1,12 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "./AuthComponent";
 import { useNavigate } from "react-router-dom";
-import { AuthService } from "../../shared/services/auth-service";
+import AuthService  from "../../shared/services/auth.service";
 
 export default function LoginComponent() {
     const { login } = useContext(AuthContext);
     const navigate = useNavigate();
+    const authService = new AuthService();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -13,7 +14,7 @@ export default function LoginComponent() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const { token } = await AuthService.login(email, password);
+            const { token } = await authService.login(email, password);
             login(token);
             navigate("/preferences-form");
         } catch (error: any) {
