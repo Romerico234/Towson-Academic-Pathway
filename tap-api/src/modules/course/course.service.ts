@@ -1,4 +1,4 @@
-import Course, { ICourse } from "../types/models/course.schema";
+import Course, { ICourse } from "../../types/models/course.schema";
 
 export class CourseService {
     public async getAllCourses(): Promise<ICourse[]> {

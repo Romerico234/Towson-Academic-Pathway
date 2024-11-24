@@ -1,4 +1,4 @@
-import Major, { IMajor } from "../types/models/major.schema";
+import Major, { IMajor } from "../../types/models/major.schema";
 
 class MajorService {
     // Get all majors

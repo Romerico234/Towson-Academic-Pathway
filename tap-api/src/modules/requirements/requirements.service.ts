@@ -1,4 +1,4 @@
-import Requirement from "../types/models/requirements.schema";
+import Requirement from "../../types/models/requirements.schema";
 
 class RequirementsService {
     // Get requirements
