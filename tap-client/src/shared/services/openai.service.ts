@@ -1,4 +1,4 @@
-import api from "./api-service";
+import api from "./api.service";
 
 export default class OpenAIService {
     async generatePlan(userInput: Record<string, unknown>): Promise<any> {

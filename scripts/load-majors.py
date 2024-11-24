@@ -4,7 +4,7 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 
 def load_majors(db):
-    majors_dir = os.path.join(os.path.dirname(__file__), '..', 'mock-data', 'requirements', 'major-requirements')
+    majors_dir = os.path.join(os.path.dirname(__file__), '..', 'data', 'requirements', 'major-requirements')
     for major_file in os.listdir(majors_dir):
         if major_file.endswith('.json'):
             major_path = os.path.join(majors_dir, major_file)

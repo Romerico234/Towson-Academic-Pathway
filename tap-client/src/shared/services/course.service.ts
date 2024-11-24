@@ -1,4 +1,4 @@
-import api from "./api-service";
+import api from "./api.service";
 
 export default class CourseService {
     async getAllCourses(): Promise<any> {

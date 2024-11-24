@@ -4,7 +4,7 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 
 def load_courses(db):
-    courses_dir = os.path.join(os.path.dirname(__file__), '..', 'mock-data', 'course-data')
+    courses_dir = os.path.join(os.path.dirname(__file__), '..', 'data', 'course-data')
     for subject_dir in os.listdir(courses_dir):
         subject_path = os.path.join(courses_dir, subject_dir)
         if os.path.isdir(subject_path):

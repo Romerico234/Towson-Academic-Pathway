@@ -1,4 +1,4 @@
-import api from "./api-service";
+import api from "./api.service";
 
 export default class AuthService {
     async login(email: string, password: string): Promise<any> {

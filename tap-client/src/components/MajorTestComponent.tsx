@@ -1,23 +1,23 @@
 import { useEffect, useState } from "react";
-import CourseService from "../shared/services/course.service";
+import MajorService from "../shared/services/major.service";
 
-export default function CourseTestComponent() {
+export default function MajorTestComponent() {
     const [data, setData] = useState<any>(null);
     const [loading, setLoading] = useState(true);
-    const courseService = new CourseService();
+    const majorService = new MajorService();
 
     useEffect(() => {
-        const fetchCourses = async () => {
+        const fetchMajors = async () => {
             try {
-                const courses = await courseService.getAllCourses();
-                setData(courses);
+                const majors = await majorService.getAllMajors();
+                setData(majors);
             } catch (error) {
-                console.error("Error fetching courses:", error);
+                console.error("Error fetching majors:", error);
             } finally {
                 setLoading(false);
             }
         };
-        fetchCourses();
+        fetchMajors();
     }, []);
 
     if (loading) {
@@ -26,7 +26,7 @@ export default function CourseTestComponent() {
 
     return (
         <div>
-            <h1>Course Test Component</h1>
+            <h1>Major Test Component</h1>
             <pre>{JSON.stringify(data, null, 2)}</pre>
         </div>
     );

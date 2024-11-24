@@ -4,7 +4,7 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 
 def load_degree_requirements(db):
-    requirements_file = os.path.join(os.path.dirname(__file__), '..', 'mock-data', 'requirements', 'degree-requirements.json')
+    requirements_file = os.path.join(os.path.dirname(__file__), '..', 'data', 'requirements', 'degree-requirements.json')
     if os.path.exists(requirements_file):
         with open(requirements_file, 'r') as f:
             data = json.load(f)

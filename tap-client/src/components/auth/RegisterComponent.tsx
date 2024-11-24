@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "./AuthComponent";
 import { useNavigate } from "react-router-dom";
-import AuthService from "../../shared/services/auth-service";
+import AuthService from "../../shared/services/auth.service";
 
 export default function RegisterComponent() {
     const { login } = useContext(AuthContext);

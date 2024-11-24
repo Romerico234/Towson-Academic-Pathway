@@ -1,23 +1,23 @@
 import { useEffect, useState } from "react";
-import CourseService from "../shared/services/course.service";
+import CoreService from "../shared/services/core.service";
 
-export default function CourseTestComponent() {
+export default function CoreTestComponent() {
     const [data, setData] = useState<any>(null);
     const [loading, setLoading] = useState(true);
-    const courseService = new CourseService();
+    const coreService = new CoreService();
 
     useEffect(() => {
-        const fetchCourses = async () => {
+        const fetchCores = async () => {
             try {
-                const courses = await courseService.getAllCourses();
-                setData(courses);
+                const cores = await coreService.getAllCores();
+                setData(cores);
             } catch (error) {
-                console.error("Error fetching courses:", error);
+                console.error("Error fetching cores:", error);
             } finally {
                 setLoading(false);
             }
         };
-        fetchCourses();
+        fetchCores();
     }, []);
 
     if (loading) {
@@ -26,7 +26,7 @@ export default function CourseTestComponent() {
 
     return (
         <div>
-            <h1>Course Test Component</h1>
+            <h1>Core Test Component</h1>
             <pre>{JSON.stringify(data, null, 2)}</pre>
         </div>
     );

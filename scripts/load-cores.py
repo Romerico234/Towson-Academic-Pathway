@@ -4,7 +4,7 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 
 def load_cores(db):
-    cores_file = os.path.join(os.path.dirname(__file__), '..', 'mock-data', 'core-data', 'courses.json')
+    cores_file = os.path.join(os.path.dirname(__file__), '..', 'data', 'core-data', 'courses.json')
     if os.path.exists(cores_file):
         with open(cores_file, 'r') as f:
             data = json.load(f)

@@ -7,6 +7,9 @@ import { connectToDb } from "./utils/db";
 import authRoutes from "./auth/auth.routes";
 import openAIRoutes from "./openai/openai.routes";
 import courseRoutes from "./course/course.routes";
+import coreRoutes from "./core/core.routes";
+import majorRoutes from "./major/major.routes";
+import requirementsRoutes from "./requirements/requirements.routes";
 // import courseSectionRoutes from "./routes/course-section.routes";
 
 // Load environment variables from .env file
@@ -29,6 +32,10 @@ connectToDb(MONGODB_URI, DB_NAME)
         app.use("/api/auth", authRoutes);
         app.use("/api/openai", openAIRoutes);
         app.use("/api/courses", courseRoutes);
+        app.use("/api/cores", coreRoutes);
+        app.use("/api/majors", majorRoutes);
+        app.use("/api/requirements", requirementsRoutes);
+
         // app.use("/api/course-sections", courseSectionRoutes);
 
         // Default route for testing
