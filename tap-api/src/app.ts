@@ -4,12 +4,12 @@ import dotenv from "dotenv";
 import { connectToDb } from "./utils/db";
 
 // Import routes
-import authRoutes from "./modules/auth/auth.routes";
-import openAIRoutes from "./modules/openai/openai.routes";
-import courseRoutes from "./modules/course/course.routes";
-import coreRoutes from "./modules/core/core.routes";
-import majorRoutes from "./modules/major/major.routes";
-import requirementsRoutes from "./modules/requirements/requirements.routes";
+import authRoutes from "./modules/auth-module/auth.routes";
+import openAIRoutes from "./modules/openai-module/openai.routes";
+import courseRoutes from "./modules/course-module/course.routes";
+import coreRoutes from "./modules/core-module/core.routes";
+import majorRoutes from "./modules/major-module/major.routes";
+import requirementsRoutes from "./modules/requirements-module/requirements.routes";
 // import courseSectionRoutes from "./routes/course-section.routes";
 
 // Load environment variables from .env file
