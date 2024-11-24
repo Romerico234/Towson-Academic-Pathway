@@ -13,11 +13,11 @@ RUN npm install
 # Copy the rest of the application code
 COPY . .
 
-# Install development dependencies (optional, if needed for dev environment)
+# Install development dependencies
 RUN npm install --only=dev
 
-# Expose the port defined in the .env file or fallback to 3000
-EXPOSE ${PORT:-3000}
+# Expose the port defined in the .env file or fallback to 3001
+EXPOSE ${PORT:-3001}
 
 # Start the application in development mode
 CMD ["npm", "run", "dev"]
