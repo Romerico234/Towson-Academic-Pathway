@@ -25,7 +25,6 @@ def load_majors(db):
             print(f'{major_file} is not a JSON file')
 
 if __name__ == '__main__':
-    # Load environment variables from .env file
     load_dotenv()
     MONGODB_URI = os.getenv('MONGODB_URI', 'mongodb://localhost:27017/')
     DB_NAME = os.getenv('DB_NAME', 'dbName')

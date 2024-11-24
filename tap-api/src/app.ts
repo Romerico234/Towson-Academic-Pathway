@@ -4,9 +4,9 @@ import dotenv from "dotenv";
 import { connectToDb } from "./utils/db";
 
 // Import routes
-import authRoutes from "./routes/auth.routes";
-import openAIRoutes from "./routes/openai.routes";
-import courseRoutes from "./routes/course.routes";
+import authRoutes from "./auth/auth.routes";
+import openAIRoutes from "./openai/openai.routes";
+import courseRoutes from "./course/course.routes";
 // import courseSectionRoutes from "./routes/course-section.routes";
 
 // Load environment variables from .env file

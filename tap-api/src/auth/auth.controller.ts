@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { AuthService } from "../services/auth.service";
+import { AuthService } from "./auth.service";
 import { AuthError } from "../types/errors/errors";
 
 export class AuthController {

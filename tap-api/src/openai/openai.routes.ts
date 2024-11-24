@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { OpenAIController } from "../controllers/openai.controller";
+import { OpenAIController } from "./openai.controller";
 import { authenticateJWT } from "../middleware/auth-middleware";
 
 const router: Router = Router();

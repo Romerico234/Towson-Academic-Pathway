@@ -11,15 +11,13 @@ def load_honors_requirements(db):
             honors_requirements = data.get('honorsRequirements', {})
             if honors_requirements:
                 print('Inserting honors requirements')
-                db['honors_requirements'].delete_many({})  # Clear existing data
-                db['honors_requirements'].insert_one(honors_requirements)
+                db['requirements'].insert_one(honors_requirements)
             else:
                 print('No honors requirements found')
     else:
         print(f'Honors requirements file not found: {honors_file}')
 
 if __name__ == '__main__':
-    # Load environment variables from .env file
     load_dotenv()
     MONGODB_URI = os.getenv('MONGODB_URI', 'mongodb://localhost:27017/')
     DB_NAME = os.getenv('DB_NAME', 'dbName')
