@@ -10,12 +10,17 @@ def load_majors(db):
             major_path = os.path.join(majors_dir, major_file)
             with open(major_path, 'r') as f:
                 data = json.load(f)
-                majors = data.get('majors', [])
-                if majors:
-                    print(f'Inserting {len(majors)} majors from {major_file}')
-                    db['majors'].insert_many(majors)
+                if 'name' in data and 'totalUnits' in data:
+                    # Delete old major requirements if it exist
+                    result = db['majors'].delete_one({'name': data['name']})
+                    if result.deleted_count > 0:
+                        print(f'Deleted old major: {data["name"]}')
+                    
+                    # Insert the new major requirements
+                    db['majors'].insert_one(data)
+                    print(f'Inserted new major: {data["name"]}')
                 else:
-                    print(f'No majors found in {major_path}')
+                    print(f'Invalid major structure in {major_path}')
         else:
             print(f'{major_file} is not a JSON file')
 
@@ -23,7 +28,7 @@ if __name__ == '__main__':
     # Load environment variables from .env file
     load_dotenv()
     MONGODB_URI = os.getenv('MONGODB_URI', 'mongodb://localhost:27017/')
-    DB_NAME = os.getenv('DB_NAME', 'tapDb')
+    DB_NAME = os.getenv('DB_NAME', 'dbName')
 
     client = MongoClient(MONGODB_URI)
     db = client[DB_NAME]

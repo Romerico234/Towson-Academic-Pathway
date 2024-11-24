@@ -15,6 +15,7 @@ def load_courses(db):
                     courses = data.get('courses', [])
                     if courses:
                         print(f'Inserting {len(courses)} courses from {subject_dir}')
+                        db['course-data'].delete_many({})  # Clear existing data
                         db['course-data'].insert_many(courses)
                     else:
                         print(f'No courses found in {courses_file}')
@@ -26,7 +27,7 @@ def load_courses(db):
 if __name__ == '__main__':
     load_dotenv()
     MONGODB_URI = os.getenv('MONGODB_URI', 'mongodb://localhost:27017/')
-    DB_NAME = os.getenv('DB_NAME', 'tapDb')
+    DB_NAME = os.getenv('DB_NAME', 'dbName')
 
     client = MongoClient(MONGODB_URI)
     db = client[DB_NAME]
