@@ -7,7 +7,7 @@ import { connectToDb } from "./utils/db";
 import authRoutes from "./routes/auth.routes";
 import openAIRoutes from "./routes/openai.routes";
 import courseRoutes from "./routes/course.routes";
-import courseSectionRoutes from "./routes/course-section.routes";
+// import courseSectionRoutes from "./routes/course-section.routes";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -29,7 +29,7 @@ connectToDb(MONGODB_URI, DB_NAME)
         app.use("/api/auth", authRoutes);
         app.use("/api/openai", openAIRoutes);
         app.use("/api/courses", courseRoutes);
-        app.use("/api/course-sections", courseSectionRoutes);
+        // app.use("/api/course-sections", courseSectionRoutes);
 
         // Default route for testing
         app.get("/", (req, res) => {
