@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  tap-api:
+    build:
+      context: ./tap-api
+      dockerfile: Dockerfile
+    ports:
+      - "${PORT:-3000}:${PORT:-3000}"
+    env_file:
+      - ./tap-api/.env
+    volumes:
+      - ./tap-api:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:5
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
