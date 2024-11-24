@@ -1,7 +1,7 @@
 // NOTE: THIS IS JUST A TESTING COMPONENT
 
 import React, { useState } from "react";
-import api from "../shared/services/api-service";
+import api from "../shared/services/api.service";
 
 export default function OpenAITestComponent() {
     const [prompt, setPrompt] = useState("");

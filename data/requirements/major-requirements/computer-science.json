@@ -1,0 +1,518 @@
+{
+    "name": "Computer Science",
+    "totalUnits": "81-83",
+    "generalRequirements": {
+        "requiredCourses": {
+            "computerScience": [
+                {
+                    "code": "CIS 377",
+                    "courseTitle": "Introduction to Cybersecurity",
+                    "units": 3,
+                    "prerequisites": ["Major or minor standing"]
+                },
+                {
+                    "code": "COSC 175",
+                    "courseTitle": "General Computer Science",
+                    "units": 4,
+                    "prerequisites": []
+                },
+                {
+                    "code": "COSC 236",
+                    "courseTitle": "Introduction to Computer Science I",
+                    "units": 4,
+                    "prerequisites": [
+                        "COSC 175",
+                        "One of: MATH 115, MATH 117, MATH 119, MATH 211, MATH 231, ECON 205, MATH 273, MATH 274, MATH 275, or a qualifying Math Placement score"
+                    ]
+                },
+                {
+                    "code": "COSC 237",
+                    "courseTitle": "Introduction to Computer Science II",
+                    "units": 4,
+                    "prerequisites": ["COSC 236", "MATH 211 or MATH 273"]
+                },
+                {
+                    "code": "COSC 290",
+                    "courseTitle": "Principles of Computer Organization",
+                    "units": 4,
+                    "prerequisites": ["COSC 236", "MATH 263 or MATH 267"]
+                },
+                {
+                    "code": "COSC 336",
+                    "courseTitle": "Data Structures and Algorithm Analysis",
+                    "units": 4,
+                    "prerequisites": ["COSC 237", "MATH 274"]
+                },
+                {
+                    "code": "COSC 350",
+                    "courseTitle": "Data Communications and Networking",
+                    "units": 3,
+                    "prerequisites": ["COSC 290"],
+                    "corequisites": ["COSC 336"]
+                },
+                {
+                    "code": "COSC 412",
+                    "courseTitle": "Software Engineering",
+                    "units": 3,
+                    "prerequisites": ["COSC 336"]
+                },
+                {
+                    "code": "COSC 439",
+                    "courseTitle": "Operating Systems",
+                    "units": 3,
+                    "prerequisites": ["COSC 336"]
+                },
+                {
+                    "code": "COSC 455",
+                    "courseTitle": "Programming Languages: Design & Implementation",
+                    "units": 3,
+                    "prerequisites": ["COSC 336"]
+                },
+                {
+                    "code": "COSC 457",
+                    "courseTitle": "Database Management Systems",
+                    "units": 3,
+                    "prerequisites": ["COSC 336"]
+                }
+            ],
+            "math": [
+                {
+                    "code": "MATH 263",
+                    "courseTitle": "Discrete Mathematics",
+                    "units": 3,
+                    "prerequisites": ["COSC 236"]
+                },
+                {
+                    "code": "MATH 267",
+                    "courseTitle": "Introduction to Abstract Mathematics",
+                    "units": 3,
+                    "prerequisites": ["MATH 273", "MATH 265"]
+                },
+                {
+                    "code": "MATH 273",
+                    "courseTitle": "Calculus I",
+                    "units": 4,
+                    "prerequisites": [
+                        "ALEKS Placement Exam",
+                        "MATH 117",
+                        "MATH 119"
+                    ]
+                },
+                {
+                    "code": "MATH 274",
+                    "courseTitle": "Calculus II",
+                    "units": 4,
+                    "prerequisites": ["MATH 273"]
+                },
+                {
+                    "code": "MATH 330",
+                    "courseTitle": "Introduction to Statistical Methods",
+                    "units": 4,
+                    "prerequisites": ["MATH 274"]
+                }
+            ]
+        },
+        "electives": {
+            "computerScience": [
+                {
+                    "code": "COSC 417",
+                    "courseTitle": "Introduction to the Theory of Computing",
+                    "units": 3,
+                    "prerequisites": ["COSC 336"]
+                },
+                {
+                    "code": "COSC 432",
+                    "courseTitle": "Requirements Analysis & Modeling",
+                    "units": 3,
+                    "prerequisites": ["COSC 412"]
+                },
+                {
+                    "code": "COSC 436",
+                    "courseTitle": "Object-Oriented Design & Programming",
+                    "units": 3,
+                    "prerequisites": ["COSC 336"]
+                },
+                {
+                    "code": "COSC 459",
+                    "courseTitle": "Computer Simulation & Modeling",
+                    "units": 3,
+                    "prerequisites": ["COSC 336", "MATH 330"]
+                },
+                {
+                    "code": "COSC 461",
+                    "courseTitle": "Artificial Intelligence",
+                    "units": 3,
+                    "prerequisites": ["COSC 336"]
+                },
+                {
+                    "code": "COSC 467",
+                    "courseTitle": "Foundations of Data Mining",
+                    "units": 3,
+                    "prerequisites": ["COSC 457"]
+                },
+                {
+                    "code": "COSC 471",
+                    "courseTitle": "Computer Graphics",
+                    "units": 3,
+                    "prerequisites": ["COSC 336"]
+                },
+                {
+                    "code": "COSC 483",
+                    "courseTitle": "Design & Analysis Algorithms",
+                    "units": 3,
+                    "prerequisites": ["COSC 336"]
+                },
+                {
+                    "code": "COSC 397",
+                    "courseTitle": "Internship in COSC",
+                    "units": 3,
+                    "prerequisites": [
+                        "COSC 336",
+                        "Consent of Internship Coordinator"
+                    ]
+                },
+                {
+                    "code": "COSC 495",
+                    "courseTitle": "Independent Study",
+                    "units": 3,
+                    "prerequisites": [
+                        "Senior standing in Computer Science",
+                        "Consent of Instructor"
+                    ]
+                },
+                {
+                    "code": "COSC 431",
+                    "courseTitle": "Selected Topics Computer Science",
+                    "units": 3,
+                    "prerequisites": [
+                        "Consent of Instructor",
+                        "9 units of Computer Science"
+                    ]
+                },
+                {
+                    "code": "COSC 435",
+                    "courseTitle": "Mobile Application Development",
+                    "units": 3,
+                    "prerequisites": ["COSC 336"]
+                },
+                {
+                    "code": "COSC 440",
+                    "courseTitle": "Operating Systems Security",
+                    "units": 3,
+                    "prerequisites": ["COSC 439"]
+                },
+                {
+                    "code": "COSC 442",
+                    "courseTitle": "Software Quality Assurance and Testing",
+                    "units": 3,
+                    "prerequisites": ["COSC 412"]
+                },
+                {
+                    "code": "COSC 450",
+                    "courseTitle": "Network Security",
+                    "units": 3,
+                    "prerequisites": ["MATH 314", "COSC 350"]
+                },
+                {
+                    "code": "COSC 458",
+                    "courseTitle": "Application Software Security",
+                    "units": 3,
+                    "prerequisites": ["COSC 340", "COSC 455", "COSC 457"]
+                },
+                {
+                    "code": "COSC 465",
+                    "courseTitle": "Robotics",
+                    "units": 3,
+                    "prerequisites": ["COSC 336"]
+                },
+                {
+                    "code": "COSC 484",
+                    "courseTitle": "Web-Based Program",
+                    "units": 3,
+                    "prerequisites": ["COSC 336"]
+                }
+            ]
+        },
+        "scienceRequirement": {
+            "labCourses": [
+                {
+                    "code": "BIOL 200/200L",
+                    "courseTitle": "Biology I: Cellular Biology and Genetics",
+                    "units": 4,
+                    "prerequisites": [
+                        "ALEKS Math Placement Exam -> MATH 115",
+                        "MATH 102"
+                    ]
+                },
+                {
+                    "code": "BIOL 206/206L",
+                    "courseTitle": "Biology II: Ecology and Evolution",
+                    "units": 4,
+                    "prerequisites": ["BIOL 200/200L"]
+                },
+                {
+                    "code": "CHEM 131/131L",
+                    "courseTitle": "General Chemistry I Lecture and Lab",
+                    "units": 4,
+                    "prerequisites": []
+                },
+                {
+                    "code": "CHEM 132/132L",
+                    "courseTitle": "General Chemistry II Lecture and Lab",
+                    "units": 4,
+                    "prerequisites": ["CHEM 131/131L"]
+                },
+                {
+                    "code": "GEOL 121",
+                    "courseTitle": "Physical Geology",
+                    "units": 4,
+                    "prerequisites": []
+                },
+                {
+                    "code": "PHYS 241",
+                    "courseTitle": "General Physics I (Calculus-Based)",
+                    "units": 4,
+                    "prerequisites": ["MATH 273"]
+                },
+                {
+                    "code": "PHYS 242",
+                    "courseTitle": "General Physics II (Calculus-Based)",
+                    "units": 4,
+                    "prerequisites": ["PHYS 241", "MATH 274"]
+                }
+            ]
+        },
+        "mathElective": [
+            {
+                "code": "MATH 265",
+                "courseTitle": "Elementary Linear Algebra",
+                "units": 4,
+                "prerequisites": ["MATH 211", "MATH 273"]
+            },
+            {
+                "code": "MATH 275",
+                "courseTitle": "Calculus III",
+                "units": 4,
+                "prerequisites": ["MATH 274"]
+            },
+            {
+                "code": "MATH 314",
+                "courseTitle": "Introduction to Cryptography",
+                "units": 3,
+                "prerequisites": [
+                    "COSC 236",
+                    "MATH 263 or MATH 267",
+                    "MATH 330 or concurrent enrollment"
+                ]
+            },
+            {
+                "code": "MATH 315",
+                "courseTitle": "Applied Combinatorics",
+                "units": 3,
+                "prerequisites": ["MATH 274", "MATH 263 or MATH 267"]
+            },
+            {
+                "code": "MATH 369",
+                "courseTitle": "Introduction to Abstract Algebra",
+                "units": 3,
+                "prerequisites": ["MATH 265", "MATH 267", "MATH 274"]
+            },
+            {
+                "code": "MATH 374",
+                "courseTitle": "Differential Equations",
+                "units": 3,
+                "prerequisites": ["MATH 274"]
+            },
+            {
+                "code": "MATH 377",
+                "courseTitle": "Mathematical Models",
+                "units": 3,
+                "prerequisites": [
+                    "MATH 265",
+                    "MATH 274",
+                    "COSC 236",
+                    "Junior standing"
+                ]
+            },
+            {
+                "code": "MATH 378",
+                "courseTitle": "Experimental Mathematics",
+                "units": 3,
+                "prerequisites": [
+                    "COSC 236",
+                    "MATH 265",
+                    "MATH 274",
+                    "MATH 263 or MATH 267"
+                ]
+            },
+            {
+                "code": "MATH 435",
+                "courseTitle": "Numerical Analysis I",
+                "units": 3,
+                "prerequisites": ["MATH 265", "MATH 274", "COSC 236"]
+            },
+            {
+                "code": "MATH 437",
+                "courseTitle": "Operations Research",
+                "units": 3,
+                "prerequisites": ["MATH 265", "MATH 331"]
+            },
+            {
+                "code": "MATH 451",
+                "courseTitle": "Graph Theory",
+                "units": 3,
+                "prerequisites": ["MATH 263", "MATH 267"]
+            }
+        ],
+        "otherRequirements": [
+            {
+                "code": "COMM 131",
+                "courseTitle": "Public Speaking",
+                "units": 3,
+                "prerequisites": []
+            },
+            {
+                "code": "COSC 418",
+                "courseTitle": "Ethical and Societal Concerns of Computer Scientists",
+                "units": 3,
+                "prerequisites": [
+                    "Junior/Senior standing",
+                    "ENGL 317 or BUSX 301",
+                    "Must have taken a computing course"
+                ]
+            },
+            {
+                "code": "ENGL 317",
+                "courseTitle": "Writing for Business and Industry",
+                "units": 3,
+                "prerequisites": ["ENGL 102 or ENGL 190 or equivalent course"]
+            }
+        ]
+    },
+    "concentrations": [
+        {
+            "name": "General Computer Science",
+            "totalUnits": "81-83",
+            "requirements": {
+                "requiredCourses": []
+            }
+        },
+        {
+            "name": "Cyber Operations Track",
+            "totalUnits": "87-88",
+            "requirements": {
+                "requiredCourses": {
+                    "cyberOperations": [
+                        {
+                            "code": "COSC 340",
+                            "courseTitle": "Systems Programming",
+                            "units": 3,
+                            "prerequisites": ["COSC 237", "COSC 290"]
+                        },
+                        {
+                            "code": "COSC 440",
+                            "courseTitle": "Operating Systems Security",
+                            "units": 3,
+                            "prerequisites": ["COSC 439"]
+                        },
+                        {
+                            "code": "COSC 450",
+                            "courseTitle": "Network Security",
+                            "units": 3,
+                            "prerequisites": ["MATH 314", "COSC 350"]
+                        },
+                        {
+                            "code": "COSC 458",
+                            "courseTitle": "Application Software Security",
+                            "units": 3,
+                            "prerequisites": [
+                                "COSC 340",
+                                "COSC 455",
+                                "COSC 457"
+                            ]
+                        },
+                        {
+                            "code": "COSC 481",
+                            "courseTitle": "Case Studies in Computer Security",
+                            "units": 3,
+                            "prerequisites": ["COSC 440", "COSC 450"]
+                        },
+                        {
+                            "code": "COSC 485",
+                            "courseTitle": "Reverse Engineering and Malware Analysis",
+                            "units": 3,
+                            "prerequisites": ["COSC 340", "COSC 450"]
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Software Engineering Track",
+            "totalUnits": "87-89",
+            "requirements": {
+                "requiredCourses": {
+                    "softwareEngineering": [
+                        {
+                            "code": "COSC 432",
+                            "courseTitle": "Requirements Analysis & Modeling",
+                            "units": 3,
+                            "prerequisites": ["COSC 412"]
+                        },
+                        {
+                            "code": "COSC 436",
+                            "courseTitle": "Object-Oriented Design & Programming",
+                            "units": 3,
+                            "prerequisites": ["COSC 336"]
+                        },
+                        {
+                            "code": "COSC 442",
+                            "courseTitle": "Software Quality Assurance and Testing",
+                            "units": 3,
+                            "prerequisites": ["COSC 412"]
+                        },
+                        {
+                            "code": "COSC 490",
+                            "courseTitle": "Software Project Practicum",
+                            "units": 3,
+                            "prerequisites": [
+                                "COSC 412",
+                                "Senior standing",
+                                "Software Engineering Track Major or Department Permission"
+                            ]
+                        }
+                    ]
+                },
+                "electives": {
+                    "softwareEngineering": [
+                        {
+                            "code": "COSC 397",
+                            "courseTitle": "Internship in COSC",
+                            "units": 3,
+                            "prerequisites": [
+                                "COSC 336",
+                                "Consent of Internship Coordinator"
+                            ]
+                        },
+                        {
+                            "code": "COSC 435",
+                            "courseTitle": "Mobile Application Development",
+                            "units": 3,
+                            "prerequisites": ["COSC 336"]
+                        },
+                        {
+                            "code": "COSC 484",
+                            "courseTitle": "Web-Based Program",
+                            "units": 3,
+                            "prerequisites": ["COSC 336"]
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "notes": [
+        "A minimum of 30 major units must be taken at Towson University.",
+        "Students cannot double major in Computer Science and Computer Information Systems, or in Computer Science and Information Technology."
+    ]
+}

@@ -1,20 +1,8 @@
-import { MongoClient, Db, MongoClientOptions } from "mongodb";
+import mongoose from "mongoose";
 
-let db: Db | null = null;
-
-export async function connectToDb(uri: string, dbName: string): Promise<void> {
-    const options: MongoClientOptions = {
-        tls: true,
-        tlsAllowInvalidCertificates: false,
-    };
-    const client = await MongoClient.connect(uri, options);
-    db = client.db(dbName);
+export const connectToDb = async (uri: string, dbName: string) => {
+    await mongoose.connect(uri, {
+        dbName,
+    });
     console.log("Connected to MongoDB");
-}
-
-export function getDb(): Db {
-    if (!db) {
-        throw new Error("Database not initialized");
-    }
-    return db;
-}
+};
