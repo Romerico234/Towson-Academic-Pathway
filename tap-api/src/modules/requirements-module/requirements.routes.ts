@@ -1,9 +1,9 @@
 import { Router } from "express";
-import RequirementsController from "./requirements.controller";
+import { RequirementsController } from "./requirements.controller";
 
 const router = Router();
+const requirementsController = new RequirementsController();
 
-// Get requirements
-router.get("/", RequirementsController.getRequirements);
+router.get("/", requirementsController.getRequirements);
 
 export default router;

@@ -10,7 +10,7 @@ import courseRoutes from "./modules/course-module/course.routes";
 import coreRoutes from "./modules/core-module/core.routes";
 import majorRoutes from "./modules/major-module/major.routes";
 import requirementsRoutes from "./modules/requirements-module/requirements.routes";
-// import courseSectionRoutes from "./routes/course-section.routes";
+import studentRoutes from "./modules/student-module/student.routes";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -35,8 +35,7 @@ connectToDb(MONGODB_URI, DB_NAME)
         app.use("/api/cores", coreRoutes);
         app.use("/api/majors", majorRoutes);
         app.use("/api/requirements", requirementsRoutes);
-
-        // app.use("/api/course-sections", courseSectionRoutes);
+        app.use("/api/students", studentRoutes);
 
         // Default route for testing
         app.get("/", (req, res) => {

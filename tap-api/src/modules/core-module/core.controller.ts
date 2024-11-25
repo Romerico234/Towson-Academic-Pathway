@@ -1,11 +1,17 @@
 import { Request, Response } from "express";
-import CoreService from "./core.service";
+import { CoreService } from "./core.service";
 
-class CoreController {
+export class CoreController {
+    private coreService: CoreService;
+    
+    constructor() {
+        this.coreService = new CoreService();
+    }
+
     // Get all cores
     async getAllCores(req: Request, res: Response): Promise<void> {
         try {
-            const cores = await CoreService.getAllCores();
+            const cores = await this.coreService.getAllCores();
             res.status(200).json(cores);
         } catch (error) {
             res.status(500).json({ message: "Error retrieving cores", error });
@@ -22,12 +28,10 @@ class CoreController {
                 });
                 return;
             }
-            const cores = await CoreService.searchCores(query);
+            const cores = await this.coreService.searchCores(query);
             res.status(200).json(cores);
         } catch (error) {
             res.status(500).json({ message: "Error searching cores", error });
         }
     }
 }
-
-export default new CoreController();

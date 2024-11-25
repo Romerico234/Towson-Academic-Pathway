@@ -1,5 +1,5 @@
 import mongoose, { Document, Schema } from "mongoose";
-import { COLLECTION_NAMES } from "../mongoose/collection-names";
+import { COLLECTION_NAMES } from "../mongodb/collection-names";
 
 export interface ICore extends Document {
     name: string;
