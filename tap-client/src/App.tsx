@@ -6,22 +6,22 @@ import FooterComponent from "./components/footer/FooterComponent";
 import LoginComponent from "./components/auth/LoginComponent";
 import RegisterComponent from "./components/auth/RegisterComponent";
 import AuthProvider from "./components/auth/AuthComponent";
-// import OpenAITestComponent from "./components/OpenAITestComponent";
+import StudentServiceTestComponent from "./Student";
 
 export default function App() {
     return (
-        // <OpenAITestComponent />
-        <AuthProvider>
-            <BrowserRouter>
-                <NavbarComponent />
-                <Routes>
-                    <Route path="/home" element={<HomeComponent />} />
-                    <Route path="/login" element={<LoginComponent />} />
-                    <Route path="/register" element={<RegisterComponent />} />
-                    <Route path="*" element={<HomeComponent />} />
-                </Routes>
-                <FooterComponent />
-            </BrowserRouter>
-        </AuthProvider>
+        <StudentServiceTestComponent />
+        // <AuthProvider>
+        //     <BrowserRouter>
+        //         <NavbarComponent />
+        //         <Routes>
+        //             <Route path="/home" element={<HomeComponent />} />
+        //             <Route path="/login" element={<LoginComponent />} />
+        //             <Route path="/register" element={<RegisterComponent />} />
+        //             <Route path="*" element={<HomeComponent />} />
+        //         </Routes>
+        //         <FooterComponent />
+        //     </BrowserRouter>
+        // </AuthProvider>
     );
 }

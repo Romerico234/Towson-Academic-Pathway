@@ -39,6 +39,7 @@ export class AuthService {
         // Create student data using StudentService
         await this.studentService.createStudentData(
             savedUser._id,
+            email,
             firstName,
             lastName
         );
