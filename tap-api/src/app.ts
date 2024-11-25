@@ -35,7 +35,7 @@ connectToDb(MONGODB_URI, DB_NAME)
         app.use("/api/cores", coreRoutes);
         app.use("/api/majors", majorRoutes);
         app.use("/api/requirements", requirementsRoutes);
-        app.use("/api/students", studentRoutes);
+        app.use("/api/student", studentRoutes);
 
         // Default route for testing
         app.get("/", (req, res) => {

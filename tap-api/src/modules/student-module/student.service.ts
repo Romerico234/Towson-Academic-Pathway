@@ -2,18 +2,16 @@ import StudentData, {
     IStudentData,
     FavoriteSchedule,
 } from "../../types/models/student.schema";
-import { Types } from "mongoose";
 
 export class StudentService {
     // Create new student data
     public async createStudentData(
-        userId: Types.ObjectId,
+        studentId: string,
         firstName: string,
         lastName: string
     ): Promise<IStudentData> {
         const studentData = new StudentData({
-            userId,
-            studentId: null,
+            studentId,
             firstName,
             lastName,
             academicInfo: {},
@@ -26,35 +24,35 @@ export class StudentService {
         return savedStudentData;
     }
 
-    // Get student data by userId
+    // Get student data by studentId
     public async getStudentData(
-        userId: Types.ObjectId
+        studentId: string
     ): Promise<IStudentData | null> {
-        return StudentData.findOne({ userId });
+        return StudentData.findOne({ studentId });
     }
 
     // Update student data
     public async updateStudentData(
-        userId: Types.ObjectId,
+        studentId: string,
         updates: Partial<IStudentData>
     ): Promise<IStudentData | null> {
-        return StudentData.findOneAndUpdate({ userId }, updates, { new: true });
+        return StudentData.findOneAndUpdate({ studentId }, updates, { new: true });
     }
 
     // Get favorites
     public async getFavorites(
-        userId: Types.ObjectId
+        studentId: string
     ): Promise<FavoriteSchedule[] | null> {
-        const studentData = await StudentData.findOne({ userId });
+        const studentData = await StudentData.findOne({ studentId });
         return studentData ? studentData.favorites : null;
     }
 
     // Add a favorite schedule
     public async addFavorite(
-        userId: Types.ObjectId,
+        studentId: string,
         favoriteData: FavoriteSchedule
     ): Promise<FavoriteSchedule | null> {
-        const studentData = await StudentData.findOne({ userId });
+        const studentData = await StudentData.findOne({ studentId });
         if (!studentData) return null;
 
         studentData.favorites.push(favoriteData);
@@ -64,10 +62,10 @@ export class StudentService {
 
     // Remove a favorite schedule
     public async removeFavorite(
-        userId: Types.ObjectId,
+        studentId: string,
         favoriteName: string
     ): Promise<void> {
-        const studentData = await StudentData.findOne({ userId });
+        const studentData = await StudentData.findOne({ studentId });
         if (studentData) {
             studentData.favorites = studentData.favorites.filter(
                 (fav) => fav.name !== favoriteName
