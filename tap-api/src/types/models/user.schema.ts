@@ -1,5 +1,5 @@
 import mongoose, { Schema, Types, Document } from "mongoose";
-import { COLLECTION_NAMES } from "../mongoose/collection-names";
+import { COLLECTION_NAMES } from "../mongodb/collection-names";
 
 export interface IUser {
     _id: Types.ObjectId;

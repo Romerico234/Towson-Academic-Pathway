@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document, Types } from "mongoose";
-import { COLLECTION_NAMES } from "../mongoose/collection-names";
+import { COLLECTION_NAMES } from "../mongodb/collection-names";
 
 export interface AcademicInfo {
     [key: string]: any;
