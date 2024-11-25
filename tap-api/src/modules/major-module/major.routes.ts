@@ -1,15 +1,11 @@
 import { Router } from "express";
-import MajorController from "./major.controller";
+import { MajorController } from "./major.controller";
 
 const router = Router();
+const majorController = new MajorController();
 
-// Get all majors
-router.get("/", MajorController.getAllMajors);
-
-// Get major by name
-router.get("/:name", MajorController.getMajorByName);
-
-// Search majors
-router.get("/search", MajorController.searchMajors);
+router.get("/", majorController.getAllMajors);
+router.get("/:name", majorController.getMajorByName);
+router.get("/search", majorController.searchMajors);
 
 export default router;

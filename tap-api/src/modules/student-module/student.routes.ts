@@ -1,16 +1,18 @@
 import { Router } from "express";
-import StudentController from "./student.controller";
+import { StudentController } from "./student.controller";
 import { authenticateJWT } from "../../middleware/auth-middleware";
 
 const router = Router();
-router.get("/profile", authenticateJWT, StudentController.getStudentData);
-router.put("/profile", authenticateJWT, StudentController.updateStudentData);
-router.get("/favorites", authenticateJWT, StudentController.getFavorites);
-router.post("/favorites", authenticateJWT, StudentController.addFavorite);
+const studentController = new StudentController();
+
+router.get("/profile", authenticateJWT, studentController.getStudentData);
+router.put("/profile", authenticateJWT, studentController.updateStudentData);
+router.get("/favorites", authenticateJWT, studentController.getFavorites);
+router.post("/favorites", authenticateJWT, studentController.addFavorite);
 router.delete(
     "/favorites/:favoriteName",
     authenticateJWT,
-    StudentController.removeFavorite
+    studentController.removeFavorite
 );
 
 export default router;

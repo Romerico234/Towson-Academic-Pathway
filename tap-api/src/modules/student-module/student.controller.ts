@@ -1,10 +1,13 @@
 import { Request, Response } from "express";
 import { StudentService } from "./student.service";
 
-class StudentController {
-    private studentService = new StudentService();
+export class StudentController {
+    private studentService: StudentService;
 
-    // Get student data
+    constructor() {
+        this.studentService = new StudentService();
+    }
+
     public async getStudentData(req: Request, res: Response): Promise<void> {
         try {
             const user = (req as any).user;
@@ -20,7 +23,6 @@ class StudentController {
         }
     }
 
-    // Update student data
     public async updateStudentData(req: Request, res: Response): Promise<void> {
         try {
             const user = (req as any).user;
@@ -36,7 +38,6 @@ class StudentController {
         }
     }
 
-    // Get favorites
     public async getFavorites(req: Request, res: Response): Promise<void> {
         try {
             const user = (req as any).user;
@@ -50,7 +51,6 @@ class StudentController {
         }
     }
 
-    // Add favorite
     public async addFavorite(req: Request, res: Response): Promise<void> {
         try {
             const user = (req as any).user;
@@ -65,7 +65,6 @@ class StudentController {
         }
     }
 
-    // Remove favorite
     public async removeFavorite(req: Request, res: Response): Promise<void> {
         try {
             const user = (req as any).user;
@@ -77,5 +76,3 @@ class StudentController {
         }
     }
 }
-
-export default new StudentController();

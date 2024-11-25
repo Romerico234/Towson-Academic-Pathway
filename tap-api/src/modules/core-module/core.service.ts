@@ -1,6 +1,6 @@
 import Core, { ICore } from "../../types/models/core.schema";
 
-class CoreService {
+export class CoreService {
     // Get all cores
     async getAllCores(): Promise<ICore[]> {
         return Core.find({});
@@ -14,5 +14,3 @@ class CoreService {
         });
     }
 }
-
-export default new CoreService();
