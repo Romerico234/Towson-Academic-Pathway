@@ -1,23 +1,45 @@
-# Use the official Node.js 18 image as the base image
-FROM node:18
+# ----------------------------------------------------------------
+# Base Stage
+# Prepares production dependencies
+# ----------------------------------------------------------------
+FROM node:18-alpine as base
 
-# Set the working directory inside the container
-WORKDIR /usr/src/app
+WORKDIR /app
 
-# Copy package.json and package-lock.json to the working directory
+# Install dumb-init for process management
+RUN apk --no-cache add dumb-init
+
+ENV NODE_ENV=production
+
+# Copy package files and install dependencies
 COPY package*.json ./
+RUN npm i
 
-# Install dependencies
-RUN npm install
+# ----------------------------------------------------------------
+# Development Stage
+# For local development
+# ----------------------------------------------------------------
+FROM base as dev
 
-# Copy the rest of the application code
+ENV NODE_ENV=development
+
+# Install development dependencies and tools
+RUN npm install --only=development && npm install -g nodemon
+
+# Copy configuration files
+COPY tsconfig.json ./
+
+# Bind source code for live reload
 COPY . .
 
-# Install development dependencies
-RUN npm install --only=dev
+# Expose application port
+EXPOSE 3000
 
-# Expose the port defined in the .env file or fallback to 3001
-EXPOSE ${PORT:-3001}
+# Healthcheck for container readiness
+HEALTHCHECK --start-period=10s --interval=30s --timeout=10s --retries=5 \
+  CMD curl --fail http://localhost:3000 || exit 1
 
-# Start the application in development mode
-CMD ["npm", "run", "dev"]
+# Start application in development mode
+CMD ["dumb-init", "npm", "run", "dev"]
+
+
