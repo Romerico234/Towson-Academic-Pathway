@@ -1,6 +1,6 @@
 import Major, { IMajor } from "../../types/models/major.schema";
 
-export class MajorService {
+class MajorService {
     // Get all majors
     async getAllMajors(): Promise<IMajor[]> {
         return Major.find({});
@@ -17,3 +17,5 @@ export class MajorService {
         return Major.find({ name: regex });
     }
 }
+
+export default new MajorService();

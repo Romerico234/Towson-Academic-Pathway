@@ -1,26 +1,22 @@
 import { Request, Response } from "express";
-import { MajorService } from "./major.service";
+import MajorService from "./major.service";
 
-export class MajorController {
-    private majorService: MajorService;
-
-    constructor() {
-        this.majorService = new MajorService();
-    }
-
+class MajorController {
+    // Get all majors
     async getAllMajors(req: Request, res: Response): Promise<void> {
         try {
-            const majors = await this.majorService.getAllMajors();
+            const majors = await MajorService.getAllMajors();
             res.status(200).json(majors);
         } catch (error) {
             res.status(500).json({ message: "Error retrieving majors", error });
         }
     }
 
+    // Get major by name
     async getMajorByName(req: Request, res: Response): Promise<void> {
         try {
             const { name } = req.params;
-            const major = await this.majorService.getMajorByName(name);
+            const major = await MajorService.getMajorByName(name);
             if (major) {
                 res.status(200).json(major);
             } else {
@@ -31,6 +27,7 @@ export class MajorController {
         }
     }
 
+    // Search majors
     async searchMajors(req: Request, res: Response): Promise<void> {
         try {
             const { query } = req.query;
@@ -40,10 +37,12 @@ export class MajorController {
                 });
                 return;
             }
-            const majors = await this.majorService.searchMajors(query);
+            const majors = await MajorService.searchMajors(query);
             res.status(200).json(majors);
         } catch (error) {
             res.status(500).json({ message: "Error searching majors", error });
         }
     }
 }
+
+export default new MajorController();

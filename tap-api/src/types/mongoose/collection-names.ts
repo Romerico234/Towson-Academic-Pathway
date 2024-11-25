@@ -5,4 +5,6 @@ export const COLLECTION_NAMES = {
     CORE_DATA: "core-data",
     MAJOR_DATA: "majors",
     REQUIREMENTS: "requirements",
+    COURSE_SECTION: "course-section",
+    COURSE_BRIDGE: "course-bridge",
 };

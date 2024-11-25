@@ -2,11 +2,10 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { AuthError } from "../../types/errors/errors";
 import User, { IUser } from "../../types/models/user.schema";
-import { StudentService } from "../student-module/student.service";
+import StudentData from "../../types/models/student.schema";
 
 export class AuthService {
     private JWT_SECRET: string;
-    private studentService = new StudentService();
 
     constructor() {
         this.JWT_SECRET = process.env.JWT_SECRET || "jwt_secret_key";
@@ -36,12 +35,18 @@ export class AuthService {
 
         const savedUser: IUser = await newUser.save();
 
-        // Create student data using StudentService
-        await this.studentService.createStudentData(
-            savedUser._id,
+        const studentData = new StudentData({
+            userId: savedUser._id,
+            studentId: null,
             firstName,
-            lastName
-        );
+            lastName,
+            academicInfo: {},
+            preferences: {},
+            degreePlan: [],
+            activeSemesterPlan: null,
+        });
+
+        await studentData.save();
 
         // Generate JWT token
         const token = this.generateToken(savedUser._id.toHexString(), email);
