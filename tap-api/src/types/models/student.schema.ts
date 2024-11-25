@@ -31,6 +31,11 @@ export interface ActiveSemesterPlan {
     schedule: Schedule[];
 }
 
+export interface FavoriteSchedule {
+    name: string;
+    courses: ActiveSemesterPlan[];
+}
+
 export interface IStudentData extends Document<Types.ObjectId> {
     _id: Types.ObjectId;
     userId: Types.ObjectId;
@@ -39,8 +44,8 @@ export interface IStudentData extends Document<Types.ObjectId> {
     lastName: string;
     academicInfo: AcademicInfo;
     preferences: Preferences;
-    degreePlan: SemesterPlan[];
-    activeSemesterPlan: ActiveSemesterPlan | null;
+    degreePlans: SemesterPlan[];
+    favorites: FavoriteSchedule[];
     createdAt: Date;
     updatedAt: Date;
 }
@@ -60,6 +65,11 @@ const ActiveSemesterPlanSchema: Schema = new Schema({
     schedule: { type: [ScheduleSchema], required: true },
 });
 
+const FavoriteScheduleSchema: Schema = new Schema({
+    name: { type: String, required: true },
+    courses: { type: [ActiveSemesterPlanSchema], required: true },
+});
+
 const SemesterPlanSchema: Schema = new Schema({
     semester: { type: String, required: true },
     plannedCourses: { type: [String], required: true },
@@ -75,10 +85,10 @@ const StudentDataSchema: Schema = new Schema(
         lastName: { type: String, required: true },
         academicInfo: { type: Schema.Types.Mixed, default: {} },
         preferences: { type: Schema.Types.Mixed, default: {} },
-        degreePlan: { type: [SemesterPlanSchema], default: [] },
-        activeSemesterPlan: { type: ActiveSemesterPlanSchema, default: null },
+        degreePlans: { type: [SemesterPlanSchema], default: [] },
+        favorites: { type: [FavoriteScheduleSchema], default: [] },
     },
-    { timestamps: true, collection: COLLECTION_NAMES.STUDENT_DATA}
+    { timestamps: true, collection: COLLECTION_NAMES.STUDENT_DATA }
 );
 
 export default mongoose.model<IStudentData>("StudentData", StudentDataSchema);
