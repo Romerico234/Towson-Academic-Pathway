@@ -1,6 +1,5 @@
-// auth.interface.ts
-
 import { Request, Response, NextFunction } from "express";
+
 export interface IAuthController {
     /**
      * Registers a new user and generates a JWT token
