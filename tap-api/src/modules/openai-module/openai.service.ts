@@ -1,5 +1,5 @@
 import OpenAI from "openai";
-import { OpenAIError } from "../../types/errors/errors";
+import { OpenAIError } from "../../shared/errors/errors";
 import dotenv from "dotenv";
 dotenv.config();
 

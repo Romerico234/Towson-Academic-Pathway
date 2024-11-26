@@ -1,4 +1,4 @@
-import Requirement from "../../types/models/requirements.schema";
+import Requirement from "../../shared/types/models/requirements.schema";
 
 export class RequirementsService {
     // Get requirements

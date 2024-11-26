@@ -1,7 +1,7 @@
 import express, { Application } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { connectToDb } from "./utils/db";
+import { connectToDb } from "./shared/utils/db";
 
 // Import routes
 import authRoutes from "./modules/auth-module/auth.routes";

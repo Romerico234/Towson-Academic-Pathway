@@ -1,7 +1,7 @@
 import StudentData, {
     IStudentData,
     FavoriteSchedule,
-} from "../../types/models/student.schema";
+} from "../../shared/types/models/student.schema";
 import { Types } from "mongoose";
 
 export class StudentService {

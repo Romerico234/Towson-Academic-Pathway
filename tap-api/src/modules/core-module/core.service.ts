@@ -1,4 +1,4 @@
-import Core, { ICore } from "../../types/models/core.schema";
+import Core, { ICore } from "../../shared/types/models/core.schema";
 
 export class CoreService {
     // Get all cores

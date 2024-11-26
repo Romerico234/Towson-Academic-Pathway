@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { AuthError } from "../../types/errors/errors";
-import User, { IUser } from "../../types/models/user.schema";
+import { AuthError } from "../../shared/errors/errors";
+import User, { IUser } from "../../shared/types/models/user.schema";
 import { StudentService } from "../student-module/student.service";
 
 export class AuthService {

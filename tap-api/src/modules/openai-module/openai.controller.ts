@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { OpenAIService } from "./openai.service";
-import { OpenAIError } from "../../types/errors/errors";
+import { OpenAIError } from "../../shared/errors/errors";
 
 export class OpenAIController {
     private openAIService: OpenAIService;
