@@ -1,8 +1,8 @@
 export const COLLECTION_NAMES = {
     AUTH: "auth",
-    STUDENT_DATA: "student-data",
-    COURSE_DATA: "course-data",
     CORE_DATA: "core-data",
+    COURSE_DATA: "course-data",
     MAJOR_DATA: "majors",
     REQUIREMENTS: "requirements",
+    STUDENT_DATA: "student-data",
 };
