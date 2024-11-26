@@ -1,11 +1,11 @@
+import { IStudentService } from "./interfaces/istudent.service";
 import StudentData, {
     IStudentData,
     FavoriteSchedule,
 } from "../../shared/types/models/student.schema";
 import { Types } from "mongoose";
 
-export class StudentService {
-    // Create new student data
+export class StudentService implements IStudentService {
     public async createStudentData(
         userId: Types.ObjectId,
         email: string,
@@ -27,14 +27,12 @@ export class StudentService {
         return savedStudentData;
     }
 
-    // Get student data by email
     public async getStudentByEmail(
         email: string
     ): Promise<IStudentData | null> {
         return StudentData.findOne({ email });
     }
 
-    // Update student data by email
     public async updateStudentByEmail(
         email: string,
         updates: Partial<IStudentData>
@@ -42,7 +40,6 @@ export class StudentService {
         return StudentData.findOneAndUpdate({ email }, updates, { new: true });
     }
 
-    // Get favorites by email
     public async getFavoritesByEmail(
         email: string
     ): Promise<FavoriteSchedule[] | null> {
@@ -50,7 +47,6 @@ export class StudentService {
         return studentData ? studentData.favorites : null;
     }
 
-    // Add a favorite schedule by email
     public async addFavoriteByEmail(
         email: string,
         favoriteData: FavoriteSchedule
@@ -63,7 +59,6 @@ export class StudentService {
         return favoriteData;
     }
 
-    // Remove a favorite schedule by email
     public async removeFavoriteByEmail(
         email: string,
         favoriteName: string

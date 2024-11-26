@@ -1,8 +1,9 @@
 import { Request, Response, NextFunction } from "express";
+import { IOpenAIController } from "./interfaces/iopenai.controller";
 import { OpenAIService } from "./openai.service";
 import { OpenAIError } from "../../shared/errors/errors";
 
-export class OpenAIController {
+export class OpenAIController implements IOpenAIController {
     private openAIService: OpenAIService;
 
     constructor() {

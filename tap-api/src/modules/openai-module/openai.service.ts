@@ -1,9 +1,11 @@
 import OpenAI from "openai";
+import { IOpenAIService } from "./interfaces/iopenai.service";
 import { OpenAIError } from "../../shared/errors/errors";
 import dotenv from "dotenv";
+
 dotenv.config();
 
-export class OpenAIService {
+export class OpenAIService implements IOpenAIService {
     private openai: OpenAI;
     private systemPrompt: string;
 

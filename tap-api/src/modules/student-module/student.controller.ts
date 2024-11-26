@@ -1,17 +1,23 @@
 import { Request, Response } from "express";
+import { IStudentController } from "./interfaces/istudent.controller";
 import { StudentService } from "./student.service";
 
-export class StudentController {
+export class StudentController implements IStudentController {
     private studentService: StudentService;
 
     constructor() {
         this.studentService = new StudentService();
     }
 
-    public getStudentByEmail = async (req: Request, res: Response): Promise<void> => {
+    public getStudentByEmail = async (
+        req: Request,
+        res: Response
+    ): Promise<void> => {
         try {
             const email = req.params.email;
-            const studentData = await this.studentService.getStudentByEmail(email);
+            const studentData = await this.studentService.getStudentByEmail(
+                email
+            );
             if (!studentData) {
                 res.status(404).json({ message: "Student not found" });
                 return;
@@ -25,11 +31,15 @@ export class StudentController {
         }
     };
 
-    public updateStudentByEmail = async (req: Request, res: Response): Promise<void> => {
+    public updateStudentByEmail = async (
+        req: Request,
+        res: Response
+    ): Promise<void> => {
         try {
             const email = req.params.email;
             const updates = req.body;
-            const updatedStudentData = await this.studentService.updateStudentByEmail(email, updates);
+            const updatedStudentData =
+                await this.studentService.updateStudentByEmail(email, updates);
             if (!updatedStudentData) {
                 res.status(404).json({ message: "Student not found" });
                 return;
@@ -43,10 +53,15 @@ export class StudentController {
         }
     };
 
-    public getFavoritesByEmail = async (req: Request, res: Response): Promise<void> => {
+    public getFavoritesByEmail = async (
+        req: Request,
+        res: Response
+    ): Promise<void> => {
         try {
             const email = req.params.email;
-            const favorites = await this.studentService.getFavoritesByEmail(email);
+            const favorites = await this.studentService.getFavoritesByEmail(
+                email
+            );
             if (favorites === null) {
                 res.status(404).json({ message: "Student not found" });
                 return;
@@ -60,11 +75,17 @@ export class StudentController {
         }
     };
 
-    public addFavoriteByEmail = async (req: Request, res: Response): Promise<void> => {
+    public addFavoriteByEmail = async (
+        req: Request,
+        res: Response
+    ): Promise<void> => {
         try {
             const email = req.params.email;
             const favoriteData = req.body;
-            const favorite = await this.studentService.addFavoriteByEmail(email, favoriteData);
+            const favorite = await this.studentService.addFavoriteByEmail(
+                email,
+                favoriteData
+            );
             if (!favorite) {
                 res.status(404).json({ message: "Student not found" });
                 return;
@@ -75,11 +96,17 @@ export class StudentController {
         }
     };
 
-    public removeFavoriteByEmail = async (req: Request, res: Response): Promise<void> => {
+    public removeFavoriteByEmail = async (
+        req: Request,
+        res: Response
+    ): Promise<void> => {
         try {
             const email = req.params.email;
             const favoriteName = req.params.favoriteName;
-            const result = await this.studentService.removeFavoriteByEmail(email, favoriteName);
+            const result = await this.studentService.removeFavoriteByEmail(
+                email,
+                favoriteName
+            );
             if (!result) {
                 res.status(404).json({ message: "Student not found" });
                 return;

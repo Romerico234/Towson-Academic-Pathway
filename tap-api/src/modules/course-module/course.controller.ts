@@ -1,7 +1,8 @@
 import { Request, Response, NextFunction } from "express";
+import { ICourseController } from "./interfaces/icourse.controller";
 import { CourseService } from "./course.service";
 
-export class CourseController {
+export class CourseController implements ICourseController{
     private courseService: CourseService;
 
     constructor() {

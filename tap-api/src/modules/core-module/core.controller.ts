@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
+import { ICoreController } from "./interfaces/icore.controller";
 import { CoreService } from "./core.service";
 
-export class CoreController {
+export class CoreController implements ICoreController {
     private coreService: CoreService;
 
     constructor() {

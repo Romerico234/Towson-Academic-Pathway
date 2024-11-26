@@ -1,7 +1,8 @@
+import { IMajorController } from "./interfaces/imajor.controller";
 import { Request, Response } from "express";
 import { MajorService } from "./major.service";
 
-export class MajorController {
+export class MajorController implements IMajorController {
     private majorService: MajorService;
 
     constructor() {
