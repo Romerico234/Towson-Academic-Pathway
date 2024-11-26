@@ -42,6 +42,7 @@ export interface IStudentData extends Document<Types.ObjectId> {
     studentId: string | null;
     firstName: string;
     lastName: string;
+    email: string;
     academicInfo: AcademicInfo;
     preferences: Preferences;
     degreePlans: SemesterPlan[];
@@ -83,6 +84,7 @@ const StudentDataSchema: Schema = new Schema(
         studentId: { type: String, default: null },
         firstName: { type: String, required: true },
         lastName: { type: String, required: true },
+        email: { type: String, required: true },
         academicInfo: { type: Schema.Types.Mixed, default: {} },
         preferences: { type: Schema.Types.Mixed, default: {} },
         degreePlans: { type: [SemesterPlanSchema], default: [] },

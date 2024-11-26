@@ -1,19 +1,20 @@
+import { IStudentService } from "./interfaces/istudent.service";
 import StudentData, {
     IStudentData,
     FavoriteSchedule,
-} from "../../types/models/student.schema";
+} from "../../shared/types/models/student.schema";
 import { Types } from "mongoose";
 
-export class StudentService {
-    // Create new student data
+export class StudentService implements IStudentService {
     public async createStudentData(
         userId: Types.ObjectId,
+        email: string,
         firstName: string,
         lastName: string
     ): Promise<IStudentData> {
         const studentData = new StudentData({
             userId,
-            studentId: null,
+            email,
             firstName,
             lastName,
             academicInfo: {},
@@ -26,35 +27,31 @@ export class StudentService {
         return savedStudentData;
     }
 
-    // Get student data by userId
-    public async getStudentData(
-        userId: Types.ObjectId
+    public async getStudentByEmail(
+        email: string
     ): Promise<IStudentData | null> {
-        return StudentData.findOne({ userId });
+        return StudentData.findOne({ email });
     }
 
-    // Update student data
-    public async updateStudentData(
-        userId: Types.ObjectId,
+    public async updateStudentByEmail(
+        email: string,
         updates: Partial<IStudentData>
     ): Promise<IStudentData | null> {
-        return StudentData.findOneAndUpdate({ userId }, updates, { new: true });
+        return StudentData.findOneAndUpdate({ email }, updates, { new: true });
     }
 
-    // Get favorites
-    public async getFavorites(
-        userId: Types.ObjectId
+    public async getFavoritesByEmail(
+        email: string
     ): Promise<FavoriteSchedule[] | null> {
-        const studentData = await StudentData.findOne({ userId });
+        const studentData = await StudentData.findOne({ email });
         return studentData ? studentData.favorites : null;
     }
 
-    // Add a favorite schedule
-    public async addFavorite(
-        userId: Types.ObjectId,
+    public async addFavoriteByEmail(
+        email: string,
         favoriteData: FavoriteSchedule
     ): Promise<FavoriteSchedule | null> {
-        const studentData = await StudentData.findOne({ userId });
+        const studentData = await StudentData.findOne({ email });
         if (!studentData) return null;
 
         studentData.favorites.push(favoriteData);
@@ -62,17 +59,24 @@ export class StudentService {
         return favoriteData;
     }
 
-    // Remove a favorite schedule
-    public async removeFavorite(
-        userId: Types.ObjectId,
+    public async removeFavoriteByEmail(
+        email: string,
         favoriteName: string
-    ): Promise<void> {
-        const studentData = await StudentData.findOne({ userId });
-        if (studentData) {
-            studentData.favorites = studentData.favorites.filter(
-                (fav) => fav.name !== favoriteName
-            );
-            await studentData.save();
+    ): Promise<boolean> {
+        const studentData = await StudentData.findOne({ email });
+        if (!studentData) return false;
+
+        const originalLength = studentData.favorites.length;
+        studentData.favorites = studentData.favorites.filter(
+            (fav) => fav.name !== favoriteName
+        );
+
+        if (studentData.favorites.length === originalLength) {
+            // Favorite not found
+            return false;
         }
+
+        await studentData.save();
+        return true;
     }
 }

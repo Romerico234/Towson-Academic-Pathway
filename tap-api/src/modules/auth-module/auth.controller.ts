@@ -1,8 +1,9 @@
 import { Request, Response, NextFunction } from "express";
+import { IAuthController } from "./interfaces/iauth.controller";
 import { AuthService } from "./auth.service";
-import { AuthError } from "../../types/errors/errors";
+import { AuthError } from "../../shared/errors/errors";
 
-export class AuthController {
+export class AuthController implements IAuthController {
     private authService: AuthService;
 
     constructor() {

@@ -1,6 +1,7 @@
-import Course, { ICourse } from "../../types/models/course.schema";
+import { ICourseService } from "./interfaces/icourse.service";
+import Course, { ICourse } from "../../shared/types/models/course.schema";
 
-export class CourseService {
+export class CourseService implements ICourseService {
     public async getAllCourses(): Promise<ICourse[]> {
         return Course.find().exec();
     }

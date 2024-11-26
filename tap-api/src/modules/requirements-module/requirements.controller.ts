@@ -1,14 +1,18 @@
 import { Request, Response } from "express";
+import { IRequirementsController } from "./interfaces/irequirements.controller";
 import { RequirementsService } from "./requirements.service";
 
-export class RequirementsController {
+export class RequirementsController implements IRequirementsController {
     private requirementsService: RequirementsService;
 
     constructor() {
         this.requirementsService = new RequirementsService();
     }
 
-    async getRequirements(req: Request, res: Response): Promise<void> {
+    public getRequirements = async (
+        req: Request,
+        res: Response
+    ): Promise<void> => {
         try {
             const requirements =
                 await this.requirementsService.getRequirements();
@@ -19,5 +23,5 @@ export class RequirementsController {
                 error,
             });
         }
-    }
+    };
 }

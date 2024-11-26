@@ -1,29 +1,42 @@
 import api from "./api.service";
 
 export default class StudentService {
-    async getStudentData(): Promise<any> {
-        const response = await api.get("/student/profile");
+    async getStudentByEmail(email: string): Promise<any> {
+        const response = await api.get(`/student/${encodeURIComponent(email)}`);
         return response.data;
     }
 
-    async updateStudentData(updates: any): Promise<any> {
-        const response = await api.put("/student/profile", updates);
+    async updateStudentByEmail(email: string, updates: any): Promise<any> {
+        const response = await api.put(
+            `/student/${encodeURIComponent(email)}`,
+            updates
+        );
         return response.data;
     }
 
-    async getFavorites(): Promise<any> {
-        const response = await api.get("/student/favorites");
+    async getFavoritesByEmail(email: string): Promise<any> {
+        const response = await api.get(
+            `/student/${encodeURIComponent(email)}/favorites`
+        );
         return response.data;
     }
 
-    async addFavorite(favoriteData: any): Promise<any> {
-        const response = await api.post("/student/favorites", favoriteData);
+    async addFavoriteByEmail(email: string, favoriteData: any): Promise<any> {
+        const response = await api.post(
+            `/student/${encodeURIComponent(email)}/favorites`,
+            favoriteData
+        );
         return response.data;
     }
 
-    async removeFavorite(favoriteName: string): Promise<void> {
+    async removeFavoriteByEmail(
+        email: string,
+        favoriteName: string
+    ): Promise<void> {
         await api.delete(
-            `/student/favorites/${encodeURIComponent(favoriteName)}`
+            `/student/${encodeURIComponent(
+                email
+            )}/favorites/${encodeURIComponent(favoriteName)}`
         );
     }
 }
