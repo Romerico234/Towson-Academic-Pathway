@@ -6,6 +6,7 @@ import FooterComponent from "./components/footer/FooterComponent";
 import LoginComponent from "./components/auth/LoginComponent";
 import RegisterComponent from "./components/auth/RegisterComponent";
 import AuthProvider from "./components/auth/AuthComponent";
+import FormComponent from "./components/form/FormComponent";
 
 export default function App() {
     return (
@@ -16,6 +17,7 @@ export default function App() {
                     <Route path="/home" element={<HomeComponent />} />
                     <Route path="/login" element={<LoginComponent />} />
                     <Route path="/register" element={<RegisterComponent />} />
+                    <Route path="/preferences-form" element={<FormComponent />} />
                     <Route path="*" element={<HomeComponent />} />
                 </Routes>
                 <FooterComponent />
