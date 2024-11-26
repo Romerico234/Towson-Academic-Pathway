@@ -8,10 +8,9 @@ export class RequirementsController {
         this.requirementsService = new RequirementsService();
     }
 
-    async getRequirements(req: Request, res: Response): Promise<void> {
+    public getRequirements = async (req: Request, res: Response): Promise<void> => {
         try {
-            const requirements =
-                await this.requirementsService.getRequirements();
+            const requirements = await this.requirementsService.getRequirements();
             res.status(200).json(requirements);
         } catch (error) {
             res.status(500).json({
@@ -19,5 +18,5 @@ export class RequirementsController {
                 error,
             });
         }
-    }
+    };
 }

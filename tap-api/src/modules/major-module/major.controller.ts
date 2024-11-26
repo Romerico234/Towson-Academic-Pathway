@@ -8,16 +8,16 @@ export class MajorController {
         this.majorService = new MajorService();
     }
 
-    async getAllMajors(req: Request, res: Response): Promise<void> {
+    public getAllMajors = async (req: Request, res: Response): Promise<void> => {
         try {
             const majors = await this.majorService.getAllMajors();
             res.status(200).json(majors);
         } catch (error) {
             res.status(500).json({ message: "Error retrieving majors", error });
         }
-    }
+    };
 
-    async getMajorByName(req: Request, res: Response): Promise<void> {
+    public getMajorByName = async (req: Request, res: Response): Promise<void> => {
         try {
             const { name } = req.params;
             const major = await this.majorService.getMajorByName(name);
@@ -29,9 +29,9 @@ export class MajorController {
         } catch (error) {
             res.status(500).json({ message: "Error retrieving major", error });
         }
-    }
+    };
 
-    async searchMajors(req: Request, res: Response): Promise<void> {
+    public searchMajors = async (req: Request, res: Response): Promise<void> => {
         try {
             const { query } = req.query;
             if (!query || typeof query !== "string") {
@@ -45,5 +45,5 @@ export class MajorController {
         } catch (error) {
             res.status(500).json({ message: "Error searching majors", error });
         }
-    }
+    };
 }
