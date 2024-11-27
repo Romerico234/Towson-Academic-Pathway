@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { NextFunction } from "express-serve-static-core";
 
 export interface IStudentController {
     /**
@@ -7,7 +8,7 @@ export interface IStudentController {
      * @param res - Express Response object used to send the response
      * @returns A Promise that resolves to void
      */
-    getStudentByEmail(req: Request, res: Response): Promise<void>;
+    getStudentByEmail(req: Request, res: Response, next: NextFunction): Promise<void>;
 
     /**
      * Updates student data by email
@@ -15,7 +16,7 @@ export interface IStudentController {
      * @param res - Express Response object used to send the response
      * @returns A Promise that resolves to void
      */
-    updateStudentByEmail(req: Request, res: Response): Promise<void>;
+    updateStudentByEmail(req: Request, res: Response, next: NextFunction): Promise<void>;
 
     /**
      * Retrieves the favorites of a student by email

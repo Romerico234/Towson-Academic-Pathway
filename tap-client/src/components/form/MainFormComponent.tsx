@@ -1,17 +1,33 @@
-import { useState } from "react";
+// src/modules/form-module/MainFormComponent.tsx
+import { useState, useEffect, useContext } from "react";
+import { useLocation } from "react-router-dom";
 import { IPersonalInfo } from "./interfaces/IPersonalInfo";
 import { IPreferencesInfo } from "./interfaces/IPreferencesInfo";
 import { IFormDataType } from "./interfaces/IFormDataType";
 import PersonalInfoFormComponent from "./PersonalInfoFormComponent";
 import PreferencesInfoFormComponent from "./PreferencesInfoFormComponent";
 import OpenAIService from "../../shared/services/openai.service";
-import DegreeCompletionPlannerComponent from "../degree-completion-planner/DegreeCompletionPlannerComponent";
+import { AuthContext } from "../auth/AuthComponent";
+import AuthService from "../../shared/services/auth.service";
+import StudentService from "../../shared/services/student.service";
+import { useNavigate } from "react-router-dom";
+
+interface LocationState {
+    firstName: string;
+    lastName: string;
+    email: string;
+}
 
 export default function MainFormComponent() {
+    const { token } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const state = location.state as LocationState | undefined;
+
     const [personalInfo, setPersonalInfo] = useState<IPersonalInfo>({
-        firstName: "",
-        lastName: "",
-        email: "",
+        firstName: state?.firstName || "",
+        lastName: state?.lastName || "",
+        email: state?.email || "",
         major: "",
         concentration: "",
         bachelorsDegree: "",
@@ -28,8 +44,32 @@ export default function MainFormComponent() {
         additionalComments: "",
     });
 
-    const [planData, setPlanData] = useState<any>(null); // Store OpenAI response
-    const [showPlanner, setShowPlanner] = useState(false); // Track when to show planner
+    // Fetch user data on component mount if state is undefined
+    useEffect(() => {
+        const fetchUserData = async () => {
+            if (
+                token &&
+                (!state || !state.firstName || !state.lastName || !state.email)
+            ) {
+                try {
+                    const authService = new AuthService();
+                    const userData = await authService.getUserProfile(token);
+                    setPersonalInfo((prevState) => ({
+                        ...prevState,
+                        firstName: userData.firstName,
+                        lastName: userData.lastName,
+                        email: userData.email,
+                    }));
+                } catch (error) {
+                    console.error("Error fetching user data:", error);
+                }
+            }
+        };
+
+        if (token) {
+            fetchUserData();
+        }
+    }, [token, state]);
 
     const handleInputChange = (
         e: React.ChangeEvent<
@@ -93,18 +133,23 @@ export default function MainFormComponent() {
             const response = await openAIService.generatePlan(dataToSend);
             console.log("Degree Plan Response:", response);
 
-            // Store response and show the planner
-            setPlanData(response);
-            setShowPlanner(true);
+            const studentService = new StudentService();
+            await studentService.updateStudentByEmail(personalInfo.email, {
+                $push: { degreePlans: response },
+            });
+            console.log(
+                "Updated Student Data:",
+                await studentService.getStudentByEmail(personalInfo.email)
+            );
+
+            navigate("/degree-planner");
         } catch (error) {
-            console.error("Error generating degree plan:", error);
+            console.error("Error generating or saving degree plan:", error);
+            alert(
+                "There was an error processing your request. Please try again."
+            );
         }
     };
-
-    if (showPlanner && planData) {
-        // Directly render the planner with the response data
-        return <DegreeCompletionPlannerComponent planData={planData} />;
-    }
 
     return (
         <div className="container mx-auto p-4">
@@ -113,6 +158,7 @@ export default function MainFormComponent() {
                 <PersonalInfoFormComponent
                     formData={personalInfo}
                     handleInputChange={handleInputChange}
+                    isReadOnly={true}
                 />
 
                 {/* Preferences Information Component */}

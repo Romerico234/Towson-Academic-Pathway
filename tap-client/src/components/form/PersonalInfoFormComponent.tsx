@@ -1,3 +1,4 @@
+// src/modules/form-module/PersonalInfoFormComponent.tsx
 import { IPersonalInfo } from "./interfaces/IPersonalInfo";
 import personImg from "../../assets/form-assets/person.png";
 import mailImg from "../../assets/form-assets/mail.png";
@@ -15,11 +16,13 @@ interface Props {
             HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
         >
     ) => void;
+    isReadOnly?: boolean;
 }
 
 export default function PersonalInfoFormComponent({
     formData,
     handleInputChange,
+    isReadOnly = false,
 }: Props) {
     const majors: Major[] = ["Computer Science"];
 
@@ -68,7 +71,12 @@ export default function PersonalInfoFormComponent({
                                 placeholder="First Name"
                                 value={formData.firstName}
                                 onChange={handleInputChange}
-                                className="w-full bg-white text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
+                                className={`w-full text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight ${
+                                    isReadOnly
+                                        ? "bg-gray-200 cursor-not-allowed"
+                                        : "bg-white"
+                                }`}
+                                readOnly={isReadOnly}
                             />
                         </div>
                     </div>
@@ -94,7 +102,12 @@ export default function PersonalInfoFormComponent({
                                 placeholder="Last Name"
                                 value={formData.lastName}
                                 onChange={handleInputChange}
-                                className="w-full bg-white text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
+                                className={`w-full text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight ${
+                                    isReadOnly
+                                        ? "bg-gray-200 cursor-not-allowed"
+                                        : "bg-white"
+                                }`}
+                                readOnly={isReadOnly}
                             />
                         </div>
                     </div>
@@ -120,7 +133,12 @@ export default function PersonalInfoFormComponent({
                                 placeholder="Email Address"
                                 value={formData.email}
                                 onChange={handleInputChange}
-                                className="w-full bg-white text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
+                                className={`w-full text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight ${
+                                    isReadOnly
+                                        ? "bg-gray-200 cursor-not-allowed"
+                                        : "bg-white"
+                                }`}
+                                readOnly={isReadOnly}
                             />
                         </div>
                     </div>
@@ -144,7 +162,7 @@ export default function PersonalInfoFormComponent({
                                 name="bachelorsDegree"
                                 value={formData.bachelorsDegree}
                                 onChange={handleInputChange}
-                                className="w-full bg-white text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
+                                className="w-full text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
                             >
                                 <option value="">
                                     Select Bachelor's Degree
@@ -177,7 +195,7 @@ export default function PersonalInfoFormComponent({
                                 name="major"
                                 value={formData.major}
                                 onChange={handleInputChange}
-                                className="w-full bg-white text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
+                                className="w-full text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
                             >
                                 <option value="">Select Major</option>
                                 {majors.map((major) => (
@@ -210,7 +228,7 @@ export default function PersonalInfoFormComponent({
                                         name="concentration"
                                         value={formData.concentration}
                                         onChange={handleInputChange}
-                                        className="w-full bg-white text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
+                                        className="w-full text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
                                     >
                                         <option value="">
                                             Select Concentration

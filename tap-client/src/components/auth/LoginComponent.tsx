@@ -16,7 +16,7 @@ export default function LoginComponent() {
         try {
             const { token } = await authService.login(email, password);
             login(token);
-            navigate("/form");
+            navigate("/dashboard");
         } catch (error: any) {
             alert(error.response?.data?.message || "Login failed");
         }

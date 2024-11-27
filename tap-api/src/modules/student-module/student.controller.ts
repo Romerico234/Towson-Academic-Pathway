@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { IStudentController } from "./interfaces/istudent.controller";
 import { StudentService } from "./student.service";
+import { NextFunction } from "express-serve-static-core";
 
 export class StudentController implements IStudentController {
     private studentService: StudentService;
@@ -11,7 +12,8 @@ export class StudentController implements IStudentController {
 
     public getStudentByEmail = async (
         req: Request,
-        res: Response
+        res: Response,
+        next: NextFunction
     ): Promise<void> => {
         try {
             const email = req.params.email;
@@ -33,7 +35,8 @@ export class StudentController implements IStudentController {
 
     public updateStudentByEmail = async (
         req: Request,
-        res: Response
+        res: Response,
+        next: NextFunction
     ): Promise<void> => {
         try {
             const email = req.params.email;

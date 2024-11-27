@@ -33,7 +33,7 @@ export default function RegisterComponent() {
                 password
             );
             login(token);
-            navigate("/form");
+            navigate("/form", { state: { firstName, lastName, email } });
         } catch (error: any) {
             alert(error.response?.data?.message || "Registration failed");
         }

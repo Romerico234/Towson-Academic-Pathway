@@ -37,11 +37,6 @@ export default function SidebarComponent() {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/form" className="block p-2 hover:bg-gray-300">
-                        Form
-                    </Link>
-                </li>
-                <li>
                     <Link
                         to="/course-catalog"
                         className="block p-2 hover:bg-gray-300"
