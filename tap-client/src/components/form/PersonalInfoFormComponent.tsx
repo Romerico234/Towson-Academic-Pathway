@@ -1,4 +1,3 @@
-// src/modules/form-module/PersonalInfoFormComponent.tsx
 import { IPersonalInfo } from "./interfaces/IPersonalInfo";
 import personImg from "../../assets/form-assets/person.png";
 import mailImg from "../../assets/form-assets/mail.png";
