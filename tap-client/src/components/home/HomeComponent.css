@@ -16,18 +16,14 @@ body {
     margin-top: 60px;
 }
 
-.leftColumn {
-    width: 65%;
-    float: left;
+.subHeader {
+    padding: 20px;
+    text-align: center;
+    background-color: theme('colors.towsonGold');
+    margin-top: 20px;
 }
 
-.rightColumn {
-    width: 35%;
-    float: left;
-    padding-left: 20px;
-}
-
-.fakeImg {
+.textBox {
     background-color: #FFFFFF;
     width: 100%;
     padding:  30px;
