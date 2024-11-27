@@ -1,4 +1,3 @@
-// src/modules/form-module/MainFormComponent.tsx
 import { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { IPersonalInfo } from "./interfaces/IPersonalInfo";

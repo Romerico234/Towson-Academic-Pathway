@@ -14,7 +14,7 @@ export default function NavbarComponent() {
                         to="/home"
                         className="text-2xl font-bold text-towsonGold transition duration-300 flex items-center"
                     >
-                        Towson Academic Planner
+                        Towson Academic Pathway
                     </Link>
 
                     {/* Tooltip */}
