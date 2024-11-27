@@ -9,6 +9,6 @@
     "strict": true,                           // Enable all strict type-checking options
     "skipLibCheck": true                      // Skip type checking of declaration files
   },
-  "include": ["src"],
+  "include": ["src", "src/shared/types", "src/shared/utils", "src/shared/errors"],
   "exclude": ["node_modules"]
 }
