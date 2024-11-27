@@ -8,7 +8,7 @@
             "courseTitle": "COMPUTERS AND CREATIVITY",
             "termsOffered": "Fall, Winter, Spring & Summer",
             "description": "Explores creativity and problem-solving using computers.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "components": [
                 {
@@ -27,7 +27,7 @@
             "courseTitle": "INFORMATION AND TECHNOLOGY FOR BUSINESS",
             "termsOffered": "Fall, Winter, Spring & Summer",
             "description": "Introduction to the role of information technology in business.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "components": [
                 {
@@ -46,7 +46,7 @@
             "courseTitle": "GEN COMPUTER SCI",
             "termsOffered": "Fall, Spring & Summer",
             "description": "General introduction to computer science principles.",
-            "units": 4,
+            "units": "4",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "components": [
                 {
@@ -65,7 +65,7 @@
             "courseTitle": "INTRODUCTION TO COMPUTER SCIENCE I",
             "termsOffered": "Fall, Spring & Summer",
             "description": "An introduction to fundamental programming concepts.",
-            "units": 4,
+            "units": "4",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "components": [
                 {
@@ -87,7 +87,7 @@
             "courseTitle": "INTRODUCTION TO COMPUTER SCIENCE II",
             "termsOffered": "Fall, Spring & Summer",
             "description": "Continuation of Computer Science I with data structures.",
-            "units": 4,
+            "units": "4",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "components": [
                 {
@@ -106,7 +106,7 @@
             "courseTitle": "PRINCIPLES OF COMPUTER ORGANIZATION",
             "termsOffered": "Fall, Spring & Summer",
             "description": "Explores the principles and structure of computer systems.",
-            "units": 4,
+            "units": "4",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "components": [
                 {
@@ -125,7 +125,7 @@
             "courseTitle": "DATA STRUCTURES AND ALGORITHM ANALYSIS",
             "termsOffered": "Fall, Spring & Summer",
             "description": "Covers advanced data structures and algorithm design.",
-            "units": 4,
+            "units": "4",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "components": [
                 {
@@ -144,7 +144,7 @@
             "courseTitle": "DATA COMMUNICATIONS AND NETWORKING",
             "termsOffered": "Fall & Spring",
             "description": "Covers principles of networking and data transmission.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "components": [
                 {
@@ -164,7 +164,7 @@
             "courseTitle": "SOFTWARE ENGINEERING",
             "termsOffered": "Fall & Spring",
             "description": "Introduction to software development lifecycle and practices.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "components": [
                 {
@@ -183,7 +183,7 @@
             "courseTitle": "OPERATING SYSTEMS",
             "termsOffered": "Fall & Spring",
             "description": "Introduction to the design and implementation of operating systems.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "components": [
                 {
@@ -202,7 +202,7 @@
             "courseTitle": "PROGRAMMING LANGUAGES: DESIGN & IMPLEMENTATION",
             "termsOffered": "Fall & Spring",
             "description": "Introduction to the design and implementation of programming languages.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "components": [
                 {
@@ -221,7 +221,7 @@
             "courseTitle": "DATABASE MANAGEMENT SYSTEMS",
             "termsOffered": "Fall & Spring",
             "description": "Covers the principles and practices of database design and implementation.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "components": [
                 {
@@ -240,7 +240,7 @@
             "courseTitle": "APPLICATION SOFTWARE SECURITY",
             "termsOffered": "Fall",
             "description": "Explores security concepts for application software.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "components": [
                 {
@@ -260,7 +260,7 @@
             "courseTitle": "COMPUTER SIMULATION & MODELING",
             "termsOffered": "Occasionally",
             "description": "Introduction to computer simulation techniques and modeling concepts.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "components": [
                 {
@@ -279,7 +279,7 @@
             "courseTitle": "ARTIFICIAL INTELLIGENCE",
             "termsOffered": "Spring",
             "description": "Covers the foundations of artificial intelligence, including algorithms and applications.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "components": [
                 {
@@ -299,7 +299,7 @@
             "courseTitle": "ROBOTICS",
             "termsOffered": "Occasionally",
             "description": "Introduction to robotics, including design and programming.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "components": [
                 {
@@ -319,7 +319,7 @@
             "courseTitle": "FOUNDATIONS OF DATA MINING",
             "termsOffered": "Spring",
             "description": "Covers the concepts and techniques of data mining.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "components": [
                 {
@@ -338,7 +338,7 @@
             "courseTitle": "COMPUTER GRAPHICS",
             "termsOffered": "Occasionally",
             "description": "Introduction to computer graphics principles and programming.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "components": [
                 {
@@ -357,7 +357,7 @@
             "courseTitle": "CASE STUDIES IN COMPUTER SECURITY",
             "termsOffered": "Spring",
             "description": "Examines case studies in computer security.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "components": [
                 {
@@ -376,7 +376,7 @@
             "courseTitle": "DESIGN & ANALYSIS ALGORITHMS",
             "termsOffered": "Fall",
             "description": "Covers design and analysis of algorithms with real-world applications.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "components": [
                 {
@@ -396,7 +396,7 @@
             "courseTitle": "WEB-BASED PROGRAM",
             "termsOffered": "Fall & Spring",
             "description": "Focuses on web programming technologies and frameworks.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "components": [
                 {
@@ -415,7 +415,7 @@
             "courseTitle": "REVERSE ENGINEERING AND MALWARE ANALYSIS",
             "termsOffered": "Spring",
             "description": "Explores reverse engineering techniques and malware analysis.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "components": [
                 {
@@ -434,7 +434,7 @@
             "courseTitle": "SOFTWARE PROJECT PRACTICUM",
             "termsOffered": "Spring",
             "description": "Capstone course focusing on practical software development projects.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "components": [
                 {
@@ -457,7 +457,7 @@
             "courseTitle": "INTERNSHIP IN SECONDARY EDUCATION - COMPUTER SCIENCE",
             "termsOffered": "Spring",
             "description": "Internship for secondary education majors in computer science.",
-            "units": 6,
+            "units": "6",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "components": [
                 {
@@ -477,7 +477,7 @@
             "courseTitle": "DIRECTED READINGS IN COMPUTER SCIENCE",
             "termsOffered": "Occasionally",
             "description": "Allows in-depth exploration of topics under faculty supervision.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "components": [
                 {
@@ -497,7 +497,7 @@
             "courseTitle": "INDEPENDENT STUDY",
             "termsOffered": "Occasionally",
             "description": "Allows students to pursue independent study projects.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "components": [
                 {
