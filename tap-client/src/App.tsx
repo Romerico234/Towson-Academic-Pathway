@@ -13,7 +13,6 @@ import AuthProvider from "./components/auth/AuthComponent";
 import PublicLayout from "./layouts/PublicLayout";
 import AuthenticatedLayout from "./layouts/AuthenticatedLayout";
 import RequireAuth from "./components/auth/RequireAuth";
-import RedirectIfAuthenticated from "./components/auth/RedirectIfAuthenticated";
 
 export default function App() {
     return (
@@ -21,13 +20,7 @@ export default function App() {
             <BrowserRouter>
                 <Routes>
                     {/* Public Routes */}
-                    <Route
-                        element={
-                            <RedirectIfAuthenticated>
-                                <PublicLayout />
-                            </RedirectIfAuthenticated>
-                        }
-                    >
+                    <Route element={<PublicLayout />}>
                         <Route path="/" element={<HomeComponent />} />
                         <Route path="/home" element={<HomeComponent />} />
                         <Route path="/about" element={<AboutComponent />} />
