@@ -141,7 +141,7 @@ Again, just return the JSON object with the degree plan and the active semester 
                     { role: "system", content: this.systemPrompt },
                     { role: "user", content: userPrompt },
                 ],
-                model: "gpt-4.0-mini",
+                model: "gpt-4o",
                 user: assistantId,
                 max_tokens: 1024,
             });
@@ -186,8 +186,11 @@ Again, just return the JSON object with the degree plan and the active semester 
             userData.withdrawnCourses ? "Yes" : "No"
         }\n`;
         prompt += `Unavailable Terms: ${
-            userData.unavailableTerms.join(", ") || "None"
+            Array.isArray(userData.unavailableTerms)
+                ? userData.unavailableTerms.join(", ")
+                : "None"
         }\n`;
+
         prompt += `Prerequisites Handling: ${userData.prerequisitesHandling}\n`;
         prompt += `Preference Conflicts: ${userData.preferenceConflicts}\n`;
         prompt += `Additional Comments: ${userData.additionalComments}\n\n`;
