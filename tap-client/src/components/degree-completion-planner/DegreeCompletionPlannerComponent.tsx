@@ -1,18 +1,8 @@
-interface Props {
-    planData: any;
-}
-
-export default function DegreeCompletionPlannerComponent({ planData }: Props) {
-    if (!planData) {
-        return <div>No degree plan data available.</div>;
-    }
-
+export default function DegreeCompletionPlannerComponent() {
     return (
-        <div className="max-w-4xl mx-auto mt-20 px-6">
-            <h1 className="text-2xl font-bold mb-4">Degree Plan</h1>
-            <pre className="bg-gray-100 p-4 rounded">
-                {JSON.stringify(planData, null, 2)}
-            </pre>
+        <div className="p-4">
+            <h1>Degree Completion Planner</h1>
+            <p>Plan your degree completion here.</p>
         </div>
     );
 }

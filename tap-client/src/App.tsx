@@ -1,29 +1,73 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import HomeComponent from "./components/home/HomeComponent";
-import NavbarComponent from "./components/navbar/NavbarComponent";
-import FooterComponent from "./components/footer/FooterComponent";
+import AboutComponent from "./components/about/AboutComponent";
 import LoginComponent from "./components/auth/LoginComponent";
 import RegisterComponent from "./components/auth/RegisterComponent";
-import AuthProvider from "./components/auth/AuthComponent";
 import MainFormComponent from "./components/form/MainFormComponent";
+import DashboardComponent from "./components/dashboard/DashboardComponent";
+import SettingsComponent from "./components/settings/SettingsComponent";
+import CourseCatalogComponent from "./components/course-catalog/CourseCatalogComponent";
+import DegreeCompletionPlannerComponent from "./components/degree-completion-planner/DegreeCompletionPlannerComponent";
+import AuthProvider from "./components/auth/AuthComponent";
+import PublicLayout from "./layouts/PublicLayout";
+import AuthenticatedLayout from "./layouts/AuthenticatedLayout";
+import RequireAuth from "./components/auth/RequireAuth";
+import RedirectIfAuthenticated from "./components/auth/RedirectIfAuthenticated";
 
 export default function App() {
     return (
         <AuthProvider>
             <BrowserRouter>
-                {/* <NavbarComponent /> */}
                 <Routes>
-                    <Route path="/home" element={<HomeComponent />} />
-                    <Route path="/login" element={<LoginComponent />} />
-                    <Route path="/register" element={<RegisterComponent />} />
+                    {/* Public Routes */}
                     <Route
-                        path="/preferences-form"
-                        element={<MainFormComponent />}
-                    />
+                        element={
+                            <RedirectIfAuthenticated>
+                                <PublicLayout />
+                            </RedirectIfAuthenticated>
+                        }
+                    >
+                        <Route path="/" element={<HomeComponent />} />
+                        <Route path="/home" element={<HomeComponent />} />
+                        <Route path="/about" element={<AboutComponent />} />
+                        <Route path="/login" element={<LoginComponent />} />
+                        <Route
+                            path="/register"
+                            element={<RegisterComponent />}
+                        />
+                    </Route>
+
+                    {/* Authenticated Routes */}
+                    <Route
+                        element={
+                            <RequireAuth>
+                                <AuthenticatedLayout />
+                            </RequireAuth>
+                        }
+                    >
+                        <Route path="/form" element={<MainFormComponent />} />
+                        <Route
+                            path="/dashboard"
+                            element={<DashboardComponent />}
+                        />
+                        <Route
+                            path="/settings"
+                            element={<SettingsComponent />}
+                        />
+                        <Route
+                            path="/course-catalog"
+                            element={<CourseCatalogComponent />}
+                        />
+                        <Route
+                            path="/degree-planner"
+                            element={<DegreeCompletionPlannerComponent />}
+                        />
+                    </Route>
+
+                    {/* Catch-all Route */}
                     <Route path="*" element={<HomeComponent />} />
                 </Routes>
-                <FooterComponent />
             </BrowserRouter>
         </AuthProvider>
     );
