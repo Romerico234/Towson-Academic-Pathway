@@ -1,5 +1,5 @@
 export interface IPreferencesInfo {
-    preferredCreditHours: number;
+    preferredCreditHours: string;
     allowSummerWinter: boolean;
     generalEducationCompleted: boolean;
     unavailableTerms: string[];

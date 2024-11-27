@@ -1,4 +1,6 @@
 import { IPreferencesInfo } from "./interfaces/IPreferencesInfo";
+import hashtagImg from "../../assets/form-assets/hashtag.png";
+import pencilImg from "../../assets/form-assets/pencil.png";
 
 interface Props {
     formData: IPreferencesInfo;
@@ -14,74 +16,116 @@ export default function PreferencesInfoFormComponent({
     handleInputChange,
 }: Props) {
     const creditHourOptions = [
-        { label: "5 and below", value: "0-5" },
-        { label: "6-9", value: "6-9" },
-        { label: "10-12", value: "10-12" },
-        { label: "13-16", value: "13-16" },
-        { label: "17-19", value: "17-19" },
-        { label: "20 and above", value: "20+" },
+        { label: "6 and below", value: "0-6" },
+        { label: "7-10", value: "7-19" },
+        { label: "11-14", value: "11-14" },
+        { label: "15-18", value: "15-18" },
+        { label: "19-22", value: "19-22" },
+        { label: "23 and above", value: "23+" },
     ];
 
     return (
-        <div className="bg-towsonBlack text-towsonWhite border-4 border-towsonGold rounded-lg p-4 mb-6">
-            <h2 className="text-xl font-semibold mb-4">Preferences</h2>
+        <div className="container mx-auto p-4">
+            <fieldset className="border-2 border-towsonBlack bg-towsonDarkerWhite p-6 rounded max-w-lg mx-auto">
+                <legend className="text-2xl font-bold mb-4 text-towsonGoldDark">
+                    Preferences
+                </legend>
 
-            {/* Preferred Credit Hours */}
-            <label className="block text-sm font-medium mb-2">
-                Preferred Credit Hours per Semester:
-            </label>
-            <select
-                name="preferredCreditHours"
-                value={formData.preferredCreditHours}
-                onChange={handleInputChange}
-                className="mt-1 block w-full bg-towsonLineGold text-towsonBlack border border-towsonWhite rounded-md shadow-sm focus:ring-towsonGold focus:border-towsonGold"
-            >
-                {creditHourOptions.map((option) => (
-                    <option key={option.value} value={option.value}>
-                        {option.label}
-                    </option>
-                ))}
-            </select>
+                {/* Preferred Credit Hours */}
+                <div className="flex flex-wrap items-center mb-4">
+                    <label className="w-full text-sm font-medium mb-2">
+                        Preferred Credit Hours per Semester
+                    </label>
+                    <div className="w-full">
+                        <div className="flex">
+                            <span className="bg-towsonGoldDark text-towsonBlack p-2 rounded-l">
+                                <img
+                                    src={hashtagImg}
+                                    alt="Credit Hours Icon"
+                                    className="w-6 h-6"
+                                />
+                            </span>
+                            <select
+                                name="preferredCreditHours"
+                                value={formData.preferredCreditHours}
+                                onChange={handleInputChange}
+                                className="w-full bg-white text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
+                            >
+                                {creditHourOptions.map((option) => (
+                                    <option
+                                        key={option.value}
+                                        value={option.value}
+                                    >
+                                        {option.label}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
+                </div>
 
-            {/* Unavailable Terms */}
-            <label className="block text-sm font-medium mb-2 mt-4">
-                Are there any terms where you will be unavailable? Please
-                specify.
-            </label>
-            <input
-                type="text"
-                name="unavailableTerms"
-                value={formData.unavailableTerms.join(", ")}
-                onChange={(e) =>
-                    handleInputChange({
-                        target: {
-                            name: "unavailableTerms",
-                            value: e.target.value
-                                .split(",")
-                                .map((term) => term.trim()),
-                        },
-                    } as unknown as React.ChangeEvent<HTMLInputElement>)
-                }
-                className="mt-1 block w-full bg-towsonLineGold text-towsonBlack border border-towsonWhite rounded-md shadow-sm focus:ring-towsonGold focus:border-towsonGold"
-                placeholder="e.g., Summer 2024, Fall 2025"
-            />
+                {/* Unavailable Terms */}
+                <div className="flex flex-wrap items-center mb-4">
+                    <label className="w-full text-sm font-medium mb-2">
+                        Unavailable Terms
+                    </label>
+                    <div className="w-full">
+                        <div className="flex">
+                            <span className="bg-towsonGoldDark text-towsonBlack p-2 rounded-l">
+                                <img
+                                    src={pencilImg}
+                                    alt="Unavailable Terms Icon"
+                                    className="w-6 h-6"
+                                />
+                            </span>
+                            <input
+                                type="text"
+                                name="unavailableTerms"
+                                placeholder="e.g., Summer 2024, Fall 2025"
+                                value={formData.unavailableTerms.join(", ")}
+                                onChange={(e) =>
+                                    handleInputChange({
+                                        target: {
+                                            name: "unavailableTerms",
+                                            value: e.target.value
+                                                .split(",")
+                                                .map((term) => term.trim()),
+                                        },
+                                    } as unknown as React.ChangeEvent<HTMLInputElement>)
+                                }
+                                className="w-full bg-white text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
+                            />
+                        </div>
+                    </div>
+                </div>
 
-            {/* Additional Comments */}
-            <label
-                htmlFor="additionalComments"
-                className="block text-sm font-medium mb-2 mt-4"
-            >
-                Additional Comments or Preferences:
-            </label>
-            <textarea
-                id="additionalComments"
-                name="additionalComments"
-                value={formData.additionalComments}
-                onChange={handleInputChange}
-                rows={5}
-                className="mt-1 block w-full bg-towsonLineGold text-towsonBlack border border-towsonWhite rounded-md shadow-sm focus:ring-towsonGold focus:border-towsonGold"
-                placeholder="Enter any additional comments or preferences here..."
-            ></textarea>
+                {/* Additional Comments */}
+                <div className="flex flex-wrap items-start mb-4">
+                    <label className="w-full text-sm font-medium mb-2">
+                        Additional Comments or Preferences
+                    </label>
+                    <div className="w-full">
+                        <div className="flex">
+                            <span className="bg-towsonGoldDark text-towsonBlack p-2 rounded-l">
+                                <img
+                                    src={pencilImg}
+                                    alt="Comments Icon"
+                                    className="w-6 h-6"
+                                />
+                            </span>
+                            <textarea
+                                id="additionalComments"
+                                name="additionalComments"
+                                placeholder="Enter any additional comments or preferences here..."
+                                value={formData.additionalComments}
+                                onChange={handleInputChange}
+                                rows={5}
+                                className="w-full bg-white text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
+                            ></textarea>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
         </div>
     );
 }

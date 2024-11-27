@@ -21,7 +21,7 @@ export default function MainFormComponent() {
     });
 
     const [preferences, setPreferences] = useState<IPreferencesInfo>({
-        preferredCreditHours: 12,
+        preferredCreditHours: "10-12",
         allowSummerWinter: false,
         generalEducationCompleted: false,
         unavailableTerms: [],
@@ -107,7 +107,7 @@ export default function MainFormComponent() {
     }
 
     return (
-        <div className="max-w-4xl mx-auto mt-20 px-6">
+        <div className="container mx-auto p-4">
             <form onSubmit={handleSubmit} encType="multipart/form-data">
                 {/* Personal Information Component */}
                 <PersonalInfoFormComponent
@@ -122,12 +122,14 @@ export default function MainFormComponent() {
                 />
 
                 {/* Submit Button */}
-                <button
-                    type="submit"
-                    className="mt-6 bg-towsonGold text-towsonBlack font-semibold py-2 px-4 rounded"
-                >
-                    Submit
-                </button>
+                <div className="flex justify-center mt-6">
+                    <button
+                        type="submit"
+                        className="bg-towsonGoldDark text-white font-semibold py-2 px-4 rounded flex items-center hover:bg-towsonGold"
+                    >
+                        Submit
+                    </button>
+                </div>
             </form>
         </div>
     );

@@ -27,7 +27,7 @@ export interface Schedule {
 export interface ActiveSemesterPlan {
     courseCode: string;
     title: string;
-    units: number;
+    units: string;
     schedule: Schedule[];
 }
 
@@ -62,7 +62,7 @@ const ScheduleSchema: Schema = new Schema({
 const ActiveSemesterPlanSchema: Schema = new Schema({
     courseCode: { type: String, required: true },
     title: { type: String, required: true },
-    units: { type: Number, required: true },
+    units: { type: String, required: true },
     schedule: { type: [ScheduleSchema], required: true },
 });
 

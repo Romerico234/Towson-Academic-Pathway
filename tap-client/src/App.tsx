@@ -12,7 +12,7 @@ export default function App() {
     return (
         <AuthProvider>
             <BrowserRouter>
-                <NavbarComponent />
+                {/* <NavbarComponent /> */}
                 <Routes>
                     <Route path="/home" element={<HomeComponent />} />
                     <Route path="/login" element={<LoginComponent />} />
