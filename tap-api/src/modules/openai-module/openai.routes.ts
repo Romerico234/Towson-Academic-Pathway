@@ -9,7 +9,7 @@ const openAIController = new OpenAIController();
 
 router.post(
     "/generate-plan",
-    // authenticateJWT,
+    authenticateJWT,
     upload.single("unofficialTranscript"),
     openAIController.generatePlans
 );

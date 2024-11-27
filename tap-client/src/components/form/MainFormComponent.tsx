@@ -5,6 +5,7 @@ import { IFormDataType } from "./interfaces/IFormDataType";
 import PersonalInfoFormComponent from "./PersonalInfoFormComponent";
 import PreferencesInfoFormComponent from "./PreferencesInfoFormComponent";
 import OpenAIService from "../../shared/services/openai.service";
+import DegreeCompletionPlannerComponent from "../degree-completion-planner/DegreeCompletionPlannerComponent";
 
 export default function MainFormComponent() {
     const [personalInfo, setPersonalInfo] = useState<IPersonalInfo>({
@@ -26,6 +27,9 @@ export default function MainFormComponent() {
         unavailableTerms: [],
         additionalComments: "",
     });
+
+    const [planData, setPlanData] = useState<any>(null); // Store OpenAI response
+    const [showPlanner, setShowPlanner] = useState(false); // Track when to show planner
 
     const handleInputChange = (
         e: React.ChangeEvent<
@@ -64,7 +68,7 @@ export default function MainFormComponent() {
         // Merge personalInfo and preferences into one object
         const formData: IFormDataType = { ...personalInfo, ...preferences };
 
-        // Prepare data to send
+        // Prepare data to send to OpenAI
         const dataToSend = new FormData();
         for (const key in formData) {
             if (key === "unofficialTranscript") {
@@ -87,12 +91,20 @@ export default function MainFormComponent() {
         try {
             const openAIService = new OpenAIService();
             const response = await openAIService.generatePlan(dataToSend);
-            // Handle the response (e.g., display the degree plan)
             console.log("Degree Plan Response:", response);
+
+            // Store response and show the planner
+            setPlanData(response);
+            setShowPlanner(true);
         } catch (error) {
             console.error("Error generating degree plan:", error);
         }
     };
+
+    if (showPlanner && planData) {
+        // Directly render the planner with the response data
+        return <DegreeCompletionPlannerComponent planData={planData} />;
+    }
 
     return (
         <div className="max-w-4xl mx-auto mt-20 px-6">

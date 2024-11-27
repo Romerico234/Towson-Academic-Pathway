@@ -7,7 +7,6 @@ import LoginComponent from "./components/auth/LoginComponent";
 import RegisterComponent from "./components/auth/RegisterComponent";
 import AuthProvider from "./components/auth/AuthComponent";
 import MainFormComponent from "./components/form/MainFormComponent";
-import OpenAITestComponent from "./components/OpenAITestComponent";
 
 export default function App() {
     return (
@@ -18,7 +17,10 @@ export default function App() {
                     <Route path="/home" element={<HomeComponent />} />
                     <Route path="/login" element={<LoginComponent />} />
                     <Route path="/register" element={<RegisterComponent />} />
-                    <Route path="/preferences-form" element={<MainFormComponent />} />
+                    <Route
+                        path="/preferences-form"
+                        element={<MainFormComponent />}
+                    />
                     <Route path="*" element={<HomeComponent />} />
                 </Routes>
                 <FooterComponent />
