@@ -1,6 +1,7 @@
 import { IStudentService } from "./interfaces/istudent.service";
 import StudentData, {
     IStudentData,
+    SemesterPlan,
     FavoriteSchedule,
 } from "../../shared/types/models/student.schema";
 import { Types } from "mongoose";
@@ -40,26 +41,32 @@ export class StudentService implements IStudentService {
         return StudentData.findOneAndUpdate({ email }, updates, { new: true });
     }
 
-    public async getFavoritesByEmail(
+    public async getDegreePlanByEmail(
         email: string
-    ): Promise<FavoriteSchedule[] | null> {
+    ): Promise<SemesterPlan[] | null> {
         const studentData = await StudentData.findOne({ email });
-        return studentData ? studentData.favorites : null;
+        return studentData ? studentData.degreePlan : null;
     }
 
-    public async addFavoriteByEmail(
+    public async addFavoriteDegreePlan(
         email: string,
         favoriteData: FavoriteSchedule
-    ): Promise<FavoriteSchedule | null> {
+    ): Promise<boolean> {
         const studentData = await StudentData.findOne({ email });
-        if (!studentData) return null;
+        if (!studentData) return false;
+
+        // Check if favorite already exists
+        const isAlreadyFavorited = studentData.favorites.some(
+            (fav) => fav.name === favoriteData.name
+        );
+        if (isAlreadyFavorited) return false;
 
         studentData.favorites.push(favoriteData);
         await studentData.save();
-        return favoriteData;
+        return true;
     }
 
-    public async removeFavoriteByEmail(
+    public async removeFavoriteDegreePlan(
         email: string,
         favoriteName: string
     ): Promise<boolean> {
@@ -78,5 +85,12 @@ export class StudentService implements IStudentService {
 
         await studentData.save();
         return true;
+    }
+
+    public async getFavoriteDegreePlansByEmail(
+        email: string
+    ): Promise<FavoriteSchedule[] | null> {
+        const studentData = await StudentData.findOne({ email });
+        return studentData ? studentData.favorites : null;
     }
 }

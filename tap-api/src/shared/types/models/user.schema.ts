@@ -1,7 +1,7 @@
 import mongoose, { Schema, Types, Document } from "mongoose";
 import { COLLECTION_NAMES } from "../mongodb/collection-names";
 
-export interface IUser {
+export interface IUser extends Document {
     _id: Types.ObjectId;
     email: string;
     password: string;

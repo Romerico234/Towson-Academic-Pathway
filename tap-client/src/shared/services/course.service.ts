@@ -15,4 +15,16 @@ export default class CourseService {
         const response = await api.get("/courses/search", { params: query });
         return response.data;
     }
+
+    async getCourseBySubjectAndCatalogNumber(
+        subject: string,
+        catalogNumber: string
+    ): Promise<any> {
+        const response = await api.get(
+            `/courses/${encodeURIComponent(subject)}/${encodeURIComponent(
+                catalogNumber
+            )}`
+        );
+        return response.data;
+    }
 }

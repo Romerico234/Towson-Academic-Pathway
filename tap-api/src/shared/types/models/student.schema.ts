@@ -9,31 +9,23 @@ export interface Preferences {
     [key: string]: any;
 }
 
+export interface Course {
+    subject: string;
+    catalogNumber: string;
+    title: string;
+    units: number;
+}
+
 export interface SemesterPlan {
     semester: string;
-    plannedCourses: string[];
+    plannedCourses: Course[];
     creditHours: number;
     notes?: string;
 }
 
-export interface Schedule {
-    day: string;
-    startTime: string;
-    endTime: string;
-    location: string;
-    instructor: string;
-}
-
-export interface ActiveSemesterPlan {
-    courseCode: string;
-    title: string;
-    units: string;
-    schedule: Schedule[];
-}
-
 export interface FavoriteSchedule {
     name: string;
-    courses: ActiveSemesterPlan[];
+    degreePlan: SemesterPlan[];
 }
 
 export interface IStudentData extends Document<Types.ObjectId> {
@@ -45,37 +37,29 @@ export interface IStudentData extends Document<Types.ObjectId> {
     email: string;
     academicInfo: AcademicInfo;
     preferences: Preferences;
-    degreePlans: SemesterPlan[];
-    favorites: FavoriteSchedule[];
+    degreePlan: any;
+    favorites: any[];
     createdAt: Date;
     updatedAt: Date;
 }
 
-const ScheduleSchema: Schema = new Schema({
-    day: { type: String, required: true },
-    startTime: { type: String, required: true },
-    endTime: { type: String, required: true },
-    location: { type: String, required: true },
-    instructor: { type: String, required: true },
-});
-
-const ActiveSemesterPlanSchema: Schema = new Schema({
-    courseCode: { type: String, required: true },
+const CourseSchema: Schema = new Schema({
+    subject: { type: String, required: true },
+    catalogNumber: { type: String, required: true },
     title: { type: String, required: true },
-    units: { type: String, required: true },
-    schedule: { type: [ScheduleSchema], required: true },
-});
-
-const FavoriteScheduleSchema: Schema = new Schema({
-    name: { type: String, required: true },
-    courses: { type: [ActiveSemesterPlanSchema], required: true },
+    units: { type: Number, required: true },
 });
 
 const SemesterPlanSchema: Schema = new Schema({
     semester: { type: String, required: true },
-    plannedCourses: { type: [String], required: true },
+    plannedCourses: { type: [CourseSchema], required: true },
     creditHours: { type: Number, required: true },
     notes: { type: String },
+});
+
+const FavoriteScheduleSchema: Schema = new Schema({
+    name: { type: String, required: true },
+    degreePlan: { type: Schema.Types.Mixed, required: true },
 });
 
 const StudentDataSchema: Schema = new Schema(
@@ -87,8 +71,8 @@ const StudentDataSchema: Schema = new Schema(
         email: { type: String, required: true },
         academicInfo: { type: Schema.Types.Mixed, default: {} },
         preferences: { type: Schema.Types.Mixed, default: {} },
-        degreePlans: { type: [SemesterPlanSchema], default: [] },
-        favorites: { type: [FavoriteScheduleSchema], default: [] },
+        degreePlan: { type: Schema.Types.Mixed, default: {} },
+        favorites: { type: Schema.Types.Mixed, default: [] },
     },
     { timestamps: true, collection: COLLECTION_NAMES.STUDENT_DATA }
 );

@@ -14,29 +14,40 @@ export default class StudentService {
         return response.data;
     }
 
-    async getFavoritesByEmail(email: string): Promise<any> {
+    async getDegreePlansByEmail(email: string): Promise<any> {
         const response = await api.get(
-            `/student/${encodeURIComponent(email)}/favorites`
+            `/student/${encodeURIComponent(email)}/degreeplans`
         );
         return response.data;
     }
 
-    async addFavoriteByEmail(email: string, favoriteData: any): Promise<any> {
+    async addFavoriteDegreePlan(
+        email: string,
+        favoriteData: any
+    ): Promise<any> {
         const response = await api.post(
-            `/student/${encodeURIComponent(email)}/favorites`,
+            `/student/${encodeURIComponent(email)}/favorites/degreeplans`,
             favoriteData
         );
         return response.data;
     }
 
-    async removeFavoriteByEmail(
+    async removeFavoriteDegreePlan(
         email: string,
         favoriteName: string
-    ): Promise<void> {
-        await api.delete(
+    ): Promise<any> {
+        const response = await api.delete(
             `/student/${encodeURIComponent(
                 email
-            )}/favorites/${encodeURIComponent(favoriteName)}`
+            )}/favorites/degreeplans/${encodeURIComponent(favoriteName)}`
         );
+        return response.data;
+    }
+
+    async getFavoriteDegreePlansByEmail(email: string): Promise<any> {
+        const response = await api.get(
+            `/student/${encodeURIComponent(email)}/favorites/degreeplans`
+        );
+        return response.data;
     }
 }

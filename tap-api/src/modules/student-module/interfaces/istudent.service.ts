@@ -1,16 +1,17 @@
 import {
     IStudentData,
+    SemesterPlan,
     FavoriteSchedule,
 } from "../../../shared/types/models/student.schema";
 import { Types } from "mongoose";
 
 export interface IStudentService {
     /**
-     * Creates new student data
-     * @param userId - The ObjectId of the user
-     * @param email - The email of the student
-     * @param firstName - The first name of the student
-     * @param lastName - The last name of the student
+     * Creates a new student record
+     * @param userId The ID of the user
+     * @param email The email of the user
+     * @param firstName The first name of the user
+     * @param lastName The last name of the user
      * @returns A Promise that resolves to the created IStudentData
      */
     createStudentData(
@@ -21,17 +22,17 @@ export interface IStudentService {
     ): Promise<IStudentData>;
 
     /**
-     * Retrieves student data by email
-     * @param email - The email of the student
-     * @returns A Promise that resolves to IStudentData or null if not found
+     * Retrieves a student record by email
+     * @param email The email of the student
+     * @returns A Promise that resolves to the IStudentData or null if not found
      */
     getStudentByEmail(email: string): Promise<IStudentData | null>;
 
     /**
-     * Updates student data by email
-     * @param email - The email of the student
-     * @param updates - Partial updates to apply to the student data
-     * @returns A Promise that resolves to IStudentData or null if not found
+     * Updates a student record by email
+     * @param email The email of the student
+     * @param updates An object containing the updates to apply
+     * @returns A Promise that resolves to the updated IStudentData or null if not found
      */
     updateStudentByEmail(
         email: string,
@@ -39,31 +40,40 @@ export interface IStudentService {
     ): Promise<IStudentData | null>;
 
     /**
-     * Retrieves the favorites of a student by email
-     * @param email - The email of the student
-     * @returns A Promise that resolves to an array of FavoriteSchedule or null if not found
+     * Retrieves all degree plans for a student by email
+     * @param email The email of the student
+     * @returns A Promise that resolves to an array of SemesterPlan or null if not found
      */
-    getFavoritesByEmail(email: string): Promise<FavoriteSchedule[] | null>;
+    getDegreePlanByEmail(email: string): Promise<SemesterPlan[] | null>;
 
     /**
-     * Adds a favorite schedule to a student's favorites by email
-     * @param email - The email of the student
-     * @param favoriteData - The favorite schedule data to add
-     * @returns A Promise that resolves to the added FavoriteSchedule or null if student not found
+     * Adds a favorite degree plan for a student
+     * @param email The email of the student
+     * @param favoriteData The favorite degree plan to add
+     * @returns A Promise that resolves to true if added successfully, false otherwise
      */
-    addFavoriteByEmail(
+    addFavoriteDegreePlan(
         email: string,
         favoriteData: FavoriteSchedule
-    ): Promise<FavoriteSchedule | null>;
+    ): Promise<boolean>;
 
     /**
-     * Removes a favorite schedule from a student's favorites by email
-     * @param email - The email of the student
-     * @param favoriteName - The name of the favorite schedule to remove
-     * @returns A Promise that resolves to true if removed, false otherwise
+     * Removes a favorite degree plan for a student
+     * @param email The email of the student
+     * @param favoriteName The name of the favorite degree plan to remove
+     * @returns A Promise that resolves to true if removed successfully, false otherwise
      */
-    removeFavoriteByEmail(
+    removeFavoriteDegreePlan(
         email: string,
         favoriteName: string
     ): Promise<boolean>;
+
+    /**
+     * Retrieves all favorite degree plans for a student by email
+     * @param email The email of the student
+     * @returns A Promise that resolves to an array of FavoriteSchedule or null if not found
+     */
+    getFavoriteDegreePlansByEmail(
+        email: string
+    ): Promise<FavoriteSchedule[] | null>;
 }
