@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { FormDataType } from "./interfaces/types";
+import { IPersonalInfo } from "./interfaces/IPersonalInfo";
+import { IPreferencesInfo } from "./interfaces/IPreferencesInfo";
+import { IFormDataType } from "./interfaces/IFormDataType";
 import PersonalInfoFormComponent from "./PersonalInfoFormComponent";
 import PreferencesInfoFormComponent from "./PreferencesInfoFormComponent";
 import OpenAIService from "../../shared/services/openai.service";
 
-export default function MainFormCopmonent() {
-    const [formData, setFormData] = useState<FormDataType>({
-        // Initial data
+export default function MainFormComponent() {
+    const [personalInfo, setPersonalInfo] = useState<IPersonalInfo>({
         firstName: "",
         lastName: "",
         email: "",
@@ -16,6 +17,9 @@ export default function MainFormCopmonent() {
         unofficialTranscript: null,
         expectedGraduationSemester: "Spring",
         expectedGraduationYear: new Date().getFullYear(),
+    });
+
+    const [preferences, setPreferences] = useState<IPreferencesInfo>({
         preferredCreditHours: 12,
         allowSummerWinter: false,
         generalEducationCompleted: false,
@@ -30,20 +34,25 @@ export default function MainFormCopmonent() {
     ) => {
         const { name, value, type } = e.target;
         if (type === "checkbox") {
-            setFormData({
-                ...formData,
+            setPreferences({
+                ...preferences,
                 [name]: (e.target as HTMLInputElement).checked,
             });
         } else if (name === "unofficialTranscript") {
-            setFormData({
-                ...formData,
+            setPersonalInfo({
+                ...personalInfo,
                 unofficialTranscript: (e.target as HTMLInputElement).files
                     ? (e.target as HTMLInputElement).files![0]
                     : null,
             });
+        } else if (Object.keys(personalInfo).includes(name)) {
+            setPersonalInfo({
+                ...personalInfo,
+                [name]: value,
+            });
         } else {
-            setFormData({
-                ...formData,
+            setPreferences({
+                ...preferences,
                 [name]: value,
             });
         }
@@ -52,20 +61,23 @@ export default function MainFormCopmonent() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
+        // Merge personalInfo and preferences into one object
+        const formData: IFormDataType = { ...personalInfo, ...preferences };
+
         // Prepare data to send
         const dataToSend = new FormData();
         for (const key in formData) {
             if (key === "unofficialTranscript") {
-                if (formData.unofficialTranscript) {
+                if (personalInfo.unofficialTranscript) {
                     dataToSend.append(
                         "unofficialTranscript",
-                        formData.unofficialTranscript
+                        personalInfo.unofficialTranscript
                     );
                 }
             } else if (key === "unavailableTerms") {
                 dataToSend.append(
                     key,
-                    JSON.stringify(formData.unavailableTerms)
+                    JSON.stringify(preferences.unavailableTerms)
                 );
             } else {
                 dataToSend.append(key, (formData as any)[key]);
@@ -87,13 +99,13 @@ export default function MainFormCopmonent() {
             <form onSubmit={handleSubmit} encType="multipart/form-data">
                 {/* Personal Information Component */}
                 <PersonalInfoFormComponent
-                    formData={formData}
+                    formData={personalInfo}
                     handleInputChange={handleInputChange}
                 />
 
                 {/* Preferences Information Component */}
                 <PreferencesInfoFormComponent
-                    formData={formData}
+                    formData={preferences}
                     handleInputChange={handleInputChange}
                 />
 

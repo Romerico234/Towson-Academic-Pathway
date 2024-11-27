@@ -1,9 +1,9 @@
-import { FormDataType } from "./interfaces/types";
+import { IPersonalInfo } from "./interfaces/IPersonalInfo";
 
 type Major = "Computer Science";
 
 interface Props {
-    formData: FormDataType;
+    formData: IPersonalInfo;
     handleInputChange: (
         e: React.ChangeEvent<
             HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement

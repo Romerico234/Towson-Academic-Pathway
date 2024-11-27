@@ -1,5 +1,4 @@
-export interface FormDataType {
-    // Personal Information
+export interface IPersonalInfo {
     firstName: string;
     lastName: string;
     email: string;
@@ -9,11 +8,4 @@ export interface FormDataType {
     unofficialTranscript: File | null;
     expectedGraduationSemester: string;
     expectedGraduationYear: number;
-
-    // Preferences
-    preferredCreditHours: number;
-    allowSummerWinter: boolean;
-    generalEducationCompleted: boolean;
-    unavailableTerms: string[];
-    additionalComments: string;
 }
