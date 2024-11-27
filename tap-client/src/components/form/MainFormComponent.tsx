@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { FormDataType } from "./interfaces/types";
 import PersonalInfoFormComponent from "./PersonalInfoFormComponent";
 import PreferencesInfoFormComponent from "./PreferencesInfoFormComponent";
 import OpenAIService from "../../shared/services/openai.service";
-import { FormDataType } from "../../shared/types/types";
 
 export default function MainFormCopmonent() {
     const [formData, setFormData] = useState<FormDataType>({
@@ -19,10 +19,7 @@ export default function MainFormCopmonent() {
         preferredCreditHours: 12,
         allowSummerWinter: false,
         generalEducationCompleted: false,
-        withdrawnCourses: false,
         unavailableTerms: [],
-        prerequisitesHandling: "add",
-        preferenceConflicts: "none",
         additionalComments: "",
     });
 

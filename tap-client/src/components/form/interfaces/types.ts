@@ -14,9 +14,6 @@ export interface FormDataType {
     preferredCreditHours: number;
     allowSummerWinter: boolean;
     generalEducationCompleted: boolean;
-    withdrawnCourses: boolean;
     unavailableTerms: string[];
-    prerequisitesHandling: string;
-    preferenceConflicts: string;
     additionalComments: string;
 }

@@ -1,5 +1,4 @@
-import React from "react";
-import { FormDataType } from "../../shared/types/types";
+import { FormDataType } from "./interfaces/types";
 
 type Major = "Computer Science";
 
