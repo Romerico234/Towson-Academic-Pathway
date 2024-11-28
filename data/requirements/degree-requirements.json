@@ -1,0 +1,64 @@
+{
+    "degreeRequirements": {
+        "generalRequirements": {
+            "graduationApplicationDeadlines": {
+                "mayGraduates": "January 15",
+                "augustGraduates": "July 4",
+                "decemberGraduates": "August 15"
+            },
+            "minimumEarnedUnits": 120,
+            "upperLevelUnits": 32,
+            "coreCurriculumCompletion": true,
+            "majorCompletion": {
+                "minimumGrade": 2.0
+            },
+            "minimumCumulativeGpa": 2.0,
+            "postMatriculationUnits": 15,
+            "finalUnitsInResidence": 30,
+            "recordCorrectionDeadlineDays": 180
+        },
+        "degreeTypes": {
+            "bachelorOfScience": {
+                "requirements": "generalRequirements"
+            },
+            "bachelorOfArts": {
+                "requirements": "generalRequirements",
+                "additionalRequirements": {
+                    "foreignLanguageProficiency": {
+                        "level": "intermediate (202)",
+                        "minimumGrade": 2.0
+                    }
+                }
+            },
+            "bachelorOfFineArts": {
+                "requirements": "generalRequirements",
+                "additionalRequirements": {
+                    "majors": ["Dance", "Acting", "Art + Design"],
+                    "performanceStudioRequirements": true
+                }
+            },
+            "bachelorOfMusic": {
+                "requirements": "generalRequirements",
+                "additionalRequirements": {
+                    "major": "Music",
+                    "performanceStudioRequirements": true
+                }
+            },
+            "bachelorOfTechnicalAndProfessionalStudies": {
+                "requirements": "generalRequirements",
+                "additionalRequirements": {
+                    "articulatedPrograms": true
+                }
+            }
+        },
+        "satisfactoryProgress": {
+            "requirements": [
+                "Complete ENGL 102 or ENGL 190 within the first year",
+                "Complete or qualify for a waiver of TSEM 102 within the first year",
+                "Complete all developmental coursework in mathematics or reading within the first year",
+                "Complete one Mathematics (Core 3) course within the first year",
+                "File a Degree Completion Plan by 45 earned units or by the end of the first term for transfer students with more than 45 units"
+            ]
+        }
+    }
+}

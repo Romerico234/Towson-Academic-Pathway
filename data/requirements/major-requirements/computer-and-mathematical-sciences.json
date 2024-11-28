@@ -1,0 +1,47 @@
+{
+    "name": "Computer and Mathematical Sciences",
+    "totalUnits": "92-95",
+    "concentrations": [
+        {
+            "name": "Applied Mathematics and Computer Science",
+            "requirements": {
+                "electives": {
+                    "math": [
+                        {
+                            "code": "MATH 314",
+                            "title": "Introduction to Cryptography",
+                            "units": 3
+                        },
+                        {
+                            "code": "MATH 331",
+                            "title": "Probability",
+                            "units": 3
+                        },
+                        {
+                            "code": "MATH 374",
+                            "title": "Differential Equations",
+                            "units": 3
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Secondary Education Concentration",
+            "requirements": {
+                "teachingCourses": [
+                    {
+                        "code": "COSC 482",
+                        "title": "Teaching Computer Science in Secondary Schools",
+                        "units": 3
+                    },
+                    {
+                        "code": "SEMS 430",
+                        "title": "Seminar in Apprentice Teaching",
+                        "units": 1
+                    }
+                ]
+            }
+        }
+    ]
+}
