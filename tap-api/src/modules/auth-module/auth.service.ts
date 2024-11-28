@@ -1,13 +1,12 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { AuthError } from "../../shared/errors/errors";
-import User, { IUser } from "../../shared/types/models/user.schema";
-import { StudentService } from "../student-module/student.service";
+import { UserService } from "../user-module/user.service";
 import { IAuthService } from "./interfaces/iauth.service";
 
 export class AuthService implements IAuthService {
     private JWT_SECRET: string;
-    private studentService = new StudentService();
+    private userService = new UserService();
 
     constructor() {
         this.JWT_SECRET = process.env.JWT_SECRET || "jwt_secret_key";
@@ -20,7 +19,7 @@ export class AuthService implements IAuthService {
         lastName: string
     ): Promise<{ token: string }> {
         // Check if user already exists
-        const existingUser = await User.findOne({ email });
+        const existingUser = await this.userService.getUserByEmail(email);
         if (existingUser) {
             throw new AuthError("User already exists");
         }
@@ -28,25 +27,20 @@ export class AuthService implements IAuthService {
         // Hash the password
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const newUser = new User({
+        // Create the new user
+        const newUser = await this.userService.createUser({
             email,
             password: hashedPassword,
             firstName,
             lastName,
+            academicInfo: {},
+            preferences: {},
+            degreePlan: {},
+            favorites: [],
         });
 
-        const savedUser: IUser = await newUser.save();
-
-        // Create student data using StudentService
-        await this.studentService.createStudentData(
-            savedUser._id,
-            email,
-            firstName,
-            lastName
-        );
-
         // Generate JWT token
-        const token = this.generateToken(savedUser._id.toHexString(), email);
+        const token = this.generateToken(newUser._id.toHexString(), email);
 
         return { token };
     }
@@ -55,16 +49,18 @@ export class AuthService implements IAuthService {
         email: string,
         password: string
     ): Promise<{ token: string }> {
-        const user: IUser | null = await User.findOne({ email });
+        const user = await this.userService.getUserByEmail(email);
         if (!user) {
             throw new AuthError("Invalid credentials");
         }
 
+        // Validate password
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) {
             throw new AuthError("Invalid credentials");
         }
 
+        // Generate JWT token
         const token = this.generateToken(user._id.toHexString(), email);
 
         return { token };

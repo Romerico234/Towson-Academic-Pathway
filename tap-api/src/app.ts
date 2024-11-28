@@ -10,7 +10,6 @@ import courseRoutes from "./modules/course-module/course.routes";
 import coreRoutes from "./modules/core-module/core.routes";
 import majorRoutes from "./modules/major-module/major.routes";
 import requirementsRoutes from "./modules/requirements-module/requirements.routes";
-import studentRoutes from "./modules/student-module/student.routes";
 import userRoutes from "./modules/user-module/user.routes";
 
 // Load environment variables from .env file
@@ -36,7 +35,6 @@ connectToDb(MONGODB_URI, DB_NAME)
         app.use("/api/cores", coreRoutes);
         app.use("/api/majors", majorRoutes);
         app.use("/api/requirements", requirementsRoutes);
-        app.use("/api/student", studentRoutes);
         app.use("/api/user", userRoutes);
 
         // Default route for testing

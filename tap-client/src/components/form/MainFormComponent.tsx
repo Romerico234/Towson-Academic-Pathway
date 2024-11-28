@@ -8,7 +8,7 @@ import PreferencesInfoFormComponent from "./PreferencesInfoFormComponent";
 import OpenAIService from "../../shared/services/openai.service";
 import { AuthContext } from "../auth/AuthComponent";
 import AuthService from "../../shared/services/auth.service";
-import StudentService from "../../shared/services/student.service";
+import UserService from "../../shared/services/user.service";
 import { useNavigate } from "react-router-dom";
 
 interface LocationState {
@@ -132,13 +132,13 @@ export default function MainFormComponent() {
             const response = await openAIService.generatePlan(dataToSend);
             console.log("Degree Plan Response:", response);
 
-            const studentService = new StudentService();
-            await studentService.updateStudentByEmail(personalInfo.email, {
+            const userService = new UserService();
+            await userService.updateUserByEmail(personalInfo.email, {
                 $push: { degreePlans: response },
             });
             console.log(
                 "Updated Student Data:",
-                await studentService.getStudentByEmail(personalInfo.email)
+                await userService.getUserByEmail(personalInfo.email)
             );
 
             navigate("/degree-planner");

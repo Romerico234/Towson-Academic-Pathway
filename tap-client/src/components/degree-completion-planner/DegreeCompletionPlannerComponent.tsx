@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import StudentService from "../../shared/services/student.service";
 import CourseService from "../../shared/services/course.service";
 import SemesterComponent from "./SemesterComponent";
 import CourseDetailsModal from "./CourseDetailsModal";
@@ -7,7 +6,6 @@ import DegreePlanNavigator from "./DegreePlanNavigator";
 import UserService from "../../shared/services/user.service";
 
 export default function DegreeCompletionPlannerComponent() {
-    const studentService = new StudentService();
     const courseService = new CourseService();
     const userService = new UserService();
 
@@ -37,7 +35,7 @@ export default function DegreeCompletionPlannerComponent() {
 
         const fetchDegreePlans = async () => {
             try {
-                const plans = await studentService.getDegreePlansByEmail(
+                const plans = await userService.getDegreePlansByEmail(
                     userEmail
                 );
                 setDegreePlans(plans);
@@ -50,9 +48,7 @@ export default function DegreeCompletionPlannerComponent() {
         const fetchFavorites = async () => {
             try {
                 const favorites =
-                    await studentService.getFavoriteDegreePlansByEmail(
-                        userEmail
-                    );
+                    await userService.getFavoriteDegreePlansByEmail(userEmail);
                 const favoriteNames = favorites.map((fav: any) => fav.name);
                 setFavoritePlans(favoriteNames);
             } catch (error) {
@@ -103,10 +99,7 @@ export default function DegreeCompletionPlannerComponent() {
         if (favoritePlans.includes(planName)) {
             // Unfavorite the plan
             try {
-                await studentService.removeFavoriteDegreePlan(
-                    userEmail,
-                    planName
-                );
+                await userService.removeFavoriteDegreePlan(userEmail, planName);
                 setFavoritePlans(
                     favoritePlans.filter((name) => name !== planName)
                 );
@@ -120,7 +113,7 @@ export default function DegreeCompletionPlannerComponent() {
                     name: planName,
                     degreePlan: currentPlan,
                 };
-                await studentService.addFavoriteDegreePlan(
+                await userService.addFavoriteDegreePlan(
                     userEmail,
                     favoriteData
                 );
