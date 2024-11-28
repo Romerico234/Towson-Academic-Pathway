@@ -25,8 +25,13 @@ export default function LoginComponent() {
             login(token, refreshToken);
             navigate("/dashboard");
         } catch (error: any) {
-            setError(error.response?.data?.message || "Login failed");
+            setError("Email or password is incorrect");
         }
+    };
+
+    const handleForgotPasswordClick = () => {
+        // TODO: Implement forgotten password component
+        console.log("Forgot Password clicked");
     };
 
     return (
@@ -63,7 +68,7 @@ export default function LoginComponent() {
                     />
                 </div>
 
-                <div className="mb-6 relative">
+                <div className="mb-6">
                     <label
                         htmlFor="password"
                         className="block text-towsonGold mb-2"
@@ -99,6 +104,14 @@ export default function LoginComponent() {
                             />
                         </button>
                     </div>
+
+                    <button
+                        type="button"
+                        onClick={handleForgotPasswordClick}
+                        className="text-black-500 text-sm underline focus:outline-none mt-2"
+                    >
+                        Forgot Password?
+                    </button>
                 </div>
 
                 <button
@@ -107,6 +120,7 @@ export default function LoginComponent() {
                 >
                     Login
                 </button>
+
                 <p className="mt-4 text-center text-towsonGold">
                     Don't have an account?{" "}
                     <a
