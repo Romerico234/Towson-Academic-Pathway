@@ -1,5 +1,3 @@
-// openai.controller.ts
-
 import { Request, Response, NextFunction } from "express";
 import { IOpenAIController } from "./interfaces/iopenai.controller";
 import { OpenAIService } from "./openai.service";

@@ -1,12 +1,12 @@
-import { useState, useContext } from "react";
-import { AuthContext } from "./AuthComponent";
+import { useState } from "react";
+import { useAuth } from "./AuthComponent";
 import { useNavigate } from "react-router-dom";
 import AuthService from "../../shared/services/auth.service";
-import eyeOn from "../../assets/auth-assets/eye-on.png"; 
-import eyeOff from "../../assets/auth-assets/eye-off.png"; 
+import eyeOn from "../../assets/auth-assets/eye-on.png";
+import eyeOff from "../../assets/auth-assets/eye-off.png";
 
 export default function RegisterComponent() {
-    const { login } = useContext(AuthContext);
+    const { login } = useAuth();
     const navigate = useNavigate();
     const authService = new AuthService();
 
@@ -15,29 +15,27 @@ export default function RegisterComponent() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [verifyPassword, setVerifyPassword] = useState("");
-    const [showPassword, setShowPassword] = useState(false); 
-    const [showVerifyPassword, setShowVerifyPassword] = useState(false); 
+    const [showPassword, setShowPassword] = useState(false);
+    const [showVerifyPassword, setShowVerifyPassword] = useState(false);
     const [error, setError] = useState("");
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-
         if (password !== verifyPassword) {
             setError("Passwords do not match");
             return;
         }
 
         setError("");
-
         try {
-            const { token } = await authService.register(
+            const { token, refreshToken } = await authService.register(
                 firstName,
                 lastName,
                 email,
                 password
             );
-            login(token);
-            navigate("/form", { state: { firstName, lastName, email } });
+            login(token, refreshToken);
+            navigate("/form");
         } catch (error: any) {
             setError(error.response?.data?.message || "Registration failed");
         }

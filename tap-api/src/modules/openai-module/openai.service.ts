@@ -33,7 +33,7 @@ export class OpenAIService implements IOpenAIService {
 
         this.systemPrompt = `
 Towson Academic Pathway (TAP) is a platform that helps students plan their academic journey at Towson University. 
-This bot is designed to help users generate a plan for their academic journey based on Towson University courses.
+This bot is designed to help users generate a degree plan for their academic journey based on Towson University courses.
 
 Rules:
 - The bot must carefully analyze the unofficial transcript provided by the user to identify completed courses, academic progress, and remaining requirements. This step is critical to ensure that prerequisites, core curriculum requirements, and degree-specific requirements are correctly handled.
@@ -41,9 +41,6 @@ Rules:
 - The bot will generate a general degree plan based on the user's academic standing, ensuring prerequisite courses are included if missing.
 - The bot will generate a general degree plan based on the user's preferences, including their preferred credit hours, allowance for summer/winter terms, and unavailable terms.
 - The bot must ensure that core curriculum, major-specific courses, and elective requirements are balanced across semesters while adhering to the user's preferences.
-- The bot will generate a plan for the upcoming semester based on the degree plan, ensuring prerequisite order, and providing a well-structured plan aligned with the user's preferences and academic standing.
-- The bot must account for conflicts in preferences (e.g., prioritizing specific instructors or times) and adjust the plan accordingly.
-- The bot must flag any issues or conflicts, such as prerequisites not met or scheduling overlaps, in the output.
 
 Degree Plan Structure:
 degreePlan (Array of Objects): General academic outline
@@ -51,19 +48,6 @@ degreePlan (Array of Objects): General academic outline
 - plannedCourses (Array of Strings): Course names or subject areas
 - creditHours (Number): Total credit hours for that semester
 - notes (String, optional): Notes on the semester plan
-
-Active Semester Plan Structure:
-activeSemesterPlan (Object): Detailed schedule for the upcoming semester
-- courses (Array of Objects):
-    - courseCode (String): Course code, e.g., "COSC101"
-    - title (String): Full course title
-    - units (Number): Credit hours
-    - schedule (Array of Objects): Class meeting details
-        - day (String): Days, e.g., "MoWe"
-        - startTime (String): Class start time
-        - endTime (String): Class end time
-        - location (String): Classroom or online location
-        - instructor (String): Instructor's name.
 
 Example Result:
 {
@@ -75,26 +59,7 @@ Example Result:
         "notes": "Focus on foundational courses in computer science and mathematics."
       },
       // ... additional semesters
-    ],
-    "activeSemesterPlan": {
-      "courses": [
-        {
-          "courseCode": "COSC301",
-          "title": "Software Engineering",
-          "units": 3,
-          "schedule": [
-            {
-              "day": "MoWe",
-              "startTime": "10:00 AM",
-              "endTime": "11:15 AM",
-              "location": "Room 204, Computer Science Building",
-              "instructor": "Dr. Jane Doe"
-            }
-          ]
-        },
-        // ... additional courses
-      ]
-    }
+    ]
 }
 
 Important:
@@ -103,7 +68,7 @@ Important:
 - Handle prerequisites with care. Ensure prerequisite courses are added in the correct order to avoid scheduling conflicts or delays in the student's progress.
 - If conflicts arise or there is ambiguity in the transcript data, the bot must clearly indicate these issues in the notes section.
 
-Again, just return the JSON object with the degree plan and the active semester plan.
+Finally, just return the JSON object with the degree plan.
 `;
     }
 
@@ -143,15 +108,17 @@ Again, just return the JSON object with the degree plan and the active semester 
                 ],
                 model: "gpt-4o",
                 user: assistantId,
-                max_tokens: 1024,
+                max_tokens: 2500,
+                temperature: 0.1,
             });
 
             const content = response.choices[0].message?.content;
             console.log("OpenAI Response:", content);
 
             if (content) {
-                const extractedContent = this.extractJson(content);
-                return extractedContent;
+                // Parse the content to extract JSON
+                const jsonData = this.extractJSON(content);
+                return jsonData;
             } else {
                 throw new OpenAIError("No response from OpenAI API");
             }
@@ -211,26 +178,24 @@ Again, just return the JSON object with the degree plan and the active semester 
             2
         )}\n\n`;
 
-        prompt += `Based on the above information, generate a degree plan as per the specified format.`;
+        prompt += `Based on the above information, generate a degree plan as per the specified format. Remember to return only the JSON object with the degree plan. Do not include any additional text or explanations.`;
 
         return prompt;
     }
 
-    private extractJson(content: string): any {
+    private extractJSON(content: string): any {
         try {
-            const jsonStartIndex = content.indexOf("{");
-            const jsonEndIndex = content.lastIndexOf("}");
-            if (jsonStartIndex !== -1 && jsonEndIndex !== -1) {
-                const jsonString = content.substring(
-                    jsonStartIndex,
-                    jsonEndIndex + 1
-                );
-                return JSON.parse(jsonString);
+            // Regular expression to find the JSON object
+            const jsonMatch = content.match(/\{[\s\S]*\}/);
+            if (jsonMatch) {
+                const jsonString = jsonMatch[0];
+                const jsonData = JSON.parse(jsonString);
+                return jsonData;
             } else {
-                throw new Error("JSON not found in the response");
+                throw new Error("No JSON object found in the response");
             }
         } catch (error) {
-            console.error("JSON extraction error:", error);
+            console.error("Error parsing JSON:", error);
             throw new OpenAIError("Failed to parse JSON from OpenAI response");
         }
     }

@@ -50,7 +50,11 @@ export default function PreferencesInfoFormComponent({
                                 value={formData.preferredCreditHours}
                                 onChange={handleInputChange}
                                 className="w-full bg-white text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
+                                required
                             >
+                                <option value="">
+                                    Select Preferred Credit Hours
+                                </option>
                                 {creditHourOptions.map((option) => (
                                     <option
                                         key={option.value}
