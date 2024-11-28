@@ -1,10 +1,10 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../auth/AuthComponent";
+import { useAuth } from "../auth/AuthComponent";
 
 export default function SidebarComponent() {
     const [isOpen, setIsOpen] = useState(true);
-    const { logout } = useContext(AuthContext);
+    const { logout } = useAuth();
     const navigate = useNavigate();
 
     const toggleSidebar = () => {
@@ -13,7 +13,9 @@ export default function SidebarComponent() {
 
     const handleLogout = () => {
         logout();
-        navigate("/login");
+        sessionStorage.removeItem("token");
+        sessionStorage.removeItem("refreshToken");
+        navigate("/home");
     };
 
     return (

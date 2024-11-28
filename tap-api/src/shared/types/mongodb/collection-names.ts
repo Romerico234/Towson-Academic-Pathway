@@ -5,4 +5,5 @@ export const COLLECTION_NAMES = {
     REQUIREMENTS: "requirements",
     STUDENT_DATA: "student-data",
     USER_DATA: "user-data",
+    TOKENS: "tokens",
 };

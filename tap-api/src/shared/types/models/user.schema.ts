@@ -42,25 +42,6 @@ export interface IUser extends Document<Types.ObjectId> {
     updatedAt: Date;
 }
 
-const CourseSchema: Schema = new Schema({
-    subject: { type: String, required: true },
-    catalogNumber: { type: String, required: true },
-    title: { type: String, required: true },
-    units: { type: Number, required: true },
-});
-
-const SemesterPlanSchema: Schema = new Schema({
-    semester: { type: String, required: true },
-    plannedCourses: { type: [CourseSchema], required: true },
-    creditHours: { type: Number, required: true },
-    notes: { type: String },
-});
-
-const FavoriteScheduleSchema: Schema = new Schema({
-    name: { type: String, required: true },
-    degreePlan: { type: Schema.Types.Mixed, required: true },
-});
-
 const UserSchema: Schema = new Schema(
     {
         email: { type: String, required: true, unique: true },

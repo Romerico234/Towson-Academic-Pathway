@@ -1,15 +1,14 @@
-import { useState, useEffect, useContext } from "react";
-import { useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { IPersonalInfo } from "./interfaces/IPersonalInfo";
 import { IPreferencesInfo } from "./interfaces/IPreferencesInfo";
 import { IFormDataType } from "./interfaces/IFormDataType";
 import PersonalInfoFormComponent from "./PersonalInfoFormComponent";
 import PreferencesInfoFormComponent from "./PreferencesInfoFormComponent";
 import OpenAIService from "../../shared/services/openai.service";
-import { AuthContext } from "../auth/AuthComponent";
+import { useAuth } from "../auth/AuthComponent";  // Import the useAuth hook
 import AuthService from "../../shared/services/auth.service";
 import UserService from "../../shared/services/user.service";
-import { useNavigate } from "react-router-dom";
 
 interface LocationState {
     firstName: string;
@@ -18,7 +17,7 @@ interface LocationState {
 }
 
 export default function MainFormComponent() {
-    const { token } = useContext(AuthContext);
+    const { token } = useAuth(); 
     const navigate = useNavigate();
     const location = useLocation();
     const state = location.state as LocationState | undefined;
@@ -46,13 +45,10 @@ export default function MainFormComponent() {
     // Fetch user data on component mount if state is undefined
     useEffect(() => {
         const fetchUserData = async () => {
-            if (
-                token &&
-                (!state || !state.firstName || !state.lastName || !state.email)
-            ) {
+            if (token && (!state || !state.firstName || !state.lastName || !state.email)) {
                 try {
-                    const authService = new AuthService();
-                    const userData = await authService.getUserProfile(token);
+                    const userService = new UserService();
+                    const userData = await userService.getUserByEmail(state?.email || "");
                     setPersonalInfo((prevState) => ({
                         ...prevState,
                         firstName: userData.firstName,
@@ -64,11 +60,12 @@ export default function MainFormComponent() {
                 }
             }
         };
-
+    
         if (token) {
             fetchUserData();
         }
     }, [token, state]);
+    
 
     const handleInputChange = (
         e: React.ChangeEvent<

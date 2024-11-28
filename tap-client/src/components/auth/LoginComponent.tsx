@@ -1,12 +1,12 @@
-import { useState, useContext } from "react";
-import { AuthContext } from "./AuthComponent";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthService from "../../shared/services/auth.service";
+import { useAuth } from "./AuthComponent";
 import eyeOn from "../../assets/auth-assets/eye-on.png";
 import eyeOff from "../../assets/auth-assets/eye-off.png";
 
 export default function LoginComponent() {
-    const { login } = useContext(AuthContext);
+    const { login } = useAuth();
     const navigate = useNavigate();
     const authService = new AuthService();
 
@@ -18,8 +18,11 @@ export default function LoginComponent() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const { token } = await authService.login(email, password);
-            login(token);
+            const { token, refreshToken } = await authService.login(
+                email,
+                password
+            );
+            login(token, refreshToken);
             navigate("/dashboard");
         } catch (error: any) {
             setError(error.response?.data?.message || "Login failed");
