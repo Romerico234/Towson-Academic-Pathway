@@ -52,7 +52,7 @@ export class AuthService implements IAuthService {
     }
 
     public async login(email: string, password: string) {
-        const user = await this.userService.getUserProfile(email);
+        const user = await this.userService.getUserByEmail(email);
         if (!user) {
             throw new AuthError("Invalid credentials");
         }

@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
+import { IUserController } from "./interfaces/iuser.controller";
 import { UserService } from "./user.service";
 import { Types } from "mongoose";
 
-export class UserController {
+export class UserController implements IUserController{
     private userService: UserService;
 
     constructor() {
@@ -23,25 +24,6 @@ export class UserController {
         } catch (error) {
             res.status(500).json({
                 message: "Error retrieving user by ID",
-                error,
-            });
-        }
-    }
-
-    public async getUserByEmail(req: Request, res: Response): Promise<void> {
-        try {
-            const email = req.params.email;
-            const user = await this.userService.getUserByEmail(email);
-
-            if (!user) {
-                res.status(404).json({ message: "User not found" });
-                return;
-            }
-
-            res.status(200).json(user);
-        } catch (error) {
-            res.status(500).json({
-                message: "Error retrieving user by email",
                 error,
             });
         }
@@ -71,39 +53,10 @@ export class UserController {
         }
     }
 
-    public async updateUserByEmail(req: Request, res: Response): Promise<void> {
+    public async getDegreePlanById(req: Request, res: Response): Promise<void> {
         try {
-            const email = req.params.email;
-            const updates = req.body;
-
-            const updatedUser = await this.userService.updateUserByEmail(
-                email,
-                updates
-            );
-
-            if (!updatedUser) {
-                res.status(404).json({ message: "User not found" });
-                return;
-            }
-
-            res.status(200).json(updatedUser);
-        } catch (error) {
-            res.status(500).json({
-                message: "Error updating user by email",
-                error,
-            });
-        }
-    }
-
-    public async getDegreePlanByEmail(
-        req: Request,
-        res: Response
-    ): Promise<void> {
-        try {
-            const email = req.params.email;
-            const degreePlans = await this.userService.getDegreePlanByEmail(
-                email
-            );
+            const userId = new Types.ObjectId(req.params.userId);
+            const degreePlans = await this.userService.getDegreePlanById(userId);
 
             if (!degreePlans) {
                 res.status(404).json({ message: "User not found" });
@@ -113,22 +66,19 @@ export class UserController {
             res.status(200).json(degreePlans);
         } catch (error) {
             res.status(500).json({
-                message: "Error retrieving degree plans by email",
+                message: "Error retrieving degree plans by ID",
                 error,
             });
         }
     }
 
-    public async addFavoriteDegreePlan(
-        req: Request,
-        res: Response
-    ): Promise<void> {
+    public async addFavoriteDegreePlan(req: Request, res: Response): Promise<void> {
         try {
-            const email = req.params.email;
+            const userId = new Types.ObjectId(req.params.userId);
             const favoriteData = req.body;
 
             const success = await this.userService.addFavoriteDegreePlan(
-                email,
+                userId,
                 favoriteData
             );
 
@@ -150,16 +100,13 @@ export class UserController {
         }
     }
 
-    public async removeFavoriteDegreePlan(
-        req: Request,
-        res: Response
-    ): Promise<void> {
+    public async removeFavoriteDegreePlan(req: Request, res: Response): Promise<void> {
         try {
-            const email = req.params.email;
+            const userId = new Types.ObjectId(req.params.userId);
             const favoriteName = req.params.favoriteName;
 
             const success = await this.userService.removeFavoriteDegreePlan(
-                email,
+                userId,
                 favoriteName
             );
 
@@ -181,14 +128,10 @@ export class UserController {
         }
     }
 
-    public async getFavoriteDegreePlansByEmail(
-        req: Request,
-        res: Response
-    ): Promise<void> {
+    public async getFavoriteDegreePlansById(req: Request, res: Response): Promise<void> {
         try {
-            const email = req.params.email;
-            const favorites =
-                await this.userService.getFavoriteDegreePlansByEmail(email);
+            const userId = new Types.ObjectId(req.params.userId);
+            const favorites = await this.userService.getFavoriteDegreePlansById(userId);
 
             if (!favorites) {
                 res.status(404).json({ message: "User not found" });
@@ -198,7 +141,7 @@ export class UserController {
             res.status(200).json(favorites);
         } catch (error) {
             res.status(500).json({
-                message: "Error retrieving favorite degree plans by email",
+                message: "Error retrieving favorite degree plans by ID",
                 error,
             });
         }

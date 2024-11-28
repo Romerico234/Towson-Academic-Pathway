@@ -1,5 +1,3 @@
-// openai.service.ts
-
 import { OpenAI } from "openai";
 import { IOpenAIService } from "./interfaces/iopenai.service";
 import { OpenAIError } from "../../shared/errors/errors";
@@ -110,8 +108,8 @@ Finally, just return the JSON object with the degree plan.
                 ],
                 model: "gpt-4o",
                 user: assistantId,
-                max_tokens: 2500, 
-                temperature: 0.1
+                max_tokens: 2500,
+                temperature: 0.1,
             });
 
             const content = response.choices[0].message?.content;

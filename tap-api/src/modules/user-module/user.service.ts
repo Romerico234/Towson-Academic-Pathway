@@ -1,3 +1,4 @@
+import { IUserService } from "./interfaces/iuser.service";
 import User, {
     IUser,
     SemesterPlan,
@@ -5,22 +6,18 @@ import User, {
 } from "../../shared/types/models/user.schema";
 import { Types } from "mongoose";
 
-export class UserService {
+export class UserService implements IUserService {
     public async createUser(userData: Partial<IUser>): Promise<IUser> {
         const newUser = new User(userData);
         return newUser.save();
     }
 
-    public async getUserProfile(email: string): Promise<IUser | null> {
+    public async getUserByEmail(email: string): Promise<IUser | null> {
         return User.findOne({ email }).select("+password");
     }
 
     public async getUserById(userId: Types.ObjectId): Promise<IUser | null> {
         return User.findById(userId).select("-password");
-    }
-
-    public async getUserByEmail(email: string): Promise<IUser | null> {
-        return User.findOne({ email }).select("-password");
     }
 
     public async updateUserById(
@@ -32,61 +29,52 @@ export class UserService {
         );
     }
 
-    public async updateUserByEmail(
-        email: string,
-        updates: Partial<IUser>
-    ): Promise<IUser | null> {
-        return User.findOneAndUpdate({ email }, updates, { new: true }).select(
-            "-password"
-        );
-    }
-
-    public async getDegreePlanByEmail(
-        email: string
+    public async getDegreePlanById(
+        userId: Types.ObjectId
     ): Promise<SemesterPlan[] | null> {
-        const studentData = await User.findOne({ email });
-        return studentData ? studentData.degreePlan : null;
+        const user = await User.findById(userId);
+        return user ? user.degreePlan : null;
     }
 
     public async addFavoriteDegreePlan(
-        email: string,
+        userId: Types.ObjectId,
         favoriteData: FavoriteSchedule
     ): Promise<boolean> {
-        const studentData = await User.findOne({ email });
-        if (!studentData) return false;
+        const user = await User.findById(userId);
+        if (!user) return false;
 
-        const isAlreadyFavorited = studentData.favorites.some(
+        const isAlreadyFavorited = user.favorites.some(
             (fav) => fav.name === favoriteData.name
         );
         if (isAlreadyFavorited) return false;
 
-        studentData.favorites.push(favoriteData);
-        await studentData.save();
+        user.favorites.push(favoriteData);
+        await user.save();
         return true;
     }
 
     public async removeFavoriteDegreePlan(
-        email: string,
+        userId: Types.ObjectId,
         favoriteName: string
     ): Promise<boolean> {
-        const studentData = await User.findOne({ email });
-        if (!studentData) return false;
+        const user = await User.findById(userId);
+        if (!user) return false;
 
-        const originalLength = studentData.favorites.length;
-        studentData.favorites = studentData.favorites.filter(
+        const originalLength = user.favorites.length;
+        user.favorites = user.favorites.filter(
             (fav) => fav.name !== favoriteName
         );
 
-        if (studentData.favorites.length === originalLength) return false;
+        if (user.favorites.length === originalLength) return false;
 
-        await studentData.save();
+        await user.save();
         return true;
     }
 
-    public async getFavoriteDegreePlansByEmail(
-        email: string
+    public async getFavoriteDegreePlansById(
+        userId: Types.ObjectId
     ): Promise<FavoriteSchedule[] | null> {
-        const studentData = await User.findOne({ email });
-        return studentData ? studentData.favorites : null;
+        const user = await User.findById(userId);
+        return user ? user.favorites : null;
     }
 }

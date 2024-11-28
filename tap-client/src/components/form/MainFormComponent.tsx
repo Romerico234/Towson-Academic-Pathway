@@ -132,7 +132,7 @@ export default function MainFormComponent() {
             const response = await openAIService.generatePlan(dataToSend);
 
             const userService = new UserService();
-            await userService.updateUser(userId, {
+            await userService.updateUserById(userId, {
                 $push: { degreePlan: response },
             });
 

@@ -6,14 +6,7 @@ export default class UserService {
         return response.data;
     }
 
-    async getUserByEmail(email: string): Promise<any> {
-        const response = await api.get(
-            `/user/email/${encodeURIComponent(email)}`
-        );
-        return response.data;
-    }
-
-    async updateUser(userId: string, updates: any): Promise<any> {
+    async updateUserById(userId: string, updates: any): Promise<any> {
         const response = await api.put(
             `/user/${encodeURIComponent(userId)}`,
             updates
@@ -21,44 +14,39 @@ export default class UserService {
         return response.data;
     }
 
-    async updateUserByEmail(email: string, updates: any): Promise<any> {
-        const response = await api.put(`/user/${encodeURIComponent(email)}`, updates);
-        return response.data;
-    }
-
-    async getDegreePlansByEmail(email: string): Promise<any> {
+    async getDegreePlanById(userId: string): Promise<any> {
         const response = await api.get(
-            `/user/${encodeURIComponent(email)}/degreeplans`
+            `/user/${encodeURIComponent(userId)}/degreeplans`
         );
         return response.data;
     }
 
-    async addFavoriteDegreePlan(
-        email: string,
+    async addFavoriteDegreePlanById(
+        userId: string,
         favoriteData: any
     ): Promise<any> {
         const response = await api.post(
-            `/user/${encodeURIComponent(email)}/favorites/degreeplans`,
+            `/user/${encodeURIComponent(userId)}/favorites/degreeplans`,
             favoriteData
         );
         return response.data;
     }
 
-    async removeFavoriteDegreePlan(
-        email: string,
+    async removeFavoriteDegreePlanById(
+        userId: string,
         favoriteName: string
     ): Promise<any> {
         const response = await api.delete(
             `/user/${encodeURIComponent(
-                email
+                userId
             )}/favorites/degreeplans/${encodeURIComponent(favoriteName)}`
         );
         return response.data;
     }
 
-    async getFavoriteDegreePlansByEmail(email: string): Promise<any> {
+    async getFavoriteDegreePlansById(userId: string): Promise<any> {
         const response = await api.get(
-            `/user/${encodeURIComponent(email)}/favorites/degreeplans`
+            `/user/${encodeURIComponent(userId)}/favorites/degreeplans`
         );
         return response.data;
     }
