@@ -6,7 +6,7 @@ const userController = new UserController();
 
 router.get("/:userId", (req, res) => userController.getUserById(req, res));
 router.put("/:userId", (req, res) => userController.updateUserById(req, res));
-router.get("/:userId/degreeplans", (req, res) =>
+router.get("/:userId/degreeplan", (req, res) =>
     userController.getDegreePlanById(req, res)
 );
 router.post("/:userId/favorites/degreeplans", (req, res) =>

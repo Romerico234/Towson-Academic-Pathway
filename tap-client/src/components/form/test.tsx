@@ -16,28 +16,16 @@ interface Props {
         >
     ) => void;
     isReadOnly?: boolean;
-    errors?: {
-        firstName?: string;
-        lastName?: string;
-        email?: string;
-        bachelorsDegree?: string;
-        major?: string;
-        concentration?: string;
-        expectedGraduationSemester?: string;
-        expectedGraduationYear?: string;
-        unofficialTranscript?: string;
-    };
 }
 
 export default function PersonalInfoFormComponent({
     formData,
     handleInputChange,
     isReadOnly = false,
-    errors,
 }: Props) {
     const majors: Major[] = ["Computer Science"];
 
-    const concentrations: Record<string, string[]> = {
+    const concentrations: Record<Major, string[]> = {
         "Computer Science": [
             "General",
             "Cyber Operations",
@@ -50,8 +38,6 @@ export default function PersonalInfoFormComponent({
         "Bachelor of Arts",
         "Bachelor of Fine Arts",
     ];
-
-    const GRADUATION_SEMESTERS = ["Fall", "Spring", "Summer"];
 
     // Generate years between current year and +10 years
     const currentYear = new Date().getFullYear();
@@ -92,11 +78,6 @@ export default function PersonalInfoFormComponent({
                                 readOnly={isReadOnly}
                             />
                         </div>
-                        {errors?.firstName && (
-                            <p className="text-red-500 text-xs mt-1">
-                                {errors.firstName}
-                            </p>
-                        )}
                     </div>
                 </div>
 
@@ -128,11 +109,6 @@ export default function PersonalInfoFormComponent({
                                 readOnly={isReadOnly}
                             />
                         </div>
-                        {errors?.lastName && (
-                            <p className="text-red-500 text-xs mt-1">
-                                {errors.lastName}
-                            </p>
-                        )}
                     </div>
                 </div>
 
@@ -164,11 +140,6 @@ export default function PersonalInfoFormComponent({
                                 readOnly={isReadOnly}
                             />
                         </div>
-                        {errors?.email && (
-                            <p className="text-red-500 text-xs mt-1">
-                                {errors.email}
-                            </p>
-                        )}
                     </div>
                 </div>
 
@@ -202,11 +173,6 @@ export default function PersonalInfoFormComponent({
                                 ))}
                             </select>
                         </div>
-                        {errors?.bachelorsDegree && (
-                            <p className="text-red-500 text-xs mt-1">
-                                {errors.bachelorsDegree}
-                            </p>
-                        )}
                     </div>
                 </div>
 
@@ -238,11 +204,6 @@ export default function PersonalInfoFormComponent({
                                 ))}
                             </select>
                         </div>
-                        {errors?.major && (
-                            <p className="text-red-500 text-xs mt-1">
-                                {errors.major}
-                            </p>
-                        )}
                     </div>
                 </div>
 
@@ -257,7 +218,7 @@ export default function PersonalInfoFormComponent({
                                 <div className="flex">
                                     <span className="bg-towsonGoldDark text-towsonBlack p-2 rounded-l">
                                         <img
-                                            src={degreeHatImg}
+                                            src={schoolImg}
                                             alt="Concentration Icon"
                                             className="w-6 h-6"
                                         />
@@ -267,7 +228,6 @@ export default function PersonalInfoFormComponent({
                                         value={formData.concentration}
                                         onChange={handleInputChange}
                                         className="w-full text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
-                                        disabled={!formData.major} // Disable if no major is selected
                                     >
                                         <option value="">
                                             Select Concentration
@@ -284,77 +244,42 @@ export default function PersonalInfoFormComponent({
                                         ))}
                                     </select>
                                 </div>
-                                {errors?.concentration && (
-                                    <p className="text-red-500 text-xs mt-1">
-                                        {errors.concentration}
-                                    </p>
-                                )}
                             </div>
                         </div>
                     )}
 
-                {/* Expected Graduation Semester */}
+                {/* Expected Graduation */}
                 <div className="flex flex-wrap items-center mb-4">
                     <label className="w-full text-sm font-medium mb-2">
-                        Expected Graduation Semester
+                        Expected Graduation
                     </label>
                     <div className="w-full">
                         <div className="flex">
                             <span className="bg-towsonGoldDark text-towsonBlack p-2 rounded-l">
                                 <img
                                     src={dateImg}
-                                    alt="Graduation Semester Icon"
+                                    alt="Graduation Icon"
                                     className="w-6 h-6"
                                 />
                             </span>
                             <select
                                 name="expectedGraduationSemester"
-                                value={
-                                    formData.expectedGraduationSemester || ""
-                                }
+                                value={formData.expectedGraduationSemester}
                                 onChange={handleInputChange}
-                                className="w-full text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
+                                className="bg-white text-towsonBlack border border-towsonGraphiteLight p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
                             >
-                                <option value="">Select Semester</option>
-                                {GRADUATION_SEMESTERS.map((semester) => (
-                                    <option key={semester} value={semester}>
-                                        {semester}
-                                    </option>
-                                ))}
+                                <option value="Spring">Spring</option>
+                                <option value="Fall">Fall</option>
                             </select>
-                        </div>
-                        {/* Error Handling */}
-                        {errors?.expectedGraduationSemester && (
-                            <p className="text-red-500 text-xs mt-1">
-                                {errors.expectedGraduationSemester}
-                            </p>
-                        )}
-                    </div>
-                </div>
-
-                {/* Expected Graduation Year */}
-                <div className="flex flex-wrap items-center mb-4">
-                    <label className="w-full text-sm font-medium mb-2">
-                        Expected Graduation Year
-                    </label>
-                    <div className="w-full">
-                        <div className="flex">
-                            <span className="bg-towsonGoldDark text-towsonBlack p-2 rounded-l">
-                                <img
-                                    src={dateImg}
-                                    alt="Graduation Year Icon"
-                                    className="w-6 h-6"
-                                />
-                            </span>
                             <select
                                 name="expectedGraduationYear"
                                 value={formData.expectedGraduationYear}
                                 onChange={handleInputChange}
-                                className="w-full text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
+                                className="bg-white text-towsonBlack border border-towsonGraphiteLight p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
                             >
-                                {years.map((year) => (
-                                    <option key={year} value={year}>
-                                        {year}
+                                {years.map((y) => (
+                                    <option key={y} value={y}>
+                                        {y}
                                     </option>
                                 ))}
                             </select>
@@ -362,17 +287,17 @@ export default function PersonalInfoFormComponent({
                     </div>
                 </div>
 
-                {/* Unofficial Transcript */}
+                {/* Upload Unofficial Transcript */}
                 <div className="flex flex-wrap items-center mb-4">
                     <label className="w-full text-sm font-medium mb-2">
-                        Unofficial Transcript
+                        Upload Unofficial Transcript
                     </label>
                     <div className="w-full">
                         <div className="flex">
                             <span className="bg-towsonGoldDark text-towsonBlack p-2 rounded-l">
                                 <img
                                     src={fileImg}
-                                    alt="File Icon"
+                                    alt="Upload Icon"
                                     className="w-6 h-6"
                                 />
                             </span>
@@ -380,14 +305,10 @@ export default function PersonalInfoFormComponent({
                                 type="file"
                                 name="unofficialTranscript"
                                 onChange={handleInputChange}
-                                className="w-full text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
+                                className="w-full text-towsonBlack bg-white border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
+                                accept=".pdf,.doc,.docx,.jpg,.png"
                             />
                         </div>
-                        {errors?.unofficialTranscript && (
-                            <p className="text-red-500 text-xs mt-1">
-                                {errors.unofficialTranscript}
-                            </p>
-                        )}
                     </div>
                 </div>
             </fieldset>

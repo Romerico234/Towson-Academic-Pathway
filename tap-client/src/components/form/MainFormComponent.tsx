@@ -9,6 +9,8 @@ import OpenAIService from "../../shared/services/openai.service";
 import UserService from "../../shared/services/user.service";
 import TokenService from "../../shared/services/token.service";
 import { useAuth } from "../auth/AuthComponent";
+import Lottie from "lottie-react";
+import loadingAnimation from "../../assets/lottie-assets/loading.json";
 
 export default function MainFormComponent() {
     const { token } = useAuth();
@@ -22,19 +24,19 @@ export default function MainFormComponent() {
         concentration: "",
         bachelorsDegree: "",
         unofficialTranscript: null,
-        expectedGraduationSemester: "Spring",
+        expectedGraduationSemester: "",
         expectedGraduationYear: new Date().getFullYear(),
     });
 
     const [preferences, setPreferences] = useState<IPreferencesInfo>({
-        preferredCreditHours: "10-12",
-        allowSummerWinter: false,
-        generalEducationCompleted: false,
+        preferredCreditHours: "",
         unavailableTerms: [],
         additionalComments: "",
     });
 
+    const [loading, setLoading] = useState(false);
     const [userId, setUserId] = useState<string | null>(null);
+    const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -98,8 +100,42 @@ export default function MainFormComponent() {
         }
     };
 
+    const validateForm = (): boolean => {
+        const formErrors: { [key: string]: string } = {};
+
+        // Required fields validation
+        if (!personalInfo.firstName)
+            formErrors.firstName = "First Name is required";
+        if (!personalInfo.lastName)
+            formErrors.lastName = "Last Name is required";
+        if (!personalInfo.email) formErrors.email = "Email is required";
+        if (!personalInfo.major) formErrors.major = "Major is required";
+        if (!personalInfo.concentration)
+            formErrors.concentration = "Concentration is required";
+        if (!personalInfo.bachelorsDegree)
+            formErrors.bachelorsDegree = "Bachelor's Degree is required";
+        if (!personalInfo.expectedGraduationSemester)
+            formErrors.expectedGraduationSemester =
+                "Expected Graduation Semester is required";
+        if (!personalInfo.unofficialTranscript)
+            formErrors.unofficialTranscript = "Transcript is required";
+        if (!preferences.preferredCreditHours)
+            formErrors.preferredCreditHours =
+                "Preferred Credit Hours are required";
+
+        setErrors(formErrors);
+
+        return Object.keys(formErrors).length === 0;
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setLoading(true);
+
+        if (!validateForm()) {
+            setLoading(false);
+            return; // Stop form submission if validation fails
+        }
 
         const formData: IFormDataType = { ...personalInfo, ...preferences };
 
@@ -142,35 +178,48 @@ export default function MainFormComponent() {
             alert(
                 "There was an error processing your request. Please try again."
             );
+        } finally {
+            setLoading(false);
         }
     };
 
     return (
         <div className="container mx-auto p-4">
-            <form onSubmit={handleSubmit} encType="multipart/form-data">
-                {/* Personal Information Component */}
-                <PersonalInfoFormComponent
-                    formData={personalInfo}
-                    handleInputChange={handleInputChange}
-                    isReadOnly={true}
-                />
-
-                {/* Preferences Information Component */}
-                <PreferencesInfoFormComponent
-                    formData={preferences}
-                    handleInputChange={handleInputChange}
-                />
-
-                {/* Submit Button */}
-                <div className="flex justify-center mt-6">
-                    <button
-                        type="submit"
-                        className="bg-towsonGoldDark text-white font-semibold py-2 px-4 rounded flex items-center hover:bg-towsonGold"
-                    >
-                        Submit
-                    </button>
+            {loading ? (
+                <div className="flex justify-center items-center min-h-screen">
+                    <Lottie
+                        animationData={loadingAnimation}
+                        loop={true}
+                        autoplay={true}
+                        height={150}
+                        width={150}
+                    />
                 </div>
-            </form>
+            ) : (
+                <form onSubmit={handleSubmit}>
+                    <PersonalInfoFormComponent
+                        formData={personalInfo}
+                        handleInputChange={handleInputChange}
+                        isReadOnly={true}
+                        errors={errors}
+                    />
+
+                    <PreferencesInfoFormComponent
+                        formData={preferences}
+                        handleInputChange={handleInputChange}
+                        errors={errors}
+                    />
+
+                    <div className="flex justify-center mt-6">
+                        <button
+                            type="submit"
+                            className="bg-towsonGoldDark text-white font-semibold py-2 px-4 rounded flex items-center hover:bg-towsonGold"
+                        >
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            )}
         </div>
     );
 }

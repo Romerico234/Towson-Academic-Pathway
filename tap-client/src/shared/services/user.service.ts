@@ -16,7 +16,7 @@ export default class UserService {
 
     async getDegreePlanById(userId: string): Promise<any> {
         const response = await api.get(
-            `/user/${encodeURIComponent(userId)}/degreeplans`
+            `/user/${encodeURIComponent(userId)}/degreeplan`
         );
         return response.data;
     }

@@ -9,11 +9,17 @@ interface Props {
             HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
         >
     ) => void;
+    errors?: {
+        preferredCreditHours?: string;
+        unavailableTerms?: string;
+        additionalComments?: string;
+    };
 }
 
 export default function PreferencesInfoFormComponent({
     formData,
     handleInputChange,
+    errors,
 }: Props) {
     const creditHourOptions = [
         { label: "6 and below", value: "0-6" },
@@ -49,8 +55,14 @@ export default function PreferencesInfoFormComponent({
                                 name="preferredCreditHours"
                                 value={formData.preferredCreditHours}
                                 onChange={handleInputChange}
-                                className="w-full bg-white text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
+                                className={`w-full bg-white text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight ${
+                                    errors?.preferredCreditHours
+                                        ? "border-red-500"
+                                        : ""
+                                }`}
                             >
+                                <option value="">Select Credit Hours</option>{" "}
+                                {/* Added this line */}
                                 {creditHourOptions.map((option) => (
                                     <option
                                         key={option.value}
@@ -61,6 +73,11 @@ export default function PreferencesInfoFormComponent({
                                 ))}
                             </select>
                         </div>
+                        {errors?.preferredCreditHours && (
+                            <p className="text-red-500 text-sm mt-1">
+                                {errors.preferredCreditHours}
+                            </p>
+                        )}
                     </div>
                 </div>
 
@@ -93,9 +110,18 @@ export default function PreferencesInfoFormComponent({
                                         },
                                     } as unknown as React.ChangeEvent<HTMLInputElement>)
                                 }
-                                className="w-full bg-white text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
+                                className={`w-full bg-white text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight ${
+                                    errors?.unavailableTerms
+                                        ? "border-red-500"
+                                        : ""
+                                }`}
                             />
                         </div>
+                        {errors?.unavailableTerms && (
+                            <p className="text-red-500 text-sm mt-1">
+                                {errors.unavailableTerms}
+                            </p>
+                        )}
                     </div>
                 </div>
 
@@ -120,9 +146,18 @@ export default function PreferencesInfoFormComponent({
                                 value={formData.additionalComments}
                                 onChange={handleInputChange}
                                 rows={5}
-                                className="w-full bg-white text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
+                                className={`w-full bg-white text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight ${
+                                    errors?.additionalComments
+                                        ? "border-red-500"
+                                        : ""
+                                }`}
                             ></textarea>
                         </div>
+                        {errors?.additionalComments && (
+                            <p className="text-red-500 text-sm mt-1">
+                                {errors.additionalComments}
+                            </p>
+                        )}
                     </div>
                 </div>
             </fieldset>
