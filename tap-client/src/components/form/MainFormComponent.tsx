@@ -36,7 +36,6 @@ export default function MainFormComponent() {
 
     const [loading, setLoading] = useState(false);
     const [userId, setUserId] = useState<string | null>(null);
-    const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -100,42 +99,9 @@ export default function MainFormComponent() {
         }
     };
 
-    const validateForm = (): boolean => {
-        const formErrors: { [key: string]: string } = {};
-
-        // Required fields validation
-        if (!personalInfo.firstName)
-            formErrors.firstName = "First Name is required";
-        if (!personalInfo.lastName)
-            formErrors.lastName = "Last Name is required";
-        if (!personalInfo.email) formErrors.email = "Email is required";
-        if (!personalInfo.major) formErrors.major = "Major is required";
-        if (!personalInfo.concentration)
-            formErrors.concentration = "Concentration is required";
-        if (!personalInfo.bachelorsDegree)
-            formErrors.bachelorsDegree = "Bachelor's Degree is required";
-        if (!personalInfo.expectedGraduationSemester)
-            formErrors.expectedGraduationSemester =
-                "Expected Graduation Semester is required";
-        if (!personalInfo.unofficialTranscript)
-            formErrors.unofficialTranscript = "Transcript is required";
-        if (!preferences.preferredCreditHours)
-            formErrors.preferredCreditHours =
-                "Preferred Credit Hours are required";
-
-        setErrors(formErrors);
-
-        return Object.keys(formErrors).length === 0;
-    };
-
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-
-        if (!validateForm()) {
-            setLoading(false);
-            return; // Stop form submission if validation fails
-        }
 
         const formData: IFormDataType = { ...personalInfo, ...preferences };
 
@@ -189,27 +155,28 @@ export default function MainFormComponent() {
                 <div className="flex justify-center items-center min-h-screen">
                     <Lottie
                         animationData={loadingAnimation}
-                        loop={true}
-                        autoplay={true}
-                        height={150}
-                        width={150}
+                        loop={true} // Set looping
+                        autoplay={true} // Set autoplay
+                        height={150} // Set height
+                        width={150} // Set width
                     />
                 </div>
             ) : (
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} encType="multipart/form-data">
+                    {/* Personal Information Component */}
                     <PersonalInfoFormComponent
                         formData={personalInfo}
                         handleInputChange={handleInputChange}
                         isReadOnly={true}
-                        errors={errors}
                     />
 
+                    {/* Preferences Information Component */}
                     <PreferencesInfoFormComponent
                         formData={preferences}
                         handleInputChange={handleInputChange}
-                        errors={errors}
                     />
 
+                    {/* Submit Button */}
                     <div className="flex justify-center mt-6">
                         <button
                             type="submit"
