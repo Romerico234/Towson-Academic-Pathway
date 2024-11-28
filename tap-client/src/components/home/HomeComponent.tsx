@@ -1,8 +1,7 @@
+import "./HomeComponent.css"
+
 export default function HomeComponent() {
     return (
-        <div>
-            <h1>Home</h1>
-            <p>Welcome to the TAP!</p>
-        </div>
+        <div className="Header text-4xl">About</div>
     )
 }

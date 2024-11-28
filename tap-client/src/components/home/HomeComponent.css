@@ -1,0 +1,7 @@
+.Header{
+    margin-top: 100px;
+    background-color: theme('colors.towsonGold');
+    text-align: center;
+    vertical-align: auto;
+    height: 80px;
+}
