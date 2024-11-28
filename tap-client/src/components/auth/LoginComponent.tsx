@@ -23,7 +23,7 @@ export default function LoginComponent() {
                 password
             );
             login(token, refreshToken);
-            navigate("/dashboard");
+            navigate("/degree-planner");
         } catch (error: any) {
             setError("Email or password is incorrect");
         }

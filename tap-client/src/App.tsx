@@ -5,7 +5,6 @@ import AboutComponent from "./components/about/AboutComponent";
 import LoginComponent from "./components/auth/LoginComponent";
 import RegisterComponent from "./components/auth/RegisterComponent";
 import MainFormComponent from "./components/form/MainFormComponent";
-import DashboardComponent from "./components/dashboard/DashboardComponent";
 import SettingsComponent from "./components/settings/SettingsComponent";
 import CourseCatalogComponent from "./components/course-catalog/CourseCatalogComponent";
 import DegreeCompletionPlannerComponent from "./components/degree-completion-planner/DegreeCompletionPlannerComponent";
@@ -41,10 +40,6 @@ export default function App() {
                     >
                         <Route path="/form" element={<MainFormComponent />} />
                         <Route
-                            path="/dashboard"
-                            element={<DashboardComponent />}
-                        />
-                        <Route
                             path="/settings"
                             element={<SettingsComponent />}
                         />
@@ -58,7 +53,6 @@ export default function App() {
                         />
                     </Route>
 
-                    {/* Catch-all Route */}
                     <Route path="*" element={<HomeComponent />} />
                 </Routes>
             </BrowserRouter>
