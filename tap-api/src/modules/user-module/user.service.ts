@@ -11,6 +11,10 @@ export class UserService {
         return newUser.save();
     }
 
+    public async getUserProfile(email: string): Promise<IUser | null> {
+        return User.findOne({ email }).select("+password");
+    }
+
     public async getUserById(userId: Types.ObjectId): Promise<IUser | null> {
         return User.findById(userId).select("-password");
     }

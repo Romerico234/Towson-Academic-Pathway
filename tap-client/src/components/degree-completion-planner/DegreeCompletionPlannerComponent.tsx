@@ -20,7 +20,7 @@ export default function DegreeCompletionPlannerComponent() {
     useEffect(() => {
         const fetchUserProfile = async () => {
             try {
-                const user = await userService.getUserProfile();
+                const user = await userService.getUserByEmail();
                 setUserEmail(user.email);
             } catch (error) {
                 console.error("Error fetching user profile:", error);

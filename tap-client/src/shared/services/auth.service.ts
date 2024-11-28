@@ -23,13 +23,4 @@ export default class AuthService {
         });
         return response.data;
     }
-
-    async getUserProfile(token: string): Promise<any> {
-        const response = await api.get("/auth/profile", {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
-        return response.data;
-    }
 }

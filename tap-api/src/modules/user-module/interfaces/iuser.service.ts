@@ -7,11 +7,18 @@ import {
 
 export interface IUserService {
     /**
-     * Creates a new user
+     * For authentication, creates a new user
      * @param userData - The data for the new user
      * @returns A Promise that resolves to the created IUser
      */
     createUser(userData: Partial<IUser>): Promise<IUser>;
+
+    /**
+     * For authentication, retrieves a user profile by email
+     * @param email - The email of the user
+     * @returns A Promise that resolves to the IUser or null if not found
+     */
+    getUserProfile(email: string): Promise<IUser | null>;
 
     /**
      * Retrieves a user by ID

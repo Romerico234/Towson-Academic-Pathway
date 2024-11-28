@@ -49,7 +49,7 @@ export class AuthService implements IAuthService {
         email: string,
         password: string
     ): Promise<{ token: string }> {
-        const user = await this.userService.getUserByEmail(email);
+        const user = await this.userService.getUserProfile(email);
         if (!user) {
             throw new AuthError("Invalid credentials");
         }
