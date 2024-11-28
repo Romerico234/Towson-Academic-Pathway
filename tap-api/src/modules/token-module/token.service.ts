@@ -99,17 +99,20 @@ export class TokenService implements ITokenService {
         await Token.updateOne({ token, isRevoked: false }, { isRevoked: true });
     }
 
-    public getUserIdFromToken(token: string): string {
+    public async getUserIdFromToken(token: string): Promise<string> {
         try {
-            const decoded = jwt.decode(token) as unknown as JwtPayload;
+            // Query the Token database collection using the token
+            const tokenDoc = await Token.findOne({ token, isRevoked: false });
 
-            if (!decoded || !decoded.userId) {
-                throw new AuthError("Invalid token or missing userId");
+            if (!tokenDoc) {
+                console.error("No token found or token is revoked.");
+                throw new AuthError("Invalid or revoked token");
             }
 
-            return decoded.userId;
+            return tokenDoc.userId.toString();
         } catch (error) {
-            throw new AuthError("Error decoding token");
+            console.error("Error fetching userId from token:", error);
+            throw new AuthError("Error fetching userId from token");
         }
     }
 }

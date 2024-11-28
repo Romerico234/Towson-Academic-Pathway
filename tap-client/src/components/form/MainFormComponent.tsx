@@ -1,31 +1,23 @@
 import { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { IPersonalInfo } from "./interfaces/IPersonalInfo";
 import { IPreferencesInfo } from "./interfaces/IPreferencesInfo";
 import { IFormDataType } from "./interfaces/IFormDataType";
 import PersonalInfoFormComponent from "./PersonalInfoFormComponent";
 import PreferencesInfoFormComponent from "./PreferencesInfoFormComponent";
 import OpenAIService from "../../shared/services/openai.service";
-import { useAuth } from "../auth/AuthComponent";  // Import the useAuth hook
-import AuthService from "../../shared/services/auth.service";
 import UserService from "../../shared/services/user.service";
-
-interface LocationState {
-    firstName: string;
-    lastName: string;
-    email: string;
-}
+import TokenService from "../../shared/services/token.service";
+import { useAuth } from "../auth/AuthComponent";
 
 export default function MainFormComponent() {
-    const { token } = useAuth(); 
+    const { token } = useAuth();
     const navigate = useNavigate();
-    const location = useLocation();
-    const state = location.state as LocationState | undefined;
 
     const [personalInfo, setPersonalInfo] = useState<IPersonalInfo>({
-        firstName: state?.firstName || "",
-        lastName: state?.lastName || "",
-        email: state?.email || "",
+        firstName: "",
+        lastName: "",
+        email: "",
         major: "",
         concentration: "",
         bachelorsDegree: "",
@@ -42,30 +34,38 @@ export default function MainFormComponent() {
         additionalComments: "",
     });
 
-    // Fetch user data on component mount if state is undefined
+    const [userId, setUserId] = useState<string | null>(null);
+
     useEffect(() => {
         const fetchUserData = async () => {
-            if (token && (!state || !state.firstName || !state.lastName || !state.email)) {
+            if (token) {
                 try {
-                    const userService = new UserService();
-                    const userData = await userService.getUserByEmail(state?.email || "");
-                    setPersonalInfo((prevState) => ({
-                        ...prevState,
-                        firstName: userData.firstName,
-                        lastName: userData.lastName,
-                        email: userData.email,
-                    }));
+                    const tokenService = new TokenService();
+                    const userId = await tokenService.getUserIdFromToken(token);
+                    setUserId(userId);
+
+                    if (userId) {
+                        const userService = new UserService();
+                        const userData = await userService.getUserById(userId);
+
+                        setPersonalInfo((prevState) => ({
+                            ...prevState,
+                            firstName: userData.firstName || "",
+                            lastName: userData.lastName || "",
+                            email: userData.email || "",
+                        }));
+                    } else {
+                        console.error("User ID is missing.");
+                        throw new Error("User ID is missing.");
+                    }
                 } catch (error) {
                     console.error("Error fetching user data:", error);
                 }
             }
         };
-    
-        if (token) {
-            fetchUserData();
-        }
-    }, [token, state]);
-    
+
+        fetchUserData();
+    }, [token]);
 
     const handleInputChange = (
         e: React.ChangeEvent<
@@ -101,10 +101,8 @@ export default function MainFormComponent() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // Merge personalInfo and preferences into one object
         const formData: IFormDataType = { ...personalInfo, ...preferences };
 
-        // Prepare data to send to OpenAI
         const dataToSend = new FormData();
         for (const key in formData) {
             if (key === "unofficialTranscript") {
@@ -125,18 +123,18 @@ export default function MainFormComponent() {
         }
 
         try {
+            if (!token || !userId) {
+                console.error("Token or UserId is missing.");
+                throw new Error("Token or UserId is missing.");
+            }
+
             const openAIService = new OpenAIService();
             const response = await openAIService.generatePlan(dataToSend);
-            console.log("Degree Plan Response:", response);
 
             const userService = new UserService();
-            await userService.updateUserByEmail(personalInfo.email, {
-                $push: { degreePlans: response },
+            await userService.updateUser(userId, {
+                $push: { degreePlan: response },
             });
-            console.log(
-                "Updated Student Data:",
-                await userService.getUserByEmail(personalInfo.email)
-            );
 
             navigate("/degree-planner");
         } catch (error) {

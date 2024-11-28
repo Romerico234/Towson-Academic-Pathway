@@ -55,5 +55,5 @@ export interface ITokenService {
      * @param token - The token from which the user ID will be extracted
      * @returns The user ID embedded in the token
      */
-    getUserIdFromToken(token: string): string;
+    getUserIdFromToken(token: string): Promise<string>;
 }

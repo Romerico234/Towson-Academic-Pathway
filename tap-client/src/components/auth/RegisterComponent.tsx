@@ -35,7 +35,7 @@ export default function RegisterComponent() {
                 password
             );
             login(token, refreshToken);
-            navigate("/form", { state: { firstName, lastName, email } });
+            navigate("/form");
         } catch (error: any) {
             setError(error.response?.data?.message || "Registration failed");
         }

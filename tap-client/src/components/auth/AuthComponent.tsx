@@ -51,6 +51,7 @@ export default function AuthProvider({ children }: any) {
 
         setToken(null);
         setRefreshToken(null);
+        setUserId(null);
         sessionStorage.removeItem("token");
         sessionStorage.removeItem("refreshToken");
     };
