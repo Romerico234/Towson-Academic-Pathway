@@ -9,7 +9,7 @@ router.get("/email/:email", (req, res) =>
     userController.getUserByEmail(req, res)
 );
 router.put("/:userId", (req, res) => userController.updateUserById(req, res));
-router.put("/email/:email", (req, res) =>
+router.put("/:email", (req, res) =>
     userController.updateUserByEmail(req, res)
 );
 router.get("/:email/degreeplans", (req, res) =>

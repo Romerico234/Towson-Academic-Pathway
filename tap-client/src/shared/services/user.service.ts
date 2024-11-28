@@ -22,7 +22,7 @@ export default class UserService {
     }
 
     async updateUserByEmail(email: string, updates: any): Promise<any> {
-        const response = await api.put(`/user/${email}`, updates);
+        const response = await api.put(`/user/${encodeURIComponent(email)}`, updates);
         return response.data;
     }
 
