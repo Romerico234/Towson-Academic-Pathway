@@ -1,61 +1,58 @@
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 import { AuthError } from "../../shared/errors/errors";
-import User, { IUser } from "../../shared/types/models/user.schema";
-import { StudentService } from "../student-module/student.service";
+import { UserService } from "../user-module/user.service";
+import { TokenService } from "../token-module/token.service";
 import { IAuthService } from "./interfaces/iauth.service";
+import Token from "../../shared/types/models/token.schema";
 
 export class AuthService implements IAuthService {
-    private JWT_SECRET: string;
-    private studentService = new StudentService();
-
-    constructor() {
-        this.JWT_SECRET = process.env.JWT_SECRET || "jwt_secret_key";
-    }
+    private userService = new UserService();
+    private tokenService = new TokenService();
 
     public async register(
         email: string,
         password: string,
         firstName: string,
         lastName: string
-    ): Promise<{ token: string }> {
-        // Check if user already exists
-        const existingUser = await User.findOne({ email });
+    ) {
+        const existingUser = await this.userService.getUserByEmail(email);
         if (existingUser) {
             throw new AuthError("User already exists");
         }
 
-        // Hash the password
         const hashedPassword = await bcrypt.hash(password, 10);
-
-        const newUser = new User({
+        const newUser = await this.userService.createUser({
             email,
             password: hashedPassword,
             firstName,
             lastName,
+            academicInfo: {},
+            preferences: {},
+            degreePlan: {},
+            favorites: [],
         });
 
-        const savedUser: IUser = await newUser.save();
-
-        // Create student data using StudentService
-        await this.studentService.createStudentData(
-            savedUser._id,
-            email,
-            firstName,
-            lastName
+        const accessToken = this.tokenService.generateAccessToken(
+            newUser._id.toHexString(),
+            email
+        );
+        const refreshToken = this.tokenService.generateRefreshToken(
+            newUser._id.toHexString(),
+            email
         );
 
-        // Generate JWT token
-        const token = this.generateToken(savedUser._id.toHexString(), email);
+        await this.tokenService.storeToken(newUser._id, accessToken, "access");
+        await this.tokenService.storeToken(
+            newUser._id,
+            refreshToken,
+            "refresh"
+        );
 
-        return { token };
+        return { token: accessToken, refreshToken };
     }
 
-    public async login(
-        email: string,
-        password: string
-    ): Promise<{ token: string }> {
-        const user: IUser | null = await User.findOne({ email });
+    public async login(email: string, password: string) {
+        const user = await this.userService.getUserByEmail(email);
         if (!user) {
             throw new AuthError("Invalid credentials");
         }
@@ -65,14 +62,21 @@ export class AuthService implements IAuthService {
             throw new AuthError("Invalid credentials");
         }
 
-        const token = this.generateToken(user._id.toHexString(), email);
+        // Revoke existing tokens using TokenService
+        await this.tokenService.revokeTokensForUser(user._id);
 
-        return { token };
-    }
+        const accessToken = this.tokenService.generateAccessToken(
+            user._id.toHexString(),
+            email
+        );
+        const refreshToken = this.tokenService.generateRefreshToken(
+            user._id.toHexString(),
+            email
+        );
 
-    private generateToken(userId: string, email: string): string {
-        return jwt.sign({ userId, email }, this.JWT_SECRET, {
-            expiresIn: "1h", // Token expires in 1 hour
-        });
+        await this.tokenService.storeToken(user._id, accessToken, "access");
+        await this.tokenService.storeToken(user._id, refreshToken, "refresh");
+
+        return { token: accessToken, refreshToken };
     }
 }

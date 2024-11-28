@@ -76,6 +76,7 @@ export default function PersonalInfoFormComponent({
                                         : "bg-white"
                                 }`}
                                 readOnly={isReadOnly}
+                                required
                             />
                         </div>
                     </div>
@@ -107,6 +108,7 @@ export default function PersonalInfoFormComponent({
                                         : "bg-white"
                                 }`}
                                 readOnly={isReadOnly}
+                                required
                             />
                         </div>
                     </div>
@@ -138,6 +140,7 @@ export default function PersonalInfoFormComponent({
                                         : "bg-white"
                                 }`}
                                 readOnly={isReadOnly}
+                                required
                             />
                         </div>
                     </div>
@@ -162,6 +165,7 @@ export default function PersonalInfoFormComponent({
                                 value={formData.bachelorsDegree}
                                 onChange={handleInputChange}
                                 className="w-full text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
+                                required
                             >
                                 <option value="">
                                     Select Bachelor's Degree
@@ -195,6 +199,7 @@ export default function PersonalInfoFormComponent({
                                 value={formData.major}
                                 onChange={handleInputChange}
                                 className="w-full text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
+                                required
                             >
                                 <option value="">Select Major</option>
                                 {majors.map((major) => (
@@ -228,6 +233,7 @@ export default function PersonalInfoFormComponent({
                                         value={formData.concentration}
                                         onChange={handleInputChange}
                                         className="w-full text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
+                                        required
                                     >
                                         <option value="">
                                             Select Concentration
@@ -267,7 +273,9 @@ export default function PersonalInfoFormComponent({
                                 value={formData.expectedGraduationSemester}
                                 onChange={handleInputChange}
                                 className="bg-white text-towsonBlack border border-towsonGraphiteLight p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
+                                required
                             >
+                                <option value="">Select Semester</option>
                                 <option value="Spring">Spring</option>
                                 <option value="Fall">Fall</option>
                             </select>
@@ -276,6 +284,7 @@ export default function PersonalInfoFormComponent({
                                 value={formData.expectedGraduationYear}
                                 onChange={handleInputChange}
                                 className="bg-white text-towsonBlack border border-towsonGraphiteLight p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
+                                required
                             >
                                 {years.map((y) => (
                                     <option key={y} value={y}>
@@ -307,6 +316,7 @@ export default function PersonalInfoFormComponent({
                                 onChange={handleInputChange}
                                 className="w-full text-towsonBlack bg-white border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
                                 accept=".pdf,.doc,.docx,.jpg,.png"
+                                required
                             />
                         </div>
                     </div>

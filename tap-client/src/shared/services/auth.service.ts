@@ -24,12 +24,14 @@ export default class AuthService {
         return response.data;
     }
 
-    async getUserProfile(token: string): Promise<any> {
-        const response = await api.get("/auth/profile", {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
+    async refreshTokens(refreshToken: string): Promise<any> {
+        const response = await api.post("/auth/refresh-token", {
+            refreshToken,
         });
         return response.data;
+    }
+
+    async logout(token: string): Promise<void> {
+        await api.post("/auth/logout", { token });
     }
 }
