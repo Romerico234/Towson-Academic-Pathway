@@ -28,6 +28,19 @@ export interface ICourseController {
     ): Promise<void>;
 
     /**
+     * Retrieves a course by its subject and catalog number
+     * @param req Express Request object containing subject and catalogNumber in params
+     * @param res Express Response object used to send the response
+     * @param next Express NextFunction for error handling
+     * @returns A Promise that resolves to void
+     */
+    getCourseBySubjectAndCatalogNumber(
+        req: Request,
+        res: Response,
+        next: NextFunction
+    ): Promise<void>;
+
+    /**
      * Searches for courses based on query parameters
      * @param req Express Request object containing query parameters
      * @param res Express Response object used to send the response

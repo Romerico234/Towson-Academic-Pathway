@@ -14,7 +14,7 @@ export interface ICourse extends Document {
     courseTitle: string;
     termsOffered: string[];
     description: string;
-    units: number;
+    units: string;
     gradingBasis: string;
     components: IComponent[];
     campus: string;
@@ -32,7 +32,7 @@ const CourseSchema = new Schema<ICourse>(
         subject: { type: String, required: true },
         catalogNumber: { type: String, required: true },
         courseTitle: { type: String, required: true },
-        units: { type: Number, reqiured: true },
+        units: { type: String, reqiured: true },
         termsOffered: { type: [String], default: [] },
         description: { type: String, default: "" },
         gradingBasis: { type: String, default: "" },

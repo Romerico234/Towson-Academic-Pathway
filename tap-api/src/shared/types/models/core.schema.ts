@@ -23,7 +23,7 @@ const CoreSchema: Schema = new Schema(
         acadCareer: { type: String, required: true },
         subject: { type: String, required: true },
         description: { type: String, required: true },
-        units: { type: Schema.Types.Mixed, required: true },
+        units: { type: String, required: true },
         minimumGrade: { type: String, required: true },
         gradingBasis: { type: String, required: true },
         courses: [{ type: String, required: true }],

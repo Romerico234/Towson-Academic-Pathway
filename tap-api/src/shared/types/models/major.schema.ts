@@ -4,7 +4,7 @@ import { COLLECTION_NAMES } from "../mongodb/collection-names";
 interface ICourse {
     code: string;
     courseTitle: string;
-    units: number | string;
+    units: string;
     prerequisites?: string[];
     corequisites?: string[];
 }
@@ -48,7 +48,7 @@ export interface IMajor extends Document {
 const CourseSchema: Schema = new Schema({
     code: { type: String, required: true },
     courseTitle: { type: String, required: true },
-    units: { type: Schema.Types.Mixed, required: true },
+    units: { type: String, required: true },
     prerequisites: [{ type: String }],
     corequisites: [{ type: String }],
 });

@@ -15,15 +15,15 @@ export class OpenAIController implements IOpenAIController {
         res: Response,
         next: NextFunction
     ): Promise<void> => {
-        const { prompt } = req.body;
+        const userData = req.body;
 
-        if (!prompt) {
-            res.status(400).json({ message: "The prompt is empty" });
+        if (!userData) {
+            res.status(400).json({ message: "User data is missing" });
             return;
         }
 
         try {
-            const result = await this.openAIService.generatePlans(prompt);
+            const result = await this.openAIService.generatePlans(userData);
             res.json(result);
         } catch (error) {
             if (error instanceof OpenAIError) {
