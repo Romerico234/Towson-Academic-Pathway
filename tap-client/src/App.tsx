@@ -6,12 +6,11 @@ import LoginComponent from "./components/auth/LoginComponent";
 import RegisterComponent from "./components/auth/RegisterComponent";
 import MainFormComponent from "./components/form/MainFormComponent";
 import SettingsComponent from "./components/settings/SettingsComponent";
-import CourseCatalogComponent from "./components/dashboard/CourseCatalogComponent";
-import DegreeCompletionPlannerComponent from "./components/dashboard/DegreeCompletionPlannerComponent";
 import AuthProvider from "./components/auth/AuthComponent";
 import PublicLayout from "./layouts/PublicLayout";
 import AuthenticatedLayout from "./layouts/AuthenticatedLayout";
 import RequireAuth from "./components/auth/RequireAuth";
+import DashboardComponent from "./components/dashboard/DashboardComponent";
 
 export default function App() {
     return (
@@ -44,12 +43,8 @@ export default function App() {
                             element={<SettingsComponent />}
                         />
                         <Route
-                            path="/course-catalog"
-                            element={<CourseCatalogComponent />}
-                        />
-                        <Route
-                            path="/degree-planner"
-                            element={<DegreeCompletionPlannerComponent />}
+                            path="/dashboard"
+                            element={<DashboardComponent />}
                         />
                     </Route>
 

@@ -138,7 +138,7 @@ export default function MainFormComponent() {
                 $push: { degreePlan: response },
             });
 
-            navigate("/degree-planner");
+            navigate("/dashboard");
         } catch (error) {
             console.error("Error generating or saving degree plan:", error);
             alert(

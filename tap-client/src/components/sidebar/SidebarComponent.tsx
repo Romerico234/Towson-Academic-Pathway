@@ -2,12 +2,12 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthComponent";
 import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
-import bookImg from "../../assets/sidebar-assets/book.png";
 import homeImg from "../../assets/sidebar-assets/home.png";
-import plannerImg from "../../assets/sidebar-assets/planner.png";
 import settingsImg from "../../assets/sidebar-assets/settings.png";
 import profileImg from "../../assets/sidebar-assets/profile.png";
 import logoutImg from "../../assets/sidebar-assets/logout.png";
+import requirementsImg from "../../assets/sidebar-assets/requirements.png";
+import dashboardImg from "../../assets/sidebar-assets/dashboard.png";
 
 export default function SidebarComponent() {
     const [collapsed, setCollapsed] = useState(false);
@@ -68,34 +68,35 @@ export default function SidebarComponent() {
                     },
                 }}
             >
-                {/* Public Home */}
+                {/* Home Page */}
                 <MenuItem component={<Link to="/home" />}>
                     <img
                         src={homeImg}
                         alt="Home Icon"
                         className="inline-block mr-2 w-6 h-6"
                     />
-                    Public Home
+                    Home Page
                 </MenuItem>
 
-                {/* Course Catalog */}
-                <MenuItem component={<Link to="/course-catalog" />}>
+                {/* TODO: Implement Requirements Component*/}
+                {/* Requirements */}
+                <MenuItem component={<Link to="/requirements" />}>
                     <img
-                        src={bookImg}
-                        alt="Course Catalog Icon"
-                        className="inline-block mr-2 w-6 h-6"
-                    />
-                    Course Catalog
-                </MenuItem>
-
-                {/* Degree Planner */}
-                <MenuItem component={<Link to="/degree-planner" />}>
-                    <img
-                        src={plannerImg}
+                        src={requirementsImg}
                         alt="Degree Planner Icon"
                         className="inline-block mr-2 w-6 h-6"
                     />
-                    Degree Planner
+                    Requirements
+                </MenuItem>
+
+                {/* Dashboard */}
+                <MenuItem component={<Link to="/dashboard"/>}>
+                    <img
+                        src={dashboardImg}
+                        alt="Course Catalog Icon"
+                        className="inline-block mr-2 w-6 h-6"
+                    />
+                    Dashboard
                 </MenuItem>
 
                 {/* Settings */}
