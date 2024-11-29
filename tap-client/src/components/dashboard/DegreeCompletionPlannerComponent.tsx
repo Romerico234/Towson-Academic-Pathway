@@ -29,13 +29,9 @@ export default function DegreeCompletionPlannerComponent() {
                 }
 
                 const userService = new UserService();
-                const response = await userService.getDegreePlanById(userId);
+                const degreePlan = await userService.getDegreePlanById(userId);
 
-                console.log(
-                    "Fetched Degree Plan from Database:",
-                    response.degreePlan
-                );
-                setDegreePlan(response.degreePlan || []);
+                setDegreePlan(degreePlan || []);
             } catch (error) {
                 console.error("Error fetching degree plan:", error);
             } finally {
@@ -53,8 +49,6 @@ export default function DegreeCompletionPlannerComponent() {
             </div>
         );
     }
-
-    console.log("Rendering Degree Plan:", degreePlan);
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">

@@ -24,8 +24,6 @@ export default function SemesterComponent({
         }
     };
 
-    console.log(`Semester: ${semester}`, courses);
-
     return (
         <DndContext onDragEnd={handleDrop}>
             <div className="p-4 border rounded-lg shadow-md bg-white">

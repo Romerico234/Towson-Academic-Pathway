@@ -28,7 +28,7 @@ export class AuthService implements IAuthService {
             lastName,
             academicInfo: {},
             preferences: {},
-            degreePlan: {},
+            degreePlan: [],
             favorites: [],
         });
 

@@ -3,7 +3,7 @@ import { IUserController } from "./interfaces/iuser.controller";
 import { UserService } from "./user.service";
 import { Types } from "mongoose";
 
-export class UserController implements IUserController{
+export class UserController implements IUserController {
     private userService: UserService;
 
     constructor() {
@@ -56,14 +56,14 @@ export class UserController implements IUserController{
     public async getDegreePlanById(req: Request, res: Response): Promise<void> {
         try {
             const userId = new Types.ObjectId(req.params.userId);
-            const degreePlans = await this.userService.getDegreePlanById(userId);
+            const degreePlan = await this.userService.getDegreePlanById(userId);
 
-            if (!degreePlans) {
+            if (!degreePlan) {
                 res.status(404).json({ message: "User not found" });
                 return;
             }
 
-            res.status(200).json(degreePlans);
+            res.status(200).json(degreePlan);
         } catch (error) {
             res.status(500).json({
                 message: "Error retrieving degree plans by ID",
@@ -72,7 +72,10 @@ export class UserController implements IUserController{
         }
     }
 
-    public async addFavoriteDegreePlan(req: Request, res: Response): Promise<void> {
+    public async addFavoriteDegreePlan(
+        req: Request,
+        res: Response
+    ): Promise<void> {
         try {
             const userId = new Types.ObjectId(req.params.userId);
             const favoriteData = req.body;
@@ -100,7 +103,10 @@ export class UserController implements IUserController{
         }
     }
 
-    public async removeFavoriteDegreePlan(req: Request, res: Response): Promise<void> {
+    public async removeFavoriteDegreePlan(
+        req: Request,
+        res: Response
+    ): Promise<void> {
         try {
             const userId = new Types.ObjectId(req.params.userId);
             const favoriteName = req.params.favoriteName;
@@ -128,10 +134,15 @@ export class UserController implements IUserController{
         }
     }
 
-    public async getFavoriteDegreePlansById(req: Request, res: Response): Promise<void> {
+    public async getFavoriteDegreePlansById(
+        req: Request,
+        res: Response
+    ): Promise<void> {
         try {
             const userId = new Types.ObjectId(req.params.userId);
-            const favorites = await this.userService.getFavoriteDegreePlansById(userId);
+            const favorites = await this.userService.getFavoriteDegreePlansById(
+                userId
+            );
 
             if (!favorites) {
                 res.status(404).json({ message: "User not found" });
