@@ -10,7 +10,7 @@ import requirementsImg from "../../assets/sidebar-assets/requirements.png";
 import dashboardImg from "../../assets/sidebar-assets/dashboard.png";
 
 export default function SidebarComponent() {
-    const [collapsed, setCollapsed] = useState(false);
+    const [collapsed, setCollapsed] = useState(true);
     const { logout } = useAuth();
     const navigate = useNavigate();
 
