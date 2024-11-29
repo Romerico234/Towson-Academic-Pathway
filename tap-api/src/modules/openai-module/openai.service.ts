@@ -55,7 +55,7 @@ export class OpenAIService implements IOpenAIService {
         [
             {
                 "semester": "Fall 2025",
-                "plannedCourses": ["COSC101 - Introduction to Computer Science", "MATH115 - College Algebra", "ENGL102 - Writing for a Liberal Education"],
+                "plannedCourses": ["COSC109 - General Computer Science (3 units)", "MATH115 - College Algebra (3 units)", "ENGL102 - Writing for a Liberal Education (3 units)"],
                 "creditHours": 12,
                 "notes": "Focus on foundational courses in computer science and mathematics."
             },
