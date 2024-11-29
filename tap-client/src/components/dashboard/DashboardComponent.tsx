@@ -17,8 +17,8 @@ export default function DashboardComponent() {
             </div>
 
             {/* Right Sidebar (Course Catalog) */}
-            <aside className="w-[30%] bg-gray-100 border-l overflow-auto p-4">
-                <h2 className="text-xl font-semibold mb-4">Course Catalog</h2>
+            <aside className="w-[30%] border-l overflow-auto p-4">
+                <h2 className="text-2xl font-semibold mb-4">Course Catalog</h2>
                 <CourseCatalogComponent />
             </aside>
         </div>

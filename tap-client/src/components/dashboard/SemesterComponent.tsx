@@ -1,12 +1,14 @@
+import { useDroppable } from "@dnd-kit/core";
 import { useState } from "react";
-import { DndContext } from "@dnd-kit/core";
 import CourseCardComponent from "./CourseCardComponent";
+import removeImg from "../../assets/dashboard-assets/remove.png";
 
 interface SemesterProps {
     semester: string;
     plannedCourses: string[];
     creditHours: number;
     notes: string;
+    removeCourse: (course: string) => void;
 }
 
 export default function SemesterComponent({
@@ -14,35 +16,68 @@ export default function SemesterComponent({
     plannedCourses = [],
     creditHours,
     notes,
+    removeCourse,
 }: SemesterProps) {
-    const [courses, setCourses] = useState<string[]>(plannedCourses);
+    const { isOver, setNodeRef } = useDroppable({
+        id: semester,
+        data: {
+            type: "semester",
+        },
+    });
 
-    const handleDrop = (event: any) => {
-        const newCourse = event?.active?.data?.current;
-        if (newCourse && !courses.includes(newCourse)) {
-            setCourses([...courses, newCourse]);
-        }
+    const [isEditing, setIsEditing] = useState(false);
+
+    const style = {
+        backgroundColor: isOver ? "lightblue" : undefined,
     };
 
     return (
-        <DndContext onDragEnd={handleDrop}>
-            <div className="p-4 border rounded-lg shadow-md bg-white">
-                <h2 className="text-lg font-semibold mb-2">{semester}</h2>
-                <p className="text-sm mb-4">{creditHours} Credit Hours</p>
-                <p className="text-sm italic mb-4 text-gray-600">{notes}</p>
-
-                <div className="space-y-2">
-                    {courses.map((course, index) => (
-                        <CourseCardComponent key={index} course={course} />
-                    ))}
-                </div>
-
-                <div className="mt-4 border-t pt-2">
-                    <p className="text-sm italic text-gray-500">
-                        Drag and drop courses here
-                    </p>
-                </div>
+        <div
+            ref={setNodeRef}
+            style={style}
+            className="p-4 border rounded-lg shadow-md bg-white relative"
+        >
+            <div className="flex justify-between items-center mb-4">
+                <h2 className="text-lg font-semibold">{semester}</h2>
+                <button
+                    onClick={() => setIsEditing(!isEditing)}
+                    className="px-3 py-1 border rounded-lg text-blue-500 border-blue-500 hover:bg-blue-500 hover:text-white transition"
+                >
+                    {isEditing ? "Done" : "Edit"}
+                </button>
             </div>
-        </DndContext>
+            <p className="text-sm mb-4">{creditHours} Credit Hours</p>
+            <p className="text-sm italic mb-4 text-gray-600">{notes}</p>
+
+            <div className="space-y-2">
+                {plannedCourses.map((course, index) => (
+                    <div key={index} className="relative">
+                        {/* Course Card */}
+                        <CourseCardComponent
+                            course={course}
+                            fromSemester={semester}
+                        />
+
+                        {/* Remove Button */}
+                        {isEditing && (
+                            <button
+                                onClick={() => removeCourse(course)}
+                                className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-red-100 p-1 rounded-full hover:bg-red-200 transition"
+                            >
+                                <img
+                                    src={removeImg}
+                                    alt="Remove"
+                                    className="w-4 h-4"
+                                />
+                            </button>
+                        )}
+                    </div>
+                ))}
+            </div>
+
+            <div className="mt-4 border-t pt-2 text-center text-sm italic text-gray-500">
+                Drag and drop courses here
+            </div>
+        </div>
     );
 }

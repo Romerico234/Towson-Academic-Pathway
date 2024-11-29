@@ -38,17 +38,18 @@ export class OpenAIService implements IOpenAIService {
         Rules:
         - Carefully analyze the unofficial transcript provided by the user to identify completed courses, academic progress, and remaining requirements. This step is critical to ensure prerequisites, core curriculum requirements, and degree-specific requirements are correctly addressed.
         - Generate a general degree plan that considers:
-        - Courses already completed (as verified in the unofficial transcript).
-        - Remaining requirements for graduation.
-        - The user's academic standing, ensuring prerequisite courses are included if missing.
-        - The user's preferences, such as:
-            - Preferred credit hours per semester.
-            - Availability during summer/winter terms.
-            - Unavailable terms.
+            - Courses already completed (as verified in the unofficial transcript).
+            - Remaining requirements for graduation.
+            - The user's academic standing, ensuring prerequisite courses are included if missing.
+            - The user's preferences, such as:
+                - Preferred credit hours per semester.
+                - Availability during summer/winter terms.
+                - Unavailable terms.
         - Balance core curriculum, major-specific courses, and elective requirements across semesters while adhering to the user's preferences.
         - Address all core, major-specific, and elective requirements by scheduling them appropriately.
         - Handle prerequisites with care, ensuring prerequisite courses are added in the correct sequence to avoid scheduling conflicts or delays in the user's academic progress.
         - Include notes for any semester where conflicts arise or ambiguities exist in the transcript or preferences.
+        - Ensure the degree plan includes all semesters (Fall, Winter, Spring, and Summer) within the user's academic timeline (from where they start to end), even if no courses are scheduled in some semesters.
 
         Degree Plan Structure:
         [
@@ -58,15 +59,16 @@ export class OpenAIService implements IOpenAIService {
                 "creditHours": 12,
                 "notes": "Focus on foundational courses in computer science and mathematics."
             },
-            // Additional semesters...
+            // Additional semesters... (Ensure the degree plan includes all semesters (Fall, Winter, Spring, and Summer) within the user's academic timeline (from where they start to end), even if no courses are scheduled in some semesters)
         ]
 
         Important:
         - Use the unofficial transcript as the primary source to determine:
-        - Courses already completed.
-        - Courses that can be skipped.
-        - Courses that need to be retaken.
+            - Courses already completed.
+            - Courses that can be skipped.
+            - Courses that need to be retaken.
         - If any required course (core, major, or elective) is missing, ensure it is included in the degree plan.
+        - Ensure the degree plan includes all semesters (Fall, Winter, Spring, and Summer) within the user's academic timeline (from where they start to end), even if no courses are scheduled in some semesters.
         - Clearly indicate any issues, conflicts, or ambiguities in the transcript data or user preferences in the notes section of the affected semester.
 
         Instructions:

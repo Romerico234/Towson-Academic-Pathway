@@ -134,6 +134,9 @@ export default function MainFormComponent() {
             const response = await openAIService.generatePlan(dataToSend);
 
             const userService = new UserService();
+            // Clear the degreePlan
+            await userService.updateUserById(userId, { degreePlan: [] });
+            // Push new degreePlan
             await userService.updateUserById(userId, {
                 $push: { degreePlan: response },
             });
