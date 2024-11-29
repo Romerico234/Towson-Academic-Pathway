@@ -1,5 +1,4 @@
 import DegreeCompletionPlannerComponent from "./DegreeCompletionPlannerComponent";
-import CourseCatalogComponent from "./CourseCatalogComponent";
 
 export default function DashboardComponent() {
     return (
@@ -15,16 +14,6 @@ export default function DashboardComponent() {
                     <DegreeCompletionPlannerComponent />
                 </div>
             </div>
-
-            {/* Right Sidebar (Course Catalog) */}
-            <aside className="w-[30%] border-l p-4">
-                <h2 className="text-2xl font-semibold mb-4 border-b pb-2">
-                    Course Catalog
-                </h2>
-                <div className="rounded-lg bg-white shadow p-4 overflow-auto h-full">
-                    <CourseCatalogComponent />
-                </div>
-            </aside>
         </div>
     );
 }

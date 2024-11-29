@@ -10,12 +10,6 @@
             "description": "Explores creativity and problem-solving using computers.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": []
         },
@@ -29,12 +23,6 @@
             "description": "Introduction to the role of information technology in business.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": []
         },
@@ -48,12 +36,6 @@
             "description": "General introduction to computer science principles.",
             "units": "4",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": []
         },
@@ -67,12 +49,6 @@
             "description": "An introduction to fundamental programming concepts.",
             "units": "4",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": [
                 "COSC 175",
@@ -89,12 +65,6 @@
             "description": "Continuation of Computer Science I with data structures.",
             "units": "4",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 236", "MATH 211 or MATH 273"]
         },
@@ -108,12 +78,6 @@
             "description": "Explores the principles and structure of computer systems.",
             "units": "4",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 236", "MATH 263 or MATH 267"]
         },
@@ -127,12 +91,6 @@
             "description": "Covers advanced data structures and algorithm design.",
             "units": "4",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 237", "MATH 274"]
         },
@@ -146,12 +104,6 @@
             "description": "Covers principles of networking and data transmission.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 290"],
             "corequisites": ["COSC 336"]
@@ -166,12 +118,6 @@
             "description": "Introduction to software development lifecycle and practices.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 336"]
         },
@@ -185,12 +131,6 @@
             "description": "Introduction to the design and implementation of operating systems.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 336"]
         },
@@ -204,12 +144,6 @@
             "description": "Introduction to the design and implementation of programming languages.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 336"]
         },
@@ -223,12 +157,6 @@
             "description": "Covers the principles and practices of database design and implementation.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 336"]
         },
@@ -242,12 +170,6 @@
             "description": "Explores security concepts for application software.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],
             "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 340", "COSC 455", "COSC 457"]
@@ -262,12 +184,6 @@
             "description": "Introduction to computer simulation techniques and modeling concepts.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 336", "MATH 330"]
         },
@@ -281,12 +197,6 @@
             "description": "Covers the foundations of artificial intelligence, including algorithms and applications.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],
             "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 336"]
@@ -301,12 +211,6 @@
             "description": "Introduction to robotics, including design and programming.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": false
-                }
-            ],
             "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 336"]
@@ -321,12 +225,6 @@
             "description": "Covers the concepts and techniques of data mining.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 457"]
         },
@@ -340,12 +238,6 @@
             "description": "Introduction to computer graphics principles and programming.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 336"]
         },
@@ -359,12 +251,6 @@
             "description": "Examines case studies in computer security.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 440", "COSC 450"]
         },
@@ -378,12 +264,6 @@
             "description": "Covers design and analysis of algorithms with real-world applications.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],
             "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 336"]
@@ -398,12 +278,6 @@
             "description": "Focuses on web programming technologies and frameworks.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 336"]
         },
@@ -417,12 +291,6 @@
             "description": "Explores reverse engineering techniques and malware analysis.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 340", "COSC 450"]
         },
@@ -436,12 +304,7 @@
             "description": "Capstone course focusing on practical software development projects.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Practicum",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
+            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": [
                 "COSC 412",
@@ -459,12 +322,6 @@
             "description": "Internship for secondary education majors in computer science.",
             "units": "6",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Practicum",
-                    "required": true
-                }
-            ],
             "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 482", "SEMS 498", "Consent of Department"]
@@ -479,12 +336,6 @@
             "description": "Allows in-depth exploration of topics under faculty supervision.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": false
-                }
-            ],
             "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["Consent of Instructor"]
@@ -499,12 +350,7 @@
             "description": "Allows students to pursue independent study projects.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Independent Study",
-                    "required": false
-                }
-            ],            "campus": "Main Academic Campus",
+            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": [
                 "Senior standing in Computer Science",

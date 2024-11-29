@@ -9,6 +9,7 @@ import logoutImg from "../../assets/sidebar-assets/logout.png";
 import requirementsImg from "../../assets/sidebar-assets/requirements.png";
 import dashboardImg from "../../assets/sidebar-assets/dashboard.png";
 import formImg from "../../assets/sidebar-assets/form.png";
+import favoriteImg from "../../assets/sidebar-assets/favorite.png";
 
 export default function SidebarComponent() {
     // const [collapsed, setCollapsed] = useState(true);
@@ -79,6 +80,27 @@ export default function SidebarComponent() {
                     Home Page
                 </MenuItem>
 
+                {/* Dashboard */}
+                <MenuItem component={<Link to="/dashboard" />}>
+                    <img
+                        src={dashboardImg}
+                        alt="Dashboard Icon"
+                        className="inline-block mr-2 w-6 h-6"
+                    />
+                    Dashboard
+                </MenuItem>
+
+                {/* TODO: Implement Favorites Component*/}
+                {/* Favorites */}
+                <MenuItem component={<Link to="/favorites" />}>
+                    <img
+                        src={favoriteImg}
+                        alt="Favorite Icon"
+                        className="inline-block mr-2 w-6 h-6"
+                    />
+                    Favorites
+                </MenuItem>
+
                 {/* TODO: Implement Requirements Component*/}
                 {/* Requirements */}
                 <MenuItem component={<Link to="/requirements" />}>
@@ -88,16 +110,6 @@ export default function SidebarComponent() {
                         className="inline-block mr-2 w-6 h-6"
                     />
                     Requirements
-                </MenuItem>
-
-                {/* Dashboard */}
-                <MenuItem component={<Link to="/dashboard" />}>
-                    <img
-                        src={dashboardImg}
-                        alt="Dashboard Icon"
-                        className="inline-block mr-2 w-6 h-6"
-                    />
-                    Dashboard
                 </MenuItem>
 
                 {/* Form */}

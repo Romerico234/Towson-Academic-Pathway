@@ -54,10 +54,28 @@ export class OpenAIService implements IOpenAIService {
         Degree Plan Structure:
         [
             {
-                "semester": "Fall 2025",
-                "plannedCourses": ["COSC109 - General Computer Science (3 units)", "MATH115 - College Algebra (3 units)", "ENGL102 - Writing for a Liberal Education (3 units)"],
-                "creditHours": 12,
+                "semester": "Spring 2024",
+                "plannedCourses": ["COSC109 - Computers and Creativity (3 units)", "MATH115 - College Algebra (3 units)", "ENGL102 - Writing for a Liberal Education (3 units)"],
+                "creditHours": 9,
                 "notes": "Focus on foundational courses in computer science and mathematics."
+            },
+            {
+                "semester": "Summer 2024",
+                "plannedCourses": [],
+                "creditHours": 0,
+                "notes": ""
+            },
+            {
+                "semester": "Fall 2025",
+                "plannedCourses": ["COSC175 - General Computer Science (4 units)", "MATH273 - Calculus I (4 units)", "ENGL317 -  WRITING FOR BUSINESS AND INDUSTRY (3 units)"],
+                "creditHours": 11,
+                "notes": "Mored advanced computer science and mathematics."
+            },
+            {
+                "semester": "Winter 2025",
+                "plannedCourses": [],
+                "creditHours": 0,
+                "notes": ""
             },
             // Additional semesters... (Ensure the degree plan includes all semesters (Fall, Winter, Spring, and Summer) within the user's academic timeline (from where they start to end), even if no courses are scheduled in some semesters)
         ]
@@ -68,7 +86,6 @@ export class OpenAIService implements IOpenAIService {
             - Courses that can be skipped.
             - Courses that need to be retaken.
         - If any required course (core, major, or elective) is missing, ensure it is included in the degree plan.
-        - Ensure the degree plan includes all semesters (Fall, Winter, Spring, and Summer) within the user's academic timeline (from where they start to end), even if no courses are scheduled in some semesters.
         - Clearly indicate any issues, conflicts, or ambiguities in the transcript data or user preferences in the notes section of the affected semester.
 
         Instructions:

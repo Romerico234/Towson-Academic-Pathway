@@ -3,14 +3,21 @@ import { useState } from "react";
 import CourseCardComponent from "./CourseCardComponent";
 import removeImg from "../../assets/dashboard-assets/remove.png";
 
+interface Course {
+    subject: string;
+    catalogNumber: string;
+    title: string;
+    units: string;
+}
+
 interface SemesterProps {
     semester: string;
-    plannedCourses: string[];
+    plannedCourses: Course[];
     creditHours: number;
     notes: string;
-    removeCourse: (course: string) => void;
+    removeCourse: (course: Course) => void;
     removeSemester: () => void;
-    canDeleteSemester: boolean; // Added prop
+    canDeleteSemester: boolean;
 }
 
 export default function SemesterComponent({
@@ -20,7 +27,7 @@ export default function SemesterComponent({
     notes,
     removeCourse,
     removeSemester,
-    canDeleteSemester, // Destructure the prop
+    canDeleteSemester,
 }: SemesterProps) {
     const { isOver, setNodeRef } = useDroppable({
         id: semester,
