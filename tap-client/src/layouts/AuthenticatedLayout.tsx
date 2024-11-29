@@ -5,12 +5,12 @@ export default function AuthenticatedLayout() {
     return (
         <div className="authenticated-layout flex h-screen overflow-hidden">
             {/* Sidebar Component */}
-            <div className="content flex-grow ">
+            <div className="w-[180px] flex-shrink-0">
                 <SidebarComponent />
             </div>
 
             {/* Main Content Area */}
-            <div className="content flex-grow">
+            <div className="content flex-grow overflow-auto">
                 <Outlet />
             </div>
         </div>

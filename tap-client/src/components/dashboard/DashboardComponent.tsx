@@ -5,7 +5,7 @@ export default function DashboardComponent() {
     return (
         <div className="flex h-screen overflow-hidden">
             {/* Main Content Area */}
-            <div className="flex-grow flex flex-col p-4 overflow-hidden">
+            <div className="flex-grow flex flex-col overflow-hidden">
                 <header className="mb-4">
                     <h1 className="text-2xl font-bold">
                         Degree Completion Planner

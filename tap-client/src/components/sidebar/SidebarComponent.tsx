@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthComponent";
 import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
@@ -8,15 +8,16 @@ import profileImg from "../../assets/sidebar-assets/profile.png";
 import logoutImg from "../../assets/sidebar-assets/logout.png";
 import requirementsImg from "../../assets/sidebar-assets/requirements.png";
 import dashboardImg from "../../assets/sidebar-assets/dashboard.png";
+import formImg from "../../assets/sidebar-assets/form.png";
 
 export default function SidebarComponent() {
-    const [collapsed, setCollapsed] = useState(true);
+    // const [collapsed, setCollapsed] = useState(true);
     const { logout } = useAuth();
     const navigate = useNavigate();
 
-    const toggleSidebar = () => {
-        setCollapsed(!collapsed);
-    };
+    // const toggleSidebar = () => {
+    //     setCollapsed(!collapsed);
+    // };
 
     const handleLogout = () => {
         logout();
@@ -27,9 +28,9 @@ export default function SidebarComponent() {
 
     return (
         <Sidebar
-            collapsed={collapsed}
+            // collapsed={collapsed}
             backgroundColor="#FFBB00"
-            width="270px"
+            width="180px"
             collapsedWidth="80px"
             transitionDuration={300}
             style={{
@@ -42,7 +43,7 @@ export default function SidebarComponent() {
         >
             {/* Toggle Button */}
             <button
-                onClick={toggleSidebar}
+                // onClick={toggleSidebar}
                 className="p-4 text-xl font-bold flex items-center hover:bg-towsonGoldLight"
                 style={{ color: "#000000" }}
             >
@@ -83,20 +84,30 @@ export default function SidebarComponent() {
                 <MenuItem component={<Link to="/requirements" />}>
                     <img
                         src={requirementsImg}
-                        alt="Degree Planner Icon"
+                        alt="Requirements Icon"
                         className="inline-block mr-2 w-6 h-6"
                     />
                     Requirements
                 </MenuItem>
 
                 {/* Dashboard */}
-                <MenuItem component={<Link to="/dashboard"/>}>
+                <MenuItem component={<Link to="/dashboard" />}>
                     <img
                         src={dashboardImg}
-                        alt="Course Catalog Icon"
+                        alt="Dashboard Icon"
                         className="inline-block mr-2 w-6 h-6"
                     />
                     Dashboard
+                </MenuItem>
+
+                {/* Form */}
+                <MenuItem component={<Link to="/form" />}>
+                    <img
+                        src={formImg}
+                        alt="Form Icon"
+                        className="inline-block mr-2 w-6 h-6"
+                    />
+                    Form
                 </MenuItem>
 
                 {/* Settings */}
