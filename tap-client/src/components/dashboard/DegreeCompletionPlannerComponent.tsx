@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../auth/AuthComponent";
 import UserService from "../../shared/services/user.service";
+import TokenService from "../../shared/services/token.service";
 import SemesterComponent from "./SemesterComponent";
 
 interface DegreePlanItem {
@@ -11,15 +12,22 @@ interface DegreePlanItem {
 }
 
 export default function DegreeCompletionPlannerComponent() {
-    const { token, userId } = useAuth();
+    const { token } = useAuth();
     const [degreePlan, setDegreePlan] = useState<DegreePlanItem[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchDegreePlan = async () => {
-            if (!token || !userId) return;
+            if (!token) return;
 
             try {
+                const tokenService = new TokenService();
+                const userId = await tokenService.getUserIdFromToken(token);
+
+                if (!userId) {
+                    throw new Error("Failed to retrieve userId from token.");
+                }
+
                 const userService = new UserService();
                 const response = await userService.getDegreePlanById(userId);
 
@@ -36,7 +44,7 @@ export default function DegreeCompletionPlannerComponent() {
         };
 
         fetchDegreePlan();
-    }, [token, userId]);
+    }, [token]);
 
     if (loading) {
         return (

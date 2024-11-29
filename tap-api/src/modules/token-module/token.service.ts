@@ -115,4 +115,19 @@ export class TokenService implements ITokenService {
             throw new AuthError("Error fetching userId from token");
         }
     }
+
+    public async revokeTokens(tokens: string[]): Promise<void> {
+        const tokenRecords = await Token.find({
+            token: { $in: tokens },
+            isRevoked: false,
+        });
+        if (!tokenRecords || tokenRecords.length === 0) {
+            throw new AuthError("Invalid or already revoked tokens.");
+        }
+
+        for (const tokenRecord of tokenRecords) {
+            tokenRecord.isRevoked = true;
+            await tokenRecord.save();
+        }
+    }
 }

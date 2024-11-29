@@ -79,4 +79,10 @@ export class AuthService implements IAuthService {
 
         return { token: accessToken, refreshToken };
     }
+
+    public async logout(token: string, refreshToken: string): Promise<void> {
+        await this.tokenService.revokeTokens([token, refreshToken]);
+    }
+    
+    
 }

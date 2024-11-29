@@ -52,4 +52,29 @@ export class AuthController implements IAuthController {
             }
         }
     };
+
+    public logout = async (
+        req: Request,
+        res: Response,
+        next: NextFunction
+    ): Promise<void> => {
+        try {
+            const { token, refreshToken } = req.body;
+
+            if (!token || !refreshToken) {
+                res.status(400).json({
+                    message:
+                        "Both token and refreshToken are required for logout.",
+                });
+                return;
+            }
+
+            await this.authService.logout(token, refreshToken);
+
+            res.status(200).json({ message: "Logout successful." });
+        } catch (error) {
+            console.error("Logout error:", error);
+            res.status(500).json({ message: "Internal server error" });
+        }
+    };
 }
