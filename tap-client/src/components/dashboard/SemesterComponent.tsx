@@ -9,6 +9,8 @@ interface SemesterProps {
     creditHours: number;
     notes: string;
     removeCourse: (course: string) => void;
+    removeSemester: () => void;
+    canDeleteSemester: boolean; // Added prop
 }
 
 export default function SemesterComponent({
@@ -17,6 +19,8 @@ export default function SemesterComponent({
     creditHours,
     notes,
     removeCourse,
+    removeSemester,
+    canDeleteSemester, // Destructure the prop
 }: SemesterProps) {
     const { isOver, setNodeRef } = useDroppable({
         id: semester,
@@ -39,12 +43,22 @@ export default function SemesterComponent({
         >
             <div className="flex justify-between items-center mb-4">
                 <h2 className="text-lg font-semibold">{semester}</h2>
-                <button
-                    onClick={() => setIsEditing(!isEditing)}
-                    className="px-3 py-1 border rounded-lg text-blue-500 border-blue-500 hover:bg-blue-500 hover:text-white transition"
-                >
-                    {isEditing ? "Done" : "Edit"}
-                </button>
+                <div>
+                    <button
+                        onClick={() => setIsEditing(!isEditing)}
+                        className="px-3 py-1 border rounded-lg text-blue-500 border-blue-500 hover:bg-blue-500 hover:text-white transition"
+                    >
+                        {isEditing ? "Done" : "Edit"}
+                    </button>
+                    {isEditing && canDeleteSemester && (
+                        <button
+                            onClick={removeSemester}
+                            className="ml-2 px-3 py-1 border rounded-lg text-red-500 border-red-500 hover:bg-red-500 hover:text-white transition"
+                        >
+                            Delete Semester
+                        </button>
+                    )}
+                </div>
             </div>
             <p className="text-sm mb-4">{creditHours} Credit Hours</p>
             <p className="text-sm italic mb-4 text-gray-600">{notes}</p>

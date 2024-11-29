@@ -93,6 +93,76 @@ export default function DegreeCompletionPlannerComponent() {
         fetchDegreePlan();
     }, [token]);
 
+    const updateDegreePlanInBackend = async (updatedPlan: DegreePlanItem[]) => {
+        if (!token) return;
+
+        try {
+            const tokenService = new TokenService();
+            const userId = await tokenService.getUserIdFromToken(token);
+
+            if (!userId) {
+                throw new Error("Failed to retrieve userId from token.");
+            }
+
+            const userService = new UserService();
+            await userService.updateUserById(userId, {
+                degreePlan: updatedPlan,
+            });
+        } catch (error) {
+            console.error("Error updating degree plan in backend:", error);
+        }
+    };
+
+    const removeSemester = (semesterToRemove: string) => {
+        setDegreePlan((prevPlan) => {
+            const updatedPlan = prevPlan.filter(
+                (semester) => semester.semester !== semesterToRemove
+            );
+            updateDegreePlanInBackend(updatedPlan);
+            return updatedPlan;
+        });
+    };
+
+    const addSemesterBefore = () => {
+        setDegreePlan((prevPlan) => {
+            const firstSemester = prevPlan[0];
+            const newSemesterName = getNextSemesterWithYear(
+                firstSemester.semester,
+                "before"
+            );
+            const newSemester = {
+                order: firstSemester.order - 1,
+                semester: newSemesterName,
+                plannedCourses: [],
+                creditHours: 0,
+                notes: "",
+            };
+            const updatedPlan = [newSemester, ...prevPlan];
+            updateDegreePlanInBackend(updatedPlan);
+            return updatedPlan;
+        });
+    };
+
+    const addSemesterAfter = () => {
+        setDegreePlan((prevPlan) => {
+            const lastSemester = prevPlan[prevPlan.length - 1];
+            const newSemesterName = getNextSemesterWithYear(
+                lastSemester.semester,
+                "after"
+            );
+            const newSemester = {
+                order: lastSemester.order + 1,
+                semester: newSemesterName,
+                plannedCourses: [],
+                creditHours: 0,
+                notes: "",
+            };
+            const updatedPlan = [...prevPlan, newSemester];
+            updateDegreePlanInBackend(updatedPlan);
+            return updatedPlan;
+        });
+    };
+
     const handleDragStart = (event: any) => {
         const { active } = event;
         setActiveCourse(active.id);
@@ -138,46 +208,11 @@ export default function DegreeCompletionPlannerComponent() {
                         return semester;
                     });
 
+                    updateDegreePlanInBackend(updatedPlan);
                     return updatedPlan;
                 });
             }
         }
-    };
-
-    const addSemesterBefore = () => {
-        setDegreePlan((prevPlan) => {
-            const firstSemester = prevPlan[0];
-            const newSemesterName = getNextSemesterWithYear(
-                firstSemester.semester,
-                "before"
-            );
-            const newSemester = {
-                order: firstSemester.order - 1,
-                semester: newSemesterName,
-                plannedCourses: [],
-                creditHours: 0,
-                notes: "",
-            };
-            return [newSemester, ...prevPlan];
-        });
-    };
-
-    const addSemesterAfter = () => {
-        setDegreePlan((prevPlan) => {
-            const lastSemester = prevPlan[prevPlan.length - 1];
-            const newSemesterName = getNextSemesterWithYear(
-                lastSemester.semester,
-                "after"
-            );
-            const newSemester = {
-                order: lastSemester.order + 1,
-                semester: newSemesterName,
-                plannedCourses: [],
-                creditHours: 0,
-                notes: "",
-            };
-            return [...prevPlan, newSemester];
-        });
     };
 
     const sortedDegreePlan = [...degreePlan].sort((a, b) => a.order - b.order);
@@ -213,31 +248,48 @@ export default function DegreeCompletionPlannerComponent() {
                     </button>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {sortedDegreePlan.map((semesterData, index) => (
-                        <SemesterComponent
-                            key={index}
-                            semester={semesterData.semester}
-                            plannedCourses={semesterData.plannedCourses}
-                            creditHours={semesterData.creditHours}
-                            notes={semesterData.notes}
-                            removeCourse={(course) =>
-                                setDegreePlan((prevPlan) =>
-                                    prevPlan.map((semester) =>
-                                        semester.semester ===
-                                        semesterData.semester
-                                            ? {
-                                                  ...semester,
-                                                  plannedCourses:
-                                                      semester.plannedCourses.filter(
-                                                          (c) => c !== course
-                                                      ),
-                                              }
-                                            : semester
-                                    )
-                                )
-                            }
-                        />
-                    ))}
+                    {sortedDegreePlan.map((semesterData, index) => {
+                        const isFirstSemester = index === 0;
+                        const isLastSemester =
+                            index === sortedDegreePlan.length - 1;
+                        const canDeleteSemester =
+                            isFirstSemester || isLastSemester;
+
+                        return (
+                            <SemesterComponent
+                                key={semesterData.semester}
+                                semester={semesterData.semester}
+                                plannedCourses={semesterData.plannedCourses}
+                                creditHours={semesterData.creditHours}
+                                notes={semesterData.notes}
+                                removeCourse={(course) =>
+                                    setDegreePlan((prevPlan) => {
+                                        const updatedPlan = prevPlan.map(
+                                            (semester) =>
+                                                semester.semester ===
+                                                semesterData.semester
+                                                    ? {
+                                                          ...semester,
+                                                          plannedCourses:
+                                                              semester.plannedCourses.filter(
+                                                                  (c) =>
+                                                                      c !==
+                                                                      course
+                                                              ),
+                                                      }
+                                                    : semester
+                                        );
+                                        updateDegreePlanInBackend(updatedPlan);
+                                        return updatedPlan;
+                                    })
+                                }
+                                removeSemester={() =>
+                                    removeSemester(semesterData.semester)
+                                }
+                                canDeleteSemester={canDeleteSemester} // Pass the prop
+                            />
+                        );
+                    })}
                 </div>
             </div>
             <DragOverlay>
