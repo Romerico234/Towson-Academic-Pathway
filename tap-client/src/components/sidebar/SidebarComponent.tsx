@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../auth/AuthComponent";
 import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import Lottie from "lottie-react";
@@ -17,12 +17,12 @@ export default function SidebarComponent() {
     // const [collapsed, setCollapsed] = useState(true);
     const { logout } = useAuth();
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
+    const location = useLocation();
 
     // const toggleSidebar = () => {
     //     setCollapsed(!collapsed);
     // };
-
-    const [loading, setLoading] = useState(false);
 
     const handleLogout = () => {
         logout();
@@ -80,35 +80,33 @@ export default function SidebarComponent() {
 
                 <Menu
                     menuItemStyles={{
-                        button: {
-                            // Active state styling
-                            [`&.active`]: {
-                                backgroundColor: "#FFBB00", // This not even doing anything
-                                color: "#000000",
-                                fontWeight: "bold",
-                            },
-                            // Hover state styling
-                            "&:hover": {
-                                backgroundColor: "#FFE066",
-                                color: "#3C3C3C",
-                            },
+                        button: ({ active }) => ({
+                            backgroundColor: active ? "#FFE066" : "transparent",
+                            color: active ? "#3C3C3C" : "#000000",
+                            fontWeight: active ? "bold" : "normal",
                             padding: "12px 16px",
                             fontSize: "16px",
-                        },
+                        }),
                     }}
                 >
                     {/* Home Page */}
-                    <MenuItem onClick={handleHomeClick}>
+                    <MenuItem
+                        active={location.pathname === "/home"}
+                        onClick={handleHomeClick}
+                    >
                         <img
                             src={homeImg}
                             alt="Home Icon"
                             className="inline-block mr-2 w-6 h-6"
                         />
-                        Home Page
+                        Go Home
                     </MenuItem>
 
                     {/* Dashboard */}
-                    <MenuItem component={<Link to="/dashboard" />}>
+                    <MenuItem
+                        active={location.pathname === "/dashboard"}
+                        component={<Link to="/dashboard" />}
+                    >
                         <img
                             src={dashboardImg}
                             alt="Dashboard Icon"
@@ -117,9 +115,11 @@ export default function SidebarComponent() {
                         Dashboard
                     </MenuItem>
 
-                    {/* TODO: Implement Favorites Component*/}
                     {/* Favorites */}
-                    <MenuItem component={<Link to="/favorites" />}>
+                    <MenuItem
+                        active={location.pathname === "/favorites"}
+                        component={<Link to="/favorites" />}
+                    >
                         <img
                             src={favoriteImg}
                             alt="Favorite Icon"
@@ -129,7 +129,10 @@ export default function SidebarComponent() {
                     </MenuItem>
 
                     {/* Requirements */}
-                    <MenuItem component={<Link to="/requirements" />}>
+                    <MenuItem
+                        active={location.pathname === "/requirements"}
+                        component={<Link to="/requirements" />}
+                    >
                         <img
                             src={requirementsImg}
                             alt="Requirements Icon"
@@ -139,7 +142,10 @@ export default function SidebarComponent() {
                     </MenuItem>
 
                     {/* Form */}
-                    <MenuItem component={<Link to="/form" />}>
+                    <MenuItem
+                        active={location.pathname === "/form"}
+                        component={<Link to="/form" />}
+                    >
                         <img
                             src={formImg}
                             alt="Form Icon"
@@ -157,9 +163,12 @@ export default function SidebarComponent() {
                                 className="inline-block mr-2 w-6 h-6"
                             />
                         }
-                        title="Settings"
+                        label="Settings"
                     >
-                        <MenuItem component={<Link to="/settings" />}>
+                        <MenuItem
+                            active={location.pathname === "/settings"}
+                            component={<Link to="/settings" />}
+                        >
                             <img
                                 src={profileImg}
                                 alt="Profile Icon"

@@ -16,6 +16,7 @@ import MajorsListComponent from "./components/requirements/MajorsListComponent";
 import MajorDetailComponent from "./components/requirements/MajorDetailComopnent";
 import DegreeRequirementsComponent from "./components/requirements/DegreeRequirementsComponent";
 import HonorsRequirementsComponent from "./components/requirements/HonorsRequirementComponent";
+import FavoritesComponent from "./components/favorites/FavoritesComponent";
 
 export default function App() {
     return (
@@ -50,6 +51,10 @@ export default function App() {
                         <Route
                             path="/settings"
                             element={<SettingsComponent />}
+                        />
+                        <Route
+                            path="/favorites"
+                            element={<FavoritesComponent />}
                         />
                         <Route
                             path="/requirements"
