@@ -25,7 +25,7 @@ interface Course {
 interface DegreePlanItem {
     order: number;
     semester: string;
-    plannedCourses: Course[]; // Changed from string[] to Course[]
+    plannedCourses: Course[];
     creditHours: number;
     notes: string;
 }
@@ -91,6 +91,19 @@ export default function DegreeCompletionPlannerComponent() {
                 const courseService = new CourseService();
                 const allCourses = await courseService.getAllCourses();
 
+                // Map all courses without filtering
+                const mappedAvailableCourses: Course[] = allCourses.map(
+                    (course: any) => ({
+                        subject: course.subject,
+                        catalogNumber: course.catalogNumber,
+                        title: course.courseTitle,
+                        units: course.units,
+                        termsOffered: course.termsOffered,
+                    })
+                );
+
+                setCourses(mappedAvailableCourses);
+
                 // Convert plannedCourses strings into Course objects
                 const updatedDegreePlan: DegreePlanItem[] = await Promise.all(
                     fetchedDegreePlan.map(
@@ -98,49 +111,63 @@ export default function DegreeCompletionPlannerComponent() {
                             const plannedCourses: Course[] = await Promise.all(
                                 semesterItem.plannedCourses.map(
                                     async (courseString: string) => {
-                                        // Extract subject and catalogNumber
-                                        const [subjectCatalog, ...rest] =
-                                            courseString.split(" - ");
+                                        try {
+                                            // Attempt to fetch from backend
+                                            const [subjectCatalog, ...rest] =
+                                                courseString.split(" - ");
 
-                                        const subjectCodeMatch =
-                                            subjectCatalog.match(/^[A-Za-z]+/);
-                                        if (!subjectCodeMatch) {
-                                            throw new Error(
-                                                `Invalid subject code in course string: ${courseString}`
+                                            const subjectCodeMatch =
+                                                subjectCatalog.match(
+                                                    /^[A-Za-z]+/
+                                                );
+                                            const subject = subjectCodeMatch
+                                                ? subjectCodeMatch[0]
+                                                : "Unknown";
+
+                                            const catalogNumberSubstring =
+                                                subjectCatalog
+                                                    .substring(subject.length)
+                                                    .trim();
+                                            const catalogNumberMatch =
+                                                catalogNumberSubstring.match(
+                                                    /^[A-Za-z0-9]+/
+                                                );
+                                            const catalogNumber =
+                                                catalogNumberMatch
+                                                    ? catalogNumberMatch[0]
+                                                    : "Unknown";
+
+                                            const courseData =
+                                                await courseService.getCourseBySubjectAndCatalogNumber(
+                                                    subject,
+                                                    catalogNumber
+                                                );
+
+                                            return {
+                                                subject:
+                                                    courseData.subject ||
+                                                    subject,
+                                                catalogNumber:
+                                                    courseData.catalogNumber ||
+                                                    catalogNumber,
+                                                title:
+                                                    courseData.courseTitle ||
+                                                    "No title available",
+                                                units:
+                                                    courseData.units ||
+                                                    "No units available",
+                                            };
+                                        } catch (error) {
+                                            console.error(
+                                                `Error fetching course data for: ${courseString}`,
+                                                error
                                             );
+
+                                            // Parse courseString as fallback
+                                            const fallbackParsedCourse =
+                                                parseCourseString(courseString);
+                                            return fallbackParsedCourse;
                                         }
-                                        const subject = subjectCodeMatch[0];
-
-                                        const catalogNumberSubstring =
-                                            subjectCatalog.substring(
-                                                subject.length
-                                            );
-                                        const catalogNumberMatch =
-                                            catalogNumberSubstring.match(
-                                                /^[A-Za-z0-9]+/
-                                            );
-                                        if (!catalogNumberMatch) {
-                                            throw new Error(
-                                                `Invalid catalog number in course string: ${courseString}`
-                                            );
-                                        }
-                                        const catalogNumber =
-                                            catalogNumberMatch[0];
-
-                                        // Fetch course details
-                                        const courseData =
-                                            await courseService.getCourseBySubjectAndCatalogNumber(
-                                                subject,
-                                                catalogNumber
-                                            );
-
-                                        return {
-                                            subject: courseData.subject,
-                                            catalogNumber:
-                                                courseData.catalogNumber,
-                                            title: courseData.courseTitle,
-                                            units: courseData.units,
-                                        };
                                     }
                                 )
                             );
@@ -156,37 +183,7 @@ export default function DegreeCompletionPlannerComponent() {
                     )
                 );
 
-                // Remove courses already in the degree plan from the catalog
-                const plannedCourseIds = new Set(
-                    updatedDegreePlan.flatMap((semester) =>
-                        semester.plannedCourses.map(
-                            (course: Course) =>
-                                `${course.subject}-${course.catalogNumber}`
-                        )
-                    )
-                );
-
-                // Filter available courses to exclude those in the degree plan
-                const availableCourses = allCourses.filter(
-                    (course: any) =>
-                        !plannedCourseIds.has(
-                            `${course.subject}-${course.catalogNumber}`
-                        )
-                );
-
-                // Map available courses to match the Course interface
-                const mappedAvailableCourses: Course[] = availableCourses.map(
-                    (course: any) => ({
-                        subject: course.subject,
-                        catalogNumber: course.catalogNumber,
-                        title: course.courseTitle,
-                        units: course.units,
-                        termsOffered: course.termsOffered,
-                    })
-                );
-
                 setDegreePlan(updatedDegreePlan);
-                setCourses(mappedAvailableCourses);
             } catch (error) {
                 console.error("Error fetching data:", error);
             } finally {
@@ -196,6 +193,37 @@ export default function DegreeCompletionPlannerComponent() {
 
         fetchData();
     }, [token]);
+
+    function parseCourseString(courseString: string): Course {
+        const [subjectCatalog, ...rest] = courseString.split(" - ");
+
+        // Extract subject
+        const subjectCodeMatch = subjectCatalog.match(/^[A-Za-z]+/);
+        const subject = subjectCodeMatch ? subjectCodeMatch[0] : "Unknown";
+
+        // Extract catalog number
+        const catalogNumberSubstring = subjectCatalog
+            .substring(subject.length)
+            .trim();
+        const catalogNumberMatch =
+            catalogNumberSubstring.match(/^[A-Za-z0-9]+/);
+        const catalogNumber = catalogNumberMatch
+            ? catalogNumberMatch[0]
+            : "Unknown";
+
+        // Extract title and units
+        const titleAndUnits = rest.join(" - ").trim();
+        const titleMatch = titleAndUnits.match(/^(.+?)\s*\((\d+)\s*units\)$/i);
+        const title = titleMatch ? titleMatch[1] : titleAndUnits;
+        const units = titleMatch ? titleMatch[2] : "0";
+
+        return {
+            subject,
+            catalogNumber,
+            title,
+            units,
+        };
+    }
 
     const updateDegreePlanInBackend = async (updatedPlan: DegreePlanItem[]) => {
         if (!token) return;
@@ -217,6 +245,8 @@ export default function DegreeCompletionPlannerComponent() {
                     (course) =>
                         `${course.subject}${course.catalogNumber} - ${course.title} (${course.units} units)`
                 ),
+                creditHours: semester.creditHours,
+                notes: semester.notes,
             }));
 
             await userService.updateUserById(userId, {
@@ -292,55 +322,77 @@ export default function DegreeCompletionPlannerComponent() {
             const toId = over.id;
 
             if (active.data.current.type === "course") {
-                if (fromSemesterId && toId !== "course-catalog") {
-                    // Dragging from one semester to another
-                    if (fromSemesterId !== toId) {
-                        setDegreePlan((prevPlan) => {
-                            let updatedPlan = prevPlan.map((semester) => {
-                                if (semester.semester === fromSemesterId) {
+                if (
+                    fromSemesterId &&
+                    fromSemesterId !== toId &&
+                    toId !== "course-catalog"
+                ) {
+                    // Moving course from one semester to another
+                    setDegreePlan((prevPlan) => {
+                        let updatedPlan = prevPlan.map((semester) => {
+                            if (semester.semester === fromSemesterId) {
+                                return {
+                                    ...semester,
+                                    plannedCourses:
+                                        semester.plannedCourses.filter(
+                                            (c) =>
+                                                c.subject !== course.subject ||
+                                                c.catalogNumber !==
+                                                    course.catalogNumber
+                                        ),
+                                };
+                            }
+                            return semester;
+                        });
+
+                        updatedPlan = updatedPlan.map((semester) => {
+                            if (semester.semester === toId) {
+                                const courseExists =
+                                    semester.plannedCourses.some(
+                                        (c) =>
+                                            c.subject === course.subject &&
+                                            c.catalogNumber ===
+                                                course.catalogNumber
+                                    );
+                                if (!courseExists) {
                                     return {
                                         ...semester,
-                                        plannedCourses:
-                                            semester.plannedCourses.filter(
-                                                (c) =>
-                                                    c.subject !==
-                                                        course.subject ||
-                                                    c.catalogNumber !==
-                                                        course.catalogNumber
-                                            ),
+                                        plannedCourses: [
+                                            ...semester.plannedCourses,
+                                            course,
+                                        ],
                                     };
                                 }
-                                return semester;
-                            });
-
-                            updatedPlan = updatedPlan.map((semester) => {
-                                if (semester.semester === toId) {
-                                    const courseExists =
-                                        semester.plannedCourses.some(
-                                            (c) =>
-                                                c.subject === course.subject &&
-                                                c.catalogNumber ===
-                                                    course.catalogNumber
-                                        );
-                                    if (!courseExists) {
-                                        return {
-                                            ...semester,
-                                            plannedCourses: [
-                                                ...semester.plannedCourses,
-                                                course,
-                                            ],
-                                        };
-                                    }
-                                }
-                                return semester;
-                            });
-
-                            updateDegreePlanInBackend(updatedPlan);
-                            return updatedPlan;
+                            }
+                            return semester;
                         });
-                    }
+
+                        updateDegreePlanInBackend(updatedPlan);
+                        return updatedPlan;
+                    });
+                } else if (fromSemesterId && toId === "course-catalog") {
+                    // Removing course from semester back to course catalog
+                    setDegreePlan((prevPlan) => {
+                        const updatedPlan = prevPlan.map((semester) => {
+                            if (semester.semester === fromSemesterId) {
+                                return {
+                                    ...semester,
+                                    plannedCourses:
+                                        semester.plannedCourses.filter(
+                                            (c) =>
+                                                c.subject !== course.subject ||
+                                                c.catalogNumber !==
+                                                    course.catalogNumber
+                                        ),
+                                };
+                            }
+                            return semester;
+                        });
+                        updateDegreePlanInBackend(updatedPlan);
+                        return updatedPlan;
+                    });
                 } else if (!fromSemesterId && toId !== "course-catalog") {
-                    // Dragging from catalog to semester
+                    // Adding course from catalog to semester
                     setDegreePlan((prevPlan) => {
                         const updatedPlan = prevPlan.map((semester) => {
                             if (semester.semester === toId) {
@@ -367,9 +419,25 @@ export default function DegreeCompletionPlannerComponent() {
                         return updatedPlan;
                     });
                 }
-                // No need to handle dragging from semester back to catalog
+                // Do nothing if dragging within the same semester
             }
         }
+    };
+
+    const updateSemesterNotes = (semesterName: string, newNotes: string) => {
+        setDegreePlan((prevPlan) => {
+            const updatedPlan = prevPlan.map((semester) => {
+                if (semester.semester === semesterName) {
+                    return {
+                        ...semester,
+                        notes: newNotes,
+                    };
+                }
+                return semester;
+            });
+            updateDegreePlanInBackend(updatedPlan);
+            return updatedPlan;
+        });
     };
 
     const sortedDegreePlan = [...degreePlan].sort((a, b) => a.order - b.order);
@@ -422,7 +490,6 @@ export default function DegreeCompletionPlannerComponent() {
                                 key={semesterData.semester}
                                 semester={semesterData.semester}
                                 plannedCourses={semesterData.plannedCourses}
-                                creditHours={semesterData.creditHours}
                                 notes={semesterData.notes}
                                 removeCourse={(course) =>
                                     setDegreePlan((prevPlan) => {
@@ -453,6 +520,12 @@ export default function DegreeCompletionPlannerComponent() {
                                 canDeleteSemester={
                                     index === 0 ||
                                     index === sortedDegreePlan.length - 1
+                                }
+                                updateNotes={(newNotes) =>
+                                    updateSemesterNotes(
+                                        semesterData.semester,
+                                        newNotes
+                                    )
                                 }
                             />
                         ))}

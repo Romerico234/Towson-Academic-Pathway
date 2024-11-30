@@ -35,7 +35,7 @@ export default function CourseCatalogComponent({
         backgroundColor: isOver ? "lightblue" : undefined,
     };
 
-    // Apply search and filters
+    // Filters
     const filteredCourses = courses
         .filter((course) => {
             const query = searchQuery.toLowerCase();
@@ -62,7 +62,7 @@ export default function CourseCatalogComponent({
 
             // Match units filter
             const matchesUnits = (() => {
-                if (!filterUnits) return true; // No filter applied
+                if (!filterUnits) return true;
               
                 if (filterUnits.includes("-")) {
                   // Handle range-based filter (e.g., "1-3")

@@ -54,7 +54,7 @@ export default function CourseCardComponent({
                 </p>
                 <button
                     onClick={(e) => {
-                        e.stopPropagation(); // Prevent triggering drag event
+                        e.stopPropagation(); 
                         setShowDetails(true);
                     }}
                     className="text-blue-500 hover:text-blue-700"
