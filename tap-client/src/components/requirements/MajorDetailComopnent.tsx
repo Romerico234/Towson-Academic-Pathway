@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import MajorService from "../../shared/services/major.service";
+import Lottie from "lottie-react";
+import loadingAnimation from "../../assets/lottie-assets/loading.json";
 
 interface Major {
     name: string;
@@ -45,8 +47,14 @@ export default function MajorDetailComponent() {
 
     if (!major) {
         return (
-            <div className="container mx-auto p-6">
-                <p>Loading major details...</p>
+            <div className="flex justify-center items-center min-h-screen">
+                <Lottie
+                    animationData={loadingAnimation}
+                    loop={true} // Set looping
+                    autoplay={true} // Set autoplay
+                    height={150} // Set height
+                    width={150} // Set width
+                />
             </div>
         );
     }

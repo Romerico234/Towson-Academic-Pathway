@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import RequirementsService from "../../shared/services/requirements.service";
+import Lottie from "lottie-react";
+import loadingAnimation from "../../assets/lottie-assets/loading.json";
 
 export default function HonorsRequirementsComponent() {
     const [honorsRequirements, setHonorsRequirements] = useState<any>(null);
@@ -20,8 +22,14 @@ export default function HonorsRequirementsComponent() {
 
     if (!honorsRequirements) {
         return (
-            <div className="container mx-auto p-6">
-                <p>Loading honors requirements...</p>
+            <div className="flex justify-center items-center min-h-screen">
+                <Lottie
+                    animationData={loadingAnimation}
+                    loop={true} // Set looping
+                    autoplay={true} // Set autoplay
+                    height={150} // Set height
+                    width={150} // Set width
+                />
             </div>
         );
     }
