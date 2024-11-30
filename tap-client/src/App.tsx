@@ -12,6 +12,10 @@ import PublicLayout from "./layouts/PublicLayout";
 import AuthenticatedLayout from "./layouts/AuthenticatedLayout";
 import RequireAuth from "./components/auth/RequireAuth";
 import RequirementsComponent from "./components/requirements/RequirementsComponent";
+import MajorsListComponent from "./components/requirements/MajorsListComponent";
+import MajorDetailComponent from "./components/requirements/MajorDetailComopnent";
+import DegreeRequirementsComponent from "./components/requirements/DegreeRequirementsComponent";
+import HonorsRequirementsComponent from "./components/requirements/HonorsRequirementComponent";
 
 export default function App() {
     return (
@@ -50,6 +54,22 @@ export default function App() {
                         <Route
                             path="/requirements"
                             element={<RequirementsComponent />}
+                        />
+                        <Route
+                            path="/requirements/majors"
+                            element={<MajorsListComponent />}
+                        />
+                        <Route
+                            path="/requirements/majors/:majorName"
+                            element={<MajorDetailComponent />}
+                        />
+                        <Route
+                            path="/requirements/degree"
+                            element={<DegreeRequirementsComponent />}
+                        />
+                        <Route
+                            path="/requirements/honors"
+                            element={<HonorsRequirementsComponent />}
                         />
                     </Route>
 

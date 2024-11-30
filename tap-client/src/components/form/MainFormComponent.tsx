@@ -74,13 +74,8 @@ export default function MainFormComponent() {
             HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
         >
     ) => {
-        const { name, value, type } = e.target;
-        if (type === "checkbox") {
-            setPreferences({
-                ...preferences,
-                [name]: (e.target as HTMLInputElement).checked,
-            });
-        } else if (name === "unofficialTranscript") {
+        const { name, value } = e.target;
+        if (name === "unofficialTranscript") {
             setPersonalInfo({
                 ...personalInfo,
                 unofficialTranscript: (e.target as HTMLInputElement).files

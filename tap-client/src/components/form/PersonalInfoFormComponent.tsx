@@ -38,6 +38,8 @@ export default function PersonalInfoFormComponent({
         "Bachelor of Science",
         "Bachelor of Arts",
         "Bachelor of Fine Arts",
+        "Bachelor of Music",
+        "Bachelor of Technical and Professional Studies",
     ];
 
     // Generate years between current year and +10 years
