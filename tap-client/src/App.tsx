@@ -6,12 +6,12 @@ import LoginComponent from "./components/auth/LoginComponent";
 import RegisterComponent from "./components/auth/RegisterComponent";
 import MainFormComponent from "./components/form/MainFormComponent";
 import SettingsComponent from "./components/settings/SettingsComponent";
-import CourseCatalogComponent from "./components/course-catalog/CourseCatalogComponent";
-import DegreeCompletionPlannerComponent from "./components/degree-completion-planner/DegreeCompletionPlannerComponent";
+import DashboardComponent from "./components/dashboard/DashboardComponent";
 import AuthProvider from "./components/auth/AuthComponent";
 import PublicLayout from "./layouts/PublicLayout";
 import AuthenticatedLayout from "./layouts/AuthenticatedLayout";
 import RequireAuth from "./components/auth/RequireAuth";
+import RequirementsComponent from "./components/requirements/RequirementsComponent";
 
 export default function App() {
     return (
@@ -38,21 +38,22 @@ export default function App() {
                             </RequireAuth>
                         }
                     >
+                        <Route
+                            path="/dashboard"
+                            element={<DashboardComponent />}
+                        />
                         <Route path="/form" element={<MainFormComponent />} />
                         <Route
                             path="/settings"
                             element={<SettingsComponent />}
                         />
                         <Route
-                            path="/course-catalog"
-                            element={<CourseCatalogComponent />}
-                        />
-                        <Route
-                            path="/degree-planner"
-                            element={<DegreeCompletionPlannerComponent />}
+                            path="/requirements"
+                            element={<RequirementsComponent />}
                         />
                     </Route>
 
+                    {/* Catch-all route */}
                     <Route path="*" element={<HomeComponent />} />
                 </Routes>
             </BrowserRouter>

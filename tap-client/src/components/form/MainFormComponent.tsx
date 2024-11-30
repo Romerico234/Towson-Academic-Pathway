@@ -134,11 +134,14 @@ export default function MainFormComponent() {
             const response = await openAIService.generatePlan(dataToSend);
 
             const userService = new UserService();
+            // Clear the degreePlan
+            await userService.updateUserById(userId, { degreePlan: [] });
+            // Push new degreePlan
             await userService.updateUserById(userId, {
                 $push: { degreePlan: response },
             });
 
-            navigate("/degree-planner");
+            navigate("/dashboard");
         } catch (error) {
             console.error("Error generating or saving degree plan:", error);
             alert(

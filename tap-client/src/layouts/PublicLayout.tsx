@@ -4,10 +4,19 @@ import FooterComponent from "../components/footer/FooterComponent";
 
 export default function PublicLayout() {
     return (
-        <>
-            <NavbarComponent />
-            <Outlet />
-            <FooterComponent />
-        </>
+        <div className="flex flex-col min-h-screen">
+            <header>
+                <NavbarComponent />
+            </header>
+
+            {/* Main content using vertical layout */}
+            <main className="flex-grow">
+                <Outlet />
+            </main>
+
+            <footer>
+                <FooterComponent />
+            </footer>
+        </div>
     );
 }

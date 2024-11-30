@@ -31,7 +31,7 @@ export default class AuthService {
         return response.data;
     }
 
-    async logout(token: string): Promise<void> {
-        await api.post("/auth/logout", { token });
+    async logout(token: string, refreshToken: string): Promise<void> {
+        await api.post("/auth/logout", { token, refreshToken });
     }
 }
