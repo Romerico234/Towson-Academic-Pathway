@@ -8,14 +8,8 @@
             "courseTitle": "COMPUTERS AND CREATIVITY",
             "termsOffered": "Fall, Winter, Spring & Summer",
             "description": "Explores creativity and problem-solving using computers.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": []
         },
@@ -27,14 +21,8 @@
             "courseTitle": "INFORMATION AND TECHNOLOGY FOR BUSINESS",
             "termsOffered": "Fall, Winter, Spring & Summer",
             "description": "Introduction to the role of information technology in business.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": []
         },
@@ -46,14 +34,8 @@
             "courseTitle": "GEN COMPUTER SCI",
             "termsOffered": "Fall, Spring & Summer",
             "description": "General introduction to computer science principles.",
-            "units": 4,
+            "units": "4",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": []
         },
@@ -65,14 +47,8 @@
             "courseTitle": "INTRODUCTION TO COMPUTER SCIENCE I",
             "termsOffered": "Fall, Spring & Summer",
             "description": "An introduction to fundamental programming concepts.",
-            "units": 4,
+            "units": "4",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": [
                 "COSC 175",
@@ -87,14 +63,8 @@
             "courseTitle": "INTRODUCTION TO COMPUTER SCIENCE II",
             "termsOffered": "Fall, Spring & Summer",
             "description": "Continuation of Computer Science I with data structures.",
-            "units": 4,
+            "units": "4",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 236", "MATH 211 or MATH 273"]
         },
@@ -106,14 +76,8 @@
             "courseTitle": "PRINCIPLES OF COMPUTER ORGANIZATION",
             "termsOffered": "Fall, Spring & Summer",
             "description": "Explores the principles and structure of computer systems.",
-            "units": 4,
+            "units": "4",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 236", "MATH 263 or MATH 267"]
         },
@@ -125,14 +89,8 @@
             "courseTitle": "DATA STRUCTURES AND ALGORITHM ANALYSIS",
             "termsOffered": "Fall, Spring & Summer",
             "description": "Covers advanced data structures and algorithm design.",
-            "units": 4,
+            "units": "4",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 237", "MATH 274"]
         },
@@ -144,14 +102,8 @@
             "courseTitle": "DATA COMMUNICATIONS AND NETWORKING",
             "termsOffered": "Fall & Spring",
             "description": "Covers principles of networking and data transmission.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 290"],
             "corequisites": ["COSC 336"]
@@ -164,14 +116,8 @@
             "courseTitle": "SOFTWARE ENGINEERING",
             "termsOffered": "Fall & Spring",
             "description": "Introduction to software development lifecycle and practices.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 336"]
         },
@@ -183,14 +129,8 @@
             "courseTitle": "OPERATING SYSTEMS",
             "termsOffered": "Fall & Spring",
             "description": "Introduction to the design and implementation of operating systems.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 336"]
         },
@@ -202,14 +142,8 @@
             "courseTitle": "PROGRAMMING LANGUAGES: DESIGN & IMPLEMENTATION",
             "termsOffered": "Fall & Spring",
             "description": "Introduction to the design and implementation of programming languages.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 336"]
         },
@@ -221,14 +155,8 @@
             "courseTitle": "DATABASE MANAGEMENT SYSTEMS",
             "termsOffered": "Fall & Spring",
             "description": "Covers the principles and practices of database design and implementation.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 336"]
         },
@@ -240,14 +168,8 @@
             "courseTitle": "APPLICATION SOFTWARE SECURITY",
             "termsOffered": "Fall",
             "description": "Explores security concepts for application software.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],
             "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 340", "COSC 455", "COSC 457"]
@@ -260,14 +182,8 @@
             "courseTitle": "COMPUTER SIMULATION & MODELING",
             "termsOffered": "Occasionally",
             "description": "Introduction to computer simulation techniques and modeling concepts.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 336", "MATH 330"]
         },
@@ -279,14 +195,8 @@
             "courseTitle": "ARTIFICIAL INTELLIGENCE",
             "termsOffered": "Spring",
             "description": "Covers the foundations of artificial intelligence, including algorithms and applications.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],
             "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 336"]
@@ -299,14 +209,8 @@
             "courseTitle": "ROBOTICS",
             "termsOffered": "Occasionally",
             "description": "Introduction to robotics, including design and programming.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": false
-                }
-            ],
             "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 336"]
@@ -319,14 +223,8 @@
             "courseTitle": "FOUNDATIONS OF DATA MINING",
             "termsOffered": "Spring",
             "description": "Covers the concepts and techniques of data mining.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 457"]
         },
@@ -338,14 +236,8 @@
             "courseTitle": "COMPUTER GRAPHICS",
             "termsOffered": "Occasionally",
             "description": "Introduction to computer graphics principles and programming.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 336"]
         },
@@ -357,14 +249,8 @@
             "courseTitle": "CASE STUDIES IN COMPUTER SECURITY",
             "termsOffered": "Spring",
             "description": "Examines case studies in computer security.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 440", "COSC 450"]
         },
@@ -376,14 +262,8 @@
             "courseTitle": "DESIGN & ANALYSIS ALGORITHMS",
             "termsOffered": "Fall",
             "description": "Covers design and analysis of algorithms with real-world applications.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],
             "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 336"]
@@ -396,14 +276,8 @@
             "courseTitle": "WEB-BASED PROGRAM",
             "termsOffered": "Fall & Spring",
             "description": "Focuses on web programming technologies and frameworks.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 336"]
         },
@@ -415,14 +289,8 @@
             "courseTitle": "REVERSE ENGINEERING AND MALWARE ANALYSIS",
             "termsOffered": "Spring",
             "description": "Explores reverse engineering techniques and malware analysis.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 340", "COSC 450"]
         },
@@ -434,14 +302,9 @@
             "courseTitle": "SOFTWARE PROJECT PRACTICUM",
             "termsOffered": "Spring",
             "description": "Capstone course focusing on practical software development projects.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Practicum",
-                    "required": true
-                }
-            ],            "campus": "Main Academic Campus",
+            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": [
                 "COSC 412",
@@ -457,14 +320,8 @@
             "courseTitle": "INTERNSHIP IN SECONDARY EDUCATION - COMPUTER SCIENCE",
             "termsOffered": "Spring",
             "description": "Internship for secondary education majors in computer science.",
-            "units": 6,
+            "units": "6",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Practicum",
-                    "required": true
-                }
-            ],
             "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["COSC 482", "SEMS 498", "Consent of Department"]
@@ -477,14 +334,8 @@
             "courseTitle": "DIRECTED READINGS IN COMPUTER SCIENCE",
             "termsOffered": "Occasionally",
             "description": "Allows in-depth exploration of topics under faculty supervision.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Lecture",
-                    "required": false
-                }
-            ],
             "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": ["Consent of Instructor"]
@@ -497,14 +348,9 @@
             "courseTitle": "INDEPENDENT STUDY",
             "termsOffered": "Occasionally",
             "description": "Allows students to pursue independent study projects.",
-            "units": 3,
+            "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "components": [
-                {
-                    "component": "Independent Study",
-                    "required": false
-                }
-            ],            "campus": "Main Academic Campus",
+            "campus": "Main Academic Campus",
             "campusCode": "MAIN",
             "prerequisites": [
                 "Senior standing in Computer Science",

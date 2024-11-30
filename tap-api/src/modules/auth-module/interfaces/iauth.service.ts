@@ -21,4 +21,11 @@ export interface IAuthService {
      * @returns A Promise that resolves to an object containing the JWT token
      */
     login(email: string, password: string): Promise<{ token: string }>;
+
+    /**
+     * Logs out a user by revoking the token
+     * @param token JWT token to revoke
+     * @param refreshToken JWT refresh token to revoke
+     */
+    logout(token: string, refreshToken: string): Promise<void>;
 }

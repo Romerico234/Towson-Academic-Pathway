@@ -23,4 +23,15 @@ export default class AuthService {
         });
         return response.data;
     }
+
+    async refreshTokens(refreshToken: string): Promise<any> {
+        const response = await api.post("/auth/refresh-token", {
+            refreshToken,
+        });
+        return response.data;
+    }
+
+    async logout(token: string, refreshToken: string): Promise<void> {
+        await api.post("/auth/logout", { token, refreshToken });
+    }
 }

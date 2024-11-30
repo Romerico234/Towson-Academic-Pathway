@@ -1,105 +1,141 @@
-import OpenAI from "openai";
+import { OpenAI } from "openai";
 import { IOpenAIService } from "./interfaces/iopenai.service";
 import { OpenAIError } from "../../shared/errors/errors";
+import { MajorService } from "../major-module/major.service";
+import { CoreService } from "../core-module/core.service";
+import { RequirementsService } from "../requirements-module/requirements.service";
 import dotenv from "dotenv";
 
 dotenv.config();
 
 export class OpenAIService implements IOpenAIService {
     private openai: OpenAI;
+    private majorService: MajorService;
+    private coreService: CoreService;
+    private requirementsService: RequirementsService;
     private systemPrompt: string;
 
     constructor() {
+        const apiKey = process.env.OPENAI_API_KEY;
+        if (!apiKey) {
+            throw new Error(
+                "OPENAI_API_KEY is not set in the environment variables"
+            );
+        }
+
         this.openai = new OpenAI({
-            apiKey: process.env.OPENAI_API_KEY || "",
+            apiKey: apiKey,
         });
 
+        this.majorService = new MajorService();
+        this.coreService = new CoreService();
+        this.requirementsService = new RequirementsService();
+
         this.systemPrompt = `
-    Towson Academic Pathway (TAP) is a platform that helps students plan their academic journey at Towson University. 
-    This bot is designed to help users generate a plan for their academic journey based on Towson University courses.
+        Towson Academic Pathway (TAP) is a platform that helps students plan their academic journey at Towson University. 
+        This bot is designed to assist users in generating a comprehensive degree plan for their academic journey based on Towson University courses.
 
-    Rules:
-    - The bot will generate a general degree plan based on the courses that are provided.
-    - The bot will generate a general degree plan based on the user's academic requirements.
-    - The bot will generate a general degree plan based on the user's academic standing.
-    - The bot will generate a general degree plan based on the user's preferences.
-    - The bot will generate a plan for the upcoming semester based on the degree plan and the courses that are provided.
-    - The bot will return a JSON object containing the generated degree plan and the generated plan for the upcoming semester.
-    
-    Degree Plan Structure:
-    degreePlan (Array of Objects): General academic outline
-    - semester (String): Term, e.g., "Fall 2025"
-    - plannedCourses (Array of Strings): Course names or subject areas
-    - creditHours (Number): Total credit hours for that semester
-    - notes (String, optional): Notes on the semester plan
+        Rules:
+        - Carefully analyze the unofficial transcript provided by the user to identify completed courses, academic progress, and remaining requirements. This step is critical to ensure prerequisites, core curriculum requirements, and degree-specific requirements are correctly addressed.
+        - Generate a general degree plan that considers:
+            - Courses already completed (as verified in the unofficial transcript).
+            - Remaining requirements for graduation.
+            - The user's academic standing, ensuring prerequisite courses are included if missing.
+            - The user's preferences, such as:
+                - Preferred credit hours per semester.
+                - Availability during summer/winter terms.
+                - Unavailable terms.
+        - Balance core curriculum, major-specific courses, and elective requirements across semesters while adhering to the user's preferences.
+        - Address all core, major-specific, and elective requirements by scheduling them appropriately.
+        - Handle prerequisites with care, ensuring prerequisite courses are added in the correct sequence to avoid scheduling conflicts or delays in the user's academic progress.
+        - Include notes for any semester where conflicts arise or ambiguities exist in the transcript or preferences.
+        - Ensure the degree plan includes all semesters (Fall, Winter, Spring, and Summer) within the user's academic timeline (from where they start to end), even if no courses are scheduled in some semesters.
 
-    Active Semester Plan Structure:
-    activeSemesterPlan (Object): Detailed schedule for the upcoming semester
-    - courseCode (String): Course code, e.g., "COSC101"
-    - title (String): Full course title
-    - units (Number): Credit hours
-    - schedule (Array of Objects): Class meeting details
-        - day (String): Days, e.g., "MoWe"
-        - startTime (String): Class start time
-        - endTime (String): Class end time
-        - location (String): Classroom or online location
-        - instructor (String): Instructor's name.
-
-    Example Result:
-    {
-        "degreePlan": [
-          {
-            "semester": "Fall 2025",
-            "plannedCourses": ["COSC101 - Introduction to Computer Science", "MATH115 - College Algebra", "ENGL102 - Writing for a Liberal Education"],
-            "creditHours": 12,
-            "notes": "Focus on foundational courses in computer science and mathematics."
-          },
-          // ... additional semesters
-        ],
-        "activeSemesterPlan": {
-          "courses": [
+        Degree Plan Structure:
+        [
             {
-              "courseCode": "COSC301",
-              "title": "Software Engineering",
-              "units": 3,
-              "schedule": [
-                {
-                  "day": "MoWe",
-                  "startTime": "10:00 AM",
-                  "endTime": "11:15 AM",
-                  "location": "Room 204, Computer Science Building",
-                  "instructor": "Dr. Jane Doe"
-                }
-              ]
+                "semester": "Spring 2024",
+                "plannedCourses": ["COSC109 - Computers and Creativity (3 units)", "MATH115 - College Algebra (3 units)", "ENGL102 - Writing for a Liberal Education (3 units)"],
+                "creditHours": 9,
+                "notes": "Focus on foundational courses in computer science and mathematics."
             },
-            // ... additional courses
-          ]
-        }
-      }  
-      
-    Again, just return the JSON object with the degree plan and the active semester plan.
-    `;
+            {
+                "semester": "Summer 2024",
+                "plannedCourses": [],
+                "creditHours": 0,
+                "notes": ""
+            },
+            {
+                "semester": "Fall 2025",
+                "plannedCourses": ["COSC175 - General Computer Science (4 units)", "MATH273 - Calculus I (4 units)", "ENGL317 -  WRITING FOR BUSINESS AND INDUSTRY (3 units)"],
+                "creditHours": 11,
+                "notes": "Mored advanced computer science and mathematics."
+            },
+            {
+                "semester": "Winter 2025",
+                "plannedCourses": [],
+                "creditHours": 0,
+                "notes": ""
+            },
+            // Additional semesters... (Ensure the degree plan includes all semesters (Fall, Winter, Spring, and Summer) within the user's academic timeline (from where they start to end), even if no courses are scheduled in some semesters)
+        ]
+
+        Important:
+        - Use the unofficial transcript as the primary source to determine:
+            - Courses already completed.
+            - Courses that can be skipped.
+            - Courses that need to be retaken.
+        - If any required course (core, major, or elective) is missing, ensure it is included in the degree plan.
+        - Clearly indicate any issues, conflicts, or ambiguities in the transcript data or user preferences in the notes section of the affected semester.
+
+        Instructions:
+        - Use the provided degree plan structure.
+        - Return ONLY the JSON object containing the degree plan.
+        - Ensure that the output adheres strictly to the format and rules specified above.
+        `;
     }
 
-    public async generatePlans(userPrompt: string): Promise<any> {
+    public async generatePlans(userData: any): Promise<any> {
         try {
-            // TODO: Fetch relevant courses based on user prompt and send it to OpenAI
+            const { major } = userData;
 
-            const completion = await this.openai.chat.completions.create({
-                model: "gpt-3.5-turbo", // NOTE: 4096 tokens ≈ 12,000–16,000 characters per message
+            // Fetch necessary data
+            const majorData = await this.majorService.getMajorByName(major);
+            if (!majorData) throw new Error(`Major ${major} not found`);
+
+            const coreRequirements = await this.coreService.getAllCores();
+            const degreeRequirements =
+                await this.requirementsService.getRequirements();
+
+            // Build the OpenAI prompt
+            const userPrompt = this.buildPrompt(
+                userData,
+                majorData,
+                coreRequirements,
+                degreeRequirements
+            );
+
+            const assistantId = process.env.OPENAI_ASSISTANT_ID || "";
+
+            const response = await this.openai.chat.completions.create({
                 messages: [
                     { role: "system", content: this.systemPrompt },
                     { role: "user", content: userPrompt },
                 ],
-                max_tokens: 1024,
+                model: "gpt-4o",
+                user: assistantId,
+                max_tokens: 4096,
+                temperature: 0.1,
             });
 
-            const content = completion.choices[0].message?.content;
+            const content = response.choices[0].message?.content;
             console.log("OpenAI Response:", content);
 
             if (content) {
-                const extractedContent = this.extractJson(content);
-                return extractedContent;
+                // Extract JSON and validate
+                const degreePlan = this.extractJSON(content);
+                this.validateDegreePlan(degreePlan);
+                return degreePlan;
             } else {
                 throw new OpenAIError("No response from OpenAI API");
             }
@@ -109,22 +145,84 @@ export class OpenAIService implements IOpenAIService {
         }
     }
 
-    private extractJson(content: string): any {
+    private buildPrompt(
+        userData: any,
+        majorData: any,
+        coreRequirements: any,
+        degreeRequirements: any
+    ): string {
+        let prompt = `User Information:\n`;
+        prompt += `First Name: ${userData.firstName}\n`;
+        prompt += `Last Name: ${userData.lastName}\n`;
+        prompt += `Email: ${userData.email}\n`;
+        prompt += `Bachelor's Degree: ${userData.bachelorsDegree}\n`;
+        prompt += `Major: ${userData.major}\n`;
+        prompt += `Concentration: ${userData.concentration || "None"}\n`;
+        prompt += `Expected Graduation: ${userData.expectedGraduationSemester} ${userData.expectedGraduationYear}\n`;
+        prompt += `Preferred Credit Hours per Semester: ${userData.preferredCreditHours}\n`;
+        prompt += `Allow Summer/Winter Classes: ${
+            userData.allowSummerWinter ? "Yes" : "No"
+        }\n`;
+        prompt += `General Education Completed: ${
+            userData.generalEducationCompleted ? "Yes" : "No"
+        }\n`;
+        prompt += `Unavailable Terms: ${
+            Array.isArray(userData.unavailableTerms)
+                ? userData.unavailableTerms.join(", ")
+                : "None"
+        }\n\n`;
+
+        prompt += `Major Requirements:\n${JSON.stringify(
+            majorData,
+            null,
+            2
+        )}\n\n`;
+        prompt += `Core Requirements:\n${JSON.stringify(
+            coreRequirements,
+            null,
+            2
+        )}\n\n`;
+        prompt += `Degree Requirements:\n${JSON.stringify(
+            degreeRequirements,
+            null,
+            2
+        )}\n\n`;
+
+        prompt += `Generate a degree plan based on the user's information and requirements. Ensure the structure matches the provided format.`;
+
+        return prompt;
+    }
+
+    private extractJSON(content: string): any {
         try {
-            const jsonStartIndex = content.indexOf("{");
-            const jsonEndIndex = content.lastIndexOf("}");
-            if (jsonStartIndex !== -1 && jsonEndIndex !== -1) {
-                const jsonString = content.substring(
-                    jsonStartIndex,
-                    jsonEndIndex + 1
-                );
+            const jsonMatch = content.match(/\[[\s\S]*\]/);
+            if (jsonMatch) {
+                const jsonString = jsonMatch[0];
                 return JSON.parse(jsonString);
             } else {
-                throw new Error("JSON not found in the response");
+                throw new Error("No JSON array found in the response");
             }
         } catch (error) {
-            console.error("JSON extraction error:", error);
+            console.error("Error parsing JSON:", error);
             throw new OpenAIError("Failed to parse JSON from OpenAI response");
         }
+    }
+
+    private validateDegreePlan(degreePlan: any) {
+        if (!Array.isArray(degreePlan)) {
+            throw new Error("Invalid degree plan format: must be an array");
+        }
+
+        degreePlan.forEach((semester: any, index: number) => {
+            if (
+                !semester.semester ||
+                !Array.isArray(semester.plannedCourses) ||
+                typeof semester.creditHours !== "number"
+            ) {
+                throw new Error(
+                    `Invalid degree plan structure at index ${index}`
+                );
+            }
+        });
     }
 }

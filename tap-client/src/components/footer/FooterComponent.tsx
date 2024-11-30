@@ -22,10 +22,10 @@ export default function FooterComponent() {
                     FAQ
                 </a>
                 <a
-                    href="/form"
+                    href="/contact-us"
                     className="hover:text-towsonLineGold transition duration-300"
                 >
-                    Form
+                    Contact Us
                 </a>
             </div>
 

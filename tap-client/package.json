@@ -10,10 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.2.0",
+    "@dnd-kit/utilities": "^3.2.2",
+    "@types/jwt-decode": "^2.2.1",
     "axios": "^1.7.7",
+    "jwt-decode": "^4.0.0",
     "lottie-react": "^2.4.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-pro-sidebar": "^1.1.0",
     "react-router-dom": "^6.27.0"
   },
   "devDependencies": {
