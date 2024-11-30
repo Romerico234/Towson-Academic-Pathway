@@ -113,7 +113,7 @@ export default function DegreeCompletionPlannerComponent() {
                                     async (courseString: string) => {
                                         try {
                                             // Attempt to fetch from backend
-                                            const [subjectCatalog, ...rest] =
+                                            const [subjectCatalog] =
                                                 courseString.split(" - ");
 
                                             const subjectCodeMatch =
