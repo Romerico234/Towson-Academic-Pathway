@@ -8,10 +8,9 @@ def load_degree_requirements(db):
     if os.path.exists(requirements_file):
         with open(requirements_file, 'r') as f:
             data = json.load(f)
-            degree_requirements = data.get('degreeRequirements', {})
-            if degree_requirements:
+            if data:
                 print('Inserting degree requirements')
-                db['requirements'].insert_one(degree_requirements)
+                db['requirements'].insert_one(data)
             else:
                 print('No degree requirements found')
     else:

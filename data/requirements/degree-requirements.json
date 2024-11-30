@@ -1,28 +1,33 @@
 {
     "degreeRequirements": {
         "generalRequirements": {
-            "graduationApplicationDeadlines": {
-                "mayGraduates": "January 15",
-                "augustGraduates": "July 4",
-                "decemberGraduates": "August 15"
+            "graduationDeadlines": {
+                "May": "January 15",
+                "August": "July 4",
+                "December": "August 15"
             },
             "minimumEarnedUnits": 120,
             "upperLevelUnits": 32,
             "coreCurriculumCompletion": true,
-            "majorCompletion": {
+            "majorRequirements": {
+                "minimumGpa": 2.0,
                 "minimumGrade": 2.0
             },
-            "minimumCumulativeGpa": 2.0,
+            "cumulativeGpaRequirement": 2.0,
             "postMatriculationUnits": 15,
             "finalUnitsInResidence": 30,
-            "recordCorrectionDeadlineDays": 180
+            "recordCorrectionDeadline": {
+                "days": 180
+            }
         },
-        "degreeTypes": {
-            "bachelorOfScience": {
-                "requirements": "generalRequirements"
+        "degreeTypes": [
+            {
+                "type": "Bachelor of Science",
+                "requirementsReference": "generalRequirements"
             },
-            "bachelorOfArts": {
-                "requirements": "generalRequirements",
+            {
+                "type": "Bachelor of Arts",
+                "requirementsReference": "generalRequirements",
                 "additionalRequirements": {
                     "foreignLanguageProficiency": {
                         "level": "intermediate (202)",
@@ -30,27 +35,30 @@
                     }
                 }
             },
-            "bachelorOfFineArts": {
-                "requirements": "generalRequirements",
+            {
+                "type": "Bachelor of Fine Arts",
+                "requirementsReference": "generalRequirements",
                 "additionalRequirements": {
                     "majors": ["Dance", "Acting", "Art + Design"],
                     "performanceStudioRequirements": true
                 }
             },
-            "bachelorOfMusic": {
-                "requirements": "generalRequirements",
+            {
+                "type": "Bachelor of Music",
+                "requirementsReference": "generalRequirements",
                 "additionalRequirements": {
                     "major": "Music",
                     "performanceStudioRequirements": true
                 }
             },
-            "bachelorOfTechnicalAndProfessionalStudies": {
-                "requirements": "generalRequirements",
+            {
+                "type": "Bachelor of Technical and Professional Studies",
+                "requirementsReference": "generalRequirements",
                 "additionalRequirements": {
                     "articulatedPrograms": true
                 }
             }
-        },
+        ],
         "satisfactoryProgress": {
             "requirements": [
                 "Complete ENGL 102 or ENGL 190 within the first year",

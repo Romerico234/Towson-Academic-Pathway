@@ -26,6 +26,7 @@ export default function MainFormComponent() {
         unofficialTranscript: null,
         expectedGraduationSemester: "",
         expectedGraduationYear: new Date().getFullYear(),
+        isHonorsStudent: false,
     });
 
     const [preferences, setPreferences] = useState<IPreferencesInfo>({
@@ -86,6 +87,11 @@ export default function MainFormComponent() {
                     ? (e.target as HTMLInputElement).files![0]
                     : null,
             });
+        } else if (name === "isHonorsStudent") {
+            setPersonalInfo({
+                ...personalInfo,
+                [name]: value === "true",
+            });
         } else if (Object.keys(personalInfo).includes(name)) {
             setPersonalInfo({
                 ...personalInfo,
@@ -119,6 +125,8 @@ export default function MainFormComponent() {
                     key,
                     JSON.stringify(preferences.unavailableTerms)
                 );
+            } else if (key === "isHonorsStudent") {
+                dataToSend.append(key, String(formData.isHonorsStudent));
             } else {
                 dataToSend.append(key, (formData as any)[key]);
             }

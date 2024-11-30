@@ -5,6 +5,7 @@ import degreeHatImg from "../../assets/form-assets/degree-hat.png";
 import schoolImg from "../../assets/form-assets/school.png";
 import dateImg from "../../assets/form-assets/date.png";
 import fileImg from "../../assets/form-assets/file.png";
+import starImg from "../../assets/form-assets/star.png";
 
 type Major = "Computer Science";
 
@@ -292,6 +293,62 @@ export default function PersonalInfoFormComponent({
                                     </option>
                                 ))}
                             </select>
+                        </div>
+                    </div>
+                </div>
+
+                {/* In Honors College */}
+                <div className="flex flex-wrap items-center mb-4">
+                    <label className="w-full text-sm font-medium mb-2">
+                        Are you in the Honors College?
+                    </label>
+                    <div className="w-full">
+                        <div className="flex">
+                            <span className="bg-towsonGoldDark text-towsonBlack p-2 rounded-l">
+                                <img
+                                    src={starImg}
+                                    alt="Honors Icon"
+                                    className="w-6 h-6"
+                                />
+                            </span>
+                            <div className="flex items-center bg-white text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight w-full">
+                                <div className="flex items-center space-x-6">
+                                    <label className="flex items-center space-x-2">
+                                        <input
+                                            type="radio"
+                                            name="isHonorsStudent"
+                                            value="true"
+                                            checked={
+                                                formData.isHonorsStudent ===
+                                                true
+                                            }
+                                            onChange={handleInputChange}
+                                            className="form-radio h-5 w-5 text-towsonGoldDark focus:ring-towsonGoldLight"
+                                            required
+                                        />
+                                        <span className="text-towsonBlack">
+                                            Yes
+                                        </span>
+                                    </label>
+                                    <label className="flex items-center space-x-2">
+                                        <input
+                                            type="radio"
+                                            name="isHonorsStudent"
+                                            value="false"
+                                            checked={
+                                                formData.isHonorsStudent ===
+                                                false
+                                            }
+                                            onChange={handleInputChange}
+                                            className="form-radio h-5 w-5 text-towsonGoldDark focus:ring-towsonGoldLight"
+                                            required
+                                        />
+                                        <span className="text-towsonBlack">
+                                            No
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -8,10 +8,9 @@ def load_honors_requirements(db):
     if os.path.exists(honors_file):
         with open(honors_file, 'r') as f:
             data = json.load(f)
-            honors_requirements = data.get('honorsRequirements', {})
-            if honors_requirements:
+            if data:
                 print('Inserting honors requirements')
-                db['requirements'].insert_one(honors_requirements)
+                db['requirements'].insert_one(data)
             else:
                 print('No honors requirements found')
     else:
