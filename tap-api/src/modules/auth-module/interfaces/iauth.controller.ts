@@ -18,4 +18,13 @@ export interface IAuthController {
      * @returns A Promise that resolves to void
      */
     login(req: Request, res: Response, next: NextFunction): Promise<void>;
+
+    /**
+     * Logs out a user by revoking the token
+     * @param req Express Request object containing the token and refreshToken in the body
+     * @param res Express Response object used to send the response
+     * @param next Express NextFunction for error handling
+     */
+    logout(req: Request, res: Response, next: NextFunction): Promise<void>;
+
 }

@@ -3,7 +3,6 @@ export const COLLECTION_NAMES = {
     COURSE_DATA: "course-data",
     MAJOR_DATA: "majors",
     REQUIREMENTS: "requirements",
-    STUDENT_DATA: "student-data",
     USER_DATA: "user-data",
     TOKENS: "tokens",
 };
