@@ -3,7 +3,6 @@ import studentImg from "../../../src/assets/home-assets/stock-students.jpg"
 import planImg from "../../../src/assets/home-assets/stock-plan.jpg"
 import aiImg from "../../../src/assets/home-assets/stock-ai.jpg"
 import collegeImg from "../../../src/assets/home-assets/stock-TU.jpg"
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function HomeComponent() {
