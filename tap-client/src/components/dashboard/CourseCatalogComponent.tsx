@@ -6,10 +6,9 @@ interface Course {
     subject: string;
     catalogNumber: string;
     title: string;
-    units: string; 
+    units: string;
     termsOffered?: string[];
-  }
-  
+}
 
 interface CourseCatalogProps {
     courses?: Course[]; // Optional for undefined scenarios
@@ -21,7 +20,7 @@ export default function CourseCatalogComponent({
     const [searchQuery, setSearchQuery] = useState("");
     const [filterSubject, setFilterSubject] = useState("");
     const [filterTermOffered, setFilterTermOffered] = useState("");
-    const [filterUnits, setFilterUnits] = useState<string | null>(null); 
+    const [filterUnits, setFilterUnits] = useState<string | null>(null);
     const [showFilters, setShowFilters] = useState(false);
 
     const { isOver, setNodeRef } = useDroppable({
@@ -35,17 +34,43 @@ export default function CourseCatalogComponent({
         backgroundColor: isOver ? "lightblue" : undefined,
     };
 
-    // Filters
     const filteredCourses = courses
         .filter((course) => {
-            const query = searchQuery.toLowerCase();
+            const query = searchQuery.toLowerCase().trim();
 
-            // Match search query
-            const matchesQuery =
+            if (!query) return true; // If no search query -> match all courses
+
+            // Check for units search, e.g., "3 units"
+            const unitsMatch = query.match(/^(\d+)\s*units?$/i);
+            if (unitsMatch) {
+                const unitsQuery = unitsMatch[1];
+                return course.units === unitsQuery;
+            }
+
+            // Check for SUBJECT NUMBER search, e.g., "COSC 109"
+            const subjectNumberMatch = query.match(
+                /^([A-Za-z]+)\s*(\d+[A-Za-z]*)$/i
+            );
+            if (subjectNumberMatch) {
+                const subjectQuery = subjectNumberMatch[1].toLowerCase();
+                const catalogNumberQuery = subjectNumberMatch[2].toLowerCase();
+                return (
+                    course.subject.toLowerCase() === subjectQuery &&
+                    course.catalogNumber.toLowerCase() === catalogNumberQuery
+                );
+            }
+
+            // General search: check if query matches any part of the course
+            return (
                 course.subject.toLowerCase().includes(query) ||
                 course.catalogNumber.toLowerCase().includes(query) ||
-                course.title.toLowerCase().includes(query);
-
+                course.title.toLowerCase().includes(query) ||
+                `${course.subject} ${course.catalogNumber}`
+                    .toLowerCase()
+                    .includes(query)
+            );
+        })
+        .filter((course) => {
             // Match subject filter
             const matchesSubject = filterSubject
                 ? course.subject.toLowerCase() === filterSubject.toLowerCase()
@@ -63,20 +88,19 @@ export default function CourseCatalogComponent({
             // Match units filter
             const matchesUnits = (() => {
                 if (!filterUnits) return true;
-              
+
                 if (filterUnits.includes("-")) {
-                  // Handle range-based filter (e.g., "1-3")
-                  const [min, max] = filterUnits.split("-").map(Number);
-                  const courseUnits = Number(course.units);
-                  return courseUnits >= min && courseUnits <= max;
+                    // Handle range-based filter (e.g., "1-3")
+                    const [min, max] = filterUnits.split("-").map(Number);
+                    const courseUnits = Number(course.units);
+                    return courseUnits >= min && courseUnits <= max;
                 }
-              
+
                 // Handle exact match filter
                 return course.units === filterUnits;
-              })();
-            return (
-                matchesQuery && matchesSubject && matchesTerm && matchesUnits
-            );
+            })();
+
+            return matchesSubject && matchesTerm && matchesUnits;
         })
         .sort((a, b) => {
             if (a.subject < b.subject) return -1;

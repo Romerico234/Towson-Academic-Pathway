@@ -18,7 +18,7 @@ interface SemesterProps {
     removeCourse: (course: Course) => void;
     removeSemester: () => void;
     canDeleteSemester: boolean;
-    updateNotes: (newNotes: string) => void; // Added this prop
+    updateNotes: (newNotes: string) => void; 
 }
 
 export default function SemesterComponent({
@@ -28,7 +28,7 @@ export default function SemesterComponent({
     removeCourse,
     removeSemester,
     canDeleteSemester,
-    updateNotes, // Added this
+    updateNotes, 
 }: SemesterProps) {
     const { isOver, setNodeRef } = useDroppable({
         id: semester,
@@ -61,7 +61,6 @@ export default function SemesterComponent({
 
     const toggleEditMode = () => {
         if (isEditing) {
-            // Exiting edit mode, save changes
             if (editableNotes !== notes) {
                 updateNotes(editableNotes);
             }
