@@ -97,48 +97,63 @@ export class OpenAIService implements IOpenAIService {
 
     public async generatePlans(userData: any): Promise<any> {
         try {
-            const { major } = userData;
+            const { major, bachelorsDegree } = userData;
+            let { isHonorsStudent } = userData;
+            isHonorsStudent = isHonorsStudent === "true";
 
-            // Fetch necessary data
             const majorData = await this.majorService.getMajorByName(major);
             if (!majorData) throw new Error(`Major ${major} not found`);
 
             const coreRequirements = await this.coreService.getAllCores();
-            const degreeRequirements =
-                await this.requirementsService.getRequirements();
 
-            // Build the OpenAI prompt
+            const degreeRequirements =
+                await this.requirementsService.getDegreeRequirements();
+
+            const bachelorsRequirements =
+                await this.requirementsService.getDegreeRequirementByType(
+                    bachelorsDegree
+                );
+
+            let honorsRequirements = null;
+            if (isHonorsStudent) {
+                honorsRequirements =
+                    await this.requirementsService.getHonorsRequirements();
+            }
+
+            // Build the user prompt for OpenAI
             const userPrompt = this.buildPrompt(
                 userData,
                 majorData,
                 coreRequirements,
-                degreeRequirements
+                degreeRequirements,
+                bachelorsRequirements,
+                honorsRequirements
             );
 
-            const assistantId = process.env.OPENAI_ASSISTANT_ID || "";
+            // const assistantId = process.env.OPENAI_ASSISTANT_ID || "";
 
-            const response = await this.openai.chat.completions.create({
-                messages: [
-                    { role: "system", content: this.systemPrompt },
-                    { role: "user", content: userPrompt },
-                ],
-                model: "gpt-4o",
-                user: assistantId,
-                max_tokens: 4096,
-                temperature: 0.1,
-            });
+            // const response = await this.openai.chat.completions.create({
+            //     messages: [
+            //         { role: "system", content: this.systemPrompt },
+            //         { role: "user", content: userPrompt },
+            //     ],
+            //     model: "gpt-4o",
+            //     user: assistantId,
+            //     max_tokens: 4096,
+            //     temperature: 0.1,
+            // });
 
-            const content = response.choices[0].message?.content;
-            console.log("OpenAI Response:", content);
+            // const content = response.choices[0].message?.content;
+            // console.log("OpenAI Response:", content);
 
-            if (content) {
-                // Extract JSON and validate
-                const degreePlan = this.extractJSON(content);
-                this.validateDegreePlan(degreePlan);
-                return degreePlan;
-            } else {
-                throw new OpenAIError("No response from OpenAI API");
-            }
+            // if (content) {
+            //     // Extract JSON and validate
+            //     const degreePlan = this.extractJSON(content);
+            //     this.validateDegreePlan(degreePlan);
+            //     return degreePlan;
+            // } else {
+            //     throw new OpenAIError("No response from OpenAI API");
+            // }
         } catch (e: any) {
             console.error("OpenAI API error:", e);
             throw new OpenAIError(e.message || "OpenAI API error");
@@ -149,7 +164,9 @@ export class OpenAIService implements IOpenAIService {
         userData: any,
         majorData: any,
         coreRequirements: any,
-        degreeRequirements: any
+        degreeRequirements: any,
+        bachelorsRequirements: any,
+        honorsRequirements: any
     ): string {
         let prompt = `User Information:\n`;
         prompt += `First Name: ${userData.firstName}\n`;
@@ -158,14 +175,11 @@ export class OpenAIService implements IOpenAIService {
         prompt += `Bachelor's Degree: ${userData.bachelorsDegree}\n`;
         prompt += `Major: ${userData.major}\n`;
         prompt += `Concentration: ${userData.concentration || "None"}\n`;
+        prompt += `Honors Student: ${
+            userData.isHonorsStudent ? "Yes" : "No"
+        }\n`;
         prompt += `Expected Graduation: ${userData.expectedGraduationSemester} ${userData.expectedGraduationYear}\n`;
         prompt += `Preferred Credit Hours per Semester: ${userData.preferredCreditHours}\n`;
-        prompt += `Allow Summer/Winter Classes: ${
-            userData.allowSummerWinter ? "Yes" : "No"
-        }\n`;
-        prompt += `General Education Completed: ${
-            userData.generalEducationCompleted ? "Yes" : "No"
-        }\n`;
         prompt += `Unavailable Terms: ${
             Array.isArray(userData.unavailableTerms)
                 ? userData.unavailableTerms.join(", ")
@@ -187,42 +201,22 @@ export class OpenAIService implements IOpenAIService {
             null,
             2
         )}\n\n`;
+        prompt += `Bachelor's Degree Requirements:\n${JSON.stringify(
+            bachelorsRequirements,
+            null,
+            2
+        )}\n\n`;
+
+        if (honorsRequirements) {
+            prompt += `Honors Requirements:\n${JSON.stringify(
+                honorsRequirements,
+                null,
+                2
+            )}\n\n`;
+        }
 
         prompt += `Generate a degree plan based on the user's information and requirements. Ensure the structure matches the provided format.`;
 
         return prompt;
-    }
-
-    private extractJSON(content: string): any {
-        try {
-            const jsonMatch = content.match(/\[[\s\S]*\]/);
-            if (jsonMatch) {
-                const jsonString = jsonMatch[0];
-                return JSON.parse(jsonString);
-            } else {
-                throw new Error("No JSON array found in the response");
-            }
-        } catch (error) {
-            console.error("Error parsing JSON:", error);
-            throw new OpenAIError("Failed to parse JSON from OpenAI response");
-        }
-    }
-
-    private validateDegreePlan(degreePlan: any) {
-        if (!Array.isArray(degreePlan)) {
-            throw new Error("Invalid degree plan format: must be an array");
-        }
-
-        degreePlan.forEach((semester: any, index: number) => {
-            if (
-                !semester.semester ||
-                !Array.isArray(semester.plannedCourses) ||
-                typeof semester.creditHours !== "number"
-            ) {
-                throw new Error(
-                    `Invalid degree plan structure at index ${index}`
-                );
-            }
-        });
     }
 }

@@ -6,8 +6,10 @@ export default class MajorService {
         return response.data;
     }
 
-    async getMajorByName(name: string): Promise<any> {
-        const response = await api.get(`/majors/${encodeURIComponent(name)}`);
+    async getMajorByName(name: string | undefined): Promise<any> {
+        const response = await api.get(
+            `/majors/${encodeURIComponent(name || "")}`
+        );
         return response.data;
     }
 

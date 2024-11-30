@@ -13,6 +13,8 @@ import {
     useSensor,
     useSensors,
 } from "@dnd-kit/core";
+import Lottie from "lottie-react";
+import loadingAnimation from "../../assets/lottie-assets/loading.json";
 
 interface Course {
     subject: string;
@@ -54,6 +56,28 @@ function getNextSemesterWithYear(
     }
 
     return `${semesterSequence[newIndex]} ${newYear}`;
+}
+
+function getCurrentSemesterWithYear() {
+    const date = new Date();
+    const month = date.getMonth(); // Months are zero-based in JavaScript
+    const year = date.getFullYear();
+
+    let semester = "";
+    if (month >= 0 && month <= 1) {
+        // January (0) and February (1)
+        semester = "Winter";
+    } else if (month >= 2 && month <= 4) {
+        // March (2) to May (4)
+        semester = "Spring";
+    } else if (month >= 5 && month <= 7) {
+        // June (5) to August (7)
+        semester = "Summer";
+    } else if (month >= 8 && month <= 11) {
+        // September (8) to December (11)
+        semester = "Fall";
+    }
+    return `${semester} ${year}`;
 }
 
 export default function DegreeCompletionPlannerComponent() {
@@ -269,41 +293,71 @@ export default function DegreeCompletionPlannerComponent() {
 
     const addSemesterBefore = () => {
         setDegreePlan((prevPlan) => {
-            const firstSemester = prevPlan[0];
-            const newSemesterName = getNextSemesterWithYear(
-                firstSemester.semester,
-                "before"
-            );
-            const newSemester: DegreePlanItem = {
-                order: firstSemester.order - 1,
-                semester: newSemesterName,
-                plannedCourses: [],
-                creditHours: 0,
-                notes: "",
-            };
-            const updatedPlan = [newSemester, ...prevPlan];
-            updateDegreePlanInBackend(updatedPlan);
-            return updatedPlan;
+            if (prevPlan.length === 0) {
+                // Degree plan is empty, create a semester based on current date
+                const newSemesterName = getCurrentSemesterWithYear();
+                const newSemester: DegreePlanItem = {
+                    order: 0,
+                    semester: newSemesterName,
+                    plannedCourses: [],
+                    creditHours: 0,
+                    notes: "",
+                };
+                const updatedPlan = [newSemester];
+                updateDegreePlanInBackend(updatedPlan);
+                return updatedPlan;
+            } else {
+                const firstSemester = prevPlan[0];
+                const newSemesterName = getNextSemesterWithYear(
+                    firstSemester.semester,
+                    "before"
+                );
+                const newSemester: DegreePlanItem = {
+                    order: firstSemester.order - 1,
+                    semester: newSemesterName,
+                    plannedCourses: [],
+                    creditHours: 0,
+                    notes: "",
+                };
+                const updatedPlan = [newSemester, ...prevPlan];
+                updateDegreePlanInBackend(updatedPlan);
+                return updatedPlan;
+            }
         });
     };
 
     const addSemesterAfter = () => {
         setDegreePlan((prevPlan) => {
-            const lastSemester = prevPlan[prevPlan.length - 1];
-            const newSemesterName = getNextSemesterWithYear(
-                lastSemester.semester,
-                "after"
-            );
-            const newSemester: DegreePlanItem = {
-                order: lastSemester.order + 1,
-                semester: newSemesterName,
-                plannedCourses: [],
-                creditHours: 0,
-                notes: "",
-            };
-            const updatedPlan = [...prevPlan, newSemester];
-            updateDegreePlanInBackend(updatedPlan);
-            return updatedPlan;
+            if (prevPlan.length === 0) {
+                // Degree plan is empty, create a semester based on current date
+                const newSemesterName = getCurrentSemesterWithYear();
+                const newSemester: DegreePlanItem = {
+                    order: 0,
+                    semester: newSemesterName,
+                    plannedCourses: [],
+                    creditHours: 0,
+                    notes: "",
+                };
+                const updatedPlan = [newSemester];
+                updateDegreePlanInBackend(updatedPlan);
+                return updatedPlan;
+            } else {
+                const lastSemester = prevPlan[prevPlan.length - 1];
+                const newSemesterName = getNextSemesterWithYear(
+                    lastSemester.semester,
+                    "after"
+                );
+                const newSemester: DegreePlanItem = {
+                    order: lastSemester.order + 1,
+                    semester: newSemesterName,
+                    plannedCourses: [],
+                    creditHours: 0,
+                    notes: "",
+                };
+                const updatedPlan = [...prevPlan, newSemester];
+                updateDegreePlanInBackend(updatedPlan);
+                return updatedPlan;
+            }
         });
     };
 
@@ -445,7 +499,13 @@ export default function DegreeCompletionPlannerComponent() {
     if (loading) {
         return (
             <div className="flex justify-center items-center min-h-screen">
-                <p>Loading Degree Plan...</p>
+                <Lottie
+                    animationData={loadingAnimation}
+                    loop={true} // Set looping
+                    autoplay={true} // Set autoplay
+                    height={150} // Set height
+                    width={150} // Set width
+                />
             </div>
         );
     }
