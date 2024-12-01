@@ -169,9 +169,6 @@ export class OpenAIService implements IOpenAIService {
         honorsRequirements: any
     ): string {
         let prompt = `User Information:\n`;
-        prompt += `First Name: ${userData.firstName}\n`;
-        prompt += `Last Name: ${userData.lastName}\n`;
-        prompt += `Email: ${userData.email}\n`;
         prompt += `Bachelor's Degree: ${userData.bachelorsDegree}\n`;
         prompt += `Major: ${userData.major}\n`;
         prompt += `Concentration: ${userData.concentration || "None"}\n`;
