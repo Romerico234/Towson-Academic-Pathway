@@ -21,7 +21,7 @@ const Collapse: React.FC<CollapseProps> = ({ title, children }) => {
         <span>{isOpen ? '-' : '+' }</span>
       </div>
 
-      {/* Content */}
+      {/* Children */}
       <div
         className={`overflow-hidden transition-all duration-300 ease-in-out text-wrap bg-white ${
           isOpen ? "max-h-[500px] pb-4" : "max-h-0"

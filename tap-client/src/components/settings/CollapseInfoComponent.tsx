@@ -5,6 +5,7 @@ interface InfoProps {
   data?: any;
 }
 
+//Info displayed in a box that looks disabled
 const CollapseInfo: React.FC<InfoProps> = ({ title, data="N/A" }) => {
   
   
