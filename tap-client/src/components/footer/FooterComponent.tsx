@@ -35,7 +35,7 @@ export default function FooterComponent() {
                     Made by ඞ, Romerico David, Timothy DeLloyd, Mitchell Griff, and ඞ.
                 </p>
                 <p className="text-towsonWhite opacity-75">
-                    © 2024 Towson Academic Planner. All rights reserved.
+                    © 2024 Towson Academic Pathway. All rights reserved.
                 </p>
             </div>
 
