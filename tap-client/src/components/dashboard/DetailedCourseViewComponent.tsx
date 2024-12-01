@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import CourseService from "../../shared/services/course.service";
-import Lottie from "lottie-react";
-import loadingAnimation from "../../assets/lottie-assets/loading.json";
 
 interface DetailedCourseViewProps {
     subject: string;
@@ -55,14 +53,10 @@ export default function DetailedCourseViewComponent({
 
     if (loading) {
         return (
-            <div className="flex justify-center items-center min-h-screen">
-                <Lottie
-                    animationData={loadingAnimation}
-                    loop={true} // Set looping
-                    autoplay={true} // Set autoplay
-                    height={150} // Set height
-                    width={150} // Set width
-                />
+            <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+                <div className="bg-white p-4 rounded shadow">
+                    <p>Loading course details...</p>
+                </div>
             </div>
         );
     }

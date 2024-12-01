@@ -130,30 +130,30 @@ export class OpenAIService implements IOpenAIService {
                 honorsRequirements
             );
 
-            // const assistantId = process.env.OPENAI_ASSISTANT_ID || "";
+            const assistantId = process.env.OPENAI_ASSISTANT_ID || "";
 
-            // const response = await this.openai.chat.completions.create({
-            //     messages: [
-            //         { role: "system", content: this.systemPrompt },
-            //         { role: "user", content: userPrompt },
-            //     ],
-            //     model: "gpt-4o",
-            //     user: assistantId,
-            //     max_tokens: 4096,
-            //     temperature: 0.1,
-            // });
+            const response = await this.openai.chat.completions.create({
+                messages: [
+                    { role: "system", content: this.systemPrompt },
+                    { role: "user", content: userPrompt },
+                ],
+                model: "gpt-4o",
+                user: assistantId,
+                max_tokens: 4096,
+                temperature: 0.1,
+            });
 
-            // const content = response.choices[0].message?.content;
-            // console.log("OpenAI Response:", content);
+            const content = response.choices[0].message?.content;
+            console.log("OpenAI Response:", content);
 
-            // if (content) {
-            //     // Extract JSON and validate
-            //     const degreePlan = this.extractJSON(content);
-            //     this.validateDegreePlan(degreePlan);
-            //     return degreePlan;
-            // } else {
-            //     throw new OpenAIError("No response from OpenAI API");
-            // }
+            if (content) {
+                // Extract JSON and validate
+                const degreePlan = this.extractJSON(content);
+                this.validateDegreePlan(degreePlan);
+                return degreePlan;
+            } else {
+                throw new OpenAIError("No response from OpenAI API");
+            }
         } catch (e: any) {
             console.error("OpenAI API error:", e);
             throw new OpenAIError(e.message || "OpenAI API error");
@@ -218,5 +218,38 @@ export class OpenAIService implements IOpenAIService {
         prompt += `Generate a degree plan based on the user's information and requirements. Ensure the structure matches the provided format.`;
 
         return prompt;
+    }
+
+    private extractJSON(content: string): any {
+        try {
+            const jsonMatch = content.match(/\[[\s\S]*\]/);
+            if (jsonMatch) {
+                const jsonString = jsonMatch[0];
+                return JSON.parse(jsonString);
+            } else {
+                throw new Error("No JSON array found in the response");
+            }
+        } catch (error) {
+            console.error("Error parsing JSON:", error);
+            throw new OpenAIError("Failed to parse JSON from OpenAI response");
+        }
+    }
+
+    private validateDegreePlan(degreePlan: any) {
+        if (!Array.isArray(degreePlan)) {
+            throw new Error("Invalid degree plan format: must be an array");
+        }
+
+        degreePlan.forEach((semester: any, index: number) => {
+            if (
+                !semester.semester ||
+                !Array.isArray(semester.plannedCourses) ||
+                typeof semester.creditHours !== "number"
+            ) {
+                throw new Error(
+                    `Invalid degree plan structure at index ${index}`
+                );
+            }
+        });
     }
 }
