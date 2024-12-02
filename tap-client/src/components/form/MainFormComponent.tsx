@@ -171,8 +171,8 @@ export default function MainFormComponent() {
                         animationData={loadingAnimation}
                         loop={true} // Set looping
                         autoplay={true} // Set autoplay
-                        height={150} // Set height
-                        width={150} // Set width
+                        height={150}
+                        width={150} 
                     />
                 </div>
             ) : (
