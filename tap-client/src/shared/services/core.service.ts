@@ -5,4 +5,9 @@ export default class CoreService {
         const response = await api.get("/cores");
         return response.data;
     }
+
+    async getFormattedCores(): Promise<any> {
+        const response = await api.get("/cores/formatted");
+        return response.data;
+    }
 }

@@ -6,6 +6,13 @@ export default class RequirementsService {
         return response.data;
     }
 
+    async getGeneralDegreeRequirementes(): Promise<any> {
+        const response = await api.get(
+            "/requirements/generalDegreeRequirements"
+        );
+        return response.data;
+    }
+
     async getHonorsRequirements(): Promise<any> {
         const response = await api.get("/requirements/honorsRequirements");
         return response.data;

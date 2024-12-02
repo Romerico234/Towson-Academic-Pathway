@@ -9,6 +9,13 @@ export class RequirementsService implements IRequirementsService {
         return requirement?.degreeRequirements || null;
     }
 
+    async getGeneralDegreeRequirementes(): Promise<any> {
+        const requirement = await Requirement.findOne({
+            degreeRequirements: { $exists: true },
+        });
+        return requirement?.degreeRequirements?.generalRequirements || null;
+    }
+
     async getHonorsRequirements(): Promise<any> {
         const requirement = await Requirement.findOne({
             honorsRequirements: { $exists: true },

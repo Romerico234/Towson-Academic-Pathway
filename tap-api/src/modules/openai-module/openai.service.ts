@@ -37,15 +37,17 @@ export class OpenAIService implements IOpenAIService {
         This bot is designed to assist users in generating a comprehensive degree plan for their academic journey based on Towson University courses.
 
         Rules:
-        - Carefully analyze the unofficial transcript provided by the user to identify completed courses, academic progress, and remaining requirements. This step is critical to ensure prerequisites, core curriculum requirements, and degree-specific requirements are correctly addressed.
-        - Generate a general degree plan that considers:
-            - Courses already completed (as verified in the unofficial transcript).
+        - Carefully analyze the user's academic and preferences data. This step is critical to ensure prerequisites, core curriculum requirements, and degree-specific requirements are correctly addressed.
+        - Generate a general degree plan that considers the following:
+            - Courses already completed.
+            - Courses failed or in progress.
             - Remaining requirements for graduation.
-            - The user's academic standing, ensuring prerequisite courses are included if missing.
+            - The user's academic standing, specifically the total number of credits they have completed and the remaining number of credits required to meet the degree requirements. The total number of credits required for graduation is determined by both the overall degree requirements and the specific requirements for their chosen degree/bachelors program.
             - The user's preferences, such as:
                 - Preferred credit hours per semester.
                 - Availability during summer/winter terms.
                 - Unavailable terms.
+                - Etc.
         - Balance core curriculum, major-specific courses, and elective requirements across semesters while adhering to the user's preferences.
         - Address all core, major-specific, and elective requirements by scheduling them appropriately.
         - Handle prerequisites with care, ensuring prerequisite courses are added in the correct sequence to avoid scheduling conflicts or delays in the user's academic progress.
@@ -82,10 +84,7 @@ export class OpenAIService implements IOpenAIService {
         ]
 
         Important:
-        - Use the unofficial transcript as the primary source to determine:
-            - Courses already completed.
-            - Courses that can be skipped.
-            - Courses that need to be retaken.
+        - BE MINDFUL ON WHEN COURSES ARE OFFERED. Some courses are only offered in specific semesters.
         - If any required course (core, major, or elective) is missing, ensure it is included in the degree plan.
         - Clearly indicate any issues, conflicts, or ambiguities in the transcript data or user preferences in the notes section of the affected semester.
 
@@ -101,12 +100,24 @@ export class OpenAIService implements IOpenAIService {
         unofficialTranscript: any
     ): Promise<any> {
         try {
-            const { major, bachelorsDegree } = userData;
+            const { major, bachelorsDegree, concentration } = userData;
             let { isHonorsStudent } = userData;
             isHonorsStudent = isHonorsStudent === "true";
 
-            const majorData = await this.majorService.getMajorByName(major);
+            const majorData =
+                await this.majorService.getMajorByNameWithNoConcentration(
+                    major
+                );
             if (!majorData) throw new Error(`Major ${major} not found`);
+
+            const concentrationData =
+                await this.majorService.getConcentrationByMajorAndName(
+                    major,
+                    concentration
+                );
+
+            if (!concentrationData)
+                throw new Error(`Concentration ${concentrationData} not found`);
 
             // Parse the unofficial transcript
             const parsedTranscript = await parseUnofficialTranscript(
@@ -120,10 +131,10 @@ export class OpenAIService implements IOpenAIService {
             const totalNumberOfCreditsTaken =
                 parsedTranscript.totalNumberOfCreditsTaken;
 
-            const coreRequirements = await this.coreService.getAllCores();
+            const coreRequirements = await this.coreService.getFormattedCores();
 
-            const degreeRequirements =
-                await this.requirementsService.getDegreeRequirements();
+            const generalDegreeRequirements =
+                await this.requirementsService.getGeneralDegreeRequirementes();
 
             const bachelorsRequirements =
                 await this.requirementsService.getDegreeRequirementByType(
@@ -140,41 +151,40 @@ export class OpenAIService implements IOpenAIService {
             const userPrompt = this.buildPrompt(
                 userData,
                 majorData,
+                concentrationData,
                 coursesTakenSuccessfully,
                 coursesTakenFailedOrInProgress,
                 totalNumberOfCreditsTaken,
                 coreRequirements,
-                degreeRequirements,
+                generalDegreeRequirements,
                 bachelorsRequirements,
                 honorsRequirements
             );
 
-            console.log("User Prompt:", userPrompt);
+            const assistantId = process.env.OPENAI_ASSISTANT_ID || "";
 
-            // const assistantId = process.env.OPENAI_ASSISTANT_ID || "";
+            const response = await this.openai.chat.completions.create({
+                messages: [
+                    { role: "system", content: this.systemPrompt },
+                    { role: "user", content: userPrompt },
+                ],
+                model: "gpt-4o",
+                user: assistantId,
+                max_tokens: 4096,
+                temperature: 0.1,
+            });
 
-            // const response = await this.openai.chat.completions.create({
-            //     messages: [
-            //         { role: "system", content: this.systemPrompt },
-            //         { role: "user", content: userPrompt },
-            //     ],
-            //     model: "gpt-4o",
-            //     user: assistantId,
-            //     max_tokens: 4096,
-            //     temperature: 0.1,
-            // });
+            const content = response.choices[0].message?.content;
+            console.log("OpenAI Response:", content);
 
-            // const content = response.choices[0].message?.content;
-            // console.log("OpenAI Response:", content);
-
-            // if (content) {
-            //     // Extract JSON and validate
-            //     const degreePlan = this.extractJSON(content);
-            //     this.validateDegreePlan(degreePlan);
-            //     return degreePlan;
-            // } else {
-            //     throw new OpenAIError("No response from OpenAI API");
-            // }
+            if (content) {
+                // Extract JSON and validate
+                const degreePlan = this.extractJSON(content);
+                this.validateDegreePlan(degreePlan);
+                return degreePlan;
+            } else {
+                throw new OpenAIError("No response from OpenAI API");
+            }
         } catch (e: any) {
             console.error("OpenAI API error:", e);
             throw new OpenAIError(e.message || "OpenAI API error");
@@ -184,11 +194,12 @@ export class OpenAIService implements IOpenAIService {
     private buildPrompt(
         userData: any,
         majorData: any,
+        concentrationData: any,
         coursesTakenSuccessfully: any,
         coursesTakenFailedOrInProgress: any,
         totalNumberOfCreditsTaken: any,
         coreRequirements: any,
-        degreeRequirements: any,
+        generalDegreeRequirements: any,
         bachelorsRequirements: any,
         honorsRequirements: any
     ): string {
@@ -217,8 +228,8 @@ export class OpenAIService implements IOpenAIService {
         prompt += `Courses Taken Failed or In Progress: ${coursesTakenFailedOrInProgress.toString()}\n`;
         prompt += `Total Number of Credits Taken: ${totalNumberOfCreditsTaken}\n`;
 
-        prompt += `\nThis is the degree requirements that all Towson University students must complete and fulfill:\n${JSON.stringify(
-            degreeRequirements,
+        prompt += `\nThis is the general degree requirements that all Towson University students must complete and fulfill:\n${JSON.stringify(
+            generalDegreeRequirements,
             null,
             2
         )}\n\n`;
@@ -232,11 +243,18 @@ export class OpenAIService implements IOpenAIService {
             null,
             2
         )}\n\n`;
-        prompt += `This is the user's major requirement that they must complete and fulfills:\n${JSON.stringify(
+        prompt += `This is the user's major requirement that they must complete and fulfill:\n${JSON.stringify(
             majorData,
             null,
             2
         )}\n\n`;
+        if (concentrationData) {
+            prompt += `This is the user's requirements for their concentration that they must complete and fulfill:\n${JSON.stringify(
+                concentrationData,
+                null,
+                2
+            )}\n\n`;
+        }
         if (honorsRequirements) {
             prompt += `This is the honors requirements that all Towson University honors students must complete and fulfill:\n${JSON.stringify(
                 honorsRequirements,

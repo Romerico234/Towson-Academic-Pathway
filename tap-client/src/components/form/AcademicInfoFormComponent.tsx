@@ -60,9 +60,9 @@ export default function AcademicInfoFormComponent({
 
     const concentrations: Record<Major, string[]> = {
         "Computer Science": [
-            "General",
-            "Cyber Operations",
-            "Software Engineering",
+            "General Track",
+            "Cyber Operations Track",
+            "Software Engineering Track",
         ],
     };
 

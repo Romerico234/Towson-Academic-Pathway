@@ -12,4 +12,34 @@ export default class MajorService {
         );
         return response.data;
     }
+
+    async getMajorByNameWithNoConcentration(
+        name: string | undefined
+    ): Promise<any> {
+        const response = await api.get(
+            `/majors/${encodeURIComponent(name || "")}/no-concentration`
+        );
+        return response.data;
+    }
+
+    async getAllConcentrationsForAMajor(
+        majorName: string | undefined
+    ): Promise<any> {
+        const response = await api.get(
+            `/majors/${encodeURIComponent(majorName || "")}/concentrations`
+        );
+        return response.data;
+    }
+
+    async getConcentrationByMajorAndName(
+        majorName: string | undefined,
+        concentrationName: string | undefined
+    ): Promise<any> {
+        const response = await api.get(
+            `/majors/${encodeURIComponent(
+                majorName || ""
+            )}/concentrations/${encodeURIComponent(concentrationName || "")}`
+        );
+        return response.data;
+    }
 }

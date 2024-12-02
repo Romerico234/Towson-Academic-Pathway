@@ -25,6 +25,22 @@ export class RequirementsController implements IRequirementsController {
         }
     };
 
+    public getGeneralDegreeRequirementes = async (
+        req: Request,
+        res: Response
+    ): Promise<void> => {
+        try {
+            const generalDegreeRequirements =
+                await this.requirementsService.getGeneralDegreeRequirementes();
+            res.status(200).json(generalDegreeRequirements);
+        } catch (error) {
+            res.status(500).json({
+                message: "Error retrieving general degree requirements",
+                error,
+            });
+        }
+    };
+
     public getHonorsRequirements = async (
         req: Request,
         res: Response
