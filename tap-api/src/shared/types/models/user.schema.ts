@@ -2,11 +2,28 @@ import mongoose, { Schema, Document, Types } from "mongoose";
 import { COLLECTION_NAMES } from "../mongodb/collection-names";
 
 export interface AcademicInfo {
-    [key: string]: any;
+    major?: string;
+    concentration?: string;
+    bachelorsDegree?: string;
+    unofficialTranscript?: object;
+    startDateSemester?: string;
+    startDateYear?: string;
+    expectedGraduationSemester?: string;
+    expectedGraduationYear?: string;
+    isHonorsStudent?: boolean;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    coursesTakenSuccessfully?: string[];
+    coursesTakenFailedOrInProgress?: string[];
+    totalNumberOfCreditsTaken?: string;
 }
 
 export interface PreferencesInfo {
-    [key: string]: any; 
+    preferredCreditHours?: string;
+    summerWinterCoursesFrequency?: string;
+    unavailableTerms?: string[];
+    additionalComments?: string;
 }
 
 export interface Course {
