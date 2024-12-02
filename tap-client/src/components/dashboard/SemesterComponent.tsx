@@ -88,7 +88,7 @@ export default function SemesterComponent({
                             onClick={removeSemester}
                             className="ml-2 px-3 py-1 border rounded-lg text-red-500 border-red-500 hover:bg-red-500 hover:text-white transition"
                         >
-                            Delete Semester
+                            Delete
                         </button>
                     )}
                 </div>

@@ -14,7 +14,7 @@ import formImg from "../../assets/sidebar-assets/form.png";
 import favoriteImg from "../../assets/sidebar-assets/favorite.png";
 
 export default function SidebarComponent() {
-    const [collapsed, setCollapsed] = useState(true);
+    const [collapsed, setCollapsed] = useState(false);
     const { logout } = useAuth();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);

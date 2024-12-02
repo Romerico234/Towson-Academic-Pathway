@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Lottie from "lottie-react";
 import { useNavigate } from "react-router-dom";
 import { IAcademicInfo } from "./interfaces/IAcademicInfo";
 import { IPreferencesInfo } from "./interfaces/IPreferencesInfo";
@@ -9,7 +10,6 @@ import OpenAIService from "../../shared/services/openai.service";
 import UserService from "../../shared/services/user.service";
 import TokenService from "../../shared/services/token.service";
 import { useAuth } from "../auth/AuthComponent";
-import Lottie from "lottie-react";
 import loadingAnimation from "../../assets/lottie-assets/loading.json";
 
 export default function MainFormComponent() {
@@ -137,7 +137,7 @@ export default function MainFormComponent() {
             const userService = new UserService();
 
             await userService.updateUserById(userId, {
-                academicInfo: academicInfo, 
+                academicInfo: academicInfo,
                 preferencesInfo: preferencesInfo,
             });
 
@@ -172,7 +172,7 @@ export default function MainFormComponent() {
                         loop={true} // Set looping
                         autoplay={true} // Set autoplay
                         height={150}
-                        width={150} 
+                        width={150}
                     />
                 </div>
             ) : (
