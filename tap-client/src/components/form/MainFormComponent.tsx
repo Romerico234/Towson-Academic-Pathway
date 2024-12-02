@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { IPersonalInfo } from "./interfaces/IPersonalInfo";
+import { IAcademicInfo } from "./interfaces/IAcademicInfo";
 import { IPreferencesInfo } from "./interfaces/IPreferencesInfo";
 import { IFormDataType } from "./interfaces/IFormDataType";
-import PersonalInfoFormComponent from "./PersonalInfoFormComponent";
+import AcademicInfoFormComponent from "./AcademicInfoFormComponent";
 import PreferencesInfoFormComponent from "./PreferencesInfoFormComponent";
 import OpenAIService from "../../shared/services/openai.service";
 import UserService from "../../shared/services/user.service";
@@ -16,7 +16,7 @@ export default function MainFormComponent() {
     const { token } = useAuth();
     const navigate = useNavigate();
 
-    const [personalInfo, setPersonalInfo] = useState<IPersonalInfo>({
+    const [academicInfo, setPersonalInfo] = useState<IAcademicInfo>({
         major: "",
         concentration: "",
         bachelorsDegree: "",
@@ -28,7 +28,7 @@ export default function MainFormComponent() {
         isHonorsStudent: false,
     });
 
-    const [preferences, setPreferences] = useState<IPreferencesInfo>({
+    const [preferencesInfo, setPreferences] = useState<IPreferencesInfo>({
         preferredCreditHours: "",
         summerWinterCoursesFrequency: "",
         unavailableTerms: [],
@@ -78,24 +78,24 @@ export default function MainFormComponent() {
 
         if (name === "unofficialTranscript") {
             setPersonalInfo({
-                ...personalInfo,
+                ...academicInfo,
                 unofficialTranscript: (e.target as HTMLInputElement).files
                     ? (e.target as HTMLInputElement).files![0]
                     : null,
             });
         } else if (name === "isHonorsStudent") {
             setPersonalInfo({
-                ...personalInfo,
+                ...academicInfo,
                 [name]: value === "true",
             });
-        } else if (Object.keys(personalInfo).includes(name)) {
+        } else if (Object.keys(academicInfo).includes(name)) {
             setPersonalInfo({
-                ...personalInfo,
+                ...academicInfo,
                 [name]: value,
             });
         } else {
             setPreferences({
-                ...preferences,
+                ...preferencesInfo,
                 [name]: value,
             });
         }
@@ -105,21 +105,21 @@ export default function MainFormComponent() {
         e.preventDefault();
         setLoading(true);
 
-        const formData: IFormDataType = { ...personalInfo, ...preferences };
+        const formData: IFormDataType = { ...academicInfo, ...preferencesInfo };
 
         const dataToSend = new FormData();
         for (const key in formData) {
             if (key === "unofficialTranscript") {
-                if (personalInfo.unofficialTranscript) {
+                if (academicInfo.unofficialTranscript) {
                     dataToSend.append(
                         "unofficialTranscript",
-                        personalInfo.unofficialTranscript
+                        academicInfo.unofficialTranscript
                     );
                 }
             } else if (key === "unavailableTerms") {
                 dataToSend.append(
                     key,
-                    JSON.stringify(preferences.unavailableTerms)
+                    JSON.stringify(preferencesInfo.unavailableTerms)
                 );
             } else if (key === "isHonorsStudent") {
                 dataToSend.append(key, String(formData.isHonorsStudent));
@@ -137,8 +137,8 @@ export default function MainFormComponent() {
             const userService = new UserService();
 
             await userService.updateUserById(userId, {
-                academicInfo: personalInfo, 
-                preferences: preferences,
+                academicInfo: academicInfo, 
+                preferencesInfo: preferencesInfo,
             });
 
             const openAIService = new OpenAIService();
@@ -178,15 +178,15 @@ export default function MainFormComponent() {
             ) : (
                 <form onSubmit={handleSubmit} encType="multipart/form-data">
                     {/* Personal Information Component */}
-                    <PersonalInfoFormComponent
-                        formData={personalInfo}
+                    <AcademicInfoFormComponent
+                        formData={academicInfo}
                         handleInputChange={handleInputChange}
                         isReadOnly={true}
                     />
 
                     {/* Preferences Information Component */}
                     <PreferencesInfoFormComponent
-                        formData={preferences}
+                        formData={preferencesInfo}
                         handleInputChange={handleInputChange}
                     />
 

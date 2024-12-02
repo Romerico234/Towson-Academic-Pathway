@@ -5,7 +5,7 @@ export interface AcademicInfo {
     [key: string]: any;
 }
 
-export interface Preferences {
+export interface PreferencesInfo {
     [key: string]: any; 
 }
 
@@ -35,7 +35,7 @@ export interface IUser extends Document<Types.ObjectId> {
     firstName: string;
     lastName: string;
     academicInfo: AcademicInfo;
-    preferences: Preferences;
+    preferencesInfo: PreferencesInfo;
     degreePlan: SemesterPlan[];
     favorites: FavoriteSchedule[];
     createdAt: Date;
@@ -49,7 +49,7 @@ const UserSchema: Schema = new Schema(
         firstName: { type: String, required: true },
         lastName: { type: String, required: true },
         academicInfo: { type: Schema.Types.Mixed, default: {} },
-        preferences: { type: Schema.Types.Mixed, default: {} },
+        preferencesInfo: { type: Schema.Types.Mixed, default: {} },
         degreePlan: {
             type: [
                 {

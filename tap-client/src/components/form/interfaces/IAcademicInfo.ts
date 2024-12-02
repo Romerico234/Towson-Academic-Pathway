@@ -1,4 +1,4 @@
-export interface IPersonalInfo {
+export interface IAcademicInfo {
     major: string;
     concentration: string;
     bachelorsDegree: string;
