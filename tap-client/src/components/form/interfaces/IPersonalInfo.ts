@@ -8,4 +8,5 @@ export interface IPersonalInfo {
     unofficialTranscript: File | null;
     expectedGraduationSemester: string;
     expectedGraduationYear: number;
+    isHonorsStudent: boolean;
 }

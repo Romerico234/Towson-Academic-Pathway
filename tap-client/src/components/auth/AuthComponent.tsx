@@ -1,12 +1,10 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import AuthService from "../../shared/services/auth.service";
-import TokenService from "../../shared/services/token.service";
 import { jwtDecode } from "jwt-decode";
 
 interface AuthContextType {
     token: string | null;
     refreshToken: string | null;
-    userId: string | null;
     login: (token: string, refreshToken: string) => void;
     logout: () => void;
     refreshAccessToken: () => Promise<void>;
@@ -15,7 +13,6 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType>({
     token: null,
     refreshToken: null,
-    userId: null,
     login: () => {},
     logout: () => {},
     refreshAccessToken: async () => {},
@@ -32,8 +29,6 @@ export default function AuthProvider({ children }: any) {
         sessionStorage.getItem("refreshToken")
     );
 
-    const [userId, setUserId] = useState<string | null>(null);
-
     const authService = new AuthService();
 
     const login = (newToken: string, newRefreshToken: string) => {
@@ -43,17 +38,20 @@ export default function AuthProvider({ children }: any) {
         sessionStorage.setItem("refreshToken", newRefreshToken);
     };
 
-    const logout = () => {
-        // Optional: Call backend logout to invalidate tokens
-        if (token) {
-            authService.logout(token);
+    const logout = async () => {
+        try {
+            if (token && refreshToken) {
+                await authService.logout(token, refreshToken);
+            }
+        } catch (error) {
+            console.error("Error during logout:", error);
+        } finally {
+            // Clear local state and session storage
+            setToken(null);
+            setRefreshToken(null);
+            sessionStorage.removeItem("token");
+            sessionStorage.removeItem("refreshToken");
         }
-
-        setToken(null);
-        setRefreshToken(null);
-        setUserId(null);
-        sessionStorage.removeItem("token");
-        sessionStorage.removeItem("refreshToken");
     };
 
     const refreshAccessToken = async () => {
@@ -102,24 +100,11 @@ export default function AuthProvider({ children }: any) {
         return () => clearInterval(intervalId);
     }, [token, refreshToken]);
 
-    useEffect(() => {
-        const getUserId = async () => {
-            if (token) {
-                const tokenService = new TokenService();
-                const id = await tokenService.getUserIdFromToken(token);
-                setUserId(id);
-            }
-        };
-
-        getUserId();
-    }, [token]);
-
     return (
         <AuthContext.Provider
             value={{
                 token,
                 refreshToken,
-                userId,
                 login,
                 logout,
                 refreshAccessToken,

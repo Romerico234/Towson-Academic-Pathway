@@ -6,7 +6,7 @@ export interface AcademicInfo {
 }
 
 export interface Preferences {
-    [key: string]: any;
+    [key: string]: any; 
 }
 
 export interface Course {
@@ -18,7 +18,7 @@ export interface Course {
 
 export interface SemesterPlan {
     semester: string;
-    plannedCourses: Course[];
+    plannedCourses: string[];
     creditHours: number;
     notes?: string;
 }
@@ -36,8 +36,8 @@ export interface IUser extends Document<Types.ObjectId> {
     lastName: string;
     academicInfo: AcademicInfo;
     preferences: Preferences;
-    degreePlan: any;
-    favorites: any[];
+    degreePlan: SemesterPlan[];
+    favorites: FavoriteSchedule[];
     createdAt: Date;
     updatedAt: Date;
 }
@@ -50,8 +50,39 @@ const UserSchema: Schema = new Schema(
         lastName: { type: String, required: true },
         academicInfo: { type: Schema.Types.Mixed, default: {} },
         preferences: { type: Schema.Types.Mixed, default: {} },
-        degreePlan: { type: Schema.Types.Mixed, default: {} },
-        favorites: { type: Schema.Types.Mixed, default: [] },
+        degreePlan: {
+            type: [
+                {
+                    semester: { type: String, required: true },
+                    plannedCourses: { type: [String], required: true },
+                    creditHours: { type: Number, required: true },
+                    notes: { type: String },
+                },
+            ],
+            default: [],
+        },
+        favorites: {
+            type: [
+                {
+                    name: { type: String, required: true },
+                    degreePlan: {
+                        type: [
+                            {
+                                semester: { type: String, required: true },
+                                plannedCourses: {
+                                    type: [String],
+                                    required: true,
+                                },
+                                creditHours: { type: Number, required: true },
+                                notes: { type: String },
+                            },
+                        ],
+                        required: true,
+                    },
+                },
+            ],
+            default: [],
+        },
     },
     { timestamps: true, collection: COLLECTION_NAMES.USER_DATA }
 );

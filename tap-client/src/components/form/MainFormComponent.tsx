@@ -26,6 +26,7 @@ export default function MainFormComponent() {
         unofficialTranscript: null,
         expectedGraduationSemester: "",
         expectedGraduationYear: new Date().getFullYear(),
+        isHonorsStudent: false,
     });
 
     const [preferences, setPreferences] = useState<IPreferencesInfo>({
@@ -73,18 +74,18 @@ export default function MainFormComponent() {
             HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
         >
     ) => {
-        const { name, value, type } = e.target;
-        if (type === "checkbox") {
-            setPreferences({
-                ...preferences,
-                [name]: (e.target as HTMLInputElement).checked,
-            });
-        } else if (name === "unofficialTranscript") {
+        const { name, value } = e.target;
+        if (name === "unofficialTranscript") {
             setPersonalInfo({
                 ...personalInfo,
                 unofficialTranscript: (e.target as HTMLInputElement).files
                     ? (e.target as HTMLInputElement).files![0]
                     : null,
+            });
+        } else if (name === "isHonorsStudent") {
+            setPersonalInfo({
+                ...personalInfo,
+                [name]: value === "true",
             });
         } else if (Object.keys(personalInfo).includes(name)) {
             setPersonalInfo({
@@ -119,6 +120,8 @@ export default function MainFormComponent() {
                     key,
                     JSON.stringify(preferences.unavailableTerms)
                 );
+            } else if (key === "isHonorsStudent") {
+                dataToSend.append(key, String(formData.isHonorsStudent));
             } else {
                 dataToSend.append(key, (formData as any)[key]);
             }
@@ -134,11 +137,14 @@ export default function MainFormComponent() {
             const response = await openAIService.generatePlan(dataToSend);
 
             const userService = new UserService();
+            // Clear the degreePlan
+            await userService.updateUserById(userId, { degreePlan: [] });
+            // Push new degreePlan
             await userService.updateUserById(userId, {
                 $push: { degreePlan: response },
             });
 
-            navigate("/degree-planner");
+            navigate("/dashboard");
         } catch (error) {
             console.error("Error generating or saving degree plan:", error);
             alert(

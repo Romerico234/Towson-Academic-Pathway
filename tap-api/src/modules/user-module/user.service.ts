@@ -43,6 +43,7 @@ export class UserService implements IUserService {
         const user = await User.findById(userId);
         if (!user) return false;
 
+        // Check if the favorite already exists
         const isAlreadyFavorited = user.favorites.some(
             (fav) => fav.name === favoriteData.name
         );

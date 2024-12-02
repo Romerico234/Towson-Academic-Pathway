@@ -1,93 +1,95 @@
 {
     "honorsRequirements": {
-        "totalUnits": 24,
-        "foundationsCourses": {
-            "totalUnits": 6,
-            "requirements": [
-                {
-                    "course": "English",
-                    "options": ["ENGL 190", "ENGL 290"],
-                    "units": 3,
-                    "notes": [
-                        "Students with AP or transfer credit for English 102 cannot take ENGL 190 for credit and must take ENGL 290.",
-                        "Students who join the Honors College after completing 30+ credits and ENGL 102 are exempt from this requirement unless they have TSEM 102, in which case they must take ENGL 290."
-                    ]
-                },
-                {
-                    "course": "TSEM 190 Honors Towson Seminar",
-                    "units": 3,
-                    "notes": [
-                        "Students who have completed or waived the Towson Seminar at the time of admission with fewer than 60 credits must take an additional lower-level or upper-level Honors course instead.",
-                        "Students who join the Honors College with 60+ credits are exempt from this requirement."
-                    ]
-                }
-            ]
+        "totalUnitsRequired": 24,
+        "coursework": {
+            "foundationsCourses": {
+                "totalUnits": 6,
+                "courses": [
+                    {
+                        "name": "English",
+                        "options": ["ENGL 190", "ENGL 290"],
+                        "units": 3,
+                        "notes": [
+                            "Students with AP or transfer credit for English 102 cannot take ENGL 190 for credit and must take ENGL 290.",
+                            "Students who join the Honors College after completing 30+ credits and ENGL 102 are exempt from this requirement unless they have TSEM 102, in which case they must take ENGL 290."
+                        ]
+                    },
+                    {
+                        "name": "TSEM 190 Honors Towson Seminar",
+                        "units": 3,
+                        "notes": [
+                            "Students who have completed or waived the Towson Seminar at the time of admission with fewer than 60 credits must take an additional lower-level or upper-level Honors course instead.",
+                            "Students who join the Honors College with 60+ credits are exempt from this requirement."
+                        ]
+                    }
+                ]
+            },
+            "lowerLevelHonorsCoursework": {
+                "totalUnits": 6,
+                "options": [
+                    "Honors versions of 100/200-level courses",
+                    "200-level Honors Seminars",
+                    "Other designated Honors courses not meeting other requirements, including HONR 300-level courses"
+                ],
+                "notes": [
+                    "All courses that satisfy the seminar requirement are indicated each semester on the Honors course schedule posted on the Honors College website.",
+                    "Students fulfilling their Honors English requirement with ENGL 290 may take ENGL 290 a second time toward this requirement, as long as the topic is different (maximum 3 units).",
+                    "Students admitted to the Honors College with 60+ credits are exempt from one course (3 units) in this category."
+                ]
+            },
+            "upperLevelHonorsSeminars": {
+                "totalUnits": 6,
+                "courses": [
+                    {
+                        "name": "300-level Honors Seminars",
+                        "units": 6
+                    }
+                ]
+            },
+            "experientialLearning": {
+                "totalUnits": 6,
+                "options": [
+                    "HONR499 Honors Thesis",
+                    "Departmental Honors",
+                    "HONR379 Honors Independent Study",
+                    "HONR495 Honors Directed Readings",
+                    "HONR497 Honors Independent Investigations",
+                    "HONR490 Honors Study Abroad",
+                    "HONR491 Travel Study Honors",
+                    "Upper-level Service Learning (with prior approval)",
+                    "HONR493 Honors Internship",
+                    "Upper-level Honors College Seminars",
+                    "Honors Capstone (only certain departments)"
+                ],
+                "notes": [
+                    "All Honors elective options, except for Honors seminars, must be approved by the Honors College before enrollment for that semester.",
+                    "Students must present the results of their work in this category (except 300-level Honors seminars) at least once per 3 units at a Celebration of Scholarship and Learning or other approved event."
+                ]
+            }
         },
-        "lowerLevelHonorsCoursework": {
-            "totalUnits": 6,
-            "options": [
-                "Honors versions of 100/200-level courses",
-                "200-level Honors Seminars",
-                "Other designated Honors courses not meeting other requirements, including HONR 300-level courses"
-            ],
-            "notes": [
-                "All courses that satisfy the seminar requirement are indicated each semester on the Honors course schedule posted on the Honors College website.",
-                "Students fulfilling their Honors English requirement with ENGL 290 may take ENGL 290 a second time toward this requirement, as long as the topic is different (maximum 3 units).",
-                "Students admitted to the Honors College with 60+ credits are exempt from one course (3 units) in this category."
-            ]
-        },
-        "upperLevelHonorsSeminars": {
-            "totalUnits": 6,
-            "requirements": [
-                {
-                    "course": "300-level Honors seminars",
-                    "units": 6
-                }
-            ]
-        },
-        "experientialAndAdvancedLearning": {
-            "totalUnits": 6,
-            "options": [
-                "HONR499 Honors Thesis",
-                "Departmental Honors",
-                "HONR379 Honors Independent Study",
-                "HONR495 Honors Directed Readings",
-                "HONR497 Honors Independent Investigations",
-                "HONR490 Honors Study Abroad",
-                "HONR491 Travel Study Honors",
-                "Upper-level Service Learning (with prior approval)",
-                "HONR493 Honors Internship",
-                "Upper-level Honors College Seminars",
-                "Honors Capstone (only certain departments)"
-            ],
-            "notes": [
-                "All Honors elective options, except for Honors seminars, must be approved by the Honors College before enrollment for that semester.",
-                "Students must present the results of their work in this category (except 300-level Honors seminars) at least once per 3 units at a Celebration of Scholarship and Learning or other approved event."
-            ]
-        },
-        "additionalNotes": [
-            "A single Honors course may only fulfill one Honors requirement at a time.",
-            "ENGL 290 may be taken twice to fulfill different options, provided the topic is different each time."
-        ],
-        "goodStandingRequirements": {
+        "goodStanding": {
             "gpaRequirements": {
                 "cumulativeGpa": {
-                    "lessThan90Credits": 3.0,
-                    "after90Credits": 3.2,
+                    "below90Credits": 3.0,
+                    "above90Credits": 3.2,
                     "graduationRequirement": 3.3
                 },
                 "honorsCoursesGpa": 3.0
             },
             "unitCompletion": {
-                "byEndOfFirstYear": 6,
-                "byEndOfSecondYear": 12,
-                "byEndOfThirdYear": 18
+                "firstYear": 6,
+                "secondYear": 12,
+                "thirdYear": 18
             },
             "probationPolicy": [
                 "Students falling below the requirements for good standing will be placed on Honors Probation for at least one semester.",
                 "Students will become academically ineligible for the Honors College if they fail to return to good standing by the end of the probationary period."
             ]
         },
-        "gradingPolicy": "No courses taken using the pass grading option may fulfill requirements for the Honors College."
+        "gradingPolicy": "No courses taken using the pass grading option may fulfill requirements for the Honors College.",
+        "additionalNotes": [
+            "A single Honors course may only fulfill one Honors requirement at a time.",
+            "ENGL 290 may be taken twice to fulfill different options, provided the topic is different each time."
+        ]
     }
 }
