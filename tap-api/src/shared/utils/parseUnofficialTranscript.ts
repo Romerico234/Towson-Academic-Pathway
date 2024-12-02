@@ -134,10 +134,6 @@ export async function parseUnofficialTranscript(
             totalNumberOfCredits += completedUnits;
         }
 
-        console.log("Courses taken successfully:", coursesTakenSuccessfully);
-        console.log("Courses taken failed or in progress:", coursesTakenFailedOrInProgress);
-        console.log("Total number of credits taken:", totalNumberOfCredits);
-
         const userService = new UserService();
         await userService.updateAcademicInfoByEmail(userEmail, {
             coursesTakenSuccessfully,

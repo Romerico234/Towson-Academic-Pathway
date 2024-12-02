@@ -101,18 +101,24 @@ export class OpenAIService implements IOpenAIService {
         unofficialTranscript: any
     ): Promise<any> {
         try {
-            // Parse the unofficial transcript
-            // console.log(unofficialTranscript)
-            const parsedTranscript = await parseUnofficialTranscript(unofficialTranscript, userData.email);
-
-            // console.log("Parsed Transcript:", parsedTranscript);
-
             const { major, bachelorsDegree } = userData;
             let { isHonorsStudent } = userData;
             isHonorsStudent = isHonorsStudent === "true";
 
             const majorData = await this.majorService.getMajorByName(major);
             if (!majorData) throw new Error(`Major ${major} not found`);
+
+            // Parse the unofficial transcript
+            const parsedTranscript = await parseUnofficialTranscript(
+                unofficialTranscript,
+                userData.email
+            );
+            const coursesTakenSuccessfully =
+                parsedTranscript.coursesTakenSuccessfully;
+            const coursesTakenFailedOrInProgress =
+                parsedTranscript.coursesTakenFailed;
+            const totalNumberOfCreditsTaken =
+                parsedTranscript.totalNumberOfCreditsTaken;
 
             const coreRequirements = await this.coreService.getAllCores();
 
@@ -134,13 +140,16 @@ export class OpenAIService implements IOpenAIService {
             const userPrompt = this.buildPrompt(
                 userData,
                 majorData,
+                coursesTakenSuccessfully,
+                coursesTakenFailedOrInProgress,
+                totalNumberOfCreditsTaken,
                 coreRequirements,
                 degreeRequirements,
                 bachelorsRequirements,
                 honorsRequirements
             );
 
-            // console.log("User Prompt:", userPrompt);
+            console.log("User Prompt:", userPrompt);
 
             // const assistantId = process.env.OPENAI_ASSISTANT_ID || "";
 
@@ -175,58 +184,68 @@ export class OpenAIService implements IOpenAIService {
     private buildPrompt(
         userData: any,
         majorData: any,
+        coursesTakenSuccessfully: any,
+        coursesTakenFailedOrInProgress: any,
+        totalNumberOfCreditsTaken: any,
         coreRequirements: any,
         degreeRequirements: any,
         bachelorsRequirements: any,
         honorsRequirements: any
     ): string {
         let prompt = `User Information:\n`;
-        prompt += `Bachelor's Degree: ${userData.bachelorsDegree}\n`;
-        prompt += `Major: ${userData.major}\n`;
-        prompt += `Concentration: ${userData.concentration || "None"}\n`;
-        prompt += `Honors Student: ${
-            userData.isHonorsStudent ? "Yes" : "No"
-        }\n`;
-        prompt += `Start Date: ${userData.startDateSemester} ${userData.startDateYear}\n`;
-        prompt += `Expected Graduation: ${userData.expectedGraduationSemester} ${userData.expectedGraduationYear}\n`;
-        prompt += `Preferred Credit Hours per Semester: ${userData.preferredCreditHours}\n`;
-        prompt += `Summer/Winter Courses Frequency: ${userData.summerWinterCoursesFrequency}\n`;
-        prompt += `Unavailable Terms: ${
-            Array.isArray(userData.unavailableTerms)
-                ? userData.unavailableTerms.join(", ")
-                : "None"
-        }\n\n`;
+        prompt += `The user is pursuing a ${
+            userData.bachelorsDegree
+        } and is majoring in ${userData.major} with a concentration in ${
+            userData.concentration || "None"
+        }. `;
+        prompt += userData.isHonorsStudent
+            ? `The user is also an honors student. `
+            : "";
+        prompt += `The user's degree plan should start on: ${userData.startDateSemester} ${userData.startDateYear} and they have an expected graduation of: ${userData.expectedGraduationSemester} ${userData.expectedGraduationYear}. `;
+        prompt += `The user prefers to take ${userData.preferredCreditHours} credit hours per semester. However, this is not an ultimatum and can vary especially since this is a range. `;
+        prompt += `The user prefers to take ${userData.summerWinterCoursesFrequency} courses during the summer and winter terms. However, this is also not an ultimatum and can be more or less than the preferred frequency. But, favor towards less. `;
+        if (
+            Array.isArray(userData.unavailableTerms) &&
+            userData.unavailableTerms.length > 0
+        ) {
+            prompt += `The user is unavailable during the following terms: ${userData.unavailableTerms.join(
+                ", "
+            )}`;
+        }
+        prompt += `\n\nThis is the user's academic standing which includes the courses they have taken successfully, courses that are in progress or failed, and the total number of credits they have taken:\n`;
+        prompt += `Courses Taken Successfully: ${coursesTakenSuccessfully.toString()}\n`;
+        prompt += `Courses Taken Failed or In Progress: ${coursesTakenFailedOrInProgress.toString()}\n`;
+        prompt += `Total Number of Credits Taken: ${totalNumberOfCreditsTaken}\n`;
 
-        // prompt += `Major Requirements:\n${JSON.stringify(
-        //     majorData,
-        //     null,
-        //     2
-        // )}\n\n`;
-        // prompt += `Core Requirements:\n${JSON.stringify(
-        //     coreRequirements,
-        //     null,
-        //     2
-        // )}\n\n`;
-        // prompt += `Degree Requirements:\n${JSON.stringify(
-        //     degreeRequirements,
-        //     null,
-        //     2
-        // )}\n\n`;
-        // prompt += `Bachelor's Degree Requirements:\n${JSON.stringify(
-        //     bachelorsRequirements,
-        //     null,
-        //     2
-        // )}\n\n`;
+        prompt += `\nThis is the degree requirements that all Towson University students must complete and fulfill:\n${JSON.stringify(
+            degreeRequirements,
+            null,
+            2
+        )}\n\n`;
+        prompt += `These are the core requirements that all Towson University students must complete, with each section being fulfilled at least once.”:\n${JSON.stringify(
+            coreRequirements,
+            null,
+            2
+        )}\n\n`;
+        prompt += `This is the user's specific bachelor's degree requirements that they must complete and fulfill:\n${JSON.stringify(
+            bachelorsRequirements,
+            null,
+            2
+        )}\n\n`;
+        prompt += `This is the user's major requirement that they must complete and fulfills:\n${JSON.stringify(
+            majorData,
+            null,
+            2
+        )}\n\n`;
+        if (honorsRequirements) {
+            prompt += `This is the honors requirements that all Towson University honors students must complete and fulfill:\n${JSON.stringify(
+                honorsRequirements,
+                null,
+                2
+            )}\n\n`;
+        }
 
-        // if (honorsRequirements) {
-        //     prompt += `Honors Requirements:\n${JSON.stringify(
-        //         honorsRequirements,
-        //         null,
-        //         2
-        //     )}\n\n`;
-        // }
-
-        prompt += `Generate a degree plan based on the user's information and requirements. Ensure the structure matches the provided format.`;
+        prompt += `\nGenerate a degree plan based on the user's information and requirements. Ensure the structure matches the provided format.`;
 
         return prompt;
     }
