@@ -17,9 +17,6 @@ export default function MainFormComponent() {
     const navigate = useNavigate();
 
     const [personalInfo, setPersonalInfo] = useState<IPersonalInfo>({
-        firstName: "",
-        lastName: "",
-        email: "",
         major: "",
         concentration: "",
         bachelorsDegree: "",
@@ -78,7 +75,7 @@ export default function MainFormComponent() {
         >
     ) => {
         const { name, value } = e.target;
-    
+
         if (name === "unofficialTranscript") {
             setPersonalInfo({
                 ...personalInfo,
@@ -103,7 +100,6 @@ export default function MainFormComponent() {
             });
         }
     };
-    
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -138,12 +134,19 @@ export default function MainFormComponent() {
                 throw new Error("Token or UserId is missing.");
             }
 
+            const userService = new UserService();
+
+            await userService.updateUserById(userId, {
+                academicInfo: personalInfo, 
+                preferences: preferences,
+            });
+
             const openAIService = new OpenAIService();
             const response = await openAIService.generatePlan(dataToSend);
 
-            const userService = new UserService();
             // Clear the degreePlan
             await userService.updateUserById(userId, { degreePlan: [] });
+
             // Push new degreePlan
             await userService.updateUserById(userId, {
                 $push: { degreePlan: response },
