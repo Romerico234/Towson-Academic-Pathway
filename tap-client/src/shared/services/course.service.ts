@@ -11,11 +11,6 @@ export default class CourseService {
         return response.data;
     }
 
-    async searchCourses(query: any): Promise<any> {
-        const response = await api.get("/courses/search", { params: query });
-        return response.data;
-    }
-
     async getCourseBySubjectAndCatalogNumber(
         subject: string,
         catalogNumber: string

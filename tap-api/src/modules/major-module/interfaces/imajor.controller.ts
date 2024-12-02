@@ -16,12 +16,4 @@ export interface IMajorController {
      * @returns A Promise that resolves to void
      */
     getMajorByName(req: Request, res: Response): Promise<void>;
-
-    /**
-     * Searches for majors based on a query string
-     * @param req - Express Request object containing the query parameter
-     * @param res - Express Response object used to send the response
-     * @returns A Promise that resolves to void
-     */
-    searchMajors(req: Request, res: Response): Promise<void>;
 }

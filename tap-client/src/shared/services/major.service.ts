@@ -12,11 +12,4 @@ export default class MajorService {
         );
         return response.data;
     }
-
-    async searchMajors(query: string): Promise<any> {
-        const response = await api.get("/majors/search", {
-            params: { query },
-        });
-        return response.data;
-    }
 }

@@ -31,20 +31,4 @@ export class MajorController implements IMajorController {
             res.status(500).json({ message: "Error retrieving major", error });
         }
     };
-
-    public searchMajors = async (req: Request, res: Response): Promise<void> => {
-        try {
-            const { query } = req.query;
-            if (!query || typeof query !== "string") {
-                res.status(400).json({
-                    message: "Query parameter is required",
-                });
-                return;
-            }
-            const majors = await this.majorService.searchMajors(query);
-            res.status(200).json(majors);
-        } catch (error) {
-            res.status(500).json({ message: "Error searching majors", error });
-        }
-    };
 }

@@ -6,6 +6,5 @@ const majorController = new MajorController();
 
 router.get("/", majorController.getAllMajors);
 router.get("/:name", majorController.getMajorByName);
-router.get("/search", majorController.searchMajors);
 
 export default router;

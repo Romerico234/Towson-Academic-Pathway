@@ -5,11 +5,4 @@ export default class CoreService {
         const response = await api.get("/cores");
         return response.data;
     }
-
-    async searchCores(query: string): Promise<any> {
-        const response = await api.get("/cores/search", {
-            params: { query },
-        });
-        return response.data;
-    }
 }

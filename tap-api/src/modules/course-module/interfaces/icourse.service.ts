@@ -24,11 +24,4 @@ export interface ICourseService {
         subject: string,
         catalogNumber: string
     ): Promise<ICourse | null>;
-
-    /**
-     * Searches for courses based on query parameters
-     * @param query An object containing query parameters
-     * @returns A Promise that resolves to an array of ICourse
-     */
-    searchCourses(query: any): Promise<ICourse[]>;
 }

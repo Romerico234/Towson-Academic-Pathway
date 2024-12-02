@@ -13,11 +13,4 @@ export interface IMajorService {
      * @returns A Promise that resolves to an IMajor or null if not found
      */
     getMajorByName(name: string): Promise<IMajor | null>;
-
-    /**
-     * Searches for majors based on a query string
-     * @param query - The query string to search for
-     * @returns A Promise that resolves to an array of IMajor
-     */
-    searchMajors(query: string): Promise<IMajor[]>;
 }
