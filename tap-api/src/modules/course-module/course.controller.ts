@@ -61,18 +61,4 @@ export class CourseController implements ICourseController {
             next(error);
         }
     };
-
-    public searchCourses = async (
-        req: Request,
-        res: Response,
-        next: NextFunction
-    ) => {
-        try {
-            const query = req.query;
-            const courses = await this.courseService.searchCourses(query);
-            res.json(courses);
-        } catch (error) {
-            next(error);
-        }
-    };
 }

@@ -14,15 +14,15 @@ import formImg from "../../assets/sidebar-assets/form.png";
 import favoriteImg from "../../assets/sidebar-assets/favorite.png";
 
 export default function SidebarComponent() {
-    // const [collapsed, setCollapsed] = useState(true);
+    const [collapsed, setCollapsed] = useState(false);
     const { logout } = useAuth();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const location = useLocation();
 
-    // const toggleSidebar = () => {
-    //     setCollapsed(!collapsed);
-    // };
+    const toggleSidebar = () => {
+        setCollapsed(!collapsed);
+    };
 
     const handleLogout = () => {
         logout();
@@ -54,139 +54,174 @@ export default function SidebarComponent() {
                 </div>
             )}
 
-            {/* Sidebar */}
-            <Sidebar
-                // collapsed={collapsed}
-                backgroundColor="#FFBB00"
-                width="180px"
-                collapsedWidth="80px"
-                transitionDuration={300}
+            <div
                 style={{
                     position: "fixed",
                     height: "100vh",
-                    bottom: 0,
-                    zIndex: 1000,
+                    width: collapsed ? "100px" : "180px",
+                    display: "flex",
+                    flexDirection: "column",
+                    backgroundColor: "#FFBB00",
                     boxShadow: "0 0 30px rgba(0, 0, 0, 0.1)",
+                    zIndex: 1000,
                 }}
             >
-                {/* Toggle Button */}
-                <button
-                    // onClick={toggleSidebar}
-                    className="p-4 text-xl font-bold flex items-center hover:bg-towsonGoldLight"
-                    style={{ color: "#000000" }}
-                >
-                    TAP
-                </button>
-
-                <Menu
-                    menuItemStyles={{
-                        button: ({ active }) => ({
-                            backgroundColor: active ? "#FFE066" : "transparent",
-                            color: active ? "#3C3C3C" : "#000000",
-                            fontWeight: active ? "bold" : "normal",
-                            padding: "12px 16px",
-                            fontSize: "16px",
-                        }),
+                {/* Top Section */}
+                <Sidebar
+                    collapsed={collapsed}
+                    backgroundColor="transparent"
+                    width="100%"
+                    collapsedWidth="100px"
+                    transitionDuration={300}
+                    style={{
+                        flexGrow: 1,
+                        overflowY: "auto",
+                        display: "flex",
+                        flexDirection: "column",
                     }}
                 >
-                    {/* Home Page */}
-                    <MenuItem
-                        active={location.pathname === "/home"}
-                        onClick={handleHomeClick}
+                    {/* Toggle Button */}
+                    <button
+                        onClick={toggleSidebar}
+                        className="p-4 text-xl font-bold flex items-center justify-start hover:bg-towsonGoldLight w-full"
+                        style={{ color: "#000000", textAlign: "left" }}
                     >
-                        <img
-                            src={homeImg}
-                            alt="Home Icon"
-                            className="inline-block mr-2 w-6 h-6"
-                        />
-                        Go Home
-                    </MenuItem>
+                        TAP
+                    </button>
 
-                    {/* Dashboard */}
-                    <MenuItem
-                        active={location.pathname === "/dashboard"}
-                        component={<Link to="/dashboard" />}
+                    <Menu
+                        menuItemStyles={{
+                            button: ({ active }) => ({
+                                backgroundColor: active
+                                    ? "#FFE066"
+                                    : "transparent",
+                                color: active ? "#3C3C3C" : "#000000",
+                                fontWeight: active ? "bold" : "normal",
+                                padding: "12px 16px",
+                                fontSize: "16px",
+                            }),
+                        }}
                     >
-                        <img
-                            src={dashboardImg}
-                            alt="Dashboard Icon"
-                            className="inline-block mr-2 w-6 h-6"
-                        />
-                        Dashboard
-                    </MenuItem>
-
-                    {/* Favorites */}
-                    <MenuItem
-                        active={location.pathname === "/favorites"}
-                        component={<Link to="/favorites" />}
-                    >
-                        <img
-                            src={favoriteImg}
-                            alt="Favorite Icon"
-                            className="inline-block mr-2 w-6 h-6"
-                        />
-                        Favorites
-                    </MenuItem>
-
-                    {/* Requirements */}
-                    <MenuItem
-                        active={location.pathname === "/requirements"}
-                        component={<Link to="/requirements" />}
-                    >
-                        <img
-                            src={requirementsImg}
-                            alt="Requirements Icon"
-                            className="inline-block mr-2 w-6 h-6"
-                        />
-                        Requirements
-                    </MenuItem>
-
-                    {/* Form */}
-                    <MenuItem
-                        active={location.pathname === "/form"}
-                        component={<Link to="/form" />}
-                    >
-                        <img
-                            src={formImg}
-                            alt="Form Icon"
-                            className="inline-block mr-2 w-6 h-6"
-                        />
-                        Form
-                    </MenuItem>
-
-                    {/* Settings */}
-                    <SubMenu
-                        icon={
-                            <img
-                                src={settingsImg}
-                                alt="Settings Icon"
-                                className="inline-block mr-2 w-6 h-6"
-                            />
-                        }
-                        label="Settings"
-                    >
+                        {/* Home Page */}
                         <MenuItem
-                            active={location.pathname === "/settings"}
-                            component={<Link to="/settings" />}
+                            active={location.pathname === "/home"}
+                            onClick={handleHomeClick}
                         >
                             <img
-                                src={profileImg}
-                                alt="Profile Icon"
+                                src={homeImg}
+                                alt="Home Icon"
                                 className="inline-block mr-2 w-6 h-6"
                             />
-                            Profile
+                            {!collapsed && "Go Home"}
                         </MenuItem>
-                        <MenuItem onClick={handleLogout}>
+
+                        {/* Dashboard */}
+                        <MenuItem
+                            active={location.pathname === "/dashboard"}
+                            component={<Link to="/dashboard" />}
+                        >
                             <img
-                                src={logoutImg}
-                                alt="Logout Icon"
+                                src={dashboardImg}
+                                alt="Dashboard Icon"
                                 className="inline-block mr-2 w-6 h-6"
                             />
-                            Logout
+                            {!collapsed && "Dashboard"}
                         </MenuItem>
-                    </SubMenu>
-                </Menu>
-            </Sidebar>
+
+                        {/* Favorites */}
+                        <MenuItem
+                            active={location.pathname === "/favorites"}
+                            component={<Link to="/favorites" />}
+                        >
+                            <img
+                                src={favoriteImg}
+                                alt="Favorite Icon"
+                                className="inline-block mr-2 w-6 h-6"
+                            />
+                            {!collapsed && "Favorites"}
+                        </MenuItem>
+
+                        {/* Requirements */}
+                        <MenuItem
+                            active={location.pathname === "/requirements"}
+                            component={<Link to="/requirements" />}
+                        >
+                            <img
+                                src={requirementsImg}
+                                alt="Requirements Icon"
+                                className="inline-block mr-2 w-6 h-6"
+                            />
+                            {!collapsed && "Requirements"}
+                        </MenuItem>
+
+                        {/* Form */}
+                        <MenuItem
+                            active={location.pathname === "/form"}
+                            component={<Link to="/form" />}
+                        >
+                            <img
+                                src={formImg}
+                                alt="Form Icon"
+                                className="inline-block mr-2 w-6 h-6"
+                            />
+                            {!collapsed && "Form"}
+                        </MenuItem>
+                    </Menu>
+                </Sidebar>
+
+                {/* Bottom Settings Section */}
+                <div
+                    style={{
+                        borderTop: "1px solid #CCC",
+                        padding: "16px",
+                    }}
+                >
+                    <Menu
+                        menuItemStyles={{
+                            button: ({ active }) => ({
+                                backgroundColor: active
+                                    ? "#FFE066"
+                                    : "transparent",
+                                color: active ? "#3C3C3C" : "#000000",
+                                fontWeight: active ? "bold" : "normal",
+                                padding: "12px 16px",
+                                fontSize: "16px",
+                            }),
+                        }}
+                    >
+                        <SubMenu
+                            icon={
+                                <img
+                                    src={settingsImg}
+                                    alt="Settings Icon"
+                                    className="inline-block mr-2 w-6 h-6"
+                                />
+                            }
+                            label={!collapsed && "Settings"}
+                        >
+                            <MenuItem
+                                active={location.pathname === "/settings"}
+                                component={<Link to="/settings" />}
+                            >
+                                <img
+                                    src={profileImg}
+                                    alt="Profile Icon"
+                                    className="inline-block mr-2 w-6 h-6"
+                                />
+                                Profile
+                            </MenuItem>
+                            <MenuItem onClick={handleLogout}>
+                                <img
+                                    src={logoutImg}
+                                    alt="Logout Icon"
+                                    className="inline-block mr-2 w-6 h-6"
+                                />
+                                Logout
+                            </MenuItem>
+                        </SubMenu>
+                    </Menu>
+                </div>
+            </div>
         </div>
     );
 }

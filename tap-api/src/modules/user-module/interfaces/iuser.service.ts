@@ -18,6 +18,22 @@ export interface IUserService {
      * @param email - The email of the user
      * @returns A Promise that resolves to the IUser or null if not found
      */
+    getUserByEmail(email: string): Promise<IUser | null>;
+
+    /**
+     * For parsing unofficial transcripts and updating academic information
+     * @param email - The email of the user
+     * @param academicInfo - The academic information to update
+     * @returns A Promise that resolves to the updated IUser or null if not found
+     */
+    updateAcademicInfoByEmail(
+        email: string,
+        academicInfo: {
+            coursesTakenSuccessfully: string[];
+            coursesTakenFailedOrInProgress: string[];
+            totalNumberOfCreditsTaken: string;
+        }
+    ): Promise<IUser | null>;
 
     /**
      * Retrieves a user by ID

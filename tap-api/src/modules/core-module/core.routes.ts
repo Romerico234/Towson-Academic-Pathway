@@ -5,6 +5,6 @@ const router = Router();
 const coreController = new CoreController();
 
 router.get("/", coreController.getAllCores);
-router.get("/search", coreController.searchCores);
+router.get("/formatted", coreController.getFormattedCores);
 
 export default router;

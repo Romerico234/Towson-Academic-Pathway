@@ -4,6 +4,7 @@ import { OpenAIError } from "../../shared/errors/errors";
 import { MajorService } from "../major-module/major.service";
 import { CoreService } from "../core-module/core.service";
 import { RequirementsService } from "../requirements-module/requirements.service";
+import { parseUnofficialTranscript } from "../../shared/utils/parseUnofficialTranscript";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -36,15 +37,17 @@ export class OpenAIService implements IOpenAIService {
         This bot is designed to assist users in generating a comprehensive degree plan for their academic journey based on Towson University courses.
 
         Rules:
-        - Carefully analyze the unofficial transcript provided by the user to identify completed courses, academic progress, and remaining requirements. This step is critical to ensure prerequisites, core curriculum requirements, and degree-specific requirements are correctly addressed.
-        - Generate a general degree plan that considers:
-            - Courses already completed (as verified in the unofficial transcript).
+        - Carefully analyze the user's academic and preferences data. This step is critical to ensure prerequisites, core curriculum requirements, and degree-specific requirements are correctly addressed.
+        - Generate a general degree plan that considers the following:
+            - Courses already completed.
+            - Courses failed or in progress.
             - Remaining requirements for graduation.
-            - The user's academic standing, ensuring prerequisite courses are included if missing.
+            - The user's academic standing, specifically the total number of credits they have completed and the remaining number of credits required to meet the degree requirements. The total number of credits required for graduation is determined by both the overall degree requirements and the specific requirements for their chosen degree/bachelors program.
             - The user's preferences, such as:
                 - Preferred credit hours per semester.
                 - Availability during summer/winter terms.
                 - Unavailable terms.
+                - Etc.
         - Balance core curriculum, major-specific courses, and elective requirements across semesters while adhering to the user's preferences.
         - Address all core, major-specific, and elective requirements by scheduling them appropriately.
         - Handle prerequisites with care, ensuring prerequisite courses are added in the correct sequence to avoid scheduling conflicts or delays in the user's academic progress.
@@ -81,10 +84,7 @@ export class OpenAIService implements IOpenAIService {
         ]
 
         Important:
-        - Use the unofficial transcript as the primary source to determine:
-            - Courses already completed.
-            - Courses that can be skipped.
-            - Courses that need to be retaken.
+        - BE MINDFUL ON WHEN COURSES ARE OFFERED. Some courses are only offered in specific semesters.
         - If any required course (core, major, or elective) is missing, ensure it is included in the degree plan.
         - Clearly indicate any issues, conflicts, or ambiguities in the transcript data or user preferences in the notes section of the affected semester.
 
@@ -95,19 +95,46 @@ export class OpenAIService implements IOpenAIService {
         `;
     }
 
-    public async generatePlans(userData: any): Promise<any> {
+    public async generatePlans(
+        userData: any,
+        unofficialTranscript: any
+    ): Promise<any> {
         try {
-            const { major, bachelorsDegree } = userData;
+            const { major, bachelorsDegree, concentration } = userData;
             let { isHonorsStudent } = userData;
             isHonorsStudent = isHonorsStudent === "true";
 
-            const majorData = await this.majorService.getMajorByName(major);
+            const majorData =
+                await this.majorService.getMajorByNameWithNoConcentration(
+                    major
+                );
             if (!majorData) throw new Error(`Major ${major} not found`);
 
-            const coreRequirements = await this.coreService.getAllCores();
+            const concentrationData =
+                await this.majorService.getConcentrationByMajorAndName(
+                    major,
+                    concentration
+                );
 
-            const degreeRequirements =
-                await this.requirementsService.getDegreeRequirements();
+            if (!concentrationData)
+                throw new Error(`Concentration ${concentrationData} not found`);
+
+            // Parse the unofficial transcript
+            const parsedTranscript = await parseUnofficialTranscript(
+                unofficialTranscript,
+                userData.email
+            );
+            const coursesTakenSuccessfully =
+                parsedTranscript.coursesTakenSuccessfully;
+            const coursesTakenFailedOrInProgress =
+                parsedTranscript.coursesTakenFailed;
+            const totalNumberOfCreditsTaken =
+                parsedTranscript.totalNumberOfCreditsTaken;
+
+            const coreRequirements = await this.coreService.getFormattedCores();
+
+            const generalDegreeRequirements =
+                await this.requirementsService.getGeneralDegreeRequirementes();
 
             const bachelorsRequirements =
                 await this.requirementsService.getDegreeRequirementByType(
@@ -124,8 +151,12 @@ export class OpenAIService implements IOpenAIService {
             const userPrompt = this.buildPrompt(
                 userData,
                 majorData,
+                concentrationData,
+                coursesTakenSuccessfully,
+                coursesTakenFailedOrInProgress,
+                totalNumberOfCreditsTaken,
                 coreRequirements,
-                degreeRequirements,
+                generalDegreeRequirements,
                 bachelorsRequirements,
                 honorsRequirements
             );
@@ -163,59 +194,76 @@ export class OpenAIService implements IOpenAIService {
     private buildPrompt(
         userData: any,
         majorData: any,
+        concentrationData: any,
+        coursesTakenSuccessfully: any,
+        coursesTakenFailedOrInProgress: any,
+        totalNumberOfCreditsTaken: any,
         coreRequirements: any,
-        degreeRequirements: any,
+        generalDegreeRequirements: any,
         bachelorsRequirements: any,
         honorsRequirements: any
     ): string {
         let prompt = `User Information:\n`;
-        prompt += `First Name: ${userData.firstName}\n`;
-        prompt += `Last Name: ${userData.lastName}\n`;
-        prompt += `Email: ${userData.email}\n`;
-        prompt += `Bachelor's Degree: ${userData.bachelorsDegree}\n`;
-        prompt += `Major: ${userData.major}\n`;
-        prompt += `Concentration: ${userData.concentration || "None"}\n`;
-        prompt += `Honors Student: ${
-            userData.isHonorsStudent ? "Yes" : "No"
-        }\n`;
-        prompt += `Expected Graduation: ${userData.expectedGraduationSemester} ${userData.expectedGraduationYear}\n`;
-        prompt += `Preferred Credit Hours per Semester: ${userData.preferredCreditHours}\n`;
-        prompt += `Unavailable Terms: ${
-            Array.isArray(userData.unavailableTerms)
-                ? userData.unavailableTerms.join(", ")
-                : "None"
-        }\n\n`;
+        prompt += `The user is pursuing a ${
+            userData.bachelorsDegree
+        } and is majoring in ${userData.major} with a concentration in ${
+            userData.concentration || "None"
+        }. `;
+        prompt += userData.isHonorsStudent
+            ? `The user is also an honors student. `
+            : "";
+        prompt += `The user's degree plan should start on: ${userData.startDateSemester} ${userData.startDateYear} and they have an expected graduation of: ${userData.expectedGraduationSemester} ${userData.expectedGraduationYear}. `;
+        prompt += `The user prefers to take ${userData.preferredCreditHours} credit hours per semester. However, this is not an ultimatum and can vary especially since this is a range. `;
+        prompt += `The user prefers to take ${userData.summerWinterCoursesFrequency} courses during the summer and winter terms. However, this is also not an ultimatum and can be more or less than the preferred frequency. But, favor towards less. `;
+        if (
+            Array.isArray(userData.unavailableTerms) &&
+            userData.unavailableTerms.length > 0
+        ) {
+            prompt += `The user is unavailable during the following terms: ${userData.unavailableTerms.join(
+                ", "
+            )}`;
+        }
+        prompt += `\n\nThis is the user's academic standing which includes the courses they have taken successfully, courses that are in progress or failed, and the total number of credits they have taken:\n`;
+        prompt += `Courses Taken Successfully: ${coursesTakenSuccessfully.toString()}\n`;
+        prompt += `Courses Taken Failed or In Progress: ${coursesTakenFailedOrInProgress.toString()}\n`;
+        prompt += `Total Number of Credits Taken: ${totalNumberOfCreditsTaken}\n`;
 
-        prompt += `Major Requirements:\n${JSON.stringify(
-            majorData,
+        prompt += `\nThis is the general degree requirements that all Towson University students must complete and fulfill:\n${JSON.stringify(
+            generalDegreeRequirements,
             null,
             2
         )}\n\n`;
-        prompt += `Core Requirements:\n${JSON.stringify(
+        prompt += `These are the core requirements that all Towson University students must complete, with each section being fulfilled at least once.”:\n${JSON.stringify(
             coreRequirements,
             null,
             2
         )}\n\n`;
-        prompt += `Degree Requirements:\n${JSON.stringify(
-            degreeRequirements,
-            null,
-            2
-        )}\n\n`;
-        prompt += `Bachelor's Degree Requirements:\n${JSON.stringify(
+        prompt += `This is the user's specific bachelor's degree requirements that they must complete and fulfill:\n${JSON.stringify(
             bachelorsRequirements,
             null,
             2
         )}\n\n`;
-
+        prompt += `This is the user's major requirement that they must complete and fulfill:\n${JSON.stringify(
+            majorData,
+            null,
+            2
+        )}\n\n`;
+        if (concentrationData) {
+            prompt += `This is the user's requirements for their concentration that they must complete and fulfill:\n${JSON.stringify(
+                concentrationData,
+                null,
+                2
+            )}\n\n`;
+        }
         if (honorsRequirements) {
-            prompt += `Honors Requirements:\n${JSON.stringify(
+            prompt += `This is the honors requirements that all Towson University honors students must complete and fulfill:\n${JSON.stringify(
                 honorsRequirements,
                 null,
                 2
             )}\n\n`;
         }
 
-        prompt += `Generate a degree plan based on the user's information and requirements. Ensure the structure matches the provided format.`;
+        prompt += `\nGenerate a degree plan based on the user's information and requirements. Ensure the structure matches the provided format.`;
 
         return prompt;
     }

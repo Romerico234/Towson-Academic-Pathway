@@ -1,4 +1,8 @@
-import { IPersonalInfo } from "./interfaces/IPersonalInfo";
+import { useState, useEffect } from "react";
+import { IAcademicInfo } from "./interfaces/IAcademicInfo";
+import { useAuth } from "../auth/AuthComponent";
+import TokenService from "../../shared/services/token.service";
+import UserService from "../../shared/services/user.service";
 import personImg from "../../assets/form-assets/person.png";
 import mailImg from "../../assets/form-assets/mail.png";
 import degreeHatImg from "../../assets/form-assets/degree-hat.png";
@@ -10,7 +14,7 @@ import starImg from "../../assets/form-assets/star.png";
 type Major = "Computer Science";
 
 interface Props {
-    formData: IPersonalInfo;
+    formData: IAcademicInfo;
     handleInputChange: (
         e: React.ChangeEvent<
             HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
@@ -19,18 +23,46 @@ interface Props {
     isReadOnly?: boolean;
 }
 
-export default function PersonalInfoFormComponent({
+export default function AcademicInfoFormComponent({
     formData,
     handleInputChange,
     isReadOnly = false,
 }: Props) {
+    const { token } = useAuth();
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            if (!token) return;
+
+            try {
+                const tokenService = new TokenService();
+                const userId = await tokenService.getUserIdFromToken(token);
+
+                if (userId) {
+                    const userService = new UserService();
+                    const user = await userService.getUserById(userId);
+                    setFirstName(user.firstName || "");
+                    setLastName(user.lastName || "");
+                    setEmail(user.email || "");
+                }
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+            }
+        };
+
+        fetchUserData();
+    }, [token]);
+
     const majors: Major[] = ["Computer Science"];
 
     const concentrations: Record<Major, string[]> = {
         "Computer Science": [
-            "General",
-            "Cyber Operations",
-            "Software Engineering",
+            "General Track",
+            "Cyber Operations Track",
+            "Software Engineering Track",
         ],
     };
 
@@ -42,15 +74,23 @@ export default function PersonalInfoFormComponent({
         "Bachelor of Technical and Professional Studies",
     ];
 
-    // Generate years between current year and +10 years
+    const semesters = ["Summer", "Spring", "Fall", "Winter"];
+
     const currentYear = new Date().getFullYear();
-    const years = Array.from({ length: 10 }, (_, i) => currentYear + i);
+    const startDateYears = Array.from(
+        { length: 10 },
+        (_, i) => currentYear - 4 + i
+    );
+    const expectedGraduationYears = Array.from(
+        { length: 10 },
+        (_, i) => currentYear + i
+    );
 
     return (
         <div className="container mx-auto p-4">
             <fieldset className="border-2 border-towsonBlack bg-towsonDarkerWhite p-6 rounded max-w-lg mx-auto">
                 <legend className="text-2xl font-bold mb-4 text-towsonGoldDark">
-                    Personal Information
+                    Academic Information
                 </legend>
 
                 {/* First Name */}
@@ -71,7 +111,7 @@ export default function PersonalInfoFormComponent({
                                 type="text"
                                 name="firstName"
                                 placeholder="First Name"
-                                value={formData.firstName}
+                                value={firstName}
                                 onChange={handleInputChange}
                                 className={`w-full text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight ${
                                     isReadOnly
@@ -103,7 +143,7 @@ export default function PersonalInfoFormComponent({
                                 type="text"
                                 name="lastName"
                                 placeholder="Last Name"
-                                value={formData.lastName}
+                                value={lastName}
                                 onChange={handleInputChange}
                                 className={`w-full text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight ${
                                     isReadOnly
@@ -135,7 +175,7 @@ export default function PersonalInfoFormComponent({
                                 type="email"
                                 name="email"
                                 placeholder="Email Address"
-                                value={formData.email}
+                                value={email}
                                 onChange={handleInputChange}
                                 className={`w-full text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight ${
                                     isReadOnly
@@ -257,6 +297,51 @@ export default function PersonalInfoFormComponent({
                         </div>
                     )}
 
+                {/* Start Date for Degree Completion Plan */}
+                <div className="flex flex-wrap items-center mb-4">
+                    <label className="w-full text-sm font-medium mb-2">
+                        Start Date for Degree Completion Plan
+                    </label>
+                    <div className="w-full">
+                        <div className="flex">
+                            <span className="bg-towsonGoldDark text-towsonBlack p-2 rounded-l">
+                                <img
+                                    src={dateImg}
+                                    alt="Start Date Icon"
+                                    className="w-6 h-6"
+                                />
+                            </span>
+                            <select
+                                name="startDateSemester"
+                                value={formData.startDateSemester}
+                                onChange={handleInputChange}
+                                className="bg-white text-towsonBlack border border-towsonGraphiteLight p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
+                                required
+                            >
+                                <option value="">Select Semester</option>
+                                {semesters.map((semester) => (
+                                    <option key={semester} value={semester}>
+                                        {semester}
+                                    </option>
+                                ))}
+                            </select>
+                            <select
+                                name="startDateYear"
+                                value={formData.startDateYear}
+                                onChange={handleInputChange}
+                                className="bg-white text-towsonBlack border border-towsonGraphiteLight p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
+                                required
+                            >
+                                {startDateYears.map((y) => (
+                                    <option key={y} value={y}>
+                                        {y}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
                 {/* Expected Graduation */}
                 <div className="flex flex-wrap items-center mb-4">
                     <label className="w-full text-sm font-medium mb-2">
@@ -289,7 +374,7 @@ export default function PersonalInfoFormComponent({
                                 className="bg-white text-towsonBlack border border-towsonGraphiteLight p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
                                 required
                             >
-                                {years.map((y) => (
+                                {expectedGraduationYears.map((y) => (
                                     <option key={y} value={y}>
                                         {y}
                                     </option>

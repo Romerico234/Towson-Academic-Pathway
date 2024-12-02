@@ -5,6 +5,10 @@ const router = Router();
 const requirementsController = new RequirementsController();
 
 router.get("/degreeRequirements", requirementsController.getDegreeRequirements);
+router.get(
+    "/generalDegreeRequirements",
+    requirementsController.getGeneralDegreeRequirementes
+);
 router.get("/honorsRequirements", requirementsController.getHonorsRequirements);
 router.get(
     "/degreeRequirements/:type",

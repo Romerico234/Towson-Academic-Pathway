@@ -18,19 +18,18 @@ export class CoreController implements ICoreController {
         }
     };
 
-    public searchCores = async (req: Request, res: Response): Promise<void> => {
+    public getFormattedCores = async (
+        req: Request,
+        res: Response
+    ): Promise<void> => {
         try {
-            const { query } = req.query;
-            if (!query || typeof query !== "string") {
-                res.status(400).json({
-                    message: "Query parameter is required",
-                });
-                return;
-            }
-            const cores = await this.coreService.searchCores(query);
-            res.status(200).json(cores);
+            const formattedCores = await this.coreService.getFormattedCores();
+            res.status(200).json(formattedCores);
         } catch (error) {
-            res.status(500).json({ message: "Error searching cores", error });
+            res.status(500).json({
+                message: "Error retrieving formatted cores",
+                error,
+            });
         }
     };
 }

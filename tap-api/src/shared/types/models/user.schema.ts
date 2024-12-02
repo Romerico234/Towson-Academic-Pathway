@@ -2,11 +2,28 @@ import mongoose, { Schema, Document, Types } from "mongoose";
 import { COLLECTION_NAMES } from "../mongodb/collection-names";
 
 export interface AcademicInfo {
-    [key: string]: any;
+    major?: string;
+    concentration?: string;
+    bachelorsDegree?: string;
+    unofficialTranscript?: object;
+    startDateSemester?: string;
+    startDateYear?: string;
+    expectedGraduationSemester?: string;
+    expectedGraduationYear?: string;
+    isHonorsStudent?: boolean;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    coursesTakenSuccessfully?: string[];
+    coursesTakenFailedOrInProgress?: string[];
+    totalNumberOfCreditsTaken?: string;
 }
 
-export interface Preferences {
-    [key: string]: any; 
+export interface PreferencesInfo {
+    preferredCreditHours?: string;
+    summerWinterCoursesFrequency?: string;
+    unavailableTerms?: string[];
+    additionalComments?: string;
 }
 
 export interface Course {
@@ -35,7 +52,7 @@ export interface IUser extends Document<Types.ObjectId> {
     firstName: string;
     lastName: string;
     academicInfo: AcademicInfo;
-    preferences: Preferences;
+    preferencesInfo: PreferencesInfo;
     degreePlan: SemesterPlan[];
     favorites: FavoriteSchedule[];
     createdAt: Date;
@@ -49,7 +66,7 @@ const UserSchema: Schema = new Schema(
         firstName: { type: String, required: true },
         lastName: { type: String, required: true },
         academicInfo: { type: Schema.Types.Mixed, default: {} },
-        preferences: { type: Schema.Types.Mixed, default: {} },
+        preferencesInfo: { type: Schema.Types.Mixed, default: {} },
         degreePlan: {
             type: [
                 {

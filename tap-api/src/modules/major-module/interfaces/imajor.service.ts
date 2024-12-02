@@ -15,9 +15,27 @@ export interface IMajorService {
     getMajorByName(name: string): Promise<IMajor | null>;
 
     /**
-     * Searches for majors based on a query string
-     * @param query - The query string to search for
-     * @returns A Promise that resolves to an array of IMajor
+     * Retrieves a major by its name without its concentrations
+     * @param name - The name of the major
+     * @returns A Promise that resolves to an IMajor or null if not found
      */
-    searchMajors(query: string): Promise<IMajor[]>;
+    getMajorByNameWithNoConcentration(name: string): Promise<any | null>;
+
+    /**
+     * Retrieves all concentrations for a major
+     * @param majorName - The name of the major
+     * @returns A Promise that resolves to an array of concentrations or null if not found
+     */
+    getAllConcentrationsForAMajor(majorName: string): Promise<any | null>;
+
+    /**
+     * Retrieves a concentration by its major and concentration name
+     * @param majorName - The name of the major
+     * @param concentrationName - The name of the concentration
+     * @returns A Promise that resolves to a concentration or null if not found
+     */
+    getConcentrationByMajorAndName(
+        majorName: string,
+        concentrationName: string
+    ): Promise<any | null>;
 }
