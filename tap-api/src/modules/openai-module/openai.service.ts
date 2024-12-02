@@ -130,30 +130,32 @@ export class OpenAIService implements IOpenAIService {
                 honorsRequirements
             );
 
-            const assistantId = process.env.OPENAI_ASSISTANT_ID || "";
+            console.log("User Prompt:", userPrompt);
 
-            const response = await this.openai.chat.completions.create({
-                messages: [
-                    { role: "system", content: this.systemPrompt },
-                    { role: "user", content: userPrompt },
-                ],
-                model: "gpt-4o",
-                user: assistantId,
-                max_tokens: 4096,
-                temperature: 0.1,
-            });
+            // const assistantId = process.env.OPENAI_ASSISTANT_ID || "";
 
-            const content = response.choices[0].message?.content;
-            console.log("OpenAI Response:", content);
+            // const response = await this.openai.chat.completions.create({
+            //     messages: [
+            //         { role: "system", content: this.systemPrompt },
+            //         { role: "user", content: userPrompt },
+            //     ],
+            //     model: "gpt-4o",
+            //     user: assistantId,
+            //     max_tokens: 4096,
+            //     temperature: 0.1,
+            // });
 
-            if (content) {
-                // Extract JSON and validate
-                const degreePlan = this.extractJSON(content);
-                this.validateDegreePlan(degreePlan);
-                return degreePlan;
-            } else {
-                throw new OpenAIError("No response from OpenAI API");
-            }
+            // const content = response.choices[0].message?.content;
+            // console.log("OpenAI Response:", content);
+
+            // if (content) {
+            //     // Extract JSON and validate
+            //     const degreePlan = this.extractJSON(content);
+            //     this.validateDegreePlan(degreePlan);
+            //     return degreePlan;
+            // } else {
+            //     throw new OpenAIError("No response from OpenAI API");
+            // }
         } catch (e: any) {
             console.error("OpenAI API error:", e);
             throw new OpenAIError(e.message || "OpenAI API error");
@@ -177,40 +179,41 @@ export class OpenAIService implements IOpenAIService {
         }\n`;
         prompt += `Expected Graduation: ${userData.expectedGraduationSemester} ${userData.expectedGraduationYear}\n`;
         prompt += `Preferred Credit Hours per Semester: ${userData.preferredCreditHours}\n`;
+        prompt += `Summer/Winter Courses Frequency: ${userData.summerWinterCoursesFrequency}\n`;
         prompt += `Unavailable Terms: ${
             Array.isArray(userData.unavailableTerms)
                 ? userData.unavailableTerms.join(", ")
                 : "None"
         }\n\n`;
 
-        prompt += `Major Requirements:\n${JSON.stringify(
-            majorData,
-            null,
-            2
-        )}\n\n`;
-        prompt += `Core Requirements:\n${JSON.stringify(
-            coreRequirements,
-            null,
-            2
-        )}\n\n`;
-        prompt += `Degree Requirements:\n${JSON.stringify(
-            degreeRequirements,
-            null,
-            2
-        )}\n\n`;
-        prompt += `Bachelor's Degree Requirements:\n${JSON.stringify(
-            bachelorsRequirements,
-            null,
-            2
-        )}\n\n`;
+        // prompt += `Major Requirements:\n${JSON.stringify(
+        //     majorData,
+        //     null,
+        //     2
+        // )}\n\n`;
+        // prompt += `Core Requirements:\n${JSON.stringify(
+        //     coreRequirements,
+        //     null,
+        //     2
+        // )}\n\n`;
+        // prompt += `Degree Requirements:\n${JSON.stringify(
+        //     degreeRequirements,
+        //     null,
+        //     2
+        // )}\n\n`;
+        // prompt += `Bachelor's Degree Requirements:\n${JSON.stringify(
+        //     bachelorsRequirements,
+        //     null,
+        //     2
+        // )}\n\n`;
 
-        if (honorsRequirements) {
-            prompt += `Honors Requirements:\n${JSON.stringify(
-                honorsRequirements,
-                null,
-                2
-            )}\n\n`;
-        }
+        // if (honorsRequirements) {
+        //     prompt += `Honors Requirements:\n${JSON.stringify(
+        //         honorsRequirements,
+        //         null,
+        //         2
+        //     )}\n\n`;
+        // }
 
         prompt += `Generate a degree plan based on the user's information and requirements. Ensure the structure matches the provided format.`;
 

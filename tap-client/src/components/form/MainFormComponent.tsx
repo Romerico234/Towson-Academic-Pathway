@@ -31,6 +31,7 @@ export default function MainFormComponent() {
 
     const [preferences, setPreferences] = useState<IPreferencesInfo>({
         preferredCreditHours: "",
+        summerWinterCoursesFrequency: "",
         unavailableTerms: [],
         additionalComments: "",
     });

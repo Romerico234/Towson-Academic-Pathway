@@ -1,6 +1,7 @@
 import { IPreferencesInfo } from "./interfaces/IPreferencesInfo";
 import hashtagImg from "../../assets/form-assets/hashtag.png";
 import pencilImg from "../../assets/form-assets/pencil.png";
+import semesterImg from "../../assets/form-assets/semester.png";
 
 interface Props {
     formData: IPreferencesInfo;
@@ -22,6 +23,13 @@ export default function PreferencesInfoFormComponent({
         { label: "15-18", value: "15-18" },
         { label: "19-22", value: "19-22" },
         { label: "23 and above", value: "23+" },
+    ];
+
+    const frequencyOptions = [
+        { label: "Frequently", value: "4" },
+        { label: "Occasionally", value: "3" },
+        { label: "Rarely", value: "2" },
+        { label: "Never", value: "0" },
     ];
 
     return (
@@ -56,6 +64,41 @@ export default function PreferencesInfoFormComponent({
                                     Select Preferred Credit Hours
                                 </option>
                                 {creditHourOptions.map((option) => (
+                                    <option
+                                        key={option.value}
+                                        value={option.value}
+                                    >
+                                        {option.label}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Summer/Winter Courses */}
+                <div className="flex flex-wrap items-center mb-4">
+                    <label className="w-full text-sm font-medium mb-2">
+                        How often would you take summer/winter courses?
+                    </label>
+                    <div className="w-full">
+                        <div className="flex">
+                            <span className="bg-towsonGoldDark text-towsonBlack p-2 rounded-l">
+                                <img
+                                    src={semesterImg}
+                                    alt="Summer/Winter Courses"
+                                    className="w-6 h-6"
+                                />
+                            </span>
+                            <select
+                                name="summerWinterCoursesFrequency"
+                                value={formData.summerWinterCoursesFrequency}
+                                onChange={handleInputChange}
+                                className="w-full bg-white text-towsonBlack border border-towsonGraphiteLight rounded-r p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
+                                required
+                            >
+                                <option value="">Choose below</option>
+                                {frequencyOptions.map((option) => (
                                     <option
                                         key={option.value}
                                         value={option.value}
