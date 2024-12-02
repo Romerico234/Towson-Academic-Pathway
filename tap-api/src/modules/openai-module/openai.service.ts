@@ -177,6 +177,7 @@ export class OpenAIService implements IOpenAIService {
         prompt += `Honors Student: ${
             userData.isHonorsStudent ? "Yes" : "No"
         }\n`;
+        prompt += `Start Date: ${userData.startDateSemester} ${userData.startDateYear}\n`;
         prompt += `Expected Graduation: ${userData.expectedGraduationSemester} ${userData.expectedGraduationYear}\n`;
         prompt += `Preferred Credit Hours per Semester: ${userData.preferredCreditHours}\n`;
         prompt += `Summer/Winter Courses Frequency: ${userData.summerWinterCoursesFrequency}\n`;

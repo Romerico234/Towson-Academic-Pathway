@@ -24,6 +24,8 @@ export default function MainFormComponent() {
         concentration: "",
         bachelorsDegree: "",
         unofficialTranscript: null,
+        startDateSemester: "",
+        startDateYear: new Date().getFullYear(),
         expectedGraduationSemester: "",
         expectedGraduationYear: new Date().getFullYear(),
         isHonorsStudent: false,
@@ -76,6 +78,7 @@ export default function MainFormComponent() {
         >
     ) => {
         const { name, value } = e.target;
+    
         if (name === "unofficialTranscript") {
             setPersonalInfo({
                 ...personalInfo,
@@ -100,6 +103,7 @@ export default function MainFormComponent() {
             });
         }
     };
+    
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();

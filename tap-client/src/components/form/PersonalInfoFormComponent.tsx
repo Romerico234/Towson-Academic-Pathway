@@ -42,6 +42,8 @@ export default function PersonalInfoFormComponent({
         "Bachelor of Technical and Professional Studies",
     ];
 
+    const semesters = ["Summer", "Spring", "Fall", "Winter"];
+
     // Generate years between current year and +10 years
     const currentYear = new Date().getFullYear();
     const years = Array.from({ length: 10 }, (_, i) => currentYear + i);
@@ -256,6 +258,51 @@ export default function PersonalInfoFormComponent({
                             </div>
                         </div>
                     )}
+
+                {/* Start Date for Degree Completion Plan */}
+                <div className="flex flex-wrap items-center mb-4">
+                    <label className="w-full text-sm font-medium mb-2">
+                        Start Date for Degree Completion Plan
+                    </label>
+                    <div className="w-full">
+                        <div className="flex">
+                            <span className="bg-towsonGoldDark text-towsonBlack p-2 rounded-l">
+                                <img
+                                    src={dateImg}
+                                    alt="Start Date Icon"
+                                    className="w-6 h-6"
+                                />
+                            </span>
+                            <select
+                                name="startDateSemester"
+                                value={formData.startDateSemester}
+                                onChange={handleInputChange}
+                                className="bg-white text-towsonBlack border border-towsonGraphiteLight p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
+                                required
+                            >
+                                <option value="">Select Semester</option>
+                                {semesters.map((semester) => (
+                                    <option key={semester} value={semester}>
+                                        {semester}
+                                    </option>
+                                ))}
+                            </select>
+                            <select
+                                name="startDateYear"
+                                value={formData.startDateYear}
+                                onChange={handleInputChange}
+                                className="bg-white text-towsonBlack border border-towsonGraphiteLight p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
+                                required
+                            >
+                                {years.map((y) => (
+                                    <option key={y} value={y}>
+                                        {y}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
+                </div>
 
                 {/* Expected Graduation */}
                 <div className="flex flex-wrap items-center mb-4">
