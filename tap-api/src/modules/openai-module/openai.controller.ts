@@ -1,9 +1,8 @@
 import { Request, Response, NextFunction } from "express";
-import { IOpenAIController } from "./interfaces/iopenai.controller";
 import { OpenAIService } from "./openai.service";
 import { OpenAIError } from "../../shared/errors/errors";
 
-export class OpenAIController implements IOpenAIController {
+export class OpenAIController {
     private openAIService: OpenAIService;
 
     constructor() {
@@ -15,15 +14,18 @@ export class OpenAIController implements IOpenAIController {
         res: Response,
         next: NextFunction
     ): Promise<void> => {
-        const userData = req.body;
+        const userData = req.body; 
+        const unofficialTranscript = req.file; 
 
-        if (!userData) {
-            res.status(400).json({ message: "User data is missing" });
+        if (!userData || !unofficialTranscript) {
+            res.status(400).json({ message: "User data or file is missing" });
             return;
         }
 
         try {
-            const result = await this.openAIService.generatePlans(userData);
+            // Call OpenAI service to generate the plan
+            const result = await this.openAIService.generatePlans(userData, unofficialTranscript);
+
             res.json(result);
         } catch (error) {
             if (error instanceof OpenAIError) {

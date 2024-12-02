@@ -4,6 +4,7 @@ import { OpenAIError } from "../../shared/errors/errors";
 import { MajorService } from "../major-module/major.service";
 import { CoreService } from "../core-module/core.service";
 import { RequirementsService } from "../requirements-module/requirements.service";
+import { parseUnofficialTranscript } from "../../shared/utils/parseUnofficialTranscript";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -95,8 +96,17 @@ export class OpenAIService implements IOpenAIService {
         `;
     }
 
-    public async generatePlans(userData: any): Promise<any> {
+    public async generatePlans(
+        userData: any,
+        unofficialTranscript: any
+    ): Promise<any> {
         try {
+            // Parse the unofficial transcript
+            // console.log(unofficialTranscript)
+            const parsedTranscript = await parseUnofficialTranscript(unofficialTranscript, userData.email);
+
+            // console.log("Parsed Transcript:", parsedTranscript);
+
             const { major, bachelorsDegree } = userData;
             let { isHonorsStudent } = userData;
             isHonorsStudent = isHonorsStudent === "true";
@@ -130,7 +140,7 @@ export class OpenAIService implements IOpenAIService {
                 honorsRequirements
             );
 
-            console.log("User Prompt:", userPrompt);
+            // console.log("User Prompt:", userPrompt);
 
             // const assistantId = process.env.OPENAI_ASSISTANT_ID || "";
 
