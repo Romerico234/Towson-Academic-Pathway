@@ -76,9 +76,15 @@ export default function AcademicInfoFormComponent({
 
     const semesters = ["Summer", "Spring", "Fall", "Winter"];
 
-    // Generate years between current year and +10 years
     const currentYear = new Date().getFullYear();
-    const years = Array.from({ length: 10 }, (_, i) => currentYear + i);
+    const startDateYears = Array.from(
+        { length: 10 },
+        (_, i) => currentYear - 4 + i
+    );
+    const expectedGraduationYears = Array.from(
+        { length: 10 },
+        (_, i) => currentYear + i
+    );
 
     return (
         <div className="container mx-auto p-4">
@@ -326,7 +332,7 @@ export default function AcademicInfoFormComponent({
                                 className="bg-white text-towsonBlack border border-towsonGraphiteLight p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
                                 required
                             >
-                                {years.map((y) => (
+                                {startDateYears.map((y) => (
                                     <option key={y} value={y}>
                                         {y}
                                     </option>
@@ -368,7 +374,7 @@ export default function AcademicInfoFormComponent({
                                 className="bg-white text-towsonBlack border border-towsonGraphiteLight p-2 focus:outline-none focus:ring-2 focus:ring-towsonGoldLight"
                                 required
                             >
-                                {years.map((y) => (
+                                {expectedGraduationYears.map((y) => (
                                     <option key={y} value={y}>
                                         {y}
                                     </option>
