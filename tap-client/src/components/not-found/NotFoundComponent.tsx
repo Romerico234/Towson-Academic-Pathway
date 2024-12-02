@@ -8,8 +8,7 @@ export default function NotFoundComponent() {
                 animationData={notFoundImg}
                 loop={true} // Set looping
                 autoplay={true} // Set autoplay
-                height={150} // Set height
-                width={150} // Set width
+                className="w-1/2 h-1/2"
             />
         </div>
     );
