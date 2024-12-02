@@ -17,6 +17,7 @@ import MajorDetailComponent from "./components/requirements/MajorDetailComopnent
 import DegreeRequirementsComponent from "./components/requirements/DegreeRequirementsComponent";
 import HonorsRequirementsComponent from "./components/requirements/HonorsRequirementComponent";
 import FavoritesComponent from "./components/favorites/FavoritesComponent";
+import NotFoundComponent from "./components/not-found/NotFoundComponent";
 
 export default function App() {
     return (
@@ -79,7 +80,7 @@ export default function App() {
                     </Route>
 
                     {/* Catch-all route */}
-                    <Route path="*" element={<HomeComponent />} />
+                    <Route path="*" element={<NotFoundComponent />} />
                 </Routes>
             </BrowserRouter>
         </AuthProvider>
