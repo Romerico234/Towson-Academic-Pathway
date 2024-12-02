@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import CourseService from "../../shared/services/course.service";
 
 interface DetailedCourseViewProps {
@@ -30,6 +30,9 @@ export default function DetailedCourseViewComponent({
     );
     const [loading, setLoading] = useState(true);
 
+    // Checks for clicks outside
+    const modalRef = useRef<HTMLDivElement | null>(null);
+
     useEffect(() => {
         const fetchCourseDetails = async () => {
             try {
@@ -49,7 +52,20 @@ export default function DetailedCourseViewComponent({
         };
 
         fetchCourseDetails();
-    }, [subject, catalogNumber]);
+
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                modalRef.current &&
+                !modalRef.current.contains(event.target as Node)
+            ) {
+                onClose();
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [subject, catalogNumber, onClose]);
 
     if (loading) {
         return (
@@ -85,12 +101,14 @@ export default function DetailedCourseViewComponent({
         description,
         units,
         gradingBasis,
-        campus,
     } = courseDetails;
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-            <div className="bg-white p-6 rounded shadow max-w-lg w-full">
+            <div
+                ref={modalRef}
+                className="bg-white p-6 rounded shadow max-w-lg w-full"
+            >
                 <div className="flex justify-between items-center mb-4">
                     <h2 className="text-xl font-semibold">
                         {subject} {catalogNumber} - {courseTitle}
@@ -104,19 +122,23 @@ export default function DetailedCourseViewComponent({
                 </div>
                 <div className="space-y-2">
                     <p>
-                        <strong>Institution:</strong> {institution}
+                        <strong>Institution:</strong>{" "}
+                        {institution === "TOWSN"
+                            ? "Towson University"
+                            : institution}
                     </p>
                     <p>
-                        <strong>Academic Career:</strong> {acadCareer}
+                        <strong>Academic Career:</strong>{" "}
+                        {acadCareer === "UGRD" ? "Undergraduate" : acadCareer}
                     </p>
                     <p>
                         <strong>Units:</strong> {units}
                     </p>
                     <p>
-                        <strong>Grading Basis:</strong> {gradingBasis}
-                    </p>
-                    <p>
-                        <strong>Campus:</strong> {campus}
+                        <strong>Grading Basis:</strong>{" "}
+                        {gradingBasis == "UNDERGRADUATE GRADING"
+                            ? "Undergraduate Grading"
+                            : gradingBasis}
                     </p>
                     <p>
                         <strong>Terms Offered:</strong>{" "}
