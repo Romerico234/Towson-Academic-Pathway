@@ -519,7 +519,7 @@ export default function DegreeCompletionPlannerComponent() {
         >
             <div className="flex">
                 {/* Degree Planner */}
-                <div className="flex-1 p-4">
+                <div className="flex-1 p-4 overflow-y-auto max-h-[120vh]">
                     <div className="flex justify-between mb-4">
                         <button
                             onClick={addSemesterBefore}
@@ -583,8 +583,7 @@ export default function DegreeCompletionPlannerComponent() {
                 </div>
 
                 {/* Course Catalog */}
-                <div className="w-1/4 p-4 bg-gray-100">
-                    {/* Course Catalog Title */}
+                <div className="w-1/4 p-4 bg-gray-100 overflow-y-auto max-h-[120vh]">
                     <h2 className="text-2xl font-bold text-black mb-4 text-left">
                         Course Catalog
                     </h2>
