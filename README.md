@@ -8,5 +8,5 @@
 - **Romerico David**
 - **Tim DeLloyd**
 - **Mitchell Griff**
-
+- **Zachary Hall**
 ---
