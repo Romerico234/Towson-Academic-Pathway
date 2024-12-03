@@ -6,7 +6,7 @@ export default function NavbarComponent() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <nav className="bg-towsonBlack fixed top-0 w-full shadow-lg border-b-4 border-towsonGold z-50">
+        <nav className="bg-towsonBlack top-0 w-full shadow-lg border-b-4 border-towsonGold z-50">
             <div className="flex items-center h-16 px-8 justify-between">
                 {/* Wrapper for Tooltip */}
                 <div className="relative group">
