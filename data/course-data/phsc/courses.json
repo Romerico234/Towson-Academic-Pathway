@@ -1,0 +1,64 @@
+{
+    "courses": [
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "PHSC",
+            "catalogNumber": "101",
+            "courseTitle": "PHYSICAL SCIENCE I",
+            "termsOffered": "Fall, Spring & Summer",
+            "description": "Fundamental principles of selected topics from physics and chemistry, emphasizing construction of concepts from experimental evidence. May not be used for the Natural Science major.",
+            "units": "4",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN",
+            "prerequisites": ["Education major", "department consent"],
+            "corequisites": []
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "PHSC",
+            "catalogNumber": "206",
+            "courseTitle": "EARTH-SPACE SCIENCE FOR MIDDLE SCHOOL TEACHERS",
+            "termsOffered": "Spring",
+            "description": "Earth-Space Science for middle school education majors, emphasizing development of principles from experiments and discussion. Topics include plate tectonics, the rock cycle, celestial motion, and stellar evolution.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN",
+            "prerequisites": [],
+            "corequisites": []
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "PHSC",
+            "catalogNumber": "303",
+            "courseTitle": "EARTH SPACE SCIENCE",
+            "termsOffered": "Fall & Spring",
+            "description": "Physical science principles applied in the study of earth and space. Emphasis on experimental and discovery approaches.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN",
+            "prerequisites": ["PHSC 101"],
+            "corequisites": []
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "PHSC",
+            "catalogNumber": "312",
+            "courseTitle": "HISTORY OF SCIENCE",
+            "termsOffered": "Fall & Spring",
+            "description": "A general overview of the development of scientific knowledge from ancient to modern times. Focuses on the 16th and 17th centuries in astronomy and physics, and 19th and 20th centuries in geology, biology, and psychology. Explores the relationship between science, culture, religion, technology, and public policy.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "campus": "Main Academic Campus",
+            "campusCode": "MAIN",
+            "prerequisites": ["ENGL 102", "ENGL 190", "equivalent", "successful completion of University Core Categories 2, 3, 7, and 8"],
+            "corequisites": []
+        }
+    ]
+}
