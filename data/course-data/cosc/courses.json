@@ -6,11 +6,10 @@
             "subject": "COSC",
             "catalogNumber": "109",
             "courseTitle": "COMPUTERS AND CREATIVITY",
-            "termsOffered": "Fall, Winter, Spring & Summer",
+            "termsOffered": ["Fall", "Winter", "Spring", "Summer"],
             "description": "Explores creativity and problem-solving using computers.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "campusCode": "MAIN",
             "prerequisites": []
         },
         {
@@ -19,11 +18,10 @@
             "subject": "COSC",
             "catalogNumber": "111",
             "courseTitle": "INFORMATION AND TECHNOLOGY FOR BUSINESS",
-            "termsOffered": "Fall, Winter, Spring & Summer",
+            "termsOffered": ["Fall", "Winter", "Spring", "Summer"],
             "description": "Introduction to the role of information technology in business.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "campusCode": "MAIN",
             "prerequisites": []
         },
         {
@@ -32,11 +30,10 @@
             "subject": "COSC",
             "catalogNumber": "175",
             "courseTitle": "GEN COMPUTER SCI",
-            "termsOffered": "Fall, Spring & Summer",
+            "termsOffered": ["Fall", "Spring", "Summer"],
             "description": "General introduction to computer science principles.",
             "units": "4",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "campusCode": "MAIN",
             "prerequisites": []
         },
         {
@@ -45,11 +42,10 @@
             "subject": "COSC",
             "catalogNumber": "236",
             "courseTitle": "INTRODUCTION TO COMPUTER SCIENCE I",
-            "termsOffered": "Fall, Spring & Summer",
+            "termsOffered": ["Fall", "Spring", "Summer"],
             "description": "An introduction to fundamental programming concepts.",
             "units": "4",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "campusCode": "MAIN",
             "prerequisites": [
                 "COSC 175",
                 "One of: MATH 115, MATH 117, MATH 119, MATH 211, MATH 231, ECON 205, MATH 273, MATH 274, MATH 275, or a qualifying Math Placement score"
@@ -61,11 +57,10 @@
             "subject": "COSC",
             "catalogNumber": "237",
             "courseTitle": "INTRODUCTION TO COMPUTER SCIENCE II",
-            "termsOffered": "Fall, Spring & Summer",
+            "termsOffered": ["Fall", "Spring", "Summer"],
             "description": "Continuation of Computer Science I with data structures.",
             "units": "4",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "campusCode": "MAIN",
             "prerequisites": ["COSC 236", "MATH 211 or MATH 273"]
         },
         {
@@ -74,11 +69,22 @@
             "subject": "COSC",
             "catalogNumber": "290",
             "courseTitle": "PRINCIPLES OF COMPUTER ORGANIZATION",
-            "termsOffered": "Fall, Spring & Summer",
+            "termsOffered": ["Fall", "Spring", "Summer"],
             "description": "Explores the principles and structure of computer systems.",
             "units": "4",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "campusCode": "MAIN",
+            "prerequisites": ["COSC 236", "MATH 263 or MATH 267"]
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": " 314",
+            "courseTitle": "INTRODUCTION TO CRYPTOGRAPHY",
+            "termsOffered": ["Fall", "Spring"],
+            "description": "Introduction to cryptography and its mathematical foundations, including applications to computer-network security services.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
             "prerequisites": ["COSC 236", "MATH 263 or MATH 267"]
         },
         {
@@ -87,12 +93,24 @@
             "subject": "COSC",
             "catalogNumber": "336",
             "courseTitle": "DATA STRUCTURES AND ALGORITHM ANALYSIS",
-            "termsOffered": "Fall, Spring & Summer",
+            "termsOffered": ["Fall", "Spring", "Summer"],
             "description": "Covers advanced data structures and algorithm design.",
             "units": "4",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "campusCode": "MAIN",
-            "prerequisites": ["COSC 237", "MATH 274"]
+            "prerequisites": ["COSC 236", "MATH 263 or MATH 267"],
+            "corequisites": ["MATH 330 or MATH 331"]
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "340",
+            "courseTitle": "SYSTEMS PROGRAMMING",
+            "termsOffered": ["Fall", "Spring"],
+            "description": "Covers the underlying concepts underlying all computer systems and introduces the student to the low-level abstraction of a computer system from a programmer's point of view.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "prerequisites": ["COSC 237", "COSC 290"]
         },
         {
             "institution": "TOWSN",
@@ -100,11 +118,10 @@
             "subject": "COSC",
             "catalogNumber": "350",
             "courseTitle": "DATA COMMUNICATIONS AND NETWORKING",
-            "termsOffered": "Fall & Spring",
+            "termsOffered": ["Fall", "Spring"],
             "description": "Covers principles of networking and data transmission.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "campusCode": "MAIN",
             "prerequisites": ["COSC 290"],
             "corequisites": ["COSC 336"]
         },
@@ -114,11 +131,82 @@
             "subject": "COSC",
             "catalogNumber": "412",
             "courseTitle": "SOFTWARE ENGINEERING",
-            "termsOffered": "Fall & Spring",
+            "termsOffered": ["Fall", "Spring"],
             "description": "Introduction to software development lifecycle and practices.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "campusCode": "MAIN",
+            "prerequisites": ["COSC 336"]
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "417",
+            "courseTitle": "INTRODUCTION TO THE THEORY OF COMPUTING",
+            "termsOffered": ["Spring"],
+            "description": "A general introduction to the theory of computatoin, including finite automata, computability, and more.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "prerequisites": ["COSC 336"]
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "418",
+            "courseTitle": "ETHICAL AND SOCIETAL CONCERNS OF COMPUTER SCIENTISTS",
+            "termsOffered": ["Fall", "Spring", "Summer"],
+            "description": "Ethical questions and societal concerns of computer scientists related to the widespread use of copmuters and the resulting responsibilities.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "prerequisites": ["Junior/Senior Standing", "ENGL 317 or BUSX 301"]
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "431",
+            "courseTitle": "SELECTED TOPICS COMPUTER SCIENCE",
+            "termsOffered": ["Occasionally"],
+            "description": "Independent studies in selected areas of computer science.",
+            "units": "1-3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "prerequisites": []
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "432",
+            "courseTitle": "REQUIREMENTS ANALYSIS & MODELING",
+            "termsOffered": ["Fall"],
+            "description": "Introduces the basic principples of software requirements development.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "prerequisites": ["COSC 412"]
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "435",
+            "courseTitle": "MOBILE APPLICATION DEVELOPMENT",
+            "termsOffered": ["Fall", "Spring"],
+            "description": "Design and create mobile applications for iOS or Android devices.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "prerequisites": ["COSC 336"]
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "436",
+            "courseTitle": "OBJECT-ORIENTED DESIGN & PROGRAMMING",
+            "termsOffered": ["Fall", "Spring"],
+            "description": "Introduction to object-oriented design and programming techniques.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
             "prerequisites": ["COSC 336"]
         },
         {
@@ -127,12 +215,47 @@
             "subject": "COSC",
             "catalogNumber": "439",
             "courseTitle": "OPERATING SYSTEMS",
-            "termsOffered": "Fall & Spring",
+            "termsOffered": ["Fall", "Spring"],
             "description": "Introduction to the design and implementation of operating systems.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "campusCode": "MAIN",
             "prerequisites": ["COSC 336"]
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "440",
+            "courseTitle": "OPERATING SYSTEMS SECURITY",
+            "termsOffered": ["Fall"],
+            "description": "In-depth discussionn of security concepts in operating systems.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "prerequisites": ["COSC 439"]
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "442",
+            "courseTitle": "SOFTWARE QUALITY ASSURANCE AND TESTING",
+            "termsOffered": ["Spring"],
+            "description": "A comprehensive studey of concepts, techniques, and tools for software quality assurance and testing.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "prerequisites": ["412"]
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "450",
+            "courseTitle": "NETWORK SECURITY",
+            "termsOffered": ["Fall", "Spring"],
+            "description": "Covers the principles and practices of network security.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "prerequisites": ["COSC 350", "COSC 440"]
         },
         {
             "institution": "TOWSN",
@@ -140,11 +263,10 @@
             "subject": "COSC",
             "catalogNumber": "455",
             "courseTitle": "PROGRAMMING LANGUAGES: DESIGN & IMPLEMENTATION",
-            "termsOffered": "Fall & Spring",
+            "termsOffered": ["Fall", "Spring"],
             "description": "Introduction to the design and implementation of programming languages.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "campusCode": "MAIN",
             "prerequisites": ["COSC 336"]
         },
         {
@@ -153,11 +275,10 @@
             "subject": "COSC",
             "catalogNumber": "457",
             "courseTitle": "DATABASE MANAGEMENT SYSTEMS",
-            "termsOffered": "Fall & Spring",
+            "termsOffered": ["Fall", "Spring"],
             "description": "Covers the principles and practices of database design and implementation.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "campusCode": "MAIN",
             "prerequisites": ["COSC 336"]
         },
         {
@@ -166,12 +287,11 @@
             "subject": "COSC",
             "catalogNumber": "458",
             "courseTitle": "APPLICATION SOFTWARE SECURITY",
-            "termsOffered": "Fall",
+            "termsOffered": ["Fall"],
             "description": "Explores security concepts for application software.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "campus": "Main Academic Campus",
-            "campusCode": "MAIN",
             "prerequisites": ["COSC 340", "COSC 455", "COSC 457"]
         },
         {
@@ -180,11 +300,10 @@
             "subject": "COSC",
             "catalogNumber": "459",
             "courseTitle": "COMPUTER SIMULATION & MODELING",
-            "termsOffered": "Occasionally",
+            "termsOffered": ["Occasionally"],
             "description": "Introduction to computer simulation techniques and modeling concepts.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "campusCode": "MAIN",
             "prerequisites": ["COSC 336", "MATH 330"]
         },
         {
@@ -193,12 +312,11 @@
             "subject": "COSC",
             "catalogNumber": "461",
             "courseTitle": "ARTIFICIAL INTELLIGENCE",
-            "termsOffered": "Spring",
+            "termsOffered": ["Spring"],
             "description": "Covers the foundations of artificial intelligence, including algorithms and applications.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "campus": "Main Academic Campus",
-            "campusCode": "MAIN",
             "prerequisites": ["COSC 336"]
         },
         {
@@ -207,12 +325,11 @@
             "subject": "COSC",
             "catalogNumber": "465",
             "courseTitle": "ROBOTICS",
-            "termsOffered": "Occasionally",
+            "termsOffered": ["Occasionally"],
             "description": "Introduction to robotics, including design and programming.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "campus": "Main Academic Campus",
-            "campusCode": "MAIN",
             "prerequisites": ["COSC 336"]
         },
         {
@@ -221,11 +338,10 @@
             "subject": "COSC",
             "catalogNumber": "467",
             "courseTitle": "FOUNDATIONS OF DATA MINING",
-            "termsOffered": "Spring",
+            "termsOffered": ["Spring"],
             "description": "Covers the concepts and techniques of data mining.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "campusCode": "MAIN",
             "prerequisites": ["COSC 457"]
         },
         {
@@ -234,11 +350,10 @@
             "subject": "COSC",
             "catalogNumber": "471",
             "courseTitle": "COMPUTER GRAPHICS",
-            "termsOffered": "Occasionally",
+            "termsOffered": ["Occasionally"],
             "description": "Introduction to computer graphics principles and programming.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "campusCode": "MAIN",
             "prerequisites": ["COSC 336"]
         },
         {
@@ -247,12 +362,23 @@
             "subject": "COSC",
             "catalogNumber": "481",
             "courseTitle": "CASE STUDIES IN COMPUTER SECURITY",
-            "termsOffered": "Spring",
+            "termsOffered": ["Spring"],
             "description": "Examines case studies in computer security.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "campusCode": "MAIN",
             "prerequisites": ["COSC 440", "COSC 450"]
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "COSC",
+            "catalogNumber": "482",
+            "courseTitle": "TEACHING COMPUTER SCIENCE IN SECONDARY SCHOOLS",
+            "termsOffered": ["Spring"],
+            "description": "Best practices for teaching computer science in secondary schools.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "prerequisites": ["Consent of Department"]
         },
         {
             "institution": "TOWSN",
@@ -260,12 +386,11 @@
             "subject": "COSC",
             "catalogNumber": "483",
             "courseTitle": "DESIGN & ANALYSIS ALGORITHMS",
-            "termsOffered": "Fall",
+            "termsOffered": ["Fall"],
             "description": "Covers design and analysis of algorithms with real-world applications.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "campus": "Main Academic Campus",
-            "campusCode": "MAIN",
             "prerequisites": ["COSC 336"]
         },
         {
@@ -274,11 +399,10 @@
             "subject": "COSC",
             "catalogNumber": "484",
             "courseTitle": "WEB-BASED PROGRAM",
-            "termsOffered": "Fall & Spring",
+            "termsOffered": ["Fall", "Spring"],
             "description": "Focuses on web programming technologies and frameworks.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "campusCode": "MAIN",
             "prerequisites": ["COSC 336"]
         },
         {
@@ -287,11 +411,10 @@
             "subject": "COSC",
             "catalogNumber": "485",
             "courseTitle": "REVERSE ENGINEERING AND MALWARE ANALYSIS",
-            "termsOffered": "Spring",
+            "termsOffered": ["Spring"],
             "description": "Explores reverse engineering techniques and malware analysis.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
-            "campusCode": "MAIN",
             "prerequisites": ["COSC 340", "COSC 450"]
         },
         {
@@ -300,12 +423,11 @@
             "subject": "COSC",
             "catalogNumber": "490",
             "courseTitle": "SOFTWARE PROJECT PRACTICUM",
-            "termsOffered": "Spring",
+            "termsOffered": ["Spring"],
             "description": "Capstone course focusing on practical software development projects.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "campus": "Main Academic Campus",
-            "campusCode": "MAIN",
             "prerequisites": [
                 "COSC 412",
                 "Senior standing",
@@ -318,12 +440,11 @@
             "subject": "COSC",
             "catalogNumber": "492",
             "courseTitle": "INTERNSHIP IN SECONDARY EDUCATION - COMPUTER SCIENCE",
-            "termsOffered": "Spring",
+            "termsOffered": ["Spring"],
             "description": "Internship for secondary education majors in computer science.",
             "units": "6",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "campus": "Main Academic Campus",
-            "campusCode": "MAIN",
             "prerequisites": ["COSC 482", "SEMS 498", "Consent of Department"]
         },
         {
@@ -332,12 +453,11 @@
             "subject": "COSC",
             "catalogNumber": "493",
             "courseTitle": "DIRECTED READINGS IN COMPUTER SCIENCE",
-            "termsOffered": "Occasionally",
+            "termsOffered": ["Occasionally"],
             "description": "Allows in-depth exploration of topics under faculty supervision.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "campus": "Main Academic Campus",
-            "campusCode": "MAIN",
             "prerequisites": ["Consent of Instructor"]
         },
         {
@@ -346,12 +466,11 @@
             "subject": "COSC",
             "catalogNumber": "495",
             "courseTitle": "INDEPENDENT STUDY",
-            "termsOffered": "Occasionally",
+            "termsOffered": ["Occasionally"],
             "description": "Allows students to pursue independent study projects.",
             "units": "3",
             "gradingBasis": "UNDERGRADUATE GRADING",
             "campus": "Main Academic Campus",
-            "campusCode": "MAIN",
             "prerequisites": [
                 "Senior standing in Computer Science",
                 "Consent of Instructor"

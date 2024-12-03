@@ -16,6 +16,30 @@ export class UserService implements IUserService {
         return User.findOne({ email }).select("+password");
     }
 
+    public async updateAcademicInfoByEmail(
+        email: string,
+        academicInfo: {
+            coursesTakenSuccessfully: string[];
+            coursesTakenFailedOrInProgress: string[];
+            totalNumberOfCreditsTaken: string;
+        }
+    ): Promise<IUser | null> {
+        return User.findOneAndUpdate(
+            { email },
+            {
+                $set: {
+                    "academicInfo.coursesTakenSuccessfully":
+                        academicInfo.coursesTakenSuccessfully,
+                    "academicInfo.coursesTakenFailedOrInProgress":
+                        academicInfo.coursesTakenFailedOrInProgress,
+                    "academicInfo.totalNumberOfCreditsTaken":
+                        academicInfo.totalNumberOfCreditsTaken,
+                },
+            },
+            { new: true }
+        ).exec();
+    }
+
     public async getUserById(userId: Types.ObjectId): Promise<IUser | null> {
         return User.findById(userId).select("-password");
     }

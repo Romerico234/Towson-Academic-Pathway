@@ -17,6 +17,9 @@ import MajorDetailComponent from "./components/requirements/MajorDetailComopnent
 import DegreeRequirementsComponent from "./components/requirements/DegreeRequirementsComponent";
 import HonorsRequirementsComponent from "./components/requirements/HonorsRequirementComponent";
 import FavoritesComponent from "./components/favorites/FavoritesComponent";
+import NotFoundComponent from "./components/not-found/NotFoundComponent";
+import FAQComponent from "./components/faq/FAQComponent";
+import ContactComponent from "./components/contact/ContactComponent";
 
 export default function App() {
     return (
@@ -29,6 +32,11 @@ export default function App() {
                         <Route path="/home" element={<HomeComponent />} />
                         <Route path="/about" element={<AboutComponent />} />
                         <Route path="/login" element={<LoginComponent />} />
+                        <Route path="/faq" element={<FAQComponent />} />
+                        <Route
+                            path="/contact-us"
+                            element={<ContactComponent />}
+                        />
                         <Route
                             path="/register"
                             element={<RegisterComponent />}
@@ -79,7 +87,7 @@ export default function App() {
                     </Route>
 
                     {/* Catch-all route */}
-                    <Route path="*" element={<HomeComponent />} />
+                    <Route path="*" element={<NotFoundComponent />} />
                 </Routes>
             </BrowserRouter>
         </AuthProvider>

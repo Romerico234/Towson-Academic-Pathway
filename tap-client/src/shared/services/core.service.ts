@@ -6,10 +6,8 @@ export default class CoreService {
         return response.data;
     }
 
-    async searchCores(query: string): Promise<any> {
-        const response = await api.get("/cores/search", {
-            params: { query },
-        });
+    async getFormattedCores(): Promise<any> {
+        const response = await api.get("/cores/formatted");
         return response.data;
     }
 }

@@ -8,9 +8,8 @@ export interface ICoreService {
     getAllCores(): Promise<ICore[]>;
 
     /**
-     * Searches for core requirements based on a query string
-     * @param query - The query string to search for
-     * @returns A Promise that resolves to an array of ICore
+     * Retrieves all core requirements in a formatted manner
+     * @returns A Promise that resolves to an array of objects
      */
-    searchCores(query: string): Promise<ICore[]>;
+    getFormattedCores(): Promise<any[]>;
 }

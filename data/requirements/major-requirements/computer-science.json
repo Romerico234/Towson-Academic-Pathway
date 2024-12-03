@@ -391,7 +391,7 @@
     },
     "concentrations": [
         {
-            "name": "General Computer Science",
+            "name": "General Track",
             "totalUnits": "81-83",
             "requirements": {
                 "requiredCourses": []

@@ -19,9 +19,4 @@ export class CourseService implements ICourseService {
             catalogNumber: catalogNumber,
         }).exec();
     }
-
-    public async searchCourses(query: any): Promise<ICourse[]> {
-        // TODO: Implement search logic based on query parameters
-        return Course.find(query).exec();
-    }
 }

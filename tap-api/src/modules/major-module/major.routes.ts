@@ -6,6 +6,17 @@ const majorController = new MajorController();
 
 router.get("/", majorController.getAllMajors);
 router.get("/:name", majorController.getMajorByName);
-router.get("/search", majorController.searchMajors);
+router.get(
+    "/:name/no-concentration",
+    majorController.getMajorByNameWithNoConcentration
+);
+router.get(
+    "/:name/concentrations",
+    majorController.getAllConcentrationsForAMajor
+);
+router.get(
+    "/:majorName/concentrations/:concentrationName",
+    majorController.getConcentrationByMajorAndName
+);
 
 export default router;

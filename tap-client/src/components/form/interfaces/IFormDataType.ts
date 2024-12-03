@@ -1,4 +1,4 @@
-import { IPersonalInfo } from "./IPersonalInfo";
+import { IAcademicInfo } from "./IAcademicInfo";
 import { IPreferencesInfo } from "./IPreferencesInfo";
 
-export type IFormDataType = IPersonalInfo & IPreferencesInfo;
+export type IFormDataType = IAcademicInfo & IPreferencesInfo;

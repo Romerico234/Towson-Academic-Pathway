@@ -5,6 +5,11 @@ export interface IRequirementsService {
     getDegreeRequirements(): Promise<any>;
 
     /**
+     * Retrieves the general degree requirements
+     */
+    getGeneralDegreeRequirementes(): Promise<any>;
+
+    /**
      * Retrieves the honors requirements
      */
     getHonorsRequirements(): Promise<any>;

@@ -6,10 +6,17 @@ export class CoreService implements ICoreService {
         return Core.find({});
     }
 
-    async searchCores(query: string): Promise<ICore[]> {
-        const regex = new RegExp(query, "i"); // Case-insensitive search
-        return Core.find({
-            $or: [{ name: regex }, { code: regex }],
+    async getFormattedCores(): Promise<any[]> {
+        const cores = await Core.find({});
+        return cores.map((core) => {
+            return {
+                name: core.name,
+                code: core.code,
+                description: core.description,
+                units: core.units,
+                courses: core.courses,
+                learningOutcomes: core.learningOutcomes,
+            };
         });
     }
 }

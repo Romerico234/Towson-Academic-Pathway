@@ -7,6 +7,11 @@ export interface IRequirementsController {
     getDegreeRequirements(req: Request, res: Response): Promise<void>;
 
     /**
+     * Retrieves the general degree requirements
+     */
+    getGeneralDegreeRequirementes(req: Request, res: Response): Promise<any>;
+
+    /**
      * Retrieves honors requirements
      */
     getHonorsRequirements(req: Request, res: Response): Promise<void>;

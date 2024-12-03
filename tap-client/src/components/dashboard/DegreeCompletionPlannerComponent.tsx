@@ -503,8 +503,8 @@ export default function DegreeCompletionPlannerComponent() {
                     animationData={loadingAnimation}
                     loop={true} // Set looping
                     autoplay={true} // Set autoplay
-                    height={150} // Set height
-                    width={150} // Set width
+                    height={150}
+                    width={150}
                 />
             </div>
         );
@@ -518,16 +518,6 @@ export default function DegreeCompletionPlannerComponent() {
             onDragEnd={handleDragEnd}
         >
             <div className="flex">
-                {/* Course Catalog */}
-                <div className="w-1/4 p-4 bg-gray-100">
-                    {/* Course Catalog Title */}
-                    <h2 className="text-2xl font-bold text-black mb-4 text-left">
-                        Course Catalog
-                    </h2>
-
-                    <CourseCatalogComponent courses={courses} />
-                </div>
-
                 {/* Degree Planner */}
                 <div className="flex-1 p-4">
                     <div className="flex justify-between mb-4">
@@ -590,6 +580,16 @@ export default function DegreeCompletionPlannerComponent() {
                             />
                         ))}
                     </div>
+                </div>
+
+                {/* Course Catalog */}
+                <div className="w-1/4 p-4 bg-gray-100">
+                    {/* Course Catalog Title */}
+                    <h2 className="text-2xl font-bold text-black mb-4 text-left">
+                        Course Catalog
+                    </h2>
+
+                    <CourseCatalogComponent courses={courses} />
                 </div>
             </div>
             <DragOverlay>

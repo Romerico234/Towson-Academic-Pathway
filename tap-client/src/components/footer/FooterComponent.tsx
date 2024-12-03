@@ -32,7 +32,8 @@ export default function FooterComponent() {
             {/* Copyright Section */}
             <div className="text-center py-4 text-sm bg-opacity-90">
                 <p className="text-towsonWhite">
-                    Made by ඞ, Romerico David, Timothy DeLloyd, Mitchell Griff, and ඞ.
+                    Made by ඞ, Romerico David, Timothy DeLloyd, Mitchell Griff,
+                    Zachary Hall, and ඞ.
                 </p>
                 <p className="text-towsonWhite opacity-75">
                     © 2024 Towson Academic Pathway. All rights reserved.
