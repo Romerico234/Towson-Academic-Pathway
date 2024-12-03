@@ -1,23 +1,23 @@
-import collegeImg from "../../../src/assets/home-assets/stock-TU.jpg"
 import capLottie from "../../../src/assets/home-assets/capLottie.json"
 import aiLottie from "../../../src/assets/home-assets/aiLottie.json"
 import studentsLottie from "../../../src/assets/home-assets/studentsLottie.json"
 import Lottie from "lottie-react";
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 
 export default function HomeComponent() {
 
-    const navigate = useNavigate();
+    //If we're not gonna have an about page, no need for the button
+    /* const navigate = useNavigate();
 
     const handleClick = () => {
         navigate('/about');
-    }
+    } */
 
     return (
         <div>
             <div className="flex mt-10 h-screen items-center justify-center">
-                <img src={collegeImg} alt="Lanscape photo of Towson University" className="w-[50%]"/>
-                <div className="p-5 mt-5 w-[30%] m-[1.5%] float-left">
+                <img src="https://www.towson.edu//images/buildings/7800-york-exterior-01-m.jpg" alt="Photo of Towson's York Road building" className="w-[50%]"/>
+                <div className="p-5 mt-5 w-[30%] m-[1.5%] ml-[50px] float-left shadow-lg bg-towsonMistLight">
                     <p className="text-2xl text-center text-towsonGraphiteDark">
                         The Mission
                     </p>
@@ -26,20 +26,21 @@ export default function HomeComponent() {
                         providing exceptional planning services to help you achieve your goals during your
                         time at Towson University. 
 
-                        <br />
+                        {/*If we're not gonna have an about page, no need for this button*/}
+                        {/* <br />
 
                         <button
                             onClick={handleClick}
                             className="px-3 py-1 mt-3 bg-towsonGold text-towsonWhite font-medium rounded-lg hover:bg-towsonGoldDark transition"
                         >
                             Meet the Team
-                        </button>
+                        </button> */}
                     </div>
                 </div>
             </div>
 
             <div className="flex mt-10 h-screen items-center justify-center">
-                <div className="p-3 mt-5 w-[30%] float-left">
+                <div className="p-3 mt-5 w-[30%] float-left shadow-lg bg-towsonMistLight">
                     <p className="text-3xl text-center text-towsonGraphiteDark">
                         Plan your Degree
                     </p>
@@ -68,7 +69,7 @@ export default function HomeComponent() {
                         className="w-[850px]"
                     />
 
-                <div className="p-5 mt-5 w-[30%] m-[1.5%] float-left">
+                <div className="p-5 mt-5 w-[30%] float-left shadow-lg bg-towsonMistLight">
                     <p className="text-3xl text-center text-towsonGraphiteDark">
                         Course Catalog
                     </p>
@@ -83,7 +84,7 @@ export default function HomeComponent() {
             </div>
 
             <div className="flex mt-10 h-screen items-center justify-center">
-                <div className="p-5 mt-5 w-[30%] m-[1.5%] float-left">
+                <div className="p-5 mt-5 w-[30%] m-[1.5%] float-left shadow-lg bg-towsonMistLight">
                     <p className="text-3xl text-center text-towsonGraphiteDark">
                         AI Assistance
                     </p>
