@@ -45,7 +45,7 @@ export default function RegisterComponent() {
         <div className="flex items-center justify-center min-h-screen p-4">
             <form
                 onSubmit={handleSubmit}
-                className="border-2 border-towsonBlack bg-towsonDarkerWhite p-8 rounded shadow-md w-full max-w-md"
+                className="border-2 mt-[70px] border-towsonBlack bg-towsonDarkerWhite p-8 rounded shadow-md w-full max-w-md"
             >
                 <h2 className="text-3xl font-bold text-towsonGold mb-6 text-center">
                     Register
