@@ -11,8 +11,8 @@ import dateImg from "../../assets/form-assets/date.png";
 import fileImg from "../../assets/form-assets/file.png";
 import starImg from "../../assets/form-assets/star.png";
 
-type Major = "Computer Science";
-
+type Major = "Computer Science"; // | "Mathematics"
+ 
 interface Props {
     formData: IAcademicInfo;
     handleInputChange: (
@@ -56,7 +56,7 @@ export default function AcademicInfoFormComponent({
         fetchUserData();
     }, [token]);
 
-    const majors: Major[] = ["Computer Science"];
+    const majors: Major[] = ["Computer Science"]; // , "Mathematics"
 
     const concentrations: Record<Major, string[]> = {
         "Computer Science": [
@@ -64,6 +64,13 @@ export default function AcademicInfoFormComponent({
             "Cyber Operations Track",
             "Software Engineering Track",
         ],
+        // "Mathematics": [
+        //     "General Concentration", 
+        //     "Actuarial Science and Risk Management",
+        //     "Applied Mathematics",
+        //     "Pure Mathematics",
+        //     "Mathematics Secondary Education"
+        // ],
     };
 
     const bachelorsDegrees = [

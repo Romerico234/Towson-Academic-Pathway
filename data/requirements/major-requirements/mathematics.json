@@ -1,0 +1,667 @@
+{
+    "name": "Mathematics",
+    "totalUnits": "60-70",
+    "generalRequirements": {
+        "requiredCourses": {
+            "math": [
+                {
+                    "code": "MATH 273",
+                    "courseTitle": "Calculus I",
+                    "units": "4",
+                    "prerequisites": ["ALEKS Placement Exam", "MATH 117", "MATH 119"]
+                },
+                {
+                    "code": "MATH 274",
+                    "courseTitle": "Calculus II",
+                    "units": "4",
+                    "prerequisites": ["MATH 273"]
+                },
+                {
+                    "code": "MATH 275",
+                    "courseTitle": "Calculus III",
+                    "units": "4",
+                    "prerequisites": ["MATH 274"]
+                },
+                {
+                    "code": "MATH 265",
+                    "courseTitle": "Elementary Linear Algebra",
+                    "units": "4",
+                    "prerequisites": ["MATH 211", "MATH 273"]
+                },
+                {
+                    "code": "MATH 267",
+                    "courseTitle": "Introduction to Abstract Mathematics",
+                    "units": "4",
+                    "prerequisites": ["MATH 273", "MATH 265"]
+                }
+            ]
+        }
+    },
+    "concentrations": [
+        {
+            "name": "General Concentration",
+            "totalUnits": "43-48",
+            "requirements": {
+                "requiredCourses": {
+                    "generalConcentration": [
+                        {
+                            "code": "COSC 236",
+                            "courseTitle": "Introduction to Computer Science I",
+                            "units": "4",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "MATH 331",
+                            "courseTitle": "Probability",
+                            "units": "4",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "MATH 369",
+                            "courseTitle": "Introduction to Abstract Algebra",
+                            "units": "4",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "MATH 372",
+                            "courseTitle": "Real Analysis I",
+                            "units": "4",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "MATH 490",
+                            "courseTitle": "Senior Seminar in Mathematics",
+                            "units": "3",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "MATH 499",
+                            "courseTitle": "Honors Thesis in Mathematics",
+                            "units": "3",
+                            "prerequisites": []
+                        }
+                    ]
+                },
+                "groupRequirements": {
+                    "description": "Select minimum three groups from the nine listed below (Algebra, Analysis, Applications, Discrete Math, Education, Finance, Geometry/Topology, Numerics, and Statistics) and complete minimum two courses from each group. Algebra or Analysis must be chosen as one of the groups.",
+                    "units": "18-21",
+                    "groups": [
+                        {
+                            "name": "Algebra",
+                            "courses": [
+                                { "code": "MATH 463", "courseTitle": "Linear Algebra", "units": "3" },
+                                { "code": "MATH 465", "courseTitle": "Number Theory", "units": "3" },
+                                { "code": "MATH 467", "courseTitle": "Algebraic Structures", "units": "3" }
+                            ]
+                        },
+                        {
+                            "name": "Analysis",
+                            "courses": [
+                                { "code": "MATH 379", "courseTitle": "Fourier Analysis with Applications", "units": "3" },
+                                { "code": "MATH 472", "courseTitle": "Real Analysis II", "units": "3" },
+                                { "code": "MATH 475", "courseTitle": "Complex Analysis", "units": "3" }
+                            ]
+                        },
+                        {
+                            "name": "Applications",
+                            "courses": [
+                                { "code": "MATH 374", "courseTitle": "Differential Equations", "units": "3" },
+                                { "code": "MATH 377", "courseTitle": "Mathematical Models", "units": "3" },
+                                {
+                                    "category": "Application Electives (maximum one course may be applied to major)",
+                                    "courses": [
+                                        { "code": "BIOL 309", "courseTitle": "Genetics", "units": "3-4" },
+                                        { "code": "CHEM 345", "courseTitle": "Principles of Physical Chemistry", "units": "3-4" },
+                                        { "code": "COSC 336", "courseTitle": "Data Structures and Algorithm Analysis", "units": "3-4" },
+                                        { "code": "PHYS 307", "courseTitle": "Introductory Mathematical Physics", "units": "3-4" },
+                                        { "code": "PHYS 311", "courseTitle": "Modern Physics I", "units": "3-4" },
+                                        { "code": "PHYS 351", "courseTitle": "Mechanics", "units": "3-4" },
+                                        { "code": "PHYS 354", "courseTitle": "Electricity and Magnetism", "units": "3-4" },
+                                        { "code": "POSC 459", "courseTitle": "Simulation and Games in Political Science", "units": "3-4" },
+                                        { "code": "PSYC 314", "courseTitle": "Research Methods in Psychology", "units": "3-4" }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Discrete Math",
+                            "courses": [
+                                { "code": "MATH 314", "courseTitle": "Introduction to Cryptography", "units": "3" },
+                                { "code": "MATH 315", "courseTitle": "Applied Combinatorics", "units": "4" },
+                                { "code": "MATH 451", "courseTitle": "Graph Theory", "units": "3" }
+                            ]
+                        },
+                        {
+                            "name": "Education",
+                            "courses": [
+                                { "code": "MATH 310", "courseTitle": "Functions and Modeling for Secondary School Teachers", "units": "3" },
+                                { "code": "MATH 420", "courseTitle": "Applications of Technology for Secondary School Teachers", "units": "3" },
+                                { "code": "MATH 423", "courseTitle": "Teaching Mathematics in the Secondary Schools", "units": "3" }
+                            ]
+                        },
+                        {
+                            "name": "Finance",
+                            "courses": [
+                                { "code": "MATH 312", "courseTitle": "Theory of Interest", "units": "4" },
+                                { "code": "MATH 485", "courseTitle": "Mathematical Finance", "units": "3" },
+                                { "code": "MATH 486", "courseTitle": "Risk Management and Financial Engineering", "units": "3" }
+                            ]
+                        },
+                        {
+                            "name": "Geometry/Topology",
+                            "courses": [
+                                { "code": "MATH 353", "courseTitle": "Euclidean and Non-Euclidean Geometries", "units": "3" },
+                                { "code": "MATH 457", "courseTitle": "Differential Geometry", "units": "3" },
+                                { "code": "MATH 477", "courseTitle": "Topology", "units": "3" }
+                            ]
+                        },
+                        {
+                            "name": "Numerics",
+                            "courses": [
+                                { "code": "MATH 435", "courseTitle": "Numerical Analysis I", "units": "3" },
+                                { "code": "MATH 437", "courseTitle": "Operations Research", "units": "3" },
+                                { "code": "MATH 439", "courseTitle": "Computational Probability Models", "units": "3" }
+                            ]
+                        },
+                        {
+                            "name": "Statistics",
+                            "courses": [
+                                { "code": "MATH 332", "courseTitle": "Mathematical Statistics", "units": "3" },
+                                { "code": "MATH 337", "courseTitle": "Applied Regression and Time Series Predictive Modeling", "units": "4" },
+                                { "code": "MATH 438", "courseTitle": "Fundamentals of Long-Term Actuarial Mathematics", "units": "4" }
+                            ]
+                        }
+                    ]
+                },
+                "electives": {
+                    "description": "Select any two additional courses from the nine groups listed below. Maximum one elective course may be from the list of Application Electives in the Applications Group.",
+                    "units": "6-8"
+                }
+            }
+        },
+        {
+            "name": "Actuarial Science and Risk Management",
+            "totalUnits": "83-84",
+            "description": "The Society of Actuaries has recognized Towson University as a Center of Actuarial Excellence (CAE). There are eight criteria for this designation, including curriculum, faculty composition, graduate quality, connection to industry, and research/scholarship. This concentration will prepare students for the required professional exams to be taken after graduation. In addition to the 20 units of common requirements for all Mathematics majors, the Actuarial Science and Risk Management concentration requires 63-64 units for a total of 83-84 units. All courses must be completed with a grade equivalent of 2.00 or higher. MATH 498 and minimum six additional upper-level courses in the major must be taken at Towson University.",
+            "requirements": {
+                "requiredCourses": {
+                    "actuarialScience": [
+                        {
+                            "code": "ACCT 201",
+                            "courseTitle": "Principles of Financial Accounting",
+                            "units": "3",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "ACCT 202",
+                            "courseTitle": "Principles of Managerial Accounting",
+                            "units": "3",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "COSC 236",
+                            "courseTitle": "Introduction to Computer Science I",
+                            "units": "4",
+                            "prerequisites": ["COSC 175"]
+                        },
+                        {
+                            "code": "ECON 201",
+                            "courseTitle": "Microeconomic Principles",
+                            "units": "3",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "ECON 202",
+                            "courseTitle": "Macroeconomic Principles",
+                            "units": "3",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "ENGL 317",
+                            "courseTitle": "Writing for Business and Industry",
+                            "units": "3",
+                            "prerequisites": [],
+                            "coreDesignation": "Core 9"
+                        },
+                        {
+                            "code": "FIN 331",
+                            "courseTitle": "Principles of Financial Management",
+                            "units": "3",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "MATH 312",
+                            "courseTitle": "Theory of Interest",
+                            "units": "4",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "MATH 331",
+                            "courseTitle": "Probability",
+                            "units": "4",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "MATH 332",
+                            "courseTitle": "Mathematical Statistics",
+                            "units": "3",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "MATH 337",
+                            "courseTitle": "Applied Regression and Time Series Predictive Modeling",
+                            "units": "4",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "MATH 438",
+                            "courseTitle": "Fundamentals of Long-Term Actuarial Mathematics",
+                            "units": "4",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "MATH 439",
+                            "courseTitle": "Computational Probability Models",
+                            "units": "3",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "MATH 441",
+                            "courseTitle": "Fundamentals of Short-Term Actuarial Mathematics",
+                            "units": "3",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "MATH 442",
+                            "courseTitle": "Advanced Short-Term Actuarial Mathematics",
+                            "units": "3",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "MATH 447",
+                            "courseTitle": "Statistics for Risk Modeling",
+                            "units": "3",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "MATH 448",
+                            "courseTitle": "Advanced Long-Term Actuarial Mathematics",
+                            "units": "3",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "MATH 485",
+                            "courseTitle": "Mathematical Finance",
+                            "units": "3",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "MATH 498",
+                            "courseTitle": "Senior Seminar: Actuarial Science and Risk Management",
+                            "units": "3",
+                            "prerequisites": [],
+                            "notes": "Must be taken at Towson University."
+                        }
+                    ]
+                },
+                "electives": {
+                    "description": "Select one of the following:",
+                    "units": "3-4",
+                    "courses": [
+                        { "code": "MATH 369", "courseTitle": "Introduction to Abstract Algebra", "units": "3" },
+                        { "code": "MATH 372", "courseTitle": "Real Analysis I", "units": "4" },
+                        { "code": "MATH 463", "courseTitle": "Linear Algebra", "units": "3" }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Applied Mathematics",
+            "totalUnits": "66-69",
+            "description": "In addition to the 20 units of common requirements for all Mathematics majors, the Applied Mathematics concentration requires 46-49 units for a total of 66-69 units. All courses must be completed with a grade equivalent of 2.00 or higher. MATH 490 and minimum six additional upper-level courses in the major must be taken at Towson University.",
+            "requirements": {
+                "requiredCourses": {
+                    "appliedMathematics": [
+                        {
+                            "code": "COSC 236",
+                            "courseTitle": "Introduction to Computer Science I",
+                            "units": "4",
+                            "prerequisites": ["COSC 175"]
+                        },
+                        {
+                            "code": "MATH 331",
+                            "courseTitle": "Probability",
+                            "units": "4",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "MATH 332",
+                            "courseTitle": "Mathematical Statistics",
+                            "units": "3",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "MATH 369",
+                            "courseTitle": "Introduction to Abstract Algebra",
+                            "units": "4",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "MATH 372",
+                            "courseTitle": "Real Analysis I",
+                            "units": "4",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "MATH 374",
+                            "courseTitle": "Differential Equations",
+                            "units": "3",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "MATH 377",
+                            "courseTitle": "Mathematical Models",
+                            "units": "3",
+                            "prerequisites": [],
+                            "alternative": "MATH 439"
+                        },
+                        {
+                            "code": "MATH 435",
+                            "courseTitle": "Numerical Analysis I",
+                            "units": "3",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "MATH 472",
+                            "courseTitle": "Real Analysis II",
+                            "units": "3",
+                            "prerequisites": [],
+                            "alternative": "MATH 475"
+                        },
+                        {
+                            "code": "MATH 490",
+                            "courseTitle": "Senior Seminar in Mathematics",
+                            "units": "3",
+                            "prerequisites": [],
+                            "notes": "Must be taken at Towson University."
+                        }
+                    ]
+                },
+                "upperLevelElectives": {
+                    "description": "Select two of the following:",
+                    "units": "6-7",
+                    "courses": [
+                        { "code": "MATH 315", "courseTitle": "Applied Combinatorics", "units": "4" },
+                        { "code": "MATH 337", "courseTitle": "Applied Regression and Time Series Predictive Modeling", "units": "4" },
+                        { "code": "MATH 377", "courseTitle": "Mathematical Models", "units": "3" },
+                        { "code": "MATH 379", "courseTitle": "Fourier Analysis with Applications", "units": "3" },
+                        { "code": "MATH 437", "courseTitle": "Operations Research", "units": "3" },
+                        { "code": "MATH 439", "courseTitle": "Computational Probability Models", "units": "3" },
+                        { "code": "MATH 451", "courseTitle": "Graph Theory", "units": "3" },
+                        { "code": "MATH 457", "courseTitle": "Differential Geometry", "units": "3" },
+                        { "code": "MATH 463", "courseTitle": "Linear Algebra", "units": "3" },
+                        { "code": "MATH 472", "courseTitle": "Real Analysis II", "units": "3" },
+                        { "code": "MATH 475", "courseTitle": "Complex Analysis", "units": "3" }
+                    ]
+                },
+                "applicationElectives": {
+                    "description": "Select two of the following:",
+                    "units": "6-8",
+                    "courses": [
+                        { "code": "BIOL 309", "courseTitle": "Genetics", "units": "4" },
+                        { "code": "COSC 310", "courseTitle": "Special Topics: Advanced Programming", "units": "3" },
+                        { "code": "COSC 336", "courseTitle": "Data Structures and Algorithm Analysis", "units": "3" },
+                        { "code": "COSC 417", "courseTitle": "Introduction to the Theory of Computing", "units": "3" },
+                        { "code": "COSC 459", "courseTitle": "Computer Simulation & Modeling", "units": "3" },
+                        { "code": "COSC 461", "courseTitle": "Artificial Intelligence", "units": "3" },
+                        { "code": "COSC 471", "courseTitle": "Computer Graphics", "units": "3" },
+                        { "code": "COSC 483", "courseTitle": "Design & Analysis Algorithms", "units": "3" },
+                        { "code": "ECON 451", "courseTitle": "Introduction to Mathematical Economics", "units": "3" },
+                        { "code": "MATH 314", "courseTitle": "Introduction to Cryptography", "units": "3" },
+                        { "code": "MATH 438", "courseTitle": "Fundamentals of Long-Term Actuarial Mathematics", "units": "4" },
+                        { "code": "MATH 485", "courseTitle": "Mathematical Finance", "units": "3" },
+                        { "code": "MATH 486", "courseTitle": "Risk Management and Financial Engineering", "units": "3" },
+                        { "code": "PHYS 241", "courseTitle": "General Physics I Calculus-Based", "units": "4" },
+                        { "code": "PHYS 242", "courseTitle": "General Physics II Calculus-Based", "units": "4" },
+                        { "code": "PHYS 307", "courseTitle": "Introductory Mathematical Physics", "units": "3" },
+                        { "code": "POSC 459", "courseTitle": "Simulation and Games in Political Science", "units": "3" },
+                        { "code": "PSYC 314", "courseTitle": "Research Methods in Psychology", "units": "4" }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Pure Mathematics",
+            "totalUnits": "66",
+            "description": "In addition to the 20 units of common requirements for all Mathematics majors, the Pure Mathematics concentration requires 46 units for a total of 66 units. All courses must be completed with a grade equivalent of 2.00 or higher. MATH 490 and minimum six additional upper-level courses in the major must be taken at Towson University.",
+            "requirements": {
+                "requiredCourses": {
+                    "pureMathematics": [
+                        {
+                            "code": "COSC 236",
+                            "courseTitle": "Introduction to Computer Science I",
+                            "units": "4",
+                            "prerequisites": ["COSC 175"]
+                        },
+                        {
+                            "code": "MATH 331",
+                            "courseTitle": "Probability",
+                            "units": "4",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "MATH 369",
+                            "courseTitle": "Introduction to Abstract Algebra",
+                            "units": "4",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "MATH 372",
+                            "courseTitle": "Real Analysis I",
+                            "units": "4",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "MATH 463",
+                            "courseTitle": "Linear Algebra",
+                            "units": "3",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "MATH 467",
+                            "courseTitle": "Algebraic Structures",
+                            "units": "3",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "MATH 472",
+                            "courseTitle": "Real Analysis II",
+                            "units": "3",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "MATH 475",
+                            "courseTitle": "Complex Analysis",
+                            "units": "3",
+                            "prerequisites": []
+                        },
+                        {
+                            "code": "MATH 490",
+                            "courseTitle": "Senior Seminar in Mathematics",
+                            "units": "3",
+                            "prerequisites": [],
+                            "notes": "Must be taken at Towson University."
+                        }
+                    ]
+                },
+                "electives": {
+                    "description": "Select five upper-level Mathematics (MATH) courses. At least two courses must be selected from each of the following groups:",
+                    "totalUnits": "15",
+                    "group1": {
+                        "description": "Select at least two of the following:",
+                        "courses": [
+                            { "code": "MATH 315", "courseTitle": "Applied Combinatorics", "units": "4" },
+                            { "code": "MATH 332", "courseTitle": "Mathematical Statistics", "units": "3" },
+                            { "code": "MATH 353", "courseTitle": "Euclidean and Non-Euclidean Geometries", "units": "3" },
+                            { "code": "MATH 374", "courseTitle": "Differential Equations", "units": "3" },
+                            {
+                                "code": "MATH 377",
+                                "courseTitle": "Mathematical Models",
+                                "units": "3",
+                                "alternative": "MATH 439"
+                            },
+                            { "code": "MATH 379", "courseTitle": "Fourier Analysis with Applications", "units": "3" }
+                        ]
+                    },
+                    "group2": {
+                        "description": "Select at least two of the following:",
+                        "courses": [
+                            { "code": "MATH 451", "courseTitle": "Graph Theory", "units": "3" },
+                            { "code": "MATH 457", "courseTitle": "Differential Geometry", "units": "3" },
+                            { "code": "MATH 465", "courseTitle": "Number Theory", "units": "3" },
+                            { "code": "MATH 477", "courseTitle": "Topology", "units": "3" }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "name": "Mathematics Secondary Education",
+            "totalUnits": "82-90",
+            "description": "In addition to the 20 units of common requirements for all Mathematics majors, the Mathematics Secondary Education concentration requires 32-34 units of concentration requirements and 30-36 units of Towson UTeach course requirements for a total of 82-90 units. MATH 423, MATH 426, SEMS 498 and minimum four additional upper-level courses in the major must be taken at Towson University. Minimum requirements for admission into teacher education programs, maintaining candidate status, and formal entry into the capstone internship are outlined on the Standards for Teacher Education page in the Undergraduate Catalog.",
+            "requirements": {
+                "concentrationCourses": {
+                    "requiredCourses": [
+                        {
+                            "code": "MATH 223",
+                            "courseTitle": "Pedagogical Content Knowledge for Middle School Mathematics",
+                            "units": "2"
+                        },
+                        {
+                            "code": "MATH 310",
+                            "courseTitle": "Functions and Modeling for Secondary School Teachers",
+                            "units": "3"
+                        },
+                        {
+                            "code": "MATH 330",
+                            "courseTitle": "Introduction to Statistical Methods",
+                            "units": "4"
+                        },
+                        {
+                            "code": "MATH 353",
+                            "courseTitle": "Euclidean and Non-Euclidean Geometries",
+                            "units": "3"
+                        },
+                        {
+                            "code": "MATH 369",
+                            "courseTitle": "Introduction to Abstract Algebra",
+                            "units": "4"
+                        },
+                        {
+                            "code": "MATH 420",
+                            "courseTitle": "Applications of Technology for Secondary School Teachers",
+                            "units": "3"
+                        },
+                        {
+                            "code": "MATH 423",
+                            "courseTitle": "Teaching Mathematics in the Secondary Schools",
+                            "units": "3",
+                            "notes": "Must be taken at Towson University."
+                        },
+                        {
+                            "code": "PHYS 241",
+                            "courseTitle": "General Physics I Calculus-Based",
+                            "units": "4"
+                        }
+                    ],
+                    "electives": {
+                        "description": "Select two of the following:",
+                        "totalUnits": "6-8",
+                        "courses": [
+                            { "code": "MATH 315", "courseTitle": "Applied Combinatorics", "units": "3" },
+                            { "code": "MATH 320", "courseTitle": "Teaching Advanced Placement Calculus for Preservice Teachers", "units": "3" },
+                            { "code": "PHYS 242", "courseTitle": "General Physics II Calculus-Based", "units": "4" },
+                            { "code": "MATH 331", "courseTitle": "Probability", "units": "4" },
+                            { "code": "MATH 372", "courseTitle": "Real Analysis I", "units": "4" },
+                            { "code": "MATH 374", "courseTitle": "Differential Equations", "units": "3" },
+                            { "code": "MATH 451", "courseTitle": "Graph Theory", "units": "3" },
+                            { "code": "MATH 465", "courseTitle": "Number Theory", "units": "3" },
+                            { "code": "MATH 467", "courseTitle": "Algebraic Structures", "units": "3" },
+                            { "code": "MATH 475", "courseTitle": "Complex Analysis", "units": "3" }
+                        ]
+                    }
+                },
+                "towsonUteachCourses": {
+                    "requiredCourses": [
+                        {
+                            "code": "SEMS 110",
+                            "courseTitle": "Introduction to STEM Teaching I: Inquiry Approaches to Teaching",
+                            "units": "2"
+                        },
+                        {
+                            "code": "SEMS 120",
+                            "courseTitle": "Introduction to STEM Teaching II: Inquiry-Based Lesson Design",
+                            "units": "2"
+                        },
+                        {
+                            "code": "SEMS 230",
+                            "courseTitle": "Knowing and Learning",
+                            "units": "3"
+                        },
+                        {
+                            "code": "SEMS 240",
+                            "courseTitle": "Classroom Interactions",
+                            "units": "3"
+                        },
+                        {
+                            "code": "SEMS 250",
+                            "courseTitle": "Perspectives in Science and Mathematics",
+                            "units": "3"
+                        },
+                        {
+                            "code": "SEMS 260",
+                            "courseTitle": "Diversity and Difference in the STEM Classroom",
+                            "units": "3"
+                        },
+                        {
+                            "code": "MATH 426",
+                            "courseTitle": "Internship in Secondary Education - Mathematics",
+                            "units": "6-12",
+                            "notes": "Must be taken at Towson University."
+                        },
+                        {
+                            "code": "SCED 460",
+                            "courseTitle": "Using Literacy in the Secondary Schools",
+                            "units": "3"
+                        },
+                        {
+                            "code": "SCED 461",
+                            "courseTitle": "Teaching Literacy in the Secondary Content Areas",
+                            "units": "3"
+                        },
+                        {
+                            "code": "SEMS 370",
+                            "courseTitle": "Project-Based Instruction",
+                            "units": "3"
+                        },
+                        {
+                            "code": "SEMS 430",
+                            "courseTitle": "Seminar in Apprentice Teaching",
+                            "units": "1"
+                        },
+                        {
+                            "code": "SEMS 498",
+                            "courseTitle": "Internship in Mathematics and Science Secondary Education",
+                            "units": "3",
+                            "notes": "Must be taken at Towson University."
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "notes": [
+        "At least 15 units must be at the 300-400 level.",
+        "No course used for the Mathematics major may be taken on a Pass grading basis."
+    ]
+}
