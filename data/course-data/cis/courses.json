@@ -1,0 +1,371 @@
+{
+    "courses": [
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "CIS",
+            "catalogNumber": "211",
+            "courseTitle": "FUNDAMENTALS OF INFORMATION SYSTEMS & TECHNOLOGY",
+            "termsOffered": "Fall & Spring",
+            "description": "An introduction to information systems and technology in today's organizations. Topics include hardware, software and communications fundamentals, systems development, information management, workforce considerations, and related societal, legal, and ethical issues.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "campusCode": "MAIN",
+            "prerequisites": ["COSC 111"],
+            "corequisites": []
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "CIS",
+            "catalogNumber": "212",
+            "courseTitle": "INTRO TO BUSINESS PROGRAMMING",
+            "termsOffered": "Fall & Spring",
+            "description": "A study of computer programming for business applications using a language such as COBOL. Students will design, implement, test and document programs in application areas such as payroll, accounting, inventory and file maintenance. Not open to those who successfully completed COBOL programming.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "campusCode": "MAIN",
+            "prerequisites": ["COSC 111", "COSC 175"],
+            "corequisites": []
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "CIS",
+            "catalogNumber": "239",
+            "courseTitle": "ENTERPRISE SYSTEMS AND ARCHITECTURE",
+            "termsOffered": "Fall & Spring",
+            "description": "Key concepts of ERP systems and approaches to business process improvement through the use of Information Technology (IT) infrastructures including IT infrastructure frameworks, information architecture, the design, implementation, and management of enterprise IT solutions, and related theoretical and practical issues.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "campusCode": "MAIN",
+            "prerequisites": ["COSC 236", "CIS 211"],
+            "corequisites": []
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "CIS",
+            "catalogNumber": "265",
+            "courseTitle": "VISUAL BASIC PROGRAMMING",
+            "termsOffered": "Fall & Spring",
+            "description": "Concepts, tools and techniques of software development using an event-driven language that supports a graphical user interface and an object-oriented environment. Two lecture hours and two laboratory hours.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "campusCode": "MAIN",
+            "prerequisites": ["Programming experience required"],
+            "corequisites": []
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "CIS",
+            "catalogNumber": "328",
+            "courseTitle": "INTRODUCTION TO DATA ANALYTICS",
+            "termsOffered": "Fall",
+            "description": "Designed as an entry-level course of a three-course sequence that prepares students to pursue a career related to data analytics. The course provides an overview of the lifecycle of data analysis, the introduction and practical application of commonly used parametric and non-parametric statistical tests as well as predictive data modeling. The datasets and analysis cases will cover a variety of domains including IT, healthcare, education, manufacturing, natural science. Students will learn how to apply the statistical tests and modeling techniques to solve practical problems through widely adopted statistical and programming tools such as SPSS, R, and Python.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "campusCode": "MAIN",
+            "prerequisites": ["CIS 211", "MATH 231", "MATH 330", "ECON 205", "consent of instructor"],
+            "corequisites": []
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "CIS",
+            "catalogNumber": "334",
+            "courseTitle": "DATA ORGANIZATION",
+            "termsOffered": "Fall & Spring",
+            "description": "Information abstraction, representation and organization, including realization of data and the logic to manipulate it, concepts of levels of abstraction, and information organization, particularly within organizations.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "campusCode": "MAIN",
+            "prerequisites": ["COSC 237"],
+            "corequisites": []
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "CIS",
+            "catalogNumber": "350",
+            "courseTitle": "TELECOMMUNICATIONS",
+            "termsOffered": "Fall & Spring",
+            "description": "Addresses telecommunications from the perspectives of technology, systems, and management.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "campusCode": "MAIN",
+            "prerequisites": ["CIS 239", "CIS 334", "COSC 336", "ITEC 315", "ITEC 325"],
+            "corequisites": []
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "CIS",
+            "catalogNumber": "377",
+            "courseTitle": "INTRODUCTION TO CYBERSECURITY",
+            "termsOffered": "Fall, Spring & Summer",
+            "description": "Provides an overview of key cybersecurity concepts and practices and broadly characterizes the global security landscape, including cyber law and cyber warfare. It is structured as a series of ordered modules that cover foundational security principles, risk management, and adversarial thinking as an organizing narrative for a series of modules on data security, system security, network security, personal security, and societal security.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "campusCode": "MAIN",
+            "prerequisites": ["major or minor sophomore standing"],
+            "corequisites": []
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "CIS",
+            "catalogNumber": "379",
+            "courseTitle": "SYSTEMS ANALYSIS AND DESIGN",
+            "termsOffered": "Fall & Spring",
+            "description": "Guides students through the stages of the evolution of data processing systems, including analyses of present information flow, system specifications, equipment selection, and implementation of the system to provide an understanding of the skills and knowledge needed for effective use of data processing equipment in meeting information needs.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "campusCode": "MAIN",
+            "prerequisites": ["CIS 211", "COSC 237", "MATH 263"],
+            "corequisites": []
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "CIS",
+            "catalogNumber": "397",
+            "courseTitle": "INTERNSHIP IN CIS",
+            "termsOffered": "Fall, Spring & Summer",
+            "description": "Students work in a local computing facility under on-site and faculty supervision. May be repeated for a maximum of 6 units. Only 3 units can be applied toward the major. Minimum of 2.75 GPA. Graded S/U.",
+            "units": "6",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "campusCode": "MAIN",
+            "prerequisites": ["CIS 334", "COSC 336", "consent of the internship coordinator"],
+            "corequisites": []
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "CIS",
+            "catalogNumber": "425",
+            "courseTitle": "DECISION SUPPORT SYSTEMS",
+            "termsOffered": "Not Currently Offered",
+            "description": "Computer-based information systems for managerial decision-making. Includes mathematical modeling and decision support systems, systems architecture, DDS development tools, organization issues of decision support, multiparticipant DSS, and integration with other information systems.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "campusCode": "MAIN",
+            "prerequisites": [
+                "CIS 379",
+                "ITEC 411",
+                "MATH 231"
+            ],
+            "corequisites": []
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "CIS",
+            "catalogNumber": "426",
+            "courseTitle": "GAMING INTERFACE DESIGN",
+            "termsOffered": "Fall",
+            "description": "Focuses on game design and the computer gaming industry. Designed to introduce the fundamental elements, frameworks and standards related to computer gaming. Instruction will be a combination of lectures, group/individual projects and class assignments aimed at the dissemination of conceptual elements with practical application.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "campusCode": "MAIN",
+            "prerequisites": [
+                "CIS 379",
+                "ITEC 411"
+            ],
+            "corequisites": []
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "CIS",
+            "catalogNumber": "428",
+            "courseTitle": "TEXT ANALYTICS",
+            "termsOffered": "Spring",
+            "description": "Provides fundamental concepts, techniques and tools of text analytics for information retrieval and knowledge discovery from various contexts (e.g., IT, cybersecurity, healthcare, social media, spam detection). The course covers a complete text analytics process of collecting, cleaning and wrangling text data using programming languages and tools as well as other topics such as text mining methods (e.g., classification, clustering) and applications of such methods.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "campusCode": "MAIN",
+            "prerequisites": [
+                "CIS 328",
+                "CIS 334",
+                "COSC 336",
+                "ITEC 345"
+            ],
+            "corequisites": []
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "CIS",
+            "catalogNumber": "433",
+            "courseTitle": "SELECT TOPICS INFO SYST",
+            "termsOffered": "Occasionally",
+            "description": "Studies in selected areas of computer information systems. May be repeated for a maximum of 3 units.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "campusCode": "MAIN",
+            "prerequisites": [
+                "9 units of Computer Information Science",
+                "consent of instructor"
+            ],
+            "corequisites": []
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "CIS",
+            "catalogNumber": "435",
+            "courseTitle": "HUMAN-COMPUTER INTERACTION",
+            "termsOffered": "Fall & Spring",
+            "description": "Effective, productive information systems, including interactive computer systems, input and output devices, screen layouts, machine design, health issues, organizational impacts, and computers and the disabled.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "campusCode": "MAIN",
+            "prerequisites": [
+                "CIS 379",
+                "ITEC 345"
+            ],
+            "corequisites": []
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "CIS",
+            "catalogNumber": "436",
+            "courseTitle": "E-GOVERNMENT",
+            "termsOffered": "Fall",
+            "description": "Provides an overview of information technology development and use within federal, state, and local government. Addresses both external-facing systems (used by citizens) and internal systems (used by government employees), as well as current topic such as electronic voting, crowdsourcing, government datasets, and open government.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "campusCode": "MAIN",
+            "prerequisites": [
+                "CIS 379",
+                "ITEC 411"
+            ],
+            "corequisites": []
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "CIS",
+            "catalogNumber": "440",
+            "courseTitle": "SYSTEM DEVELOPMENT / E-COMMERCE",
+            "termsOffered": "Fall",
+            "description": "Developing an organization's electronic commerce technical infrastructure, hardware and software specification issues, strategic development of computer-mediated business and tools, policy and societal impact issues as well as future directions in electronic commerce.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "campusCode": "MAIN",
+            "prerequisites": [
+                "CIS 379",
+                "ITEC 411"
+            ],
+            "corequisites": []
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "CIS",
+            "catalogNumber": "445",
+            "courseTitle": "UNIVERSAL USABILITY: DESIGNING COMPUTER INTERFACES FOR BLIND USERS",
+            "termsOffered": "Spring",
+            "description": "Designing computer interfaces for the needs of blind users.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "campusCode": "MAIN",
+            "prerequisites": [
+                "CIS 379",
+                "ITEC 411"
+            ],
+            "corequisites": []
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "CIS",
+            "catalogNumber": "458",
+            "courseTitle": "ORGANIZATIONAL DATABASE MANAGEMENT",
+            "termsOffered": "Fall & Spring",
+            "description": "The database environment in an organization. Database development, analysis, design, implementation, and administration. Applications of database programs for organizational information processing. Students cannot earn credit for both COSC 457 and CIS 458.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "campusCode": "MAIN",
+            "prerequisites": [
+                "MATH 263",
+                "CIS 334",
+                "COSC 336"
+            ],
+            "corequisites": []
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "CIS",
+            "catalogNumber": "468",
+            "courseTitle": "APPLIED DATA MINING AND VISUAL ANALYTICS",
+            "termsOffered": "Spring",
+            "description": "Provides students with a background in traditional data mining approaches using computational models as well as visual analytic approaches which map data onto a visual model enabling knowledge discovery through human perception.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "campusCode": "MAIN",
+            "prerequisites": [
+                "CIS 328",
+                "CIS 334",
+                "COSC 336",
+                "ITEC 345"
+            ],
+            "corequisites": []
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "CIS",
+            "catalogNumber": "475",
+            "courseTitle": "INFORMATION SYSTEMS CAPSTONE",
+            "termsOffered": "Fall & Spring",
+            "description": "This senior level course integrates all core IS related competencies by allowing students working in teams to design and implement an information system with consideration of real-world issues including cost, safety, efficiency, and suitability for the intended user.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "campusCode": "MAIN",
+            "prerequisites": [
+                "CIS 379",
+                "ITEC 411",
+                "CIS 458"
+            ],
+            "corequisites": ["CIS 435"]
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "CIS",
+            "catalogNumber": "479",
+            "courseTitle": "SOFTWARE PROJECT MNGT",
+            "termsOffered": "Fall & Spring",
+            "description": "Technical and behavioral aspects of project management: concepts, needs identification, software project manager, software teams, software project organizations, project communications, software project planning, scheduling, control, associated costs, using management software tools.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "campusCode": "MAIN",
+            "prerequisites": [
+                "CIS 379"
+            ],
+            "corequisites": []
+        },
+        {
+            "institution": "TOWSN",
+            "acadCareer": "UGRD",
+            "subject": "CIS",
+            "catalogNumber": "495",
+            "courseTitle": "INDEPENDENT STUDY IN COMPUTER INFORMATION SYSTEMS",
+            "termsOffered": "Occasionally",
+            "description": "Directed study in selected areas of Computer Information Systems for which there is no regular course offered. The use of a proposal and well-defined objectives as well as a formal paper or project report are required.",
+            "units": "3",
+            "gradingBasis": "UNDERGRADUATE GRADING",
+            "campusCode": "MAIN",
+            "prerequisites": [
+                "senior standing in CIS",
+                "consent of department"
+            ],
+            "corequisites": []
+        }
+    ]
+}
