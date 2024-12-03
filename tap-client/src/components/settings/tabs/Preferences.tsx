@@ -6,12 +6,11 @@ import SettingsInfo from "../SettingsInfo";
 
 export default function Preferences() {
     const { token } = useAuth();
-    const [user, setUser] = useState<any>('')
+    const [user, setUser] = useState<any>("");
 
     useEffect(() => {
-
-        async function getUser(): Promise<any>{
-            if(!token) return
+        async function getUser(): Promise<any> {
+            if (!token) return;
 
             try {
                 const tokenService = new TokenService();
@@ -22,21 +21,30 @@ export default function Preferences() {
                 }
 
                 const userService = new UserService();
-                return (await userService.getUserById(userId))
-                
+                return await userService.getUserById(userId);
             } catch {
-                return
+                return;
             }
         }
-        getUser().then((user) => setUser(user))
-
-    }, [token, user])
+        getUser().then((user) => setUser(user));
+    }, [token, user]);
     return (
         <div className="flex flex-grow h-screen flex-col space-y-4 text-black py-5 px-5">
             {/* array.map is not used for order / formating purposes  */}
-            <SettingsInfo title="Preferred Credit Hours" data={user ? user?.preferencesInfo?.preferredCreditHours : 'n/a'}/>
-            <SettingsInfo title="Degree" data={user ? user?.preferencesInfo?.summerWinterCoursesFrequency : 'n/a'}/>
-           
+            <SettingsInfo
+                title="Preferred Credit Hours"
+                data={
+                    user ? user?.preferencesInfo?.preferredCreditHours : "n/a"
+                }
+            />
+            <SettingsInfo
+                title="Degree"
+                data={
+                    user
+                        ? user?.preferencesInfo?.summerWinterCoursesFrequency
+                        : "n/a"
+                }
+            />
         </div>
     );
 }
