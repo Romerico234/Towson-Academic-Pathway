@@ -180,7 +180,7 @@
             }
         },
         {
-            "name": "Actuarial Science and Risk Management Concentration",
+            "name": "Actuarial Science and Risk Management",
             "totalUnits": "83-84",
             "description": "The Society of Actuaries has recognized Towson University as a Center of Actuarial Excellence (CAE). There are eight criteria for this designation, including curriculum, faculty composition, graduate quality, connection to industry, and research/scholarship. This concentration will prepare students for the required professional exams to be taken after graduation. In addition to the 20 units of common requirements for all Mathematics majors, the Actuarial Science and Risk Management concentration requires 63-64 units for a total of 83-84 units. All courses must be completed with a grade equivalent of 2.00 or higher. MATH 498 and minimum six additional upper-level courses in the major must be taken at Towson University.",
             "requirements": {
@@ -316,7 +316,7 @@
             }
         },
         {
-            "name": "Applied Mathematics Concentration",
+            "name": "Applied Mathematics",
             "totalUnits": "66-69",
             "description": "In addition to the 20 units of common requirements for all Mathematics majors, the Applied Mathematics concentration requires 46-49 units for a total of 66-69 units. All courses must be completed with a grade equivalent of 2.00 or higher. MATH 490 and minimum six additional upper-level courses in the major must be taken at Towson University.",
             "requirements": {
@@ -431,7 +431,7 @@
             }
         },
         {
-            "name": "Pure Mathematics Concentration",
+            "name": "Pure Mathematics",
             "totalUnits": "66",
             "description": "In addition to the 20 units of common requirements for all Mathematics majors, the Pure Mathematics concentration requires 46 units for a total of 66 units. All courses must be completed with a grade equivalent of 2.00 or higher. MATH 490 and minimum six additional upper-level courses in the major must be taken at Towson University.",
             "requirements": {
@@ -526,7 +526,7 @@
             }
         },
         {
-            "name": "Mathematics Secondary Education Concentration",
+            "name": "Mathematics Secondary Education",
             "totalUnits": "82-90",
             "description": "In addition to the 20 units of common requirements for all Mathematics majors, the Mathematics Secondary Education concentration requires 32-34 units of concentration requirements and 30-36 units of Towson UTeach course requirements for a total of 82-90 units. MATH 423, MATH 426, SEMS 498 and minimum four additional upper-level courses in the major must be taken at Towson University. Minimum requirements for admission into teacher education programs, maintaining candidate status, and formal entry into the capstone internship are outlined on the Standards for Teacher Education page in the Undergraduate Catalog.",
             "requirements": {
