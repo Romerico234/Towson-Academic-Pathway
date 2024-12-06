@@ -1,6 +1,6 @@
 # Scripts 
 
-This folder contains the Python scripts for managing and loading data into our database.
+This folder contains the Python scripts for managing and loading data into our database. You do not need to run these scripts if you have access to our environment.
 
 ## Setup Instructions
 
