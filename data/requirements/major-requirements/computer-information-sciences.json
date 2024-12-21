@@ -1,0 +1,136 @@
+{
+    "major": "Computer Information Sciences",
+    "total_units": "74-77",
+    "required_courses": [
+      {"code": "CIS 211", "title": "FUNDAMENTALS OF INFORMATION SYSTEMS & TECHNOLOGY", "units": 3},
+      {"code": "CIS 239", "title": "ENTERPRISE SYSTEMS AND ARCHITECTURE", "units": 3},
+      {"code": "CIS 350", "title": "TELECOMMUNICATIONS", "units": 3},
+      {"code": "CIS 377", "title": "INTRODUCTION TO CYBERSECURITY", "units": 3},
+      {"code": "CIS 379", "title": "SYSTEMS ANALYSIS AND DESIGN", "units": 3},
+      {"code": "CIS 435", "title": "HUMAN-COMPUTER INTERACTION", "units": 3},
+      {"code": "CIS 458", "title": "ORGANIZATIONAL DATABASE MANAGEMENT", "units": 3},
+      {"code": "CIS 479", "title": "SOFTWARE PROJECT MNGT", "units": 3},
+      {"code": "COSC 236", "title": "INTRODUCTION TO COMPUTER SCIENCE I", "units": 4},
+      {"code": "COSC 237", "title": "INTRODUCTION TO COMPUTER SCIENCE II", "units": 4},
+      {"code": "COSC 418", "title": "ETHICAL AND SOCIETAL CONCERNS OF COMPUTER SCIENTISTS", "units": 3},
+      {"code": "ITEC 231", "title": "FUNDAMENTALS OF WEB TECHNOLOGIES", "units": 3}
+    ],
+    "capstone": {"code": "CIS 475", "title": "INFORMATION SYSTEMS CAPSTONE", "units": 3},
+    "math_courses": [
+      {
+        "code": "MATH 211 or MATH 273",
+        "title": "CALCULUS FOR APPLICATIONS or CALCULUS I",
+        "units": "3-4"
+      },
+      {
+        "code": "MATH 231 or MATH 330",
+        "title": "BASIC STATISTICS or INTRODUCTION TO STATISTICAL METHODS",
+        "units": "3-4"
+      },
+      {"code": "MATH 263", "title": "DISCRETE MATHEMATICS", "units": 3}
+    ],
+    "other_requirements": [
+      {"code": "ENGL 317", "title": "WRITING FOR BUSINESS AND INDUSTRY", "units": 3}
+    ],
+    "tracks": [
+      {
+        "name": "Business",
+        "units": 21,
+        "required_courses": [
+          {"code": "ACCT 201", "title": "PRINCIPLES OF FINANCIAL ACCOUNTING", "units": 3},
+          {"code": "CIS 334", "title": "DATA ORGANIZATION", "units": 3},
+          {"code": "ECON 201", "title": "MICROECONOMIC PRINCIPLES", "units": 3}
+        ],
+        "electives": [
+          {"code": "CIS 328", "title": "INTRODUCTION TO DATA ANALYTICS"},
+          {"code": "CIS 397", "title": "INTERNSHIP IN CIS"},
+          {"code": "CIS 426", "title": "GAMING INTERFACE DESIGN"},
+          {"code": "CIS 428", "title": "TEXT ANALYTICS"},
+          {"code": "CIS 433", "title": "SELECT TOPICS INFO SYST"},
+          {"code": "CIS 440", "title": "SYSTEM DEVELOPMENT / E-COMMERCE"},
+          {"code": "CIS 468", "title": "APPLIED DATA MINING AND VISUAL ANALYTICS"},
+          {"code": "CIS 495", "title": "INDEPENDENT STUDY IN COMPUTER INFORMATION SYSTEMS"},
+          {"code": "ITEC 427", "title": "CLOUD COMPUTING FOR ENTERPRISES"},
+          {"code": "ITEC 433", "title": "CYBER SECURITY RISK MANAGEMENT"}
+        ],
+        "pair_choices": [
+          {"pair": ["ACCT 202", "ACCT 301"], "titles": ["PRINCIPLES OF MANAGERIAL ACCOUNTING", "INTERMEDIATE ACCOUNTING I"]},
+          {"pair": ["ACCT 202", "ACCT 341"], "titles": ["PRINCIPLES OF MANAGERIAL ACCOUNTING", "MANAGEMENT ACCOUNTING I"]},
+          {"pair": ["EBTM 365", "EBTM 419"], "titles": ["PRINCIPLES OF OPERATIONS MANAGEMENT", "SUPPLY-CHAIN MANAGEMENT"]},
+          {"pair": ["EBTM 365", "EBTM 454"], "titles": ["PRINCIPLES OF OPERATIONS MANAGEMENT", "BUSINESS PROCESS MANAGEMENT"]},
+          {"pair": ["HLTH 207", "HCMN 305"], "titles": ["HEALTH CARE IN THE U.S.", "HEALTH ADMINISTRATION"]},
+          {"pair": ["MKTG 341", "MNGT 361"], "titles": ["MARKETING AND CREATIVITY", "LEADERSHIP AND MANAGEMENT"]},
+          {"pair": ["MNGT 361", "MNGT 395"], "titles": ["LEADERSHIP AND MANAGEMENT", "MANAGEMENT OF ORGANIZATIONAL BEHAVIOR"]}
+        ]
+      },
+      {
+        "name": "Data Analytics",
+        "units": 21,
+        "required_courses": [
+          {"code": "CIS 328", "title": "INTRODUCTION TO DATA ANALYTICS", "units": 3},
+          {"code": "CIS 334", "title": "DATA ORGANIZATION", "units": 3},
+          {"code": "CIS 428", "title": "TEXT ANALYTICS", "units": 3},
+          {"code": "CIS 468", "title": "APPLIED DATA MINING AND VISUAL ANALYTICS", "units": 3},
+          {"code": "ITEC 336", "title": "LEGAL AND POLICY ISSUES IN INFORMATION TECHNOLOGY", "units": 3}
+        ],
+        "electives": [
+          {"code": "CIS 265", "title": "VISUAL BASIC PROGRAMMING"},
+          {"code": "CIS 397", "title": "INTERNSHIP IN CIS"},
+          {"code": "CIS 433", "title": "SELECT TOPICS INFO SYST"},
+          {"code": "CIS 436", "title": "E-GOVERNMENT"},
+          {"code": "CIS 495", "title": "INDEPENDENT STUDY IN COMPUTER INFORMATION SYSTEMS"},
+          {"code": "ITEC 427", "title": "CLOUD COMPUTING FOR ENTERPRISES"}
+        ]
+      },
+      {
+        "name": "Interface Design",
+        "units": 21,
+        "required_courses": [
+          {"code": "ART 102", "title": "2D PROCESS FOR NON-ART MAJORS", "units": 3},
+          {"code": "ART 217", "title": "IMAGEMAKING: DIGITAL PROCESS", "units": 3},
+          {"code": "CIS 328", "title": "INTRODUCTION TO DATA ANALYTICS", "units": 3},
+          {"code": "CIS 334", "title": "DATA ORGANIZATION", "units": 3},
+          {"code": "CIS 445", "title": "UNIVERSAL USABILITY: DESIGNING COMPUTER INTERFACES FOR BLIND USERS", "units": 3}
+        ],
+        "electives": [
+          {"code": "ART 365", "title": "DESIGN FOR THE WWW"},
+          {"code": "CIS 397", "title": "INTERNSHIP IN CIS"},
+          {"code": "CIS 425", "title": "DECISION SUPPORT SYSTEMS"},
+          {"code": "CIS 426", "title": "GAMING INTERFACE DESIGN"},
+          {"code": "CIS 428", "title": "TEXT ANALYTICS"},
+          {"code": "CIS 433", "title": "SELECT TOPICS INFO SYST"},
+          {"code": "CIS 436", "title": "E-GOVERNMENT"},
+          {"code": "CIS 468", "title": "APPLIED DATA MINING AND VISUAL ANALYTICS"},
+          {"code": "CIS 495", "title": "INDEPENDENT STUDY IN COMPUTER INFORMATION SYSTEMS"},
+          {"code": "DFST 101", "title": "INTRODUCTION TO DEAF STUDIES"},
+          {"code": "ITEC 433", "title": "CYBER SECURITY RISK MANAGEMENT"}
+        ]
+      },
+      {
+        "name": "Systems",
+        "units": 22,
+        "required_courses": [
+          {"code": "CIS 328", "title": "INTRODUCTION TO DATA ANALYTICS", "units": 3},
+          {"code": "COSC 336", "title": "DATA STRUCTURES AND ALGORITHM ANALYSIS", "units": 4},
+          {"code": "COSC 412", "title": "SOFTWARE ENGINEERING", "units": 3},
+          {"code": "COSC 436", "title": "OBJECT-ORIENTED DESIGN & PROGRAMMING", "units": 3},
+          {"code": "COSC 484", "title": "WEB-BASED PROGRAM", "units": 3}
+        ],
+        "electives": [
+          {"code": "CIS 212", "title": "INTRO TO BUSINESS PROGRAMMING"},
+          {"code": "CIS 265", "title": "VISUAL BASIC PROGRAMMING"},
+          {"code": "CIS 397", "title": "INTERNSHIP IN CIS"},
+          {"code": "CIS 426", "title": "GAMING INTERFACE DESIGN"},
+          {"code": "CIS 428", "title": "TEXT ANALYTICS"},
+          {"code": "CIS 433", "title": "SELECT TOPICS INFO SYST"},
+          {"code": "CIS 440", "title": "SYSTEM DEVELOPMENT / E-COMMERCE"},
+          {"code": "CIS 468", "title": "APPLIED DATA MINING AND VISUAL ANALYTICS"},
+          {"code": "CIS 495", "title": "INDEPENDENT STUDY IN COMPUTER INFORMATION SYSTEMS"},
+          {"code": "ITEC 345", "title": "SCRIPTING LANGUAGES"},
+          {"code": "ITEC 423", "title": "EMERGING INTERNET TECHNOLOGIES"},
+          {"code": "ITEC 427", "title": "CLOUD COMPUTING FOR ENTERPRISES"},
+          {"code": "ITEC 433", "title": "CYBER SECURITY RISK MANAGEMENT"}
+        ]
+      }
+    ]
+}

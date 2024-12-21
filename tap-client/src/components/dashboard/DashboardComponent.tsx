@@ -10,7 +10,7 @@ export default function DashboardComponent() {
                         Degree Completion Planner
                     </h1>
                 </header>
-                <div className="flex-grow overflow-auto rounded-lg bg-white shadow p-4">
+                <div className="flex-grow overflow-auto rounded-lg bg-white shadow p-4 h-full">
                     <DegreeCompletionPlannerComponent />
                 </div>
             </div>
