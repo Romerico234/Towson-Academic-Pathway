@@ -6,9 +6,12 @@ This folder contains the Python scripts for managing and loading data into our d
 
 ### Prerequisites
 - Python 3.6 or later
-- MongoDB
+- MongoDB or a MongoDB container running at its default port of 27017
 
 ### Install Dependencies
 Run the following command to install required Python packages:
 ```bash
-pip install pymongo python-dotenv
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
