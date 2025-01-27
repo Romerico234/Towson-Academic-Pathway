@@ -30,7 +30,6 @@ JWT_SECRET="your_jwt_secret_key"
 OPENAI_API_KEY="your_openai_api_key"
 PORT=your_port_number
 ```
-For Professor Sai, refer to the google drive link that I attached along with our submission to get our environment variables.
 
 ### 4. Run the Development Environment
 ```
